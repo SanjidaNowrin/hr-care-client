@@ -1,6 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 body {
   margin: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --PT_font: 'PT Sans', sans-serif;
+  --color: #845EC2;
+  --secondary_color: #FF6F91;
+  --bg_color: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.btn_regular{
+  color: #000 !important;
+  padding: 8px 20px !important;
+  position: relative;
+  border-radius: 30px !important;
+  transition: all .3s ease-in-out;
+  box-shadow: 0px 8px 15px rgba(248, 80, 80, .5) !important;
+  display: block;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.btn_regular::before,
+.btn_regular::after{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  border-radius: 0;
+  transition: all .2s ease-in-out;
+  z-index: -1;
+}
+
+.btn_regular::before{
+  top: 0;
+  right: 50%;
+  background-image: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
+  transform: scaleX(0);
+}
+
+.btn_regular::after{
+  top: 0;
+  left: 50%;
+  background-image: linear-gradient(to left, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
+  transform: scaleX(0);
+}
+
+.btn_regular:hover::before,
+.btn_regular:hover:after{
+  transform: scaleX(1);
+}
+
+.btn_regular:hover{
+  color: #ffffff !important;
 }
