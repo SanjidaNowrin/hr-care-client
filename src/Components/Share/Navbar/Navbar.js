@@ -34,9 +34,10 @@ const Navbar = () => {
         },
         mobileNavItem: {
             textDecoration: "none",
+            color: "white",
         },
         navContainer: {
-            backgroundImage: "linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);",
+            backgroundImage: "linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91)",
         },
     });
     const [state, setState] = React.useState(false);
