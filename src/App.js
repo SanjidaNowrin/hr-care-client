@@ -1,13 +1,7 @@
+import React from "react";
 
-
-function App() {
-  return (
-    <>
-
-      <h2>HR Care</h2>
-
-    </>
-  );
-}
+const App = () => {
+    return <div></div>;
+};
 
 export default App;
