@@ -1,0 +1,26 @@
+[
+    {
+        "id": "01",
+        "title": "Responsive Design",
+        "des": "Completely responsive, fully functional on ipads, iphones, tablets, and other mobile phones.",
+        "icon": "<LaptopMacOutlinedIcon fontSize='large' />"
+    },
+    {
+        "id": "02",
+        "title": "Advanced Features",
+        "des": "Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.",
+        "icon": "<ViewInArOutlinedIcon fontSize='large' />"
+    },
+    {
+        "id": "03",
+        "title": "Clean Codes",
+        "des": "Well tested, well documented and W3 validated code. Developers can take advantage immediately.",
+        "icon": "<CodeOffOutlinedIcon fontSize='large' />"
+    },
+    {
+        "id": "03",
+        "title": "SEO Friendly",
+        "des": "A SEO friendly website has certain features and characteristics that helps search engines.",
+        "icon": "<CodeOffOutlinedIcon />"
+    }
+]

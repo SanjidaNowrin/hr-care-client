@@ -19,6 +19,7 @@ a{
 
 .btn_regular{
   color: #000 !important;
+  background-color: #ffffff !important;
   padding: 8px 20px !important;
   position: relative;
   border-radius: 30px !important;
