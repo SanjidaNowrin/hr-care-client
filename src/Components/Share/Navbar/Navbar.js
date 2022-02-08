@@ -133,7 +133,7 @@ const Navbar = () => {
                                     <Button color="inherit">Features</Button>
                                 </Link>
 
-                                <Link className={navItem} to="/">
+                                <Link className={navItem} to="/team">
                                     <Button color="inherit">Team</Button>
                                 </Link>
 
