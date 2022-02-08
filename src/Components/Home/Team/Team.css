@@ -1,0 +1,20 @@
+.team-image {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-left: 22.5%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.team-box {
+    text-align: center;
+}
+.team-container {
+    border: 1.2px solid White;
+    border-radius: 5px;
+}
+.team-container:hover {
+    border: 1.2px solid #ff6f91;
+    border-radius: 5px;
+}

@@ -34,9 +34,10 @@ const Navbar = () => {
         },
         mobileNavItem: {
             textDecoration: "none",
+            color: "white",
         },
         navContainer: {
-            backgroundImage: "linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);",
+            backgroundImage: "linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91)",
         },
     });
     const [state, setState] = React.useState(false);
@@ -132,7 +133,7 @@ const Navbar = () => {
                                     <Button color="inherit">Features</Button>
                                 </Link>
 
-                                <Link className={navItem} to="/">
+                                <Link className={navItem} to="/team">
                                     <Button color="inherit">Team</Button>
                                 </Link>
 
