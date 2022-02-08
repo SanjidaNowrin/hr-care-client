@@ -112,7 +112,7 @@ const useFirebase = () => {
 
   //save user to database
   const saveUserInfo = (email) => {
-    fetch("http://localhost:5000/usersInfo", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json", 
