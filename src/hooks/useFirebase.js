@@ -53,8 +53,8 @@ const useFirebase = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
         })
-          .then(() => {})
-          .catch((error) => {});
+          .then(() => { })
+          .catch((error) => { });
         const destanition = location?.state?.from || "/";
         navigate(destanition);
       })
@@ -112,15 +112,15 @@ const useFirebase = () => {
 
   //save user to database
   const saveUserInfo = (email) => {
-    fetch("http://localhost:5000/usersInfo", {
+    fetch("https://murmuring-falls-58867.herokuapp.com/usersInfo", {
       method: "POST",
       headers: {
-        "content-type": "application/json", 
+        "content-type": "application/json",
       },
-      body: JSON.stringify({email}),
-     
-    }).then((res)=>res.json())
-       .then((result)=>console.log(result));
+      body: JSON.stringify({ email }),
+
+    }).then((res) => res.json())
+      .then((result) => console.log(result));
   };
 
   return {
