@@ -1,119 +1,202 @@
+import { Box, Container, Grid, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React from "react";
-import "./Footer.css";
+import { Link } from "react-router-dom";
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
 const Footer = () => {
-  return (
-    <>
-      <footer class="footer-area">
-        <div class="footer-wave-box">
-          <div class="footer-wave footer-animation"></div>
-        </div>
-        <div class="main">
-          <div class="footer">
-            <div class="single-footer">
-              <h4>about us</h4>
-              <p>
-                Lorem ipsum dolor sit amet, di dunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam. Excepteur sint qui officia
-                deserunt Excepteur.
-              </p>
-              <div class="footer-social">
-                <a href="">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="">
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a href="">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-            </div>
-            <div class="single-footer">
-              <h4>main menu</h4>
-              <ul>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> home
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> about us
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> services
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> gallery
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> contact us
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="single-footer">
-              <h4>quick links</h4>
-              <ul>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> privacy policy
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> terms & conditions
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-chevron-right"></i> disclaimer
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="single-footer">
-              <h4>contact us</h4>
-              <ul>
-                <li>
-                  <a href="">
-                    <i class="fas fa-map-marker-alt"></i>Bangladesh
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-mobile-alt"></i> +88 0123 456 789
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="far fa-envelope"></i> hr@demo.com
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <i class="fas fa-globe-europe"></i> www.hrcare.com
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="copy">
-            <p>&copy; 2022 all rights reserved|| HR Care</p>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
+    const useStyle = makeStyles({
+        footer: {
+            backgroundImage: 'linear-gradient(to right, #845ec2, #746fd4, #5f80e4, #428ff0, #009efa)',
+            marginTop: '60px',
+            position: 'relative',
+            '&::after': {
+                position: 'absolute',
+                content: '""',
+                backgroundImage: 'url("https://i.ibb.co/pQYnnrH/footer-shape.png")',
+                backgroundSize: 'cover',
+                height: '53px',
+                width: '100%',
+                top: '0'
+            }
+        },
+        socialIcon: {
+            display: 'flex',
+            marginTop: '20px'
+        },
+        iconItem: {
+            background: 'transparent',
+            border: '1px solid #fff',
+            borderRadius: '50%',
+            height: '40px',
+            width: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 5px',
+            transition: 'all .3s ease-in-out !important',
+            '&:hover': {
+                background: '#fff',
+                '& $icon': {
+                    color: '#009EFA'
+                }
+            }
+        },
+        icon: {
+            color: '#fff',
+            transition: 'all .3s ease-in-out !important'
+        },
+        unorderList: {
+            padding: '0',
+            listStyle: 'none'
+        },
+        footerLink: {
+            display: 'flex',
+            alignItems: 'center',
+            textTransform: 'capitalize',
+            color: '#4FFBDF',
+            position: 'relative',
+            transform: 'translateX(0)',
+            transition: 'all .3s ease-in-out !important',
+            '&:hover': {
+                transform: 'translateX(15px)',
+                color: '#fff'
+            }
+        },
+        spanStyle: {
+            color: '#fff',
+            fontWeight: '500'
+        },
+        copyRight: {
+            textAlign: 'center',
+            borderTop: '1px solid #fff',
+            padding: '20px 0',
+            background: '#009EFA',
+            marginTop: '20px',
+            boxShadow: '0 0 30px 15px #0000004f'
+        }
+    })
+    const { footer, socialIcon, iconItem, icon, footerLink, unorderList, spanStyle, copyRight } = useStyle();
+    return (
+        <Box className={footer}>
+            <Container>
+                <Box sx={{ pt: 12 }}>
+                    <Grid container spacing={4}>
+                        <Grid item xs={12} md={4}>
+                            <Box class="single-ooter">
+                                <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>HR Software
+                                </Typography>
+                                <Typography variant="body1">
+                                    This is Human resource management software which is also called Payroll software. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.
+                                </Typography>
+                                <Box className={socialIcon}>
+                                    <a className={iconItem} href="#">
+                                        <FacebookOutlinedIcon className={icon} fontSize='small' />
+                                    </a>
+                                    <a className={iconItem} href="#">
+                                        <TwitterIcon className={icon} fontSize='small' />
+                                    </a>
+                                    <a className={iconItem} href="#">
+                                        <GitHubIcon className={icon} fontSize='small' />
+                                    </a>
+                                    <a className={iconItem} href="#">
+                                        <LinkedInIcon className={icon} fontSize='small' />
+                                    </a>
+                                </Box>
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={12} md={2}>
+                            <Box>
+                                <Typography variant="h5" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>Quick Links
+                                </Typography>
+                                <ul className={unorderList}>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> home
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> Features
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> Team
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' />services
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> contact us
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={12} md={2}>
+                            <Box>
+                                <Typography variant="h5" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>Supports
+                                </Typography>
+                                <ul className={unorderList}>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> Help
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> Videos
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> Terms of Use
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className={footerLink} to="/">
+                                            <ArrowRightIcon fontSize='large' /> Privacy Policy
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={12} md={4}>
+                            <Box>
+                                <Typography variant="h5" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>Contact Us
+                                </Typography>
+                                <Box>
+                                    <Typography variant="body1" sx={{ mb: 1 }}><span className={spanStyle}>Location:</span> 1750 kaliakoir, Gazipur <br /> Dhaka, Bangladesh</Typography>
+
+                                    <Typography variant="body1" sx={{ mb: 1 }}><span className={spanStyle}>Email:</span> support@hrcare.com</Typography>
+
+                                    <Typography variant="body1" sx={{ mb: 1 }}><span className={spanStyle}>Phone:</span> +044 0145 055</Typography>
+
+                                    <Typography variant="body1"><span className={spanStyle}>Website:</span> www.hrcare.com</Typography>
+                                </Box>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+
+            <Box className={copyRight}>
+                <Typography variant="body1">&copy; 2022 All rights reserved by HR Care</Typography>
+            </Box>
+        </Box>
+    );
 };
 
 export default Footer;

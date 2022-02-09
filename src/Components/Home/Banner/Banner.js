@@ -1,52 +1,68 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Typography, Button, Container } from "@mui/material";
+import { Typography, Button, Container, useTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
 const Banner = () => {
-  const verticalCenter = {
-    display: "flex",
-    alignItems: "center",
-    height: 400,
-  };
-  return (
-    <div>
-      <Container>
-        <Grid container spacing={8}>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            style={{ ...verticalCenter, textAlign: "left" }}
-          >
-            <Box>
-              <Typography variant="h4" sx={{ textTransform: "uppercase" }}>
-                The Right candidate for our <br />
-                Business
-              </Typography>
-              <p style={{ color: "gray" }}>
-                HR Care is system for company to maintain a database of their
-                employers performance.
-              </p>
-              <Button
-                variant="contained"
-                style={{ backgroundColor: "#2A4CC4", marginTop: "10px" }}
-              >
-                Get Started
-              </Button>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <img
-              src="https://i.ibb.co/52VcGBf/banner.png"
-              alt="banner"
-              border="0"
-              style={{ height: "60vh", width: "100%" }}
-            />
-          </Grid>
-        </Grid>
-      </Container>
-    </div>
-  );
+    const theme = useTheme();
+    const useStyle = makeStyles({
+        verticalCenter: {
+            display: "flex",
+            alignItems: "center",
+            [theme.breakpoints.down("sm")]: {
+                textAlign: 'center !important'
+            }
+        },
+        bannerTitle: {
+            marginBottom: '20px !important',
+            fontWeight: '700 !important',
+            color: '#009efa'
+        }
+    })
+
+    const { verticalCenter, bannerTitle } = useStyle();
+
+    return (
+        <Box sx={{ py: 10 }}>
+            <Container>
+                <Grid container spacing={8}>
+                    <Grid
+                        item
+                        xs={12}
+                        md={6}
+                        className={verticalCenter}
+                    >
+                        <Box>
+                            <Typography className={bannerTitle} variant="h3">
+                                HR Software
+                            </Typography>
+                            <Typography variant="h5">
+                                Human Resource Management Admin Template
+                            </Typography>
+                            <Typography variant="body1" sx={{ mt: 1, color: '#818181', fontFamily: 'var(--PT_font)' }}>
+                                HR Software is system for company to maintain a database of their
+                                employers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.
+                            </Typography>
+                            <Link to="/dashboard">
+                                <Button className="btn_regular" sx={{ mt: 3 }}>
+                                    Let's Start
+                                </Button>
+                            </Link>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <img
+                            src="https://i.ibb.co/52VcGBf/banner.png"
+                            alt="banner"
+                            border="0"
+                            style={{ width: "100%" }}
+                        />
+                    </Grid>
+                </Grid>
+            </Container>
+        </Box>
+    );
 };
 
 export default Banner;

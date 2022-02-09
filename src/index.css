@@ -20,7 +20,8 @@ a{
 .btn_regular{
   color: #000 !important;
   background-color: #ffffff !important;
-  padding: 8px 20px !important;
+  text-align: center;
+  padding: 8px 25px !important;
   position: relative;
   border-radius: 30px !important;
   transition: all .3s ease-in-out;
@@ -35,7 +36,7 @@ a{
   content: "";
   position: absolute;
   height: 100%;
-  width: 50%;
+  width: 51%;
   border-radius: 0;
   transition: all .2s ease-in-out;
   z-index: -1;
@@ -62,4 +63,5 @@ a{
 
 .btn_regular:hover{
   color: #ffffff !important;
+  background-color: transparent !important;
 }
