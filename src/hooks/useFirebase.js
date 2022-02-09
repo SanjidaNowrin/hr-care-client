@@ -18,7 +18,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-
+   const[users,setUsers]=useState(false)
   const auth = getAuth();
   // google sign in
   const googleProvider = new GoogleAuthProvider();
@@ -42,28 +42,29 @@ const useFirebase = () => {
 
 
   // Register New User
-  const registerUser = (name, email, password, location, navigate) => {
-    setIsLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        verifyEmail();
-        // save user to the database
-        saveUserInfo(result.user.email);
+ // Register New User
+ const registerUser = (name, email, password, location, navigate) => {
+  setIsLoading(true)
+  createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+          verifyEmail();
+          // save user to the database
+          saveUserInfo(email, name, "POST");
 
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        })
-          .then(() => {})
-          .catch((error) => {});
-        const destanition = location?.state?.from || "/";
-        navigate(destanition);
+          updateProfile(auth.currentUser, {
+              displayName: name
+          }).then(() => {
+          }).catch((error) => {
+          });
+          const destanition = location?.state?.from || '/';
+          navigate(destanition)
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
+          const errorMessage = error.message;
+          setError(errorMessage)
       })
       .finally(() => setIsLoading(false));
-  };
+}
 
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -111,18 +112,16 @@ const useFirebase = () => {
   };
 
   //save user to database
-  const saveUserInfo = (email) => {
-    fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json", 
-      },
-      body: JSON.stringify({email}),
-     
-    }).then((res)=>res.json())
-       .then((result)=>console.log(result));
-  };
-
+  const saveUserInfo = (email, displayName, method) => {
+    const user = { email, displayName,role:"employee" };
+    fetch("https://murmuring-falls-58867.herokuapp.com/users", {
+        method: method,
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+    }).then();
+};
   return {
     user,
     googleSignIn,
