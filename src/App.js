@@ -7,21 +7,21 @@ import Navbar from "./Components/Share/Navbar/Navbar";
 import AuthProvider from "./contexts/AuthProvider";
 
 function App() {
-  return (
-    <>
-      <AuthProvider>
-        <Router>
-          <Navbar></Navbar>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-          <Footer></Footer>
-        </Router>
-      </AuthProvider>
-    </>
-  );
+    return (
+        <>
+            <AuthProvider>
+                <Router>
+                    <Navbar></Navbar>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                    <Footer></Footer>
+                </Router>
+            </AuthProvider>
+        </>
+    );
 }
 
 export default App;
