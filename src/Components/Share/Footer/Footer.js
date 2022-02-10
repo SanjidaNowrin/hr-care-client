@@ -58,12 +58,12 @@ const Footer = () => {
             display: 'flex',
             alignItems: 'center',
             textTransform: 'capitalize',
-            color: '#4FFBDF',
+            color: '#fff',
             position: 'relative',
             transform: 'translateX(0)',
             transition: 'all .3s ease-in-out !important',
             '&:hover': {
-                transform: 'translateX(15px)',
+                transform: 'translateX(12px)',
                 color: '#fff'
             }
         },
@@ -88,7 +88,7 @@ const Footer = () => {
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4}>
                             <Box class="single-ooter">
-                                <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>HR Software
+                                <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>HR Care
                                 </Typography>
                                 <Typography variant="body1">
                                     This is Human resource management software which is also called Payroll software. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.

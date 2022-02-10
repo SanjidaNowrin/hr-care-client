@@ -25,7 +25,7 @@ a{
   position: relative;
   border-radius: 30px !important;
   transition: all .3s ease-in-out;
-  box-shadow: 0px 8px 15px rgba(248, 80, 80, .5) !important;
+  box-shadow: 0px 7px 15px rgb(0, 210, 252, .3) !important;
   display: block;
   overflow: hidden;
   z-index: 999;
@@ -45,14 +45,14 @@ a{
 .btn_regular::before{
   top: 0;
   right: 50%;
-  background-image: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
+  background-color: #00D2FC;
   transform: scaleX(0);
 }
 
 .btn_regular::after{
   top: 0;
   left: 50%;
-  background-image: linear-gradient(to left, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
+  background-color: #00D2FC;
   transform: scaleX(0);
 }
 
@@ -64,4 +64,5 @@ a{
 .btn_regular:hover{
   color: #ffffff !important;
   background-color: transparent !important;
+  box-shadow: 0px 7px 15px rgb(0, 210, 252, .5) !important;
 }

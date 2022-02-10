@@ -14,7 +14,8 @@ const Team = ({ team }) => {
             '&:hover': {
                 '& $cardBox': {
                     background: '#009EFA !important',
-                    transform: 'translateY(-30px)'
+                    transform: 'translateY(-30px)',
+                    boxShadow: '0px 7px 15px rgb(0, 210, 252, .5) !important',
                 }, '& $cardTitle': {
                     color: '#fff'
                 }
@@ -27,7 +28,7 @@ const Team = ({ team }) => {
             margin: '40px auto 20px'
         },
         cardBox: {
-            boxShadow: '0px 8px 15px rgba(248, 80, 80, .5) !important;',
+            boxShadow: '0px 7px 15px rgb(0, 0, 0, .2) !important',
             background: 'transparent !important',
             position: 'relative',
             transition: 'all .3s ease-in-out !important'
