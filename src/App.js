@@ -3,8 +3,8 @@ import Home from "./Components/Home/Home/Home";
 import Login from "./Components/Login/Login/Login";
 import Register from "./Components/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider";
-// import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
-// import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
+import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
+import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 
 function App() {
     return (
@@ -17,7 +17,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
 
-                        {/* <Route exact path={`/dashboard`} element={<Dashboard />}>
+                        <Route exact path={`/dashboard`} element={<Dashboard />}>
                             <Route
                                 path={'/dashboard'}
                                 element={
@@ -39,7 +39,7 @@ function App() {
                                     <Home />
                                 }
                             />
-                        </Route> */}
+                        </Route>
 
                     </Routes>
                 </Router>
