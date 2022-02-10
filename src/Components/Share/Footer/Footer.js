@@ -11,7 +11,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 const Footer = () => {
     const useStyle = makeStyles({
         footer: {
-            backgroundImage: 'linear-gradient(to right, #845ec2, #746fd4, #5f80e4, #428ff0, #009efa)',
+            background: '#009EFA',
             marginTop: '60px',
             position: 'relative',
             '&::after': {

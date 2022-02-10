@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Components/Home/Home/Home";
 import Login from "./Components/Login/Login/Login";
+import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import Register from "./Components/Login/Register/Register";
-import Footer from "./Components/Share/Footer/Footer";
 import AuthProvider from "./contexts/AuthProvider";
+import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 
 function App() {
   return (
@@ -15,8 +16,31 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route exact path={`/dashboard`} element={<Dashboard />}>
+              <Route
+                path={'/dashboard'}
+                element={
+                  <DashboardHome />
+                }
+              />
+
+              <Route
+                path={'/dashboard/home'}
+                element={
+                  <Home />
+                }
+              />
+
+              <Route
+                exact
+                path={'*'}
+                element={
+                  <Home />
+                }
+              />
+            </Route>
+
           </Routes>
-          <Footer></Footer>
         </Router>
       </AuthProvider>
     </>
