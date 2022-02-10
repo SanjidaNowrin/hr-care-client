@@ -18,7 +18,6 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-
   const auth = getAuth();
   // google sign in
   const googleProvider = new GoogleAuthProvider();
@@ -42,28 +41,29 @@ const useFirebase = () => {
 
 
   // Register New User
+  // Register New User
   const registerUser = (name, email, password, location, navigate) => {
-    setIsLoading(true);
+    setIsLoading(true)
     createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
+      .then((userCredential) => {
         verifyEmail();
         // save user to the database
-        saveUserInfo(result.user.email);
+        saveUserInfo(email, name, "POST");
 
         updateProfile(auth.currentUser, {
-          displayName: name,
-        })
-          .then(() => {})
-          .catch((error) => {});
-        const destanition = location?.state?.from || "/";
-        navigate(destanition);
+          displayName: name
+        }).then(() => {
+        }).catch((error) => {
+        });
+        const destanition = location?.state?.from || '/';
+        navigate(destanition)
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setError(errorMessage);
+        setError(errorMessage)
       })
       .finally(() => setIsLoading(false));
-  };
+  }
 
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -111,18 +111,16 @@ const useFirebase = () => {
   };
 
   //save user to database
-  const saveUserInfo = (email) => {
-    fetch("http://localhost:5000/usersInfo", {
-      method: "POST",
+  const saveUserInfo = (email, displayName, method) => {
+    const user = { email, displayName, role: "employee" };
+    fetch("https://murmuring-falls-58867.herokuapp.com/users", {
+      method: method,
       headers: {
-        "content-type": "application/json", 
+        "content-type": "application/json",
       },
-      body: JSON.stringify({email}),
-     
-    }).then((res)=>res.json())
-       .then((result)=>console.log(result));
+      body: JSON.stringify(user),
+    }).then();
   };
-
   return {
     user,
     googleSignIn,

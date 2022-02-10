@@ -16,7 +16,10 @@ const Features = () => {
             transition: 'all .3s !important',
             cursor: 'pointer',
             '&:hover': {
-                background: '#fff !important'
+                background: '#fff !important',
+                '& $icon': {
+                    color: '#009EFA !important'
+                }
             }
         },
         iconBox: {
@@ -33,82 +36,82 @@ const Features = () => {
             color: '#845EC2',
             height: '60px !important',
             width: '60px !important',
-            '&:hover': {
-                color: '#fff !important'
-            }
+            transition: 'all .3s ease-in-out !important'
         }
     });
 
     const { cardBox, iconBox, icon } = useStyle();
 
     return (
-        <Container>
-            <Grid container spacing={4}>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
-                        <Box className={iconBox}>
-                            <LaptopMacOutlinedIcon className={icon} fontSize='large' />
-                        </Box>
-                        <CardContent>
-                            <Typography variant="h5" color="text.primary" gutterBottom>
-                                Responsive Design
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Completely responsive, fully functional on ipads, iphones, tablets, and other mobile phones.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
+        <Box sx={{ py: 5, background: '#00D2FC' }}>
+            <Container>
+                <Grid container spacing={4}>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
+                            <Box className={iconBox}>
+                                <LaptopMacOutlinedIcon className={icon} fontSize='large' />
+                            </Box>
+                            <CardContent>
+                                <Typography variant="h5" color="text.primary" gutterBottom>
+                                    Responsive Design
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Completely responsive, fully functional on ipads, iphones, tablets, and other mobile phones.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                <Grid item xs={12} sm={6} md={3}>
-                    <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
-                        <Box className={iconBox}>
-                            <ViewInArOutlinedIcon className={icon} fontSize='large' />
-                        </Box>
-                        <CardContent>
-                            <Typography variant="h5" color="text.primary" gutterBottom>
-                                Advanced Features
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
+                            <Box className={iconBox}>
+                                <ViewInArOutlinedIcon className={icon} fontSize='large' />
+                            </Box>
+                            <CardContent>
+                                <Typography variant="h5" color="text.primary" gutterBottom>
+                                    Advanced Features
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                <Grid item xs={12} sm={6} md={3}>
-                    <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
-                        <Box className={iconBox}>
-                            <CodeOffOutlinedIcon className={icon} fontSize='large' />
-                        </Box>
-                        <CardContent>
-                            <Typography variant="h5" color="text.primary" gutterBottom>
-                                Clean Codes
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Well tested, well documented and W3 validated code. Developers can take advantage immediately.
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
+                            <Box className={iconBox}>
+                                <CodeOffOutlinedIcon className={icon} fontSize='large' />
+                            </Box>
+                            <CardContent>
+                                <Typography variant="h5" color="text.primary" gutterBottom>
+                                    Clean Codes
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Well tested, well documented and W3 validated code. Developers can take advantage immediately.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
 
-                <Grid item xs={12} sm={6} md={3}>
-                    <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
-                        <Box className={iconBox}>
-                            <SearchOutlinedIcon className={icon} fontSize='large' />
-                        </Box>
-                        <CardContent>
-                            <Typography variant="h5" color="text.primary" gutterBottom>
-                                SEO Friendly
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                A SEO friendly website has certain features and characteristics that helps search engines.
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    <Grid item xs={12} sm={6} md={3}>
+                        <Card elevation={12} className={cardBox} sx={{ borderRadius: 10 }}>
+                            <Box className={iconBox}>
+                                <SearchOutlinedIcon className={icon} fontSize='large' />
+                            </Box>
+                            <CardContent>
+                                <Typography variant="h5" color="text.primary" gutterBottom>
+                                    SEO Friendly
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    A SEO friendly website has certain features and characteristics that helps search engines.
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Container>
+            </Container>
+        </Box>
     );
 };
 
