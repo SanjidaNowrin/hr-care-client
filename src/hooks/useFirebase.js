@@ -41,29 +41,29 @@ const useFirebase = () => {
 
 
   // Register New User
- // Register New User
- const registerUser = (name, email, password, location, navigate) => {
-  setIsLoading(true)
-  createUserWithEmailAndPassword(auth, email, password)
+  // Register New User
+  const registerUser = (name, email, password, location, navigate) => {
+    setIsLoading(true)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-          verifyEmail();
-          // save user to the database
-          saveUserInfo(email, name, "POST");
+        verifyEmail();
+        // save user to the database
+        saveUserInfo(email, name, "POST");
 
-          updateProfile(auth.currentUser, {
-              displayName: name
-          }).then(() => {
-          }).catch((error) => {
-          });
-          const destanition = location?.state?.from || '/';
-          navigate(destanition)
+        updateProfile(auth.currentUser, {
+          displayName: name
+        }).then(() => {
+        }).catch((error) => {
+        });
+        const destanition = location?.state?.from || '/';
+        navigate(destanition)
       })
       .catch((error) => {
-          const errorMessage = error.message;
-          setError(errorMessage)
+        const errorMessage = error.message;
+        setError(errorMessage)
       })
       .finally(() => setIsLoading(false));
-}
+  }
 
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -112,15 +112,15 @@ const useFirebase = () => {
 
   //save user to database
   const saveUserInfo = (email, displayName, method) => {
-    const user = { email, displayName,role:"employee" };
+    const user = { email, displayName, role: "employee" };
     fetch("https://murmuring-falls-58867.herokuapp.com/users", {
-        method: method,
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(user),
+      method: method,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
     }).then();
-};
+  };
   return {
     user,
     googleSignIn,

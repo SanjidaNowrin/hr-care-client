@@ -1,9 +1,9 @@
 import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from "@mui/material";
 import React from "react";
+import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -11,8 +11,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
 const Navbar = () => {
+    const [state, setState] = React.useState(false);
     const theme = useTheme();
     const useStyle = makeStyles({
+        navContainer: {
+            background: "#009EFA !important",
+        },
         navItem: {
             color: "white",
             textDecoration: "none",
@@ -23,6 +27,7 @@ const Navbar = () => {
             },
         },
         navItemContainer: {
+            marginLeft: 'auto',
             [theme.breakpoints.down("sm")]: {
                 display: "none !important",
             },
@@ -33,70 +38,50 @@ const Navbar = () => {
             },
         },
         mobileNavItem: {
-            textDecoration: "none",
-        },
-        navContainer: {
-            backgroundImage: "linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);",
-        },
+            transition: 'all .3s !important',
+            '&:hover': {
+                boxShadow: '0px 8px 15px rgba(248, 80, 80, .5) !important'
+            }
+        }
     });
-    const [state, setState] = React.useState(false);
-
     const { navItem, navIcon, navItemContainer, navLogo, mobileNavItem, navContainer } = useStyle();
 
+    // drawer item
     const list = (
         <Box sx={{ width: 250 }} role="presentation">
-            <List className={navContainer}>
-                <ListItem button>
+            <List>
+                <ListItem className={mobileNavItem} button>
                     <ListItemText>
-                        <Link className={mobileNavItem} to="/home">
+                        <Link to="/home">
                             Home
                         </Link>
                     </ListItemText>
                 </ListItem>
 
                 <Divider />
-                <ListItem button>
+                <ListItem className={mobileNavItem} button>
                     <ListItemText>
-                        <Link className={mobileNavItem} to="/home">
+                        <Link to="/">
                             Features
                         </Link>
                     </ListItemText>
                 </ListItem>
 
                 <Divider />
-                <ListItem button>
+                <ListItem className={mobileNavItem} button>
                     <ListItemText>
-                        <Link className={mobileNavItem} to="/home">
+                        <Link to="/">
                             Team
                         </Link>
                     </ListItemText>
                 </ListItem>
 
                 <Divider />
-                <ListItem button>
-                    <ListItemText>
-                        <Link className={mobileNavItem} to="/home">
-                            Blog
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-
-                <Divider />
 
                 <ListItem button>
                     <ListItemText>
-                        <Link className={mobileNavItem} to="/about">
-                            About
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-
-                <Divider />
-
-                <ListItem button>
-                    <ListItemText>
-                        <Link className={mobileNavItem} to="/dashboard">
-                            Live Preview
+                        <Link className='btn_regular' to="/dashboard">
+                            Dashboard
                         </Link>
                     </ListItemText>
                 </ListItem>
@@ -105,10 +90,16 @@ const Navbar = () => {
     );
     return (
         <>
+            {/* main navigation */}
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar className={navContainer} position="static">
                     <Container>
                         <Toolbar>
+                            <Link className={navItem} to="/">
+                                <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 2 }}>
+                                    HR CARE
+                                </Typography>
+                            </Link>
                             <IconButton
                                 className={navIcon}
                                 onClick={() => setState(true)}
@@ -116,13 +107,10 @@ const Navbar = () => {
                                 edge="start"
                                 color="inherit"
                                 aria-label="menu"
-                                sx={{ mr: 2 }}
+                                sx={{ marginLeft: 'auto' }}
                             >
                                 <MenuIcon />
                             </IconButton>
-                            <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 2 }}>
-                                HR CARE
-                            </Typography>
                             <Box className={navItemContainer}>
                                 <Link className={navItem} to="/home">
                                     <Button color="inherit">Home</Button>
@@ -132,21 +120,13 @@ const Navbar = () => {
                                     <Button color="inherit">Features</Button>
                                 </Link>
 
-                                <Link className={navItem} to="/">
+                                <Link className={navItem} to="/team">
                                     <Button color="inherit">Team</Button>
                                 </Link>
 
-                                <Link className={navItem} to="/">
-                                    <Button color="inherit">Blog</Button>
-                                </Link>
-
-                                <Link className={navItem} to="/">
-                                    <Button color="inherit">About</Button>
-                                </Link>
-
-                                <NavLink className={navItem} to="/">
+                                <NavLink className={navItem} to="/dashboard">
                                     <Button className="btn_regular" color="inherit">
-                                        Live Preview
+                                        Dashboard
                                     </Button>
                                 </NavLink>
                             </Box>
@@ -154,13 +134,26 @@ const Navbar = () => {
                     </Container>
                 </AppBar>
             </Box>
-            <div>
+
+            {/* responsive drawer */}
+            <>
                 <React.Fragment>
-                    <Drawer open={state} onClose={() => setState(false)}>
+                    <Drawer
+                        open={state}
+                        anchor="right"
+                        onClose={() => setState(false)}
+                    >
+                        <Box sx={{ background: '#009EFA' }}>
+                            <Link className={navItem} to="/">
+                                <Typography variant="h5" sx={{ textAlign: 'center', my: 2 }}>
+                                    HR CARE
+                                </Typography>
+                            </Link>
+                        </Box>
                         {list}
                     </Drawer>
                 </React.Fragment>
-            </div>
+            </>
         </>
     );
 };
