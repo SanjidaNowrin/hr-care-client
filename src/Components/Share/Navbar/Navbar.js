@@ -96,9 +96,12 @@ const Navbar = () => {
                     <Container>
                         <Toolbar>
                             <Link className={navItem} to="/">
-                                <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 2 }}>
-                                    HR CARE
-                                </Typography>
+                                <div className="navbarlogo">
+                                    <img src="https://i.ibb.co/GxkQtD9/hrcare-logo.png" alt="" className="logo" />
+                                    <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 2 }}>
+                                        HR CARE
+                                    </Typography>
+                                </div>
                             </Link>
                             <IconButton
                                 className={navIcon}

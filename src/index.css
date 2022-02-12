@@ -13,6 +13,14 @@ body {
   --bg_color: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
 }
 
+.navbarlogo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+    width: 60px;
+}
 a{
   text-decoration: none !important;
 }
