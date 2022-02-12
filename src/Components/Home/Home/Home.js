@@ -3,6 +3,7 @@ import Navbar from "../../Share/Navbar/Navbar";
 import Banner from "../Banner/Banner";
 import Features from "../Features/Features";
 import Teams from "../Teams/Teams";
+import Footer from "../../Share/Footer/Footer";
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <Features></Features>
             <Teams></Teams>
+            <Footer></Footer>
         </>
     );
 };

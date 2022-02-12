@@ -3,7 +3,7 @@
                 "id": "1",
                 "name": "Md Mahedi Hassan",
                 "image": "https://i.ibb.co/wYv0cFZ/mahedi.jpg",
-                "developer": "Backend Developer",
+                "developer": "Back-end Developer",
                 "portfolio": "https://md-mh.netlify.app/"
         },
         {
@@ -22,14 +22,14 @@
         },
         {
                 "id": "4",
-                "name": "Sanjida Nowrin",
+                "name": "Sanjida Islam Nowrin",
                 "image": "https://i.ibb.co/WyH8qrc/Sanjida.jpg",
                 "developer": "React Developer",
                 "portfolio": "https://sanjida-islam-nowrin.netlify.app/"
         },
         {
                 "id": "5",
-                "name": "Md Forid Hosssin",
+                "name": "MD Forid Hosssin",
                 "image": "https://i.ibb.co/DGPYn0C/person.jpg",
                 "developer": "Front-end Developer",
                 "portfolio": "https://azaz-personal-by-forid.netlify.app/"
