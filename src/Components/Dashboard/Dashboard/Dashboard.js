@@ -73,9 +73,9 @@ function Dashboard(props) {
                     Employees
                 </Typography>
                 <List className={linkItem}>
-                    <Link className={dashLink} to="/dashboard/all_employees">
+                    <Link className={dashLink} to="/dashboard/myinfo">
                         <AccountBoxOutlinedIcon className={dashIcon} />
-                        All Employees
+                        My Information
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/id_card">
