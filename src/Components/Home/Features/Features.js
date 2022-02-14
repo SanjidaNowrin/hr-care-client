@@ -10,15 +10,15 @@ import { makeStyles } from '@mui/styles';
 const Features = () => {
     const useStyle = makeStyles({
         cardBox: {
-            background: '#ffe8e8 !important',
+            background: '#FFFFFF !important',
             textAlign: 'center',
             paddingTop: '20px',
             transition: 'all .3s !important',
             cursor: 'pointer',
             '&:hover': {
-                background: '#fff !important',
+                background: '#c3e4f7 !important',
                 '& $icon': {
-                    color: '#009EFA !important'
+                    color: 'black !important'
                 }
             }
         },
@@ -33,7 +33,7 @@ const Features = () => {
             background: '#0000001c'
         },
         icon: {
-            color: '#845EC2',
+            color: '#009EFA',
             height: '60px !important',
             width: '60px !important',
             transition: 'all .3s ease-in-out !important'
@@ -43,7 +43,7 @@ const Features = () => {
     const { cardBox, iconBox, icon } = useStyle();
 
     return (
-        <Box sx={{ py: 5, background: '#00D2FC' }}>
+        <Box sx={{ py: 5, background: '#F2F2F2' }}>
             <Container>
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={6} md={3}>
