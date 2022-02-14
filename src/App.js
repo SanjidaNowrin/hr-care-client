@@ -6,21 +6,21 @@ import Footer from "./Components/Share/Footer/Footer";
 import AuthProvider from "./contexts/AuthProvider";
 
 function App() {
-  return (
-    <>
-      <AuthProvider>
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-          <Footer></Footer>
-        </Router>
-      </AuthProvider>
-    </>
-  );
+    return (
+        <>
+            <AuthProvider>
+                <Router>
+                    <Routes>
+                        <Route exact path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                    <Footer></Footer>
+                </Router>
+            </AuthProvider>
+        </>
+    );
 }
 
 export default App;
