@@ -1,0 +1,32 @@
+[
+    {
+        "id": "01",
+        "name": "Valentine's Day",
+        "date": "Feb 14, 2022",
+        "day": "Monday"
+    },
+    {
+        "id": "02",
+        "name": "Ekushey February",
+        "date": "Feb 21, 2022",
+        "day": "Monday"
+    },
+    {
+        "id": "03",
+        "name": "Independence Day",
+        "date": "Mar 2, 2022",
+        "day": "Saturday"
+    },
+    {
+        "id": "04",
+        "name": "Eid al-Fitr",
+        "date": "May 2, 2022",
+        "day": "Monday"
+    },
+    {
+        "id": "05",
+        "name": "Eid al-Adha",
+        "date": "Jul 9, 2022",
+        "day": "Saturday"
+    }
+]

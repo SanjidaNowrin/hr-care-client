@@ -8,6 +8,8 @@ import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
 import EmployeeAttendance from "./Components/Employee/EmployeeAttendance/EmployeeAttendance";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
+import Holidays from "./Components/Admin/Holidays/Holidays";
+import Courses from "./Components/Employee/Courses/Courses";
 
 function App() {
   return (
@@ -30,7 +32,27 @@ function App() {
                 element={<EmployeeAttendance />}
               />
 
-              <Route exact path={"*"} element={<Home />} />
+              <Route
+                path={'/dashboard/holiday'}
+                element={
+                  <Holidays />
+                }
+              />
+
+              <Route
+                path={'/dashboard/course'}
+                element={
+                  <Courses />
+                }
+              />
+
+              <Route
+                exact
+                path={'*'}
+                element={
+                  <Home />
+                }
+              />
             </Route>
 
           </Routes>
