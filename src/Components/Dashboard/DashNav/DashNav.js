@@ -15,6 +15,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import useAuth from './../../../hooks/useAuth';
+import { Button } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -94,15 +96,17 @@ const DashNav = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const { logOut,user } = useAuth();
+    
     return (
         <>
             <React.Fragment>
                 <Box>
-                    <Search>
+                    <Search >
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
-                        <StyledInputBase
+                        <StyledInputBase  
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
                         />
@@ -139,7 +143,7 @@ const DashNav = () => {
                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                                 variant="dot"
                             >
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                <Avatar alt="Remy Sharp" src={user.photoURL} />
                             </StyledBadge>
                         </IconButton>
                     </Tooltip>
@@ -187,13 +191,13 @@ const DashNav = () => {
                         <ListItemIcon>
                             <Settings fontSize="small" />
                         </ListItemIcon>
-                        Settings
+                        <Button sx={{color:'black',padding:'0'}}>Settings</Button> 
                     </MenuItem>
                     <MenuItem>
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
-                        Logout
+                       <Button sx={{color:'black',padding:'0'}} onClick={logOut} >Logout</Button> 
                     </MenuItem>
                 </Menu>
             </React.Fragment>

@@ -5,8 +5,6 @@ import Register from "./Components/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
-import Holidays from "./Components/Dashboard/Holidays/Holidays";
-import Courses from "./Components/Dashboard/Courses/Courses";
 
 function App() {
     return (
@@ -31,20 +29,6 @@ function App() {
                                 path={'/dashboard/home'}
                                 element={
                                     <Home />
-                                }
-                            />
-
-                            <Route
-                                path={'/dashboard/holiday'}
-                                element={
-                                    <Holidays />
-                                }
-                            />
-
-                            <Route
-                                path={'/dashboard/course'}
-                                element={
-                                    <Courses />
                                 }
                             />
 
