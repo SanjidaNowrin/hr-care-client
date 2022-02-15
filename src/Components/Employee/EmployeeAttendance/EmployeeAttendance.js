@@ -27,8 +27,11 @@ const EmployeeAttendance = () => {
   const [punchOut, setPunchOut] = useState([]);
   let time = new Date().toLocaleString();
   const handlePunchIn = () => {
-    setPunchIn(time); 
+    // const data=[time,user.email]
+    setPunchIn(time);
+    // console.log(data)
   };
+
   const handlePunchOut = () => {
     setPunchOut(time);
   };
@@ -82,10 +85,13 @@ const EmployeeAttendance = () => {
               <CardActions
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
-                <Button
-                  onClick={ handlePunchIn}
-                  size="small"
+                <Button  onClick={handlePunchIn}
+                  sx={{
+                    background: "#00D2FC !important",
+                    color: "#fff !important",
+                  }}
                   className="btn_regular"
+                  
                 >
                   Punch In
                 </Button>

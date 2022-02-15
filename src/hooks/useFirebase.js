@@ -114,7 +114,7 @@ const logOut = () => {
 
   //save user to database
   const saveUserInfo = (email, displayName,photoURL, method) => {
-    const user = { email, displayName, photoURL,role: "employee" };
+    const user = { email, displayName, photoURL };
     fetch("https://murmuring-falls-58867.herokuapp.com/users", {
       method: method,
       headers: {

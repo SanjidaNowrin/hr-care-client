@@ -10,6 +10,8 @@ import EmployeeAttendance from "./Components/Employee/EmployeeAttendance/Employe
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import Courses from "./Components/Employee/Courses/Courses";
+import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceManage";
+import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 
 function App() {
   return (
@@ -31,11 +33,22 @@ function App() {
                 path={"/dashboard/attendance"}
                 element={<EmployeeAttendance />}
               />
-
               <Route
                 path={'/dashboard/holiday'}
                 element={
                   <Holidays />
+                }
+              />
+              <Route
+                path={'/dashboard/manageAttendance'}
+                element={
+                 <AttendanceManage/>
+                }
+              />
+              <Route
+                path={'/dashboard/salary'}
+                element={
+                 <SalarySheet/>
                 }
               />
 

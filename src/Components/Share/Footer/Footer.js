@@ -87,7 +87,7 @@ const Footer = () => {
                 <Box sx={{ pt: 12 }}>
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4}>
-                            <Box class="single-ooter">
+                            <Box className="single-ooter">
                                 <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>HR Care
                                 </Typography>
                                 <Typography variant="body1">
