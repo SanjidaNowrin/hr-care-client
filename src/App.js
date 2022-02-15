@@ -6,6 +6,7 @@ import AuthProvider from "./contexts/AuthProvider";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
+import Leave from "./Components/Dashboard/Leave/Leave";
 
 function App() {
     return (
@@ -30,6 +31,12 @@ function App() {
                                 path={'/dashboard/home'}
                                 element={
                                     <Home />
+                                }
+                            />
+                            <Route
+                                path={'/dashboard/leave'}
+                                element={
+                                    <Leave />
                                 }
                             />
                             <Route

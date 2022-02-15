@@ -37,21 +37,21 @@ function Dashboard(props) {
         dashLink: {
             display: 'flex',
             alignItems: 'center',
-            color: '#000',
+            color: '#fff',
             padding: '5px 0'
         },
         dashIcon: {
             marginTop: '-1px !important',
             marginRight: '8px',
-            color: '#6a6a6a'
+            color: '#fff'
         }
     })
 
     const { linkItem, dashLink, dashIcon } = useStyle();
 
     const drawer = (
-        <div>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 2, padding: '11px', textAlign: 'center', background: '#009EFA', color: '#fff', fontWeight: '700' }}>
+        <div style={{background:"rgb(1 87 138)", color:"white", height: '1000px'}}>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 2, padding: '11px', textAlign: 'center', background: 'rgb(1 87 138)', color: '#fff', fontWeight: '700', borderBottom:'2px solid #fff', marginBottom:'20px' }}>
                 HR CARE
             </Typography>
             <Box sx={{ pl: 2 }}>
@@ -161,7 +161,7 @@ function Dashboard(props) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Toolbar sx={{ background: '#009efa' }}>
+                <Toolbar sx={{ background: 'rgb(1 87 138)' }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
