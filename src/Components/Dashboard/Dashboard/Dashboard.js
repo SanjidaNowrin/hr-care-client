@@ -17,6 +17,7 @@ import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
 import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlined";
 import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import CampaignIcon from "@mui/icons-material/Campaign";
 import { Link, Outlet } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import DashNav from "../DashNav/DashNav";
@@ -80,7 +81,7 @@ function Dashboard(props) {
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/announcements">
-                        <AccountBoxOutlinedIcon className={dashIcon} />
+                        <CampaignIcon className={dashIcon} />
                         Announcement
                     </Link>
 
