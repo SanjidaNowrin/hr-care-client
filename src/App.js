@@ -13,6 +13,7 @@ import Courses from "./Components/Employee/Courses/Courses";
 import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceManage";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Announcements from "./Components/Employee/Announcements/Announcements";
+import Leave from "./Components/Dashboard/Leave/Leave";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
               <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
 
               <Route path={"/dashboard/course"} element={<Courses />} />
+              <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route exact path={"*"} element={<Home />} />
             </Route>
