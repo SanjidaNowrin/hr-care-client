@@ -11,6 +11,7 @@ import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import Courses from "./Components/Employee/Courses/Courses";
 import Announcements from "./Components/Employee/Announcements/Announcements";
+import AddAnnouncement from "./Components/Admin/AddAnnouncement/AddAnnouncement";
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                             <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
 
                             <Route path={"/dashboard/holiday"} element={<Holidays />} />
+                            <Route path={"/dashboard/addAnnouncement"} element={<AddAnnouncement />} />
 
                             <Route path={"/dashboard/course"} element={<Courses />} />
 

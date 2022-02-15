@@ -122,6 +122,11 @@ function Dashboard(props) {
                         All Employees
                     </Link>
 
+                    <Link className={dashLink} to="/dashboard/addAnnouncement">
+                        <CampaignIcon className={dashIcon} />
+                        Add Announcement
+                    </Link>
+
                     <Link className={dashLink} to="/dashboard/id_card">
                         <BadgeOutlinedIcon className={dashIcon} />
                         ID Card
