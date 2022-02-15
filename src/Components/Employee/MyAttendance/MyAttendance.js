@@ -16,18 +16,18 @@ import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
 import TimelineConnector from "@material-ui/lab/TimelineConnector";
 import TimelineContent from "@material-ui/lab/TimelineContent";
 import TimelineDot from "@material-ui/lab/TimelineDot";
-import useAuth from "./../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import TimelineOppositeContent from "@material-ui/lab/TimelineOppositeContent";
 import Paper from "@material-ui/core/Paper";
 import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
-const EmployeeAttendance = () => {
+const MyAttendance = () => {
   const [punchIn, setPunchIn] = useState([]);
   const [punchOut, setPunchOut] = useState([]);
   let time = new Date().toLocaleString();
   const handlePunchIn = () => {
-    setPunchIn(time); 
+    setPunchIn(time);
   };
   const handlePunchOut = () => {
     setPunchOut(time);
@@ -83,7 +83,7 @@ const EmployeeAttendance = () => {
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
                 <Button
-                  onClick={ handlePunchIn}
+                  onClick={handlePunchIn}
                   size="small"
                   className="btn_regular"
                 >
@@ -165,4 +165,4 @@ const EmployeeAttendance = () => {
   );
 };
 
-export default EmployeeAttendance;
+export default MyAttendance;
