@@ -9,11 +9,15 @@ const Team = ({ team }) => {
         cardContainer: {
             padding: '15px',
             borderRadius: '5px',
-            border: '1px solid #845EC2',
+            border: '1px solid #009EFA',
             transition: 'all .3s ease-in-out !important',
             '&:hover': {
                 '& $cardBox': {
-                    transform: 'translateY(-30px)'
+                    background: '#009EFA !important',
+                    transform: 'translateY(-30px)',
+                    boxShadow: '0px 7px 15px rgb(0, 210, 252, .5) !important',
+                }, '& $cardTitle': {
+                    color: '#fff'
                 }
             }
         },
@@ -24,17 +28,22 @@ const Team = ({ team }) => {
             margin: '40px auto 20px'
         },
         cardBox: {
-            boxShadow: '0px 8px 15px rgba(248, 80, 80, .5) !important;',
-            background: 'linear-gradient(to bottom, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91) !important',
+            boxShadow: '0px 7px 15px rgb(0, 0, 0, .2) !important',
+            background: 'transparent !important',
             position: 'relative',
             transition: 'all .3s ease-in-out !important'
         },
         cardContent: {
             textAlign: 'center'
+        },
+        cardTitle: {
+            fontWeight: '700',
+            color: '#009EFA',
+            transition: 'all .3s ease-in-out !important'
         }
     })
 
-    const { cardContainer, cardImg, cardBox, cardContent } = useStyle();
+    const { cardContainer, cardImg, cardBox, cardContent, cardTitle } = useStyle();
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Box className={cardContainer}>
@@ -42,7 +51,7 @@ const Team = ({ team }) => {
                     <CardMedia className={cardImg} image={image} />
 
                     <CardContent className={cardContent}>
-                        <Typography variant="h5" sx={{ fontWeight: '700', color: '#fff' }}>
+                        <Typography variant="h5" className={cardTitle}>
                             {name}
                         </Typography>
 

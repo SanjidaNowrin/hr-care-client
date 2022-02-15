@@ -30,7 +30,7 @@ const useFirebase = () => {
         const destination = location?.state?.from || "/home";
         navigate(destination);
         // save user to the database
-        saveUserInfo(user.email, user.displayName, "PUT");
+        saveUserInfo(user.email, user.displayName,user.photoURL, "PUT");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -42,16 +42,17 @@ const useFirebase = () => {
 
   // Register New User
   // Register New User
-  const registerUser = (name, email, password, location, navigate) => {
+  const registerUser = (name, email, password,photo, location, navigate) => {
     setIsLoading(true)
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         verifyEmail();
         // save user to the database
-        saveUserInfo(email, name, "POST");
+        saveUserInfo(email, name,photo, "POST");
 
         updateProfile(auth.currentUser, {
-          displayName: name
+          displayName: name,
+          photoURL:photo
         }).then(() => {
         }).catch((error) => {
         });
@@ -98,21 +99,22 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, [auth]);
 
-  const logOut = () => {
-    setIsLoading(true);
-    signOut(auth)
+//logout 
+const logOut = () => {
+  setIsLoading(true);
+  signOut(auth)
       .then(() => {
-        // Sign-out successful.
+          // Sign-out successful.
       })
       .catch((error) => {
-        // An error happened.
+          // An error happened.
       })
       .finally(() => setIsLoading(false));
-  };
+};
 
   //save user to database
-  const saveUserInfo = (email, displayName, method) => {
-    const user = { email, displayName, role: "employee" };
+  const saveUserInfo = (email, displayName,photoURL, method) => {
+    const user = { email, displayName, photoURL,role: "employee" };
     fetch("https://murmuring-falls-58867.herokuapp.com/users", {
       method: method,
       headers: {

@@ -25,10 +25,11 @@ const Register = () => {
       regData.name,
       regData.email,
       regData.password,
+      regData.photo,
       location,
       navigate
     );
-    console.log(regData.name);
+    console.log(regData);
   };
 
   const useStyle = makeStyles({
@@ -99,6 +100,16 @@ const Register = () => {
               variant="standard"
               name="password2"
               type="password"
+              onBlur={handleOnBlur}
+            />
+          </Box>
+          <Box>
+            <TextField
+              className={inputField}
+              label="Photo Link"
+              variant="standard"
+              name="photo"
+              type="photo"
               onBlur={handleOnBlur}
             />
           </Box>
