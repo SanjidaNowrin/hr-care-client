@@ -6,7 +6,7 @@ import AuthProvider from "./contexts/AuthProvider";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
-import EmployeeAttendance from "./Components/Employee/EmployeeAttendance/EmployeeAttendance";
+import MyAttendance from "./Components/Employee/MyAttendance/MyAttendance";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
               <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
               <Route
                 path={"/dashboard/attendance"}
-                element={<EmployeeAttendance />}
+                element={<MyAttendance />}
               />
 
               <Route exact path={"*"} element={<Home />} />
