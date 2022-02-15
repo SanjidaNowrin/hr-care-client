@@ -12,6 +12,7 @@ import Holidays from "./Components/Admin/Holidays/Holidays";
 import Courses from "./Components/Employee/Courses/Courses";
 import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceManage";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
+import Announcements from "./Components/Employee/Announcements/Announcements";
 
 function App() {
   return (
@@ -59,6 +60,10 @@ function App() {
                   <SalarySheet />
                 }
               />
+              <Route path={"/dashboard/home"} element={<Home />} />
+              <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
+              <Route path={"/dashboard/announcements"} element={<Announcements />} />
+              <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
 
               <Route path={"/dashboard/course"} element={<Courses />} />
 
