@@ -19,14 +19,14 @@ const AddAnnouncement = () => {
     const onSubmit = (data) => console.log(data);
     return (
         <div>
-            <Typography sx={{ textAlign: "center", margin: "40px", color: "#009EFA" }} variant="h3">
-                Add Announcement
-            </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={3}></Grid>
 
                 <Grid item xs={12} md={6}>
-                    <Paper sx={{ p: 4 }} elevation={6}>
+                    <Paper sx={{ p: 4, mt: 5 }} elevation={6}>
+                        <Typography sx={{ textAlign: "center", margin: "15px", color: "#009EFA" }} variant="h4">
+                            Add Announcement
+                        </Typography>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Box sx={{ mb: 2 }}>
                                 <label style={{ display: "block" }} htmlFor="title">
