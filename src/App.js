@@ -5,6 +5,12 @@ import Register from "./Components/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
+import MyInfo from "./Components/Employee/MyInfo/MyInfo";
+import EmployeeAttendance from "./Components/Employee/EmployeeAttendance/EmployeeAttendance";
+import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
+import Holidays from "./Components/Admin/Holidays/Holidays";
+import Courses from "./Components/Employee/Courses/Courses";
+import AddCourse from "./Components/Dashboard/AddCourse/AddCourse";
 
 function App() {
     return (
@@ -17,18 +23,34 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
 
-                        <Route exact path={`/dashboard`} element={<Dashboard />}>
+                        <Route exact path={`/dashboard`} element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+                            <Route path={"/dashboard"} element={<DashboardHome />} />
+
+                            <Route path={"/dashboard/home"} element={<Home />} />
+                            <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
                             <Route
-                                path={'/dashboard'}
+                                path={"/dashboard/attendance"}
+                                element={<EmployeeAttendance />}
+                            />
+
+                            <Route
+                                path={'/dashboard/holiday'}
                                 element={
-                                    <DashboardHome />
+                                    <Holidays />
                                 }
                             />
 
                             <Route
-                                path={'/dashboard/home'}
+                                path={'/dashboard/course'}
                                 element={
-                                    <Home />
+                                    <Courses />
+                                }
+                            />
+
+                            <Route
+                                path={'/dashboard/addCourse'}
+                                element={
+                                    <AddCourse />
                                 }
                             />
 
