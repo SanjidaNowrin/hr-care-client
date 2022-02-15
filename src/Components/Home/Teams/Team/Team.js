@@ -9,7 +9,7 @@ const Team = ({ team }) => {
         cardContainer: {
             padding: '15px',
             borderRadius: '5px',
-            border: '1px solid #845EC2',
+            border: '1px solid #009EFA',
             transition: 'all .3s ease-in-out !important',
             '&:hover': {
                 '& $cardBox': {

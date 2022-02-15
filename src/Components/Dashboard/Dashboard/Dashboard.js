@@ -15,6 +15,7 @@ import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import CoPresentOutlinedIcon from '@mui/icons-material/CoPresentOutlined';
 import HolidayVillageOutlinedIcon from '@mui/icons-material/HolidayVillageOutlined';
+import GolfCourseOutlinedIcon from '@mui/icons-material/GolfCourseOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link, Outlet } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -100,6 +101,10 @@ function Dashboard(props) {
                     <Link className={dashLink} to="/dashboard/salary">
                         <ExitToAppOutlinedIcon className={dashIcon} />
                         Salary
+                    </Link>
+                    <Link className={dashLink} to="/dashboard/course">
+                        <GolfCourseOutlinedIcon className={dashIcon} />
+                        Courses
                     </Link>
                 </List>
             </Box>
