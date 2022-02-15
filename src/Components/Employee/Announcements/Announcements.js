@@ -34,7 +34,7 @@ const Announcements = () => {
     }, []);
     return (
         <div>
-            <Typography sx={{ textAlign: "center", margin: "40px", color: "#009EFA" }} variant="h3">
+            <Typography sx={{ textAlign: "left", margin: "40px", color: "#009EFA" }} variant="h3">
                 Announcements
             </Typography>
             <Container>
