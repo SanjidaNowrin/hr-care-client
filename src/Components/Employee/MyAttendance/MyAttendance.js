@@ -27,8 +27,11 @@ const MyAttendance = () => {
   const [punchOut, setPunchOut] = useState([]);
   let time = new Date().toLocaleString();
   const handlePunchIn = () => {
+    // const data=[time,user.email]
     setPunchIn(time);
+    // console.log(data)
   };
+
   const handlePunchOut = () => {
     setPunchOut(time);
   };
@@ -82,10 +85,13 @@ const MyAttendance = () => {
               <CardActions
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
-                <Button
-                  onClick={handlePunchIn}
-                  size="small"
+                <Button onClick={handlePunchIn}
+                  sx={{
+                    background: "#00D2FC !important",
+                    color: "#fff !important",
+                  }}
                   className="btn_regular"
+
                 >
                   Punch In
                 </Button>
@@ -96,9 +102,9 @@ const MyAttendance = () => {
                 >
                   Punch Out
                 </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+              </CardActions >
+            </Card >
+          </Grid >
           <Grid item xs={12} md={6}>
             {/* timeline */}
             <Typography
@@ -159,9 +165,9 @@ const MyAttendance = () => {
               </TimelineItem>
             </Timeline>
           </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Grid >
+      </Container >
+    </Box >
   );
 };
 

@@ -20,7 +20,7 @@ import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link, Outlet } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import DashNav from '../DashNav/DashNav';
-
+import ListAltIcon from '@mui/icons-material/ListAlt';
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -128,7 +128,7 @@ function Dashboard(props) {
                         Dashboard
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/attendance">
+                    <Link className={dashLink} to="/dashboard/manageAttendance">
                         <CoPresentOutlinedIcon className={dashIcon} />
                         Attendance
                     </Link>
@@ -136,6 +136,10 @@ function Dashboard(props) {
                     <Link className={dashLink} to="/dashboard/holiday">
                         <HolidayVillageOutlinedIcon className={dashIcon} />
                         Holiday
+                    </Link>
+                    <Link className={dashLink} to="/dashboard/salary">
+                        <ListAltIcon className={dashIcon} />
+                        Salary Sheet
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/leave">
