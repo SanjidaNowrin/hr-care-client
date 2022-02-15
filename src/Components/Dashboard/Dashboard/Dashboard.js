@@ -97,6 +97,10 @@ function Dashboard(props) {
                         <ExitToAppOutlinedIcon className={dashIcon} />
                         Leave
                     </Link>
+                    <Link className={dashLink} to="/dashboard/salary">
+                        <ExitToAppOutlinedIcon className={dashIcon} />
+                        Salary
+                    </Link>
                 </List>
             </Box>
             <Divider />

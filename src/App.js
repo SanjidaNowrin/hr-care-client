@@ -6,6 +6,7 @@ import AuthProvider from "./contexts/AuthProvider";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
+import SalaryInfo from "./Components/Employee/SalaryInfo/SalaryInfo";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+
+
 
             <Route exact path={`/dashboard`} element={<Dashboard />}>
               <Route
@@ -46,6 +49,8 @@ function App() {
                   <Home />
                 }
               />
+
+              <Route path="/dashboard/salary" element={<SalaryInfo />} />
             </Route>
 
           </Routes>
