@@ -35,7 +35,7 @@ const Banner = () => {
                     >
                         <Box>
                             <Typography className={bannerTitle} variant="h3">
-                                HR Software
+                                HR Care
                             </Typography>
                             <Typography variant="h5">
                                 Human Resource Management Admin Template
