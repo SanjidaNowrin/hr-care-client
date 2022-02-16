@@ -170,14 +170,14 @@ const SalarySheet = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "700", color: "#00D2FC" }}>
+        <Typography variant="h4" sx={{ fontWeight: "700", color: "#01578A" }}>
           Employee <span style={{ color: "#000" }}>Details</span>
         </Typography>
         {/* searchbar */}
         <Box>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon sx={{  color: "#01578A" }} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
@@ -236,7 +236,7 @@ const SalarySheet = () => {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
-            <TableRow style={{ backgroundColor: "#F5F5F5 !important" }}>
+            <TableRow style={{backgroundColor: "#01578A !important"}} >
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="left">Email</StyledTableCell>
               <StyledTableCell align="left">Year</StyledTableCell>

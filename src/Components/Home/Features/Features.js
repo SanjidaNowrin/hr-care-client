@@ -33,7 +33,7 @@ const Features = () => {
             background: '#0000001c'
         },
         icon: {
-            color: '#009EFA',
+            color: '#01578A',
             height: '60px !important',
             width: '60px !important',
             transition: 'all .3s ease-in-out !important'
