@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: 'cyan',
+        backgroundColor: '#5f6568',
         color: theme.palette.common.white,
         fontSize: 24,
     },

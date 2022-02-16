@@ -14,6 +14,7 @@ import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceMana
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Announcements from "./Components/Employee/Announcements/Announcements";
 import Leave from "./Components/Dashboard/Leave/Leave";
+import MakeAdmin from './Components/Admin/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -43,29 +44,23 @@ function App() {
                 path={"/dashboard/attendance"}
                 element={<MyAttendance />}
               />
+              <Route path={"/dashboard/holiday"} element={<Holidays />} />
               <Route
-                path={'/dashboard/holiday'}
-                element={
-                  <Holidays />
-                }
+                path={"/dashboard/manageAttendance"}
+                element={<AttendanceManage />}
               />
-              <Route
-                path={'/dashboard/manageAttendance'}
-                element={
-                  <AttendanceManage />
-                }
-              />
-              <Route
-                path={'/dashboard/salary'}
-                element={
-                  <SalarySheet />
-                }
-              />
+              <Route path={"/dashboard/salary"} element={<SalarySheet />} />
+              <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
               <Route path={"/dashboard/home"} element={<Home />} />
               <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
-              <Route path={"/dashboard/announcements"} element={<Announcements />} />
-              <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
-
+              <Route
+                path={"/dashboard/announcements"}
+                element={<Announcements />}
+              />
+              <Route
+                path={"/dashboard/announcements/:Id"}
+                element={<Announcements />}
+              />
               <Route path={"/dashboard/course"} element={<Courses />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 

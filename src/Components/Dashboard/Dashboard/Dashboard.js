@@ -18,6 +18,7 @@ import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlin
 import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Link, Outlet } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
@@ -124,9 +125,9 @@ function Dashboard(props) {
                         ID Card
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/id_card">
-                        <DashboardOutlinedIcon className={dashIcon} />
-                        Dashboard
+                    <Link className={dashLink} to="/dashboard/make_admin">
+                        <AdminPanelSettingsIcon className={dashIcon} />
+                        Make Admin
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/manageAttendance">

@@ -48,7 +48,9 @@ const MyAttendance = () => {
       boxShadow: "2px 15px 15px #F2F2F2 !important",
     },
     timeFont: {
-      fontSize: "14px !important",
+      fontSize: "13px !important",
+      fontWeight:"bold",
+      marginLeft:"3px"
     },
     imgStyle: {
       borderRadius: "50% !important",
