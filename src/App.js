@@ -7,6 +7,7 @@ import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
 import MyAttendance from "./Components/Employee/MyAttendance/MyAttendance";
+import SalaryInfo from "./Components/Employee/SalaryInfo/SalaryInfo";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import Courses from "./Components/Employee/Courses/Courses";
@@ -67,6 +68,7 @@ function App() {
               <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
 
               <Route path={"/dashboard/course"} element={<Courses />} />
+              <Route path={"/dashboard/SalaryInfo"} element={<SalaryInfo />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route exact path={"*"} element={<Home />} />

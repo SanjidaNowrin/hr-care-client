@@ -1,7 +1,9 @@
 import React from "react";
-import { styled} from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -31,19 +33,19 @@ const SalaryData = ({ employee }) => {
         <StyledTableCell component="th" scope="row">
           {name}
         </StyledTableCell>
-       
+
         <StyledTableCell component="th" scope="row">
           {email}
         </StyledTableCell>
-       
+
         <StyledTableCell component="th" scope="row">
           {year}
         </StyledTableCell>
-       
+
         <StyledTableCell align="right" component="th" scope="row">
           {fee}
         </StyledTableCell>
-       
+
       </StyledTableRow>
     </>
   );
