@@ -34,7 +34,7 @@ const DashboardHome = () => {
         <>
             <div className="top-content" style={{ borderBottom: '3px solid rgb(1 87 138)', margin: '30px' }}>
                 <h3 style={{fontSize: '1.5rem'}}>Dashboard</h3>
-                <p>{pathname}</p>
+                
             </div>
             <Box style={{ padding: '40px' }}>
                 <Grid container spacing={4}>

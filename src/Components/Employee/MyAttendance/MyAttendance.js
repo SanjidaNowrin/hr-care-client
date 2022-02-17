@@ -48,7 +48,9 @@ const MyAttendance = () => {
       boxShadow: "2px 15px 15px #F2F2F2 !important",
     },
     timeFont: {
-      fontSize: "14px !important",
+      fontSize: "13px !important",
+      fontWeight:"bold",
+      marginLeft:"3px"
     },
     imgStyle: {
       borderRadius: "50% !important",
@@ -86,9 +88,10 @@ const MyAttendance = () => {
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
                 <Button onClick={handlePunchIn}
-                  sx={{
+                  style={{
                     background: "#00D2FC !important",
                     color: "#fff !important",
+                    fontWeight: 'bold !important' 
                   }}
                   className="btn_regular"
 
@@ -113,7 +116,7 @@ const MyAttendance = () => {
               sx={{ textAlign: "center !important", fontWeight: "400" }}
               variant="h4"
             >
-              All <span style={{ color: " #009EFA" }}>Activities</span>
+              All <span style={{ color: " #01578A" }}>Activities</span>
             </Typography>
             <Timeline align="alternate">
               <TimelineItem>
