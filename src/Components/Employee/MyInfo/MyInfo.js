@@ -10,7 +10,7 @@ const MyInfo = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        axios.post('http://localhost:5000/employeeRequest/', data)
+        axios.post('https://murmuring-falls-58867.herokuapp.com/employeeRequest/', data)
         alert('Application Submit');
         reset();
     }
