@@ -146,6 +146,7 @@ const logOut = () => {
     registerUser,
     isLoading,
     error,
+    isAdmin
   };
 };
 

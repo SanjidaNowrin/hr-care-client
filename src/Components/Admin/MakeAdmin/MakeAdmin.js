@@ -14,7 +14,6 @@ const MakeAdmin = () => {
     })
       .then((res) => res.json())
       .then((result) => console.log(result));
-     console.log(data)
     Swal.fire({
         title: 'WOW!',
         text: 'Added as an admin',
