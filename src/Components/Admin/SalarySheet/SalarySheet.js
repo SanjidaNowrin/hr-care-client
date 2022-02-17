@@ -23,7 +23,7 @@ import InputBase from "@mui/material/InputBase";
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "cyan",
+    backgroundColor: "#5a5e60",
     color: theme.palette.common.white,
     fontSize: 24,
   },
@@ -170,14 +170,14 @@ const SalarySheet = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "700", color: "#00D2FC" }}>
+        <Typography variant="h4" sx={{ fontWeight: "700", color: "#01578A" }}>
           Employee <span style={{ color: "#000" }}>Details</span>
         </Typography>
         {/* searchbar */}
         <Box>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon sx={{ color: "#01578A" }} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
@@ -190,10 +190,6 @@ const SalarySheet = () => {
           style={{ marginLeft: "10px" }}
           className="btn_regular"
           onClick={handleClick}
-          sx={{
-            background: "#00D2FC !important",
-            color: "#fff !important",
-          }}
         >
           <DownloadForOfflineRoundedIcon
             id="demo-customized-button"
@@ -236,11 +232,12 @@ const SalarySheet = () => {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
-            <TableRow style={{ backgroundColor: "#F5F5F5 !important" }}>
+            <TableRow style={{ backgroundColor: "#01578A !important" }}>
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="left">Email</StyledTableCell>
               <StyledTableCell align="left">Year</StyledTableCell>
-              <StyledTableCell align="right">Fee</StyledTableCell>
+              <StyledTableCell align="left">Fee</StyledTableCell>
+              <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

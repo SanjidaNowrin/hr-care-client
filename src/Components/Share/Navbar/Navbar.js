@@ -15,7 +15,7 @@ const Navbar = () => {
     const theme = useTheme();
     const useStyle = makeStyles({
         navContainer: {
-            background: "#009EFA !important",
+            background: "#01578A !important",
         },
         navItem: {
             color: "white",

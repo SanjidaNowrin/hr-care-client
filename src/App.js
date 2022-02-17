@@ -16,6 +16,7 @@ import Announcements from "./Components/Employee/Announcements/Announcements";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import Leave from "./Components/Admin/Leave/Leave";
 import EmployerInfo from "./Components/Admin/EmployerInfo/EmployerInfo";
+import MakeAdmin from './Components/Admin/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path={"/dashboard/leave"} element={<Leave />} />
               <Route path={'/dashboard/holiday'} element={<Holidays />} />
               <Route path={'/dashboard/salary_sheet'} element={<SalarySheet />} />
+              <Route path={'/dashboard/make_admin'} element={<MakeAdmin />} />
 
               <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
             </Route>

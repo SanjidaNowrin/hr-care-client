@@ -17,7 +17,7 @@ const Banner = () => {
         bannerTitle: {
             marginBottom: '20px !important',
             fontWeight: '700 !important',
-            color: '#009efa'
+            color: '#01578A'
         }
     })
 
