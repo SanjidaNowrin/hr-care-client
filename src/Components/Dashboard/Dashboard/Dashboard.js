@@ -73,6 +73,12 @@ function Dashboard(props) {
                 {/* Employees */}
                 <Typography variant="h6">Employees</Typography>
                 <List className={linkItem}>
+
+                    <Link className={dashLink} to="/dashboard/attendance">
+                        <CoPresentOutlinedIcon className={dashIcon} />
+                        Attendance
+                    </Link>
+
                     <Link className={dashLink} to="/dashboard/myinfo">
                         <AccountBoxOutlinedIcon className={dashIcon} />
                         My Information
@@ -81,26 +87,6 @@ function Dashboard(props) {
                     <Link className={dashLink} to="/dashboard/announcements">
                         <CampaignIcon className={dashIcon} />
                         Announcement
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/id_card">
-                        <BadgeOutlinedIcon className={dashIcon} />
-                        ID Card
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/attendance">
-                        <CoPresentOutlinedIcon className={dashIcon} />
-                        Attendance
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/holiday">
-                        <HolidayVillageOutlinedIcon className={dashIcon} />
-                        Holiday
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/leave">
-                        <ExitToAppOutlinedIcon className={dashIcon} />
-                        Leave
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/course">
@@ -125,29 +111,31 @@ function Dashboard(props) {
                         ID Card
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/make_admin">
-                        <AdminPanelSettingsIcon className={dashIcon} />
-                        Make Admin
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/manageAttendance">
+                    <Link className={dashLink} to="/dashboard/manage_attendance">
                         <CoPresentOutlinedIcon className={dashIcon} />
                         Attendance
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/holiday">
-                        <HolidayVillageOutlinedIcon className={dashIcon} />
-                        Holiday
-                    </Link>
-                    <Link className={dashLink} to="/dashboard/salary">
-                        <ListAltIcon className={dashIcon} />
-                        Salary Sheet
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/leave">
                         <ExitToAppOutlinedIcon className={dashIcon} />
                         Leave
                     </Link>
+
+                    <Link className={dashLink} to="/dashboard/holiday">
+                        <HolidayVillageOutlinedIcon className={dashIcon} />
+                        Holiday
+                    </Link>
+
+                    <Link className={dashLink} to="/dashboard/salary_sheet">
+                        <ListAltIcon className={dashIcon} />
+                        Salary Sheet
+                    </Link>
+
+                    <Link className={dashLink} to="/dashboard/make_admin">
+                        <AdminPanelSettingsIcon className={dashIcon} />
+                        Make Admin
+                    </Link>
+
                 </List>
             </Box>
 

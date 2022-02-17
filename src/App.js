@@ -7,14 +7,17 @@ import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
 import MyAttendance from "./Components/Employee/MyAttendance/MyAttendance";
+import SalaryInfo from "./Components/Employee/SalaryInfo/SalaryInfo";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
-import Holidays from "./Components/Admin/Holidays/Holidays";
 import Courses from "./Components/Employee/Courses/Courses";
 import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceManage";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Announcements from "./Components/Employee/Announcements/Announcements";
-import Leave from "./Components/Dashboard/Leave/Leave";
+import Holidays from "./Components/Admin/Holidays/Holidays";
+import Leave from "./Components/Admin/Leave/Leave";
+import EmployerInfo from "./Components/Admin/EmployerInfo/EmployerInfo";
 import MakeAdmin from './Components/Admin/MakeAdmin/MakeAdmin';
+import IdCard from "./Components/Admin/IdCard/IdCard";
 
 function App() {
   return (
@@ -27,44 +30,26 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            <Route
-              exact
-              path={`/dashboard`}
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            >
+            <Route exact path={`/dashboard`} element={<PrivateRoute> <Dashboard /> </PrivateRoute>} >
               <Route path={"/dashboard"} element={<DashboardHome />} />
 
-              <Route path={"/dashboard/home"} element={<Home />} />
+              <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
               <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
-              <Route
-                path={"/dashboard/attendance"}
-                element={<MyAttendance />}
-              />
-              <Route path={"/dashboard/holiday"} element={<Holidays />} />
-              <Route
-                path={"/dashboard/manageAttendance"}
-                element={<AttendanceManage />}
-              />
-              <Route path={"/dashboard/salary"} element={<SalarySheet />} />
-              <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
-              <Route path={"/dashboard/home"} element={<Home />} />
-              <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
-              <Route
-                path={"/dashboard/announcements"}
-                element={<Announcements />}
-              />
-              <Route
-                path={"/dashboard/announcements/:Id"}
-                element={<Announcements />}
-              />
+              <Route path={"/dashboard/announcements"} element={<Announcements />} />
+              <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
               <Route path={"/dashboard/course"} element={<Courses />} />
-              <Route path={"/dashboard/leave"} element={<Leave />} />
 
-              <Route exact path={"*"} element={<Home />} />
+
+
+              <Route path={'/dashboard/all_employees'} element={<EmployerInfo />} />
+              <Route path={'/dashboard/id_card'} element={<IdCard />} />
+              <Route path={'/dashboard/manage_attendance'} element={<AttendanceManage />} />
+              <Route path={"/dashboard/leave"} element={<Leave />} />
+              <Route path={'/dashboard/holiday'} element={<Holidays />} />
+              <Route path={'/dashboard/salary_sheet'} element={<SalarySheet />} />
+              <Route path={'/dashboard/make_admin'} element={<MakeAdmin />} />
+
+              <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
             </Route>
           </Routes>
         </Router>
