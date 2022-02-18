@@ -15,9 +15,9 @@ import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Announcements from "./Components/Employee/Announcements/Announcements";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import Leave from "./Components/Admin/Leave/Leave";
-import EmployerInfo from "./Components/Admin/EmployerInfo/EmployerInfo";
 import MakeAdmin from './Components/Admin/MakeAdmin/MakeAdmin';
 import IdCard from "./Components/Admin/IdCard/IdCard";
+import Employees from "./Components/Admin/Employees/Employees";
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
 
 
 
-              <Route path={'/dashboard/all_employees'} element={<EmployerInfo />} />
+              <Route path={'/dashboard/all_employees'} element={<Employees />} />
               <Route path={'/dashboard/id_card'} element={<IdCard />} />
               <Route path={'/dashboard/manage_attendance'} element={<AttendanceManage />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
