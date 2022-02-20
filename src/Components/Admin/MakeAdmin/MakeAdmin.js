@@ -16,7 +16,7 @@ const MakeAdmin = () => {
       .then((result) => console.log(result));
     Swal.fire({
         title: 'WOW!',
-        text: 'Added as an admin',
+        text: 'Added as an Admin',
         imageUrl: 'https://i.ibb.co/c1Lnz5P/undraw-real-time-collaboration-c62i.png',
         imageWidth: 300,
         imageHeight: 200,
