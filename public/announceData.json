@@ -1,0 +1,20 @@
+[
+    {
+        "id":"1",
+        "title":"Holiday Announcement",
+        "date":"14/02/2022",
+        "description":"At the moment anyone who has Covid symptoms or who tests positive for Covid via a PCR or lateral flow test (LFT) must immediately self-isolate for at least five full days.Boris Johnson said he intended to set out the government's strategy for living with Covid on 21 February, after the half-term recess.He previously told MPs that as Covid becomes endemic (constantly present), the government will replace legal requirements with advice and guidance urging people with the virus to be careful and considerate of others.Boris Johnson said he intended to set out the government's strategy for living with Covid on 21 February, after the half-term recess..He previously told MPs that as Covid becomes endemic (constantly present), the government will replace legal requirements with advice and guidance urging people with the virus to be careful and considerate of others."
+    },
+    {
+        "id":"2",
+        "title":"Special Announcement",
+        "date":"12/02/2022",
+        "description":"Last month we introduced a new way for sites to highlight COVID-19 announcements on Google Search. At first, we're using this information to highlight announcements in Google Search from health and government agency sites, to cover important updates like school closures or stay-at-home directives.Today we are announcing support for SpecialAnnouncement in Google Search Console, including new reports to help you find any issues with your implementation and monitor how this rich result type is performing. In addition we now also support the markup on the Rich Results Test to review your existing URLs or debug your markup code before moving it to production.At first, we're using this information to highlight announcements in Google Search from health and government agency sites, to cover important updates like school closures or stay-at-home directives."
+    },
+    {
+        "id":"3",
+        "title":"Meeting Announcement",
+        "date":"10/02/2022",
+        "description":"At first, we're using this information to highlight announcements in Google Search from health and government agency sites, to cover important updates like school closures or stay-at-home directives.Today we are announcing support for SpecialAnnouncement in Google Search Console, including new reports to help you find any issues with your implementation and monitor how this rich result type is performing. In addition we now also support the markup on the Rich Results Test to review your existing URLs or debug your markup code before moving it to production.Last month we introduced a new way for sites to highlight COVID-19 announcements on Google Search.Today we are announcing support for SpecialAnnouncement in Google Search Console, including new reports to help you find any issues with your implementation and monitor how this rich result type is performing."
+    }
+]

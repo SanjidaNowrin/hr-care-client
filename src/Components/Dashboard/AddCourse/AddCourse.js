@@ -1,10 +1,15 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const AddCourse = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        axios.post("http://localhost:5000/courses", data);
+        alert("Course added successfully");
+        reset();
+    };
     return (
         <Container>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 5, mb: 3 }}>
@@ -68,7 +73,7 @@ const AddCourse = () => {
                             placeholder="Rate Your Course"
                             variant="outlined"
                             id="rating"
-                            type="text"
+                            type="number"
                             {...register("rating", { required: true })}
                         />
                     </Box>
@@ -93,7 +98,7 @@ const AddCourse = () => {
                             placeholder="Enter Price"
                             variant="outlined"
                             id="price"
-                            type="text"
+                            type="number"
                             {...register("price", { required: true })}
                         />
                     </Box>

@@ -5,10 +5,11 @@ import Course from './Course/Course';
 const Courses = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch('/courses.json')
+        fetch('http://localhost:5000/courses')
             .then(res => res.json())
-            .then(data => setCourses(data))
+            .then(data => setCourses(data.data))
     }, [])
+
     return (
         <Container>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 5 }}>
@@ -17,7 +18,7 @@ const Courses = () => {
             <Box sx={{ mb: 5 }}>
                 <Grid container spacing={4}>
                     {
-                        courses.map(item => <Course
+                        courses?.map(item => <Course
                             key={item.id}
                             item={item}
                         ></Course>)

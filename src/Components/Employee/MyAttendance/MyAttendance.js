@@ -16,19 +16,22 @@ import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
 import TimelineConnector from "@material-ui/lab/TimelineConnector";
 import TimelineContent from "@material-ui/lab/TimelineContent";
 import TimelineDot from "@material-ui/lab/TimelineDot";
-import useAuth from "./../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import TimelineOppositeContent from "@material-ui/lab/TimelineOppositeContent";
 import Paper from "@material-ui/core/Paper";
 import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
-const EmployeeAttendance = () => {
+const MyAttendance = () => {
   const [punchIn, setPunchIn] = useState([]);
   const [punchOut, setPunchOut] = useState([]);
   let time = new Date().toLocaleString();
   const handlePunchIn = () => {
-    setPunchIn(time); 
+    // const data=[time,user.email]
+    setPunchIn(time);
+    // console.log(data)
   };
+
   const handlePunchOut = () => {
     setPunchOut(time);
   };
@@ -82,10 +85,13 @@ const EmployeeAttendance = () => {
               <CardActions
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
-                <Button
-                  onClick={ handlePunchIn}
-                  size="small"
+                <Button onClick={handlePunchIn}
+                  sx={{
+                    background: "#00D2FC !important",
+                    color: "#fff !important",
+                  }}
                   className="btn_regular"
+
                 >
                   Punch In
                 </Button>
@@ -96,9 +102,9 @@ const EmployeeAttendance = () => {
                 >
                   Punch Out
                 </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+              </CardActions >
+            </Card >
+          </Grid >
           <Grid item xs={12} md={6}>
             {/* timeline */}
             <Typography
@@ -159,10 +165,10 @@ const EmployeeAttendance = () => {
               </TimelineItem>
             </Timeline>
           </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Grid >
+      </Container >
+    </Box >
   );
 };
 
-export default EmployeeAttendance;
+export default MyAttendance;
