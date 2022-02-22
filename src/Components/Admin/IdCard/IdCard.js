@@ -4,13 +4,11 @@ import Button from '@mui/material/Button';
 import './IdCard.css'
 
 const IdCard = () => {
-    const pathname = window.location.pathname;
     return (
         <div>
             <div className="id-card-area">
                 <div className="id-content">
                     <h2>Employee ID Card</h2>
-                    <p>{pathname}</p>
                 </div>
                 <div className="employee-id">
                     <div className="employee-id-details">
