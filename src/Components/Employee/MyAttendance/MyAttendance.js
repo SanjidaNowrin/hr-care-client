@@ -28,12 +28,14 @@ const MyAttendance = () => {
   const [leaveTime, setLeaveTime] = useState({});
   const [punchOut, setPunchOut] = useState([]);
   const [reload, setReload] = useState(true);
+  const [disabled, setDisabled] = useState(false);
   let time = new Date().toLocaleString();
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/punchTime")
-  //     .then((res) => res.json())
-  //     .then((data) => setPunchIn(data));
-  // }, [reload]);
+  // punchIn
+  useEffect(() => {
+    fetch("http://localhost:5000/punchTime")
+      .then((res) => res.json())
+      .then((data) => setPunchIn(data.data));
+  }, [reload, punchIn]);
   //punchin
   const handlePunchIn = () => {
     // const entryLeaveTime={
@@ -43,14 +45,16 @@ const MyAttendance = () => {
     // }
     // let attendanceEntry =time.split(",")[0];
     entryTime.ID = 1;
-    entryTime.date=time.split(",")[0];
-    entryTime.entry=time.split(",")[1];
-    entryTime.leave= "";
+    entryTime.date = time.split(",")[0];
+    entryTime.entry = time.split(",")[1];
+
     // entryTime.attendance = {};
-    
+
     // entryTime.attendance[time.split(",")[0]]=entryLeaveTime
     console.log(entryTime);
-
+    // if (entryTime.entry + 12 * 3600 * 1000) {
+    //   setDisabled(false);
+    // }
     //
     fetch("http://localhost:5000/entryTime", {
       method: "POST",
@@ -61,23 +65,28 @@ const MyAttendance = () => {
       .then((data) => {
         if (data.insertedId) {
           setReload(!reload);
+
           console.log(data);
         }
       });
   };
   // punchout button
   const handlePunchOut = () => {
-    leaveTime.date=time.split(",")[0];
+    leaveTime.date = time.split(",")[0];
     fetch("http://localhost:5000/leaveTime", {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(leaveTime),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
-      console.log(leaveTime);
+      .then((data) => {
+        if (data.insertedId) {
+          setReload(!reload);
+          console.log(data);
+        }
+      });
   };
-  
+
   const { user } = useAuth();
   const useStyles = makeStyles((theme) => ({
     paper: {
@@ -130,7 +139,12 @@ const MyAttendance = () => {
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
                 <Button
-                  onClick={handlePunchIn}
+                  disabled={disabled}
+                  onClick={() => {
+                    setEntryTime(handlePunchIn);
+                    setDisabled(true);
+                    setReload(!reload);
+                  }}
                   style={{
                     fontWeight: "bold !important",
                   }}
@@ -138,7 +152,7 @@ const MyAttendance = () => {
                 >
                   Punch In
                 </Button>
-                <Button 
+                <Button
                   onClick={handlePunchOut}
                   size="small"
                   className="btn_regular"
@@ -178,10 +192,14 @@ const MyAttendance = () => {
                       <Box sx={{ display: "flex", alignItems: "center" }}>
                         <TimerTwoToneIcon />
                         <Typography className={classes.timeFont}>
-                          {inTime.time}
+                          {inTime.date}
+                        </Typography>
+                        <Typography className={classes.timeFont}>
+                          {inTime.entry}
                         </Typography>
                       </Box>
                     ))}
+                    
                   </Paper>
                 </TimelineContent>
               </TimelineItem>
@@ -199,12 +217,17 @@ const MyAttendance = () => {
                 </TimelineSeparator>
                 <TimelineContent>
                   <Paper elevation={3} className={classes.paper}>
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <TimerTwoToneIcon />
-                      <Typography className={classes.timeFont}>
-                        {/* {punchOut} */}
-                      </Typography>
-                    </Box>
+                    {punchIn[0]?.leave!==null && punchIn.map((inTime) => (
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <TimerTwoToneIcon />
+                        <Typography className={classes.timeFont}>
+                          {inTime.date}
+                        </Typography>
+                        <Typography className={classes.timeFont}>
+                          {inTime.leave}
+                        </Typography>
+                      </Box>
+                    ))}
                   </Paper>
                 </TimelineContent>
               </TimelineItem>
