@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Announcement from "../Announcement/Announcement";
+import Announcement from "./Announcement/Announcement";
 
 const Announcements = () => {
     const useStyle = makeStyles({
@@ -28,28 +28,28 @@ const Announcements = () => {
     const [data, setData] = useState([]);
     console.log(data);
     useEffect(() => {
-        fetch("/announceData.json")
+        fetch("http://localhost:5000/announcement")
             .then((res) => res.json())
-            .then((data) => setData(data));
+            .then((data) => setData(data.data));
     }, []);
     return (
         <div>
-            <Typography sx={{ textAlign: "left", margin: "40px", color: "#009EFA" }} variant="h3">
+            <Typography sx={{ textAlign: "left", margin: "40px", color: "#01578A" }} variant="h3">
                 Announcements
             </Typography>
             <Container>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={5}>
-                        {data.map((data) => (
-                            <Link to={`/dashboard/announcements/${data.id}`}>
+                        {data?.map((data) => (
+                            <Link to={`/dashboard/announcements/${data._id}`}>
                                 <Paper elevation={6}>
-                                    <Box key={data.id} className={announceBox}>
-                                        <Typography sx={{ color: "#009EFA" }} variant="h6">
+                                    <Box key={data._id} className={announceBox}>
+                                        <Typography sx={{ color: "#01578A" }} variant="h6">
                                             #{data.title}
                                         </Typography>
 
                                         <span className={dateStyle}>{data.date}</span>
-                                        <Typography>{data.description.slice(0, 40)}</Typography>
+                                        <Typography>{data?.text.slice(0, 40)}</Typography>
                                     </Box>
                                 </Paper>
                             </Link>

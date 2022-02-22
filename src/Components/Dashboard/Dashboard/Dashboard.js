@@ -18,6 +18,8 @@ import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlin
 import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Link, Outlet } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import DashNav from "../DashNav/DashNav";
@@ -39,24 +41,33 @@ function Dashboard(props) {
         dashLink: {
             display: "flex",
             alignItems: "center",
-            color: "#000",
+            color: "#fff",
             padding: "5px 0",
         },
         dashIcon: {
             marginTop: "-1px !important",
             marginRight: "8px",
-            color: "#6a6a6a",
+            color: "#fff",
         },
     });
 
     const { linkItem, dashLink, dashIcon } = useStyle();
 
     const drawer = (
-        <div>
+        <div style={{ background: "rgb(1 87 138)", color: "white", height: "1000px" }}>
             <Typography
                 variant="h4"
                 component="div"
-                sx={{ flexGrow: 2, padding: "11px", textAlign: "center", background: "#009EFA", color: "#fff", fontWeight: "700" }}
+                sx={{
+                    flexGrow: 2,
+                    padding: "11px",
+                    textAlign: "center",
+                    background: "rgb(1 87 138)",
+                    color: "#fff",
+                    fontWeight: "700",
+                    borderBottom: "2px solid #fff",
+                    marginBottom: "20px",
+                }}
             >
                 HR CARE
             </Typography>
@@ -75,6 +86,11 @@ function Dashboard(props) {
                 {/* Employees */}
                 <Typography variant="h6">Employees</Typography>
                 <List className={linkItem}>
+                    <Link className={dashLink} to="/dashboard/attendance">
+                        <CoPresentOutlinedIcon className={dashIcon} />
+                        Attendance
+                    </Link>
+
                     <Link className={dashLink} to="/dashboard/myinfo">
                         <AccountBoxOutlinedIcon className={dashIcon} />
                         My Information
@@ -83,26 +99,6 @@ function Dashboard(props) {
                     <Link className={dashLink} to="/dashboard/announcements">
                         <CampaignIcon className={dashIcon} />
                         Announcement
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/id_card">
-                        <BadgeOutlinedIcon className={dashIcon} />
-                        ID Card
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/attendance">
-                        <CoPresentOutlinedIcon className={dashIcon} />
-                        Attendance
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/holiday">
-                        <HolidayVillageOutlinedIcon className={dashIcon} />
-                        Holiday
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/leave">
-                        <ExitToAppOutlinedIcon className={dashIcon} />
-                        Leave
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/course">
@@ -132,14 +128,14 @@ function Dashboard(props) {
                         ID Card
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/id_card">
-                        <DashboardOutlinedIcon className={dashIcon} />
-                        Dashboard
-                    </Link>
-
-                    <Link className={dashLink} to="/dashboard/attendance">
+                    <Link className={dashLink} to="/dashboard/manage_attendance">
                         <CoPresentOutlinedIcon className={dashIcon} />
                         Attendance
+                    </Link>
+
+                    <Link className={dashLink} to="/dashboard/leave">
+                        <ExitToAppOutlinedIcon className={dashIcon} />
+                        Leave
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/holiday">
@@ -147,9 +143,14 @@ function Dashboard(props) {
                         Holiday
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/leave">
-                        <ExitToAppOutlinedIcon className={dashIcon} />
-                        Leave
+                    <Link className={dashLink} to="/dashboard/salary_sheet">
+                        <ListAltIcon className={dashIcon} />
+                        Salary Sheet
+                    </Link>
+
+                    <Link className={dashLink} to="/dashboard/make_admin">
+                        <AdminPanelSettingsIcon className={dashIcon} />
+                        Make Admin
                     </Link>
                 </List>
             </Box>
@@ -174,7 +175,7 @@ function Dashboard(props) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Toolbar sx={{ background: "#009efa" }}>
+                <Toolbar sx={{ background: "rgb(1 87 138)" }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"

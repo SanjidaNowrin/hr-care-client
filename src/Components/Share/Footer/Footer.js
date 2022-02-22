@@ -11,7 +11,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 const Footer = () => {
     const useStyle = makeStyles({
         footer: {
-            background: '#009EFA',
+            background: '#01578A',
             marginTop: '60px',
             position: 'relative',
             '&::after': {
@@ -42,7 +42,7 @@ const Footer = () => {
             '&:hover': {
                 background: '#fff',
                 '& $icon': {
-                    color: '#009EFA'
+                    color: '#01578A'
                 }
             }
         },
@@ -75,8 +75,9 @@ const Footer = () => {
             textAlign: 'center',
             borderTop: '1px solid #fff',
             padding: '20px 0',
-            background: '#009EFA',
+            background: '#01578A',
             marginTop: '20px',
+            color:'white',
             boxShadow: '0 0 30px 15px #0000004f'
         }
     })
@@ -87,7 +88,7 @@ const Footer = () => {
                 <Box sx={{ pt: 12 }}>
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4}>
-                            <Box class="single-ooter">
+                            <Box className="single-ooter">
                                 <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>HR Care
                                 </Typography>
                                 <Typography variant="body1">

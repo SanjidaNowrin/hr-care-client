@@ -1,9 +1,9 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyBDq-9TkFn5mzMWSFtUbDOuhO0ocCyWUsY",
-  authDomain: "hr-care-ec8de.firebaseapp.com",
-  projectId: "hr-care-ec8de",
-  storageBucket: "hr-care-ec8de.appspot.com",
-  messagingSenderId: "12002259467",
-  appId: "1:12002259467:web:f17c15a5ac37914a070d0e",
+  apiKey: "AIzaSyB7uV84HDvwFLq17scbtsdzW1kbA8A0w_w",
+  authDomain: "hr-care-6befb.firebaseapp.com",
+  projectId: "hr-care-6befb",
+  storageBucket: "hr-care-6befb.appspot.com",
+  messagingSenderId: "106619355149",
+  appId: "1:106619355149:web:63630dff5bafb801549544"
 };
 export default firebaseConfig;

@@ -8,7 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Menu from '@mui/material/Menu';
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -70,8 +69,8 @@ const StyledMenu = styled((props) => (
 }));
 
 // export {StyledTableCell};
-const Holiday = ({ item }) => {
-    const { name, date, day } = item;
+const Employee = ({ item }) => {
+    const { name, phone, department, designation } = item;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -87,8 +86,9 @@ const Holiday = ({ item }) => {
                 <StyledTableCell component="th" scope="row">
                     {name}
                 </StyledTableCell>
-                <StyledTableCell align="left">{date}</StyledTableCell>
-                <StyledTableCell align="left">{day}</StyledTableCell>
+                <StyledTableCell align="left">{phone}</StyledTableCell>
+                <StyledTableCell align="left">{department}</StyledTableCell>
+                <StyledTableCell align="left">{designation}</StyledTableCell>
                 <StyledTableCell align="right">
                     <SettingsIcon
                         id="demo-customized-button"
@@ -125,4 +125,4 @@ const Holiday = ({ item }) => {
     );
 };
 
-export default Holiday;
+export default Employee;

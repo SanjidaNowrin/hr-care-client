@@ -1,5 +1,6 @@
 import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -7,16 +8,21 @@ const AddAnnouncement = () => {
     const [announceData, setAnnounceData] = useState({});
 
     const handleOnChange = (e) => {
-        const field = e.target.name;
+        const field = e.target.title;
         const value = e.target.value;
         const newAnnounceData = { ...announceData };
         newAnnounceData[field] = value;
-        console.log(newAnnounceData);
         setAnnounceData(newAnnounceData);
     };
 
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const { register, handleSubmit, reset } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+        axios.post("http://localhost:5000/announcement", data);
+        alert("Announcement added successfully");
+        reset();
+    };
     return (
         <div>
             <Grid container spacing={2}>
@@ -27,8 +33,8 @@ const AddAnnouncement = () => {
                         <Typography sx={{ textAlign: "center", margin: "15px", color: "#009EFA" }} variant="h4">
                             Add Announcement
                         </Typography>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <Box sx={{ mb: 2 }}>
+                        <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
+                            <Box>
                                 <label style={{ display: "block" }} htmlFor="title">
                                     Title <span style={{ color: "red" }}>*</span>
                                 </label>
@@ -37,8 +43,8 @@ const AddAnnouncement = () => {
                                     sx={{ width: "100%" }}
                                     variant="outlined"
                                     id="title"
-                                    type="text"
-                                    {...register("name", { required: true })}
+                                    type="title"
+                                    {...register("title", { required: true })}
                                 />
                             </Box>
                             <Box>
@@ -60,9 +66,9 @@ const AddAnnouncement = () => {
                                 </label>
                                 <textarea
                                     onChange={handleOnChange}
-                                    style={{ width: "480px", height: "120px" }}
+                                    style={{ width: "490px", height: "120px" }}
                                     variant="outlined"
-                                    id="title"
+                                    id="text"
                                     type="text"
                                     {...register("text", { required: true })}
                                 />

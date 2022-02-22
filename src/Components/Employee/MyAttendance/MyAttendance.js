@@ -16,19 +16,22 @@ import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
 import TimelineConnector from "@material-ui/lab/TimelineConnector";
 import TimelineContent from "@material-ui/lab/TimelineContent";
 import TimelineDot from "@material-ui/lab/TimelineDot";
-import useAuth from "./../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import TimelineOppositeContent from "@material-ui/lab/TimelineOppositeContent";
 import Paper from "@material-ui/core/Paper";
 import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
-const EmployeeAttendance = () => {
+const MyAttendance = () => {
   const [punchIn, setPunchIn] = useState([]);
   const [punchOut, setPunchOut] = useState([]);
   let time = new Date().toLocaleString();
   const handlePunchIn = () => {
-    setPunchIn(time); 
+    // const data=[time,user.email]
+    setPunchIn(time);
+    // console.log(data)
   };
+
   const handlePunchOut = () => {
     setPunchOut(time);
   };
@@ -45,7 +48,9 @@ const EmployeeAttendance = () => {
       boxShadow: "2px 15px 15px #F2F2F2 !important",
     },
     timeFont: {
-      fontSize: "14px !important",
+      fontSize: "13px !important",
+      fontWeight:"bold",
+      marginLeft:"3px"
     },
     imgStyle: {
       borderRadius: "50% !important",
@@ -82,10 +87,14 @@ const EmployeeAttendance = () => {
               <CardActions
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
-                <Button
-                  onClick={ handlePunchIn}
-                  size="small"
+                <Button onClick={handlePunchIn}
+                  style={{
+                    background: "#00D2FC !important",
+                    color: "#fff !important",
+                    fontWeight: 'bold !important' 
+                  }}
                   className="btn_regular"
+
                 >
                   Punch In
                 </Button>
@@ -96,9 +105,9 @@ const EmployeeAttendance = () => {
                 >
                   Punch Out
                 </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+              </CardActions >
+            </Card >
+          </Grid >
           <Grid item xs={12} md={6}>
             {/* timeline */}
             <Typography
@@ -107,7 +116,7 @@ const EmployeeAttendance = () => {
               sx={{ textAlign: "center !important", fontWeight: "400" }}
               variant="h4"
             >
-              All <span style={{ color: " #009EFA" }}>Activities</span>
+              All <span style={{ color: " #01578A" }}>Activities</span>
             </Typography>
             <Timeline align="alternate">
               <TimelineItem>
@@ -159,10 +168,10 @@ const EmployeeAttendance = () => {
               </TimelineItem>
             </Timeline>
           </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Grid >
+      </Container >
+    </Box >
   );
 };
 
-export default EmployeeAttendance;
+export default MyAttendance;

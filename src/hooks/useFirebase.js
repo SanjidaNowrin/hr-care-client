@@ -18,6 +18,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const auth = getAuth();
   // google sign in
   const googleProvider = new GoogleAuthProvider();
@@ -114,7 +115,7 @@ const logOut = () => {
 
   //save user to database
   const saveUserInfo = (email, displayName,photoURL, method) => {
-    const user = { email, displayName, photoURL,role: "employee" };
+    const user = { email, displayName, photoURL };
     fetch("https://murmuring-falls-58867.herokuapp.com/users", {
       method: method,
       headers: {
@@ -123,6 +124,20 @@ const logOut = () => {
       body: JSON.stringify(user),
     }).then();
   };
+  //makeadmin
+  useEffect(() => {
+    fetch(
+      `https://murmuring-falls-58867.herokuapp.com/checkAdmin/${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data[0]?.role === "admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      });
+  }, [user?.email]);
   return {
     user,
     googleSignIn,

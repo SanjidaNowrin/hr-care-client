@@ -14,7 +14,7 @@ const Teams = () => {
     return (
         <Box sx={{ pt: 10 }}>
             <Typography sx={{ textAlign: "center", mb: 6, fontWeight: '700' }} variant="h2">
-                Our <span style={{ color: " #009EFA" }}>Team</span>
+                Our <span style={{ color: " #01578A" }}>Team</span>
             </Typography>
             <Container>
                 <Grid container spacing={4}>

@@ -8,7 +8,7 @@ const Announcement = ({ data }) => {
     const { Id } = useParams();
 
     useEffect(() => {
-        const filterData = data.filter((item) => item.id === Id);
+        const filterData = data.filter((item) => item._id === Id);
         setNewData(filterData);
     }, [Id]);
 
@@ -21,7 +21,7 @@ const Announcement = ({ data }) => {
                               <Typography variant="h5" sx={{ margin: "8px 0px" }}>
                                   #{data.title}
                               </Typography>
-                              <Typography sx={{ color: "gray" }}>{data.description}</Typography>
+                              <Typography sx={{ color: "gray" }}>{data.text}</Typography>
                           </Paper>
                       </Box>
                   ))
@@ -31,7 +31,7 @@ const Announcement = ({ data }) => {
                               <Typography variant="h5" sx={{ margin: "8px 0px" }}>
                                   #{data.title}
                               </Typography>
-                              <Typography sx={{ color: "gray" }}>{data.description}</Typography>
+                              <Typography sx={{ color: "gray" }}>{data.text}</Typography>
                           </Paper>
                       </Box>
                   ))}
