@@ -134,10 +134,10 @@ const ContactUs = () => {
                         type="submit"
                         variant="contained"
                         style={{
-                          backgroundColor: "#01578A",
-                          color: "white",
+                          
                           marginTop: "1rem",
                         }}
+                        className="btn_regular"
                         fullWidth
                       >
                         Submit

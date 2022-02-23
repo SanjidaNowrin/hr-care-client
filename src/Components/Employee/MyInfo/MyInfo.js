@@ -214,11 +214,9 @@ const MyInfo = () => {
             type="text"
             variant="outlined"
           />
-          <Button
+          <Button  className="btn_regular"
             variant="outlined"
             style={{
-              backgroundColor: "#01578A",
-              color: "white",
               marginTop: "1rem",
             }}
             type="submit"
