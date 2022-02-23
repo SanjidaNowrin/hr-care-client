@@ -22,72 +22,84 @@ import Paper from "@material-ui/core/Paper";
 import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
+import Swal from "sweetalert2";
 const MyAttendance = () => {
-  const [punchIn, setPunchIn] = useState([]);
-  const [entryTime, setEntryTime] = useState({});
-  const [leaveTime, setLeaveTime] = useState({});
-  const [punchOut, setPunchOut] = useState([]);
-  const [reload, setReload] = useState(true);
-  const [disabled, setDisabled] = useState(false);
+  const { user } = useAuth();
+  const [times, setTimes] = useState([]);
+  const [today, setToday] = useState({});
+
   let time = new Date().toLocaleString();
-  // punchIn
   useEffect(() => {
-    fetch("http://localhost:5000/punchTime")
+    fetch(`http://localhost:5000/attendance/${user.email}`)
       .then((res) => res.json())
-      .then((data) => setPunchIn(data.data));
-  }, [reload, punchIn]);
+      .then((data) => setTimes(data.result));
+  }, [user.email, times]);
+
+  const todaydate = time.split(",")[0];
+  useEffect(
+    () => {
+      const foundToday = times.find(time => time.date === todaydate);
+      setToday(foundToday);
+    }, [times, todaydate]);
+  console.log(today?.date)
+
   //punchin
   const handlePunchIn = () => {
-    // const entryLeaveTime={
-    //   entry: time.split(",")[1],
-    //   leave: "",
-    //   status:"present"
-    // }
-    // let attendanceEntry =time.split(",")[0];
+
+    let entryTime = {};
     entryTime.ID = 1;
+    entryTime.email = user.email;
     entryTime.date = time.split(",")[0];
     entryTime.entry = time.split(",")[1];
+    entryTime.leave = "";
 
-    // entryTime.attendance = {};
+    if (today?.date === entryTime.date) {
+      Swal.fire('You already Punch In')
 
-    // entryTime.attendance[time.split(",")[0]]=entryLeaveTime
-    console.log(entryTime);
-    // if (entryTime.entry + 12 * 3600 * 1000) {
-    //   setDisabled(false);
-    // }
-    //
-    fetch("http://localhost:5000/entryTime", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(entryTime),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          setReload(!reload);
+    } else {
+      fetch("http://localhost:5000/attendance/", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(entryTime),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            console.log(data);
+          }
+        });
+      Swal.fire('You are Punched IN')
+      // window.location.reload(false);
 
-          console.log(data);
-        }
-      });
-  };
+    }
+  }
+
   // punchout button
+
   const handlePunchOut = () => {
+
+    let leaveTime = {};
     leaveTime.date = time.split(",")[0];
-    fetch("http://localhost:5000/leaveTime", {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(leaveTime),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          setReload(!reload);
-          console.log(data);
-        }
-      });
+    if (today?.date === leaveTime.date) {
+
+      fetch(`http://localhost:5000/attendance/${today._id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(leaveTime),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      Swal.fire('You are Punched Out')
+      // window.location.reload(false);
+      console.log(leaveTime);
+
+    } else {
+      alert('At first Punch IN')
+    }
+
+
   };
 
-  const { user } = useAuth();
   const useStyles = makeStyles((theme) => ({
     paper: {
       padding: "6px 16px",
@@ -110,7 +122,7 @@ const MyAttendance = () => {
     },
   }));
   const classes = useStyles();
-
+  console.log(today?._id)
   return (
     <Box mt={7}>
       <Container>
@@ -139,15 +151,7 @@ const MyAttendance = () => {
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
                 <Button
-                  disabled={disabled}
-                  onClick={() => {
-                    setEntryTime(handlePunchIn);
-                    setDisabled(true);
-                    setReload(!reload);
-                  }}
-                  style={{
-                    fontWeight: "bold !important",
-                  }}
+                  onClick={handlePunchIn}
                   className="btn_regular"
                 >
                   Punch In
@@ -170,7 +174,7 @@ const MyAttendance = () => {
               sx={{ textAlign: "center !important", fontWeight: "400" }}
               variant="h4"
             >
-              All <span style={{ color: " #01578A" }}>Activities</span>
+              Todays <span style={{ color: " #01578A" }}>Activities</span>
             </Typography>
             <Timeline align="alternate">
               <TimelineItem>
@@ -188,18 +192,12 @@ const MyAttendance = () => {
                 <TimelineContent>
                   {/* punchIn */}
                   <Paper elevation={3} className={classes.paper}>
-                    {punchIn.map((inTime) => (
-                      <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <TimerTwoToneIcon />
-                        <Typography className={classes.timeFont}>
-                          {inTime.date}
-                        </Typography>
-                        <Typography className={classes.timeFont}>
-                          {inTime.entry}
-                        </Typography>
-                      </Box>
-                    ))}
-                    
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <TimerTwoToneIcon />
+                      <Typography className={classes.timeFont}>
+                        {today?.entry}
+                      </Typography>
+                    </Box>
                   </Paper>
                 </TimelineContent>
               </TimelineItem>
@@ -217,17 +215,12 @@ const MyAttendance = () => {
                 </TimelineSeparator>
                 <TimelineContent>
                   <Paper elevation={3} className={classes.paper}>
-                    {punchIn[0]?.leave!==null && punchIn.map((inTime) => (
-                      <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <TimerTwoToneIcon />
-                        <Typography className={classes.timeFont}>
-                          {inTime.date}
-                        </Typography>
-                        <Typography className={classes.timeFont}>
-                          {inTime.leave}
-                        </Typography>
-                      </Box>
-                    ))}
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <TimerTwoToneIcon />
+                      <Typography className={classes.timeFont}>
+                        {today?.leave}
+                      </Typography>
+                    </Box>
                   </Paper>
                 </TimelineContent>
               </TimelineItem>

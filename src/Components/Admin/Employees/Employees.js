@@ -23,13 +23,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-  const [employees, setEmployees] = useState([]);
-  useEffect(() => {
-    fetch("https://murmuring-falls-58867.herokuapp.com/allEmployees")
-      .then((res) => res.json())
-      .then((data) => setEmployees(data.data));
-  }, []);
-  console.log(employees);
+    const [employees, setEmployees] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/employees/')
+            .then(res => res.json())
+            .then(data => setEmployees(data))
+    }, [])
 
   return (
     <Container>
