@@ -21,14 +21,13 @@ import {
 //   });
 // };
 const ContactUs = () => {
-  const [result, setResult] = useState(false);
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
       .sendForm(
-        "service_4i8sc8u",
-        "template_ud107pc",
+        "service_bjnh5xq",
+        "template_ay3s1pr",
         e.target,
         "user_vS4dymrTlg495yr9cCTHL"
       )
@@ -41,7 +40,6 @@ const ContactUs = () => {
         }
       );
     e.target.reset();
-    setResult(true);
     Swal.fire({
         position: "middle",
         icon: "success",
@@ -50,11 +48,7 @@ const ContactUs = () => {
         timer: 2000,
       });
   };
-  //HIDE RESULTS
-
-  setTimeout(() => {
-    setResult(false);
-  }, 5000);
+  
   return (
     <Box sx={{ py: 10 }}>
       <Container>
@@ -93,6 +87,7 @@ const ContactUs = () => {
                     <Grid xs={12} sm={6} item>
                       <TextField
                         placeholder="Enter first name"
+                        name="firstName"
                         label="First Name"
                         variant="outlined"
                         fullWidth
@@ -104,6 +99,7 @@ const ContactUs = () => {
                         placeholder="Enter last name"
                         label="Last Name"
                         variant="outlined"
+                        name="lastName"
                         fullWidth
                         required
                       />
@@ -111,6 +107,7 @@ const ContactUs = () => {
                     <Grid item xs={12}>
                       <TextField
                         type="email"
+                        name="email"
                         placeholder="Enter email"
                         label="Email"
                         variant="outlined"
@@ -123,6 +120,7 @@ const ContactUs = () => {
                         type="number"
                         placeholder="Enter phone number"
                         label="Phone"
+                        name="phone"
                         variant="outlined"
                         fullWidth
                         required
@@ -131,6 +129,7 @@ const ContactUs = () => {
                     <Grid item xs={12}>
                       <TextField
                         label="Message"
+                        name="message"
                         multiline
                         rows={4}
                         placeholder="Type your message here"
