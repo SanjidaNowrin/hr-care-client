@@ -12,9 +12,12 @@ const AddCourse = () => {
     };
     return (
         <Container>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 5, mb: 3 }}>
-                <Typography variant="h4" sx={{ fontWeight: '700', color: '#01578A' }}>Add New Course </Typography>
-            </Box>
+            <Typography
+          style={{ textAlign: "center", fontWeight: "500" ,marginTop:"1.5rem",marginBottom:"2rem"}}
+          variant="h4"
+        >
+          Add New <span style={{ color: " #01578A" }}>Courses</span>
+        </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Box sx={{ mb: 2 }}>
                     <label style={{ display: 'block' }} htmlFor="title">Course Title <span style={{ color: 'red' }}>*</span></label>
@@ -127,7 +130,7 @@ const AddCourse = () => {
                 </Box>
 
                 <Box sx={{ textAlign: 'center', mt: 3, mb: 6 }}>
-                    <Button sx={{ background: '#00D2FC !important', color: '#fff !important', width: '100%' }} className="btn_regular" type="submit">
+                    <Button sx={{ color: '#fff !important', width: '100%' }} className="btn_regular" type="submit">
                         Add New Course
                     </Button>
                 </Box>
