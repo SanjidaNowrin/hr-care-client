@@ -18,7 +18,7 @@ import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlin
 import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import CampaignIcon from "@mui/icons-material/Campaign";
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Link, Outlet } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
@@ -39,23 +39,36 @@ function Dashboard(props) {
             margin: "0 0 0 30px !important",
         },
         dashLink: {
-            display: 'flex',
-            alignItems: 'center',
-            color: '#fff',
-            padding: '5px 0'
+            display: "flex",
+            alignItems: "center",
+            color: "#fff",
+            padding: "5px 0",
         },
         dashIcon: {
-            marginTop: '-1px !important',
-            marginRight: '8px',
-            color: '#fff'
-        }
-    })
+            marginTop: "-1px !important",
+            marginRight: "8px",
+            color: "#fff",
+        },
+    });
 
     const { linkItem, dashLink, dashIcon } = useStyle();
 
     const drawer = (
-        <div style={{ background: "rgb(1 87 138)", color: "white", height: '1000px' }}>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 2, padding: '11px', textAlign: 'center', background: 'rgb(1 87 138)', color: '#fff', fontWeight: '700', borderBottom: '2px solid #fff', marginBottom: '20px' }}>
+        <div style={{ background: "rgb(1 87 138)", color: "white", height: "1000px" }}>
+            <Typography
+                variant="h4"
+                component="div"
+                sx={{
+                    flexGrow: 2,
+                    padding: "11px",
+                    textAlign: "center",
+                    background: "rgb(1 87 138)",
+                    color: "#fff",
+                    fontWeight: "700",
+                    borderBottom: "2px solid #fff",
+                    marginBottom: "20px",
+                }}
+            >
                 HR CARE
             </Typography>
             <Box sx={{ pl: 2 }}>
@@ -73,7 +86,6 @@ function Dashboard(props) {
                 {/* Employees */}
                 <Typography variant="h6">Employees</Typography>
                 <List className={linkItem}>
-
                     <Link className={dashLink} to="/dashboard/attendance">
                         <CoPresentOutlinedIcon className={dashIcon} />
                         Attendance
@@ -126,6 +138,12 @@ function Dashboard(props) {
                         Holiday
                     </Link>
 
+
+                    <Link className={dashLink} to="/dashboard/add_announcement">
+                        <CampaignIcon className={dashIcon} />
+                        Add Announcement
+                    </Link>
+
                     <Link className={dashLink} to="/dashboard/add_course">
                         <GolfCourseOutlinedIcon className={dashIcon} />
                         Add Course
@@ -140,7 +158,6 @@ function Dashboard(props) {
                         <AdminPanelSettingsIcon className={dashIcon} />
                         Make Admin
                     </Link>
-
                 </List>
             </Box>
 
@@ -164,7 +181,7 @@ function Dashboard(props) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Toolbar sx={{ background: 'rgb(1 87 138)' }}>
+                <Toolbar sx={{ background: "rgb(1 87 138)" }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
