@@ -25,7 +25,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const Employees = () => {
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        fetch('https://murmuring-falls-58867.herokuapp.com/employeeRequest/')
+        fetch('http://localhost:5000/employees/')
             .then(res => res.json())
             .then(data => setEmployees(data))
     }, [])

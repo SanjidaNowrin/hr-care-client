@@ -237,7 +237,6 @@ const SalarySheet = () => {
               <StyledTableCell align="left">Email</StyledTableCell>
               <StyledTableCell align="left">Year</StyledTableCell>
               <StyledTableCell align="left">Fee</StyledTableCell>
-              <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
