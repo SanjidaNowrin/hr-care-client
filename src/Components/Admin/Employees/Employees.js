@@ -13,8 +13,8 @@ import Employee from "./Employee/Employee";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "cyan",
-    color: theme.palette.common.white,
+    backgroundColor: "#a3d2ed",
+    color: theme.palette.common.black,
     fontSize: 24,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -40,8 +40,8 @@ const Employees = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "700", color: "#00D2FC" }}>
-          All Employee{" "}
+        <Typography variant="h4" sx={{ margin:"0 auto", fontWeight: "700", color: "#01578A" }}>
+          All Employee
         </Typography>
       </Box>
       <TableContainer component={Paper}>

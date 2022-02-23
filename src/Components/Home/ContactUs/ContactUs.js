@@ -11,15 +11,6 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-// const Result = () => {
-//   return Swal.fire({
-//     position: "top-end",
-//     icon: "success",
-//     title: "Mail Sent Successfully",
-//     showConfirmButton: false,
-//     timer: 1500,
-//   });
-// };
 const ContactUs = () => {
   const sendEmail = (e) => {
     e.preventDefault();
