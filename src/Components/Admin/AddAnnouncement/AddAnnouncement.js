@@ -30,7 +30,7 @@ const AddAnnouncement = () => {
 
                 <Grid item xs={12} md={6}>
                     <Paper sx={{ p: 4, mt: 5 }} elevation={6}>
-                        <Typography sx={{ textAlign: "center", margin: "15px", color: "#009EFA" }} variant="h4">
+                        <Typography sx={{ textAlign: "center", margin: "15px", color: "#01578A" }} variant="h4">
                             Add Announcement
                         </Typography>
                         <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +75,7 @@ const AddAnnouncement = () => {
                             </Box>
                             <Box sx={{ textAlign: "center", mt: 3 }}>
                                 <Button
-                                    sx={{ background: "#00D2FC !important", color: "#fff !important", width: "100%" }}
+                                    sx={{ background: "#01578A !important", color: "#fff !important", width: "100%" }}
                                     className="btn_regular"
                                     type="submit"
                                 >

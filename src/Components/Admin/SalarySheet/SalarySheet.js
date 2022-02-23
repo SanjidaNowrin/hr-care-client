@@ -23,8 +23,8 @@ import InputBase from "@mui/material/InputBase";
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#5a5e60",
-    color: theme.palette.common.white,
+    backgroundColor: "#a3d2ed",
+    color: theme.palette.common.black,
     fontSize: 24,
   },
   [`&.${tableCellClasses.body}`]: {

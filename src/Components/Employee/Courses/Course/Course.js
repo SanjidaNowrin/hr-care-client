@@ -45,7 +45,7 @@ const Course = ({ item }) => {
                         }
                         action={
                             <Button className='btn_regular' aria-label="settings"
-                                sx={{ background: '#00D2FC !important', color: '#fff !important' }}
+                            className="btn_regular"
                             >
                                 Enroll
                             </Button>

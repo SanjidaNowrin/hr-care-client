@@ -69,7 +69,6 @@ const MyAttendance = () => {
           }
         });
       Swal.fire('You are Punched IN')
-      // window.location.reload(false);
 
     }
   }
@@ -90,7 +89,6 @@ const MyAttendance = () => {
         .then((res) => res.json())
         .then((data) => console.log(data));
       Swal.fire('You are Punched Out')
-      // window.location.reload(false);
       console.log(leaveTime);
 
     } else {
