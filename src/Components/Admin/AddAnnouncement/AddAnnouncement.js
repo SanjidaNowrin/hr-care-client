@@ -30,8 +30,8 @@ const AddAnnouncement = () => {
 
                 <Grid item xs={12} md={6}>
                     <Paper sx={{ p: 4, mt: 5 }} elevation={6}>
-                        <Typography sx={{ textAlign: "center", margin: "15px", color: "#01578A" }} variant="h4">
-                            Add Announcement
+                        <Typography sx={{ textAlign: "center", margin: "15px"}} variant="h4">
+                        Add<span style={{ color: " #01578A" }}> Announcement</span>
                         </Typography>
                         <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                             <Box>
