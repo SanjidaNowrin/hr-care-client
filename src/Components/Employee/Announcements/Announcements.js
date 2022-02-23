@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Announcement from "../Announcement/Announcement";
+import Announcement from "./Announcement/Announcement";
 
 const Announcements = () => {
     const useStyle = makeStyles({
@@ -34,7 +34,7 @@ const Announcements = () => {
     }, []);
     return (
         <div>
-            <Typography sx={{ textAlign: "left", margin: "40px", color: "#009EFA" }} variant="h3">
+            <Typography sx={{ textAlign: "left", margin: "40px", color: "#01578A" }} variant="h3">
                 Announcements
             </Typography>
             <Container>
@@ -44,7 +44,7 @@ const Announcements = () => {
                             <Link to={`/dashboard/announcements/${data.id}`}>
                                 <Paper elevation={6}>
                                     <Box key={data.id} className={announceBox}>
-                                        <Typography sx={{ color: "#009EFA" }} variant="h6">
+                                        <Typography sx={{ color: "#01578A" }} variant="h6">
                                             #{data.title}
                                         </Typography>
 
