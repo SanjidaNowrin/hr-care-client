@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import Swal from "sweetalert2";
 const AddAnnouncement = () => {
     const [announceData, setAnnounceData] = useState({});
 
@@ -20,8 +20,14 @@ const AddAnnouncement = () => {
     const onSubmit = (data) => {
         console.log(data);
         axios.post("http://localhost:5000/announcement", data);
-        alert("Announcement added successfully");
         reset();
+        Swal.fire({
+            position: "middle",
+            icon: "success",
+            title: "Announcement added successfully",
+            showConfirmButton: false,
+            timer: 2000,
+          });
     };
     return (
         <div>
