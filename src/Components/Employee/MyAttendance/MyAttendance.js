@@ -32,7 +32,7 @@ const MyAttendance = () => {
     fetch(`http://localhost:5000/attendance/${user.email}`)
       .then((res) => res.json())
       .then((data) => setTimes(data.result));
-  }, [user.email]);
+  }, [user.email, times]);
 
   const todaydate = time.split(",")[0];
   useEffect(
@@ -69,7 +69,7 @@ const MyAttendance = () => {
           }
         });
       alert('You are Punched IN')
-      window.location.reload(false);
+      // window.location.reload(false);
 
     }
   }
@@ -121,7 +121,7 @@ const MyAttendance = () => {
         .then((res) => res.json())
         .then((data) => console.log(data));
       alert('You are Punched Out')
-      window.location.reload(false);
+      // window.location.reload(false);
       console.log(leaveTime);
 
     } else {
