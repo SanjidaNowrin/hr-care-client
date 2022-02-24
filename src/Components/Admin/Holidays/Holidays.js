@@ -16,8 +16,8 @@ import { useForm } from 'react-hook-form';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: '#5f6568',
-        color: theme.palette.common.white,
+        backgroundColor: '#a3d2ed',
+        color: theme.palette.common.black,
         fontSize: 24,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -32,7 +32,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 460,
     bgcolor: 'background.paper',
-    border: '1px solid #00D2FC',
+    border: '1px solid #01578A',
     boxShadow: 24,
     px: 5,
     py: 3
@@ -56,11 +56,11 @@ const Holidays = () => {
     return (
         <Container>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 5 }}>
-                <Typography variant="h4" sx={{ fontWeight: '700', color: '#00D2FC' }}>Holidays - <span style={{ color: '#000' }}>2022</span></Typography>
+                <Typography variant="h4" sx={{ fontWeight: '700', color: '#01578A' }}>Holidays - <span style={{ color: '#000' }}>2022</span></Typography>
                 <Button
                     onClick={handleOpen}
                     className='btn_regular'
-                    sx={{ background: '#00D2FC !important', color: '#fff !important' }}
+                    sx={{ background: '#01578A !important', color: '#fff !important' }}
                 >
                     <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} />
                     Add Holidays
@@ -95,7 +95,7 @@ const Holidays = () => {
                 aria-describedby="keep-mounted-modal-description"
             >
                 <Box sx={style}>
-                    <Typography variant="h4" sx={{ color: '#00D2FC', textAlign: 'center', mb: 3 }}>
+                    <Typography variant="h4" sx={{ color: '#01578A', textAlign: 'center', mb: 3 }}>
                         New Holiday
                     </Typography>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,7 +120,7 @@ const Holidays = () => {
                             />
                         </Box>
                         <Box sx={{ textAlign: 'center', mt: 3 }}>
-                            <Button sx={{ background: '#00D2FC !important', color: '#fff !important', width: '100%' }} className="btn_regular" type="submit">
+                            <Button sx={{ background: '#01578A !important', color: '#fff !important', width: '100%' }} className="btn_regular" type="submit">
                                 Add Holiday
                             </Button>
                         </Box>

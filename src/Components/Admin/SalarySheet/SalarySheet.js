@@ -23,8 +23,8 @@ import InputBase from "@mui/material/InputBase";
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#5a5e60",
-    color: theme.palette.common.white,
+    backgroundColor: "#a3d2ed",
+    color: theme.palette.common.black,
     fontSize: 24,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -237,7 +237,6 @@ const SalarySheet = () => {
               <StyledTableCell align="left">Email</StyledTableCell>
               <StyledTableCell align="left">Year</StyledTableCell>
               <StyledTableCell align="left">Fee</StyledTableCell>
-              <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

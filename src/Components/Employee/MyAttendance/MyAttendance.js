@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { Container } from "@mui/material";
 import { Grid } from "@mui/material";
@@ -22,21 +22,82 @@ import Paper from "@material-ui/core/Paper";
 import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
+import Swal from "sweetalert2";
 const MyAttendance = () => {
-  const [punchIn, setPunchIn] = useState([]);
-  const [punchOut, setPunchOut] = useState([]);
+  const { user } = useAuth();
+  const [times, setTimes] = useState([]);
+  const [today, setToday] = useState({});
+
   let time = new Date().toLocaleString();
+  useEffect(() => {
+    fetch(`http://localhost:5000/attendance/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setTimes(data.result));
+  }, [user.email, times]);
+
+  const todaydate = time.split(",")[0];
+  useEffect(
+    () => {
+      const foundToday = times.find(time => time.date === todaydate);
+      setToday(foundToday);
+    }, [times, todaydate]);
+  console.log(today?.date)
+
+  //punchin
   const handlePunchIn = () => {
-    // const data=[time,user.email]
-    setPunchIn(time);
-    // console.log(data)
-  };
+
+    let entryTime = {};
+    entryTime.ID = 1;
+    entryTime.email = user.email;
+    entryTime.date = time.split(",")[0];
+    entryTime.entry = time.split(",")[1];
+    entryTime.leave = "";
+
+    if (today?.date === entryTime.date) {
+      Swal.fire('You already Punch In')
+
+    } else {
+      fetch("http://localhost:5000/attendance/", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(entryTime),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            console.log(data);
+          }
+        });
+      Swal.fire('You are Punched IN')
+
+    }
+  }
+
+  // punchout button
 
   const handlePunchOut = () => {
-    setPunchOut(time);
+
+    let leaveTime = {};
+    leaveTime.date = time.split(",")[0];
+    if (today?.date === leaveTime.date) {
+
+      fetch(`http://localhost:5000/attendance/${today._id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(leaveTime),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      Swal.fire('You are Punched Out')
+      console.log(leaveTime);
+
+    } else {
+      alert('At first Punch IN')
+    }
+
+
   };
-  //console.log(punchOut);
-  const { user } = useAuth();
+
   const useStyles = makeStyles((theme) => ({
     paper: {
       padding: "6px 16px",
@@ -49,8 +110,8 @@ const MyAttendance = () => {
     },
     timeFont: {
       fontSize: "13px !important",
-      fontWeight:"bold",
-      marginLeft:"3px"
+      fontWeight: "bold",
+      marginLeft: "3px",
     },
     imgStyle: {
       borderRadius: "50% !important",
@@ -59,7 +120,7 @@ const MyAttendance = () => {
     },
   }));
   const classes = useStyles();
-
+  console.log(today?._id)
   return (
     <Box mt={7}>
       <Container>
@@ -87,14 +148,9 @@ const MyAttendance = () => {
               <CardActions
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
-                <Button onClick={handlePunchIn}
-                  style={{
-                    background: "#00D2FC !important",
-                    color: "#fff !important",
-                    fontWeight: 'bold !important' 
-                  }}
+                <Button
+                  onClick={handlePunchIn}
                   className="btn_regular"
-
                 >
                   Punch In
                 </Button>
@@ -105,9 +161,9 @@ const MyAttendance = () => {
                 >
                   Punch Out
                 </Button>
-              </CardActions >
-            </Card >
-          </Grid >
+              </CardActions>
+            </Card>
+          </Grid>
           <Grid item xs={12} md={6}>
             {/* timeline */}
             <Typography
@@ -116,7 +172,7 @@ const MyAttendance = () => {
               sx={{ textAlign: "center !important", fontWeight: "400" }}
               variant="h4"
             >
-              All <span style={{ color: " #01578A" }}>Activities</span>
+              Todays <span style={{ color: " #01578A" }}>Activities</span>
             </Typography>
             <Timeline align="alternate">
               <TimelineItem>
@@ -132,12 +188,12 @@ const MyAttendance = () => {
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent>
-                  {/* punchin */}
+                  {/* punchIn */}
                   <Paper elevation={3} className={classes.paper}>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <TimerTwoToneIcon />
                       <Typography className={classes.timeFont}>
-                        {punchIn}
+                        {today?.entry}
                       </Typography>
                     </Box>
                   </Paper>
@@ -160,7 +216,7 @@ const MyAttendance = () => {
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <TimerTwoToneIcon />
                       <Typography className={classes.timeFont}>
-                        {punchOut}
+                        {today?.leave}
                       </Typography>
                     </Box>
                   </Paper>
@@ -168,9 +224,9 @@ const MyAttendance = () => {
               </TimelineItem>
             </Timeline>
           </Grid>
-        </Grid >
-      </Container >
-    </Box >
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
