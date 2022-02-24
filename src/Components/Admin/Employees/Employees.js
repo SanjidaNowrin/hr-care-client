@@ -23,11 +23,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-  const [employeesinfo, setEmployeesinfo] = useState([]);
+
+  const [employees, setEmployees] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/employees/')
+    fetch('https://ancient-thicket-61342.herokuapp.com/employees')
       .then(res => res.json())
-      .then(data => setEmployeesinfo(data))
+      .then(data => setEmployees(data.data))
   }, [])
 
   return (
@@ -56,7 +57,7 @@ const Employees = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {employeesinfo.map((item) => (
+            {employees.map((item) => (
               <Employee key={item.id} item={item}></Employee>
             ))}
           </TableBody>
