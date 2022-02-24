@@ -16,7 +16,7 @@ const MyInfo = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("http://localhost:5000/employees", data);
+    axios.post("https://ancient-thicket-61342.herokuapp.com/employees", data);
     reset();
     Swal.fire({
       position: "middle",
@@ -214,11 +214,9 @@ const MyInfo = () => {
             type="text"
             variant="outlined"
           />
-          <Button
+          <Button  className="btn_regular"
             variant="outlined"
             style={{
-              backgroundColor: "#01578A",
-              color: "white",
               marginTop: "1rem",
             }}
             type="submit"

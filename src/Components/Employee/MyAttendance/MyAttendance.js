@@ -30,7 +30,7 @@ const MyAttendance = () => {
 
   let time = new Date().toLocaleString();
   useEffect(() => {
-    fetch(`http://localhost:5000/attendance/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`)
       .then((res) => res.json())
       .then((data) => setTimes(data.result));
   }, [user.email, times]);
@@ -57,7 +57,7 @@ const MyAttendance = () => {
       Swal.fire('You already Punched In')
 
     } else {
-      fetch("http://localhost:5000/attendance/", {
+      fetch("https://ancient-thicket-61342.herokuapp.com/attendance/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(entryTime),
@@ -81,7 +81,7 @@ const MyAttendance = () => {
     leaveTime.date = time.split(",")[0];
     if (today?.date === leaveTime.date) {
 
-      fetch(`http://localhost:5000/attendance/${today._id}`, {
+      fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${today._id}`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(leaveTime),

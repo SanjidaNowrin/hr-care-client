@@ -3,13 +3,14 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import './IdCard.css'
 import SingleId from '../SingleId/SingleId';
+import { Typography } from '@mui/material';
 
 const IdCard = () => {
     const [employeesId, setemployeeId] = useState([]);
     const [displayIdCards, setDisplayIdCards] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/employees")
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then(res => res.json())
             .then(data => setemployeeId(data.data))
     }, []);
@@ -26,14 +27,14 @@ const IdCard = () => {
         <div>
             <div className="id-card-area">
                 <div className="id-content">
-                    <h2>Employee ID Card</h2>
+                <Typography variant="h4" sx={{ fontWeight: '500', color: '#01578A', textAlign: "center", marginBottom: "18px" }}>Employee <span style={{ color: "#000" }}>ID Card</span></Typography>
                 </div>
                 <div className="search-container">
                     <input
                         onChange={handleOnChange}
                         type="text"
                         placeholder='Search ID Card' />
-                    <Button>Search</Button>
+                    <Button className="btn_regular" sx={{marginLeft:"1rem"}}>Search</Button>
                 </div>
                 <Grid container spacing={6}>
                     {
