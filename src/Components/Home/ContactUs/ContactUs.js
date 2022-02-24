@@ -2,6 +2,7 @@ import React from "react";
 import emailjs from "emailjs-com";
 import Box from "@mui/material/Box";
 import Swal from "sweetalert2";
+import { makeStyles } from "@mui/styles";
 import {
   Grid,
   TextField,
@@ -40,6 +41,24 @@ const ContactUs = () => {
     });
   };
 
+  const useStyle = makeStyles({
+    formTitle: {
+      textAlign: 'center',
+      fontWeight: '700',
+      textTransform: 'uppercase'
+    },
+    formPText: {
+      textAlign: 'center',
+      color: '#01578A',
+      marginBottom: '1.5rem'
+    },
+    inputField: {
+      background: '#fff !important'
+    }
+  })
+
+  const { formTitle, formPText, inputField } = useStyle();
+
   return (
     <Box sx={{ py: 10 }}>
       <Container>
@@ -57,16 +76,12 @@ const ContactUs = () => {
               style={{ maxWidth: 550, padding: "30px 30px", margin: "0 auto" }}
             >
               <CardContent>
-                <Typography
-                  sx={{ textAlign: "center", fontWeight: "700" }}
-                  variant="h4"
-                >
+                <Typography className={formTitle} variant="h4">
                   <span style={{ color: " #01578A" }}>Contact</span> Us
                 </Typography>
                 <Typography
-                  style={{ marginBottom: "1.5rem" }}
+                  className={formPText}
                   variant="body2"
-                  color="#01578A"
                   component="p"
                   gutterBottom
                 >
@@ -77,6 +92,7 @@ const ContactUs = () => {
                   <Grid container spacing={1}>
                     <Grid xs={12} sm={6} item>
                       <TextField
+                        className={inputField}
                         placeholder="Enter first name"
                         name="firstName"
                         label="First Name"
@@ -87,6 +103,7 @@ const ContactUs = () => {
                     </Grid>
                     <Grid xs={12} sm={6} item>
                       <TextField
+                        className={inputField}
                         placeholder="Enter last name"
                         label="Last Name"
                         variant="outlined"
@@ -97,6 +114,7 @@ const ContactUs = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <TextField
+                        className={inputField}
                         type="email"
                         name="email"
                         placeholder="Enter email"
@@ -108,6 +126,7 @@ const ContactUs = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <TextField
+                        className={inputField}
                         type="number"
                         placeholder="Enter phone number"
                         label="Phone"
@@ -119,6 +138,7 @@ const ContactUs = () => {
                     </Grid>
                     <Grid item xs={12}>
                       <TextField
+                        className={inputField}
                         label="Message"
                         name="message"
                         multiline
@@ -130,18 +150,16 @@ const ContactUs = () => {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        style={{
-                          backgroundColor: "#01578A",
-                          color: "white",
-                          marginTop: "1rem",
-                        }}
-                        fullWidth
-                      >
-                        Submit
-                      </Button>
+                      <Box sx={{ mt: 2 }}>
+                        <Button
+                          className="btn_regular"
+                          type="submit"
+                          variant="contained"
+                          fullWidth
+                        >
+                          Submit
+                        </Button>
+                      </Box>
                     </Grid>
                   </Grid>
                 </form>
