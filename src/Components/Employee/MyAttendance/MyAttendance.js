@@ -22,6 +22,7 @@ import Paper from "@material-ui/core/Paper";
 import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
+import Swal from "sweetalert2";
 const MyAttendance = () => {
   const { user } = useAuth();
   const [times, setTimes] = useState([]);
@@ -53,8 +54,7 @@ const MyAttendance = () => {
     entryTime.leave = "";
 
     if (today?.date === entryTime.date) {
-
-      alert('You already Punch IN')
+      Swal.fire('You already Punched In')
 
     } else {
       fetch("http://localhost:5000/attendance/", {
@@ -68,42 +68,10 @@ const MyAttendance = () => {
             console.log(data);
           }
         });
-      alert('You are Punched IN')
-      // window.location.reload(false);
+      Swal.fire('You are Punched IN')
 
     }
   }
-
-  // const handlePunch = () => {
-  //   // const entryLeaveTime={
-  //   //   entry: time.split(",")[1],
-  //   //   leave: "",
-  //   //   status:"present"
-  //   // }
-  //   // let attendanceEntry =time.split(",")[0];
-  //   entryTime.ID = 1;
-  //   entryTime.date = time.split(",")[0];
-  //   entryTime.entry = time.split(",")[1];
-  //   entryTime.leave = "";
-  //   // entryTime.attendance = {};
-
-  //   // entryTime.attendance[time.split(",")[0]]=entryLeaveTime
-  //   console.log(entryTime);
-  //   //
-  //   fetch("http://localhost:5000/entryTime", {
-  //     method: "POST",
-  //     headers: { "content-type": "application/json" },
-  //     body: JSON.stringify(entryTime),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.insertedId) {
-  //         setReload(!reload);
-  //         console.log(data);
-  //       }
-  //     });
-  // };
-
 
   // punchout button
 
@@ -120,12 +88,11 @@ const MyAttendance = () => {
       })
         .then((res) => res.json())
         .then((data) => console.log(data));
-      alert('You are Punched Out')
-      // window.location.reload(false);
+      Swal.fire('You are Punched Out')
       console.log(leaveTime);
 
     } else {
-      alert('At first Punch IN')
+      Swal.fire('At first Punch IN')
     }
 
 

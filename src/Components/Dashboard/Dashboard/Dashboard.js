@@ -118,11 +118,6 @@ function Dashboard(props) {
                         All Employees
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/addAnnouncement">
-                        <CampaignIcon className={dashIcon} />
-                        Add Announcement
-                    </Link>
-
                     <Link className={dashLink} to="/dashboard/id_card">
                         <BadgeOutlinedIcon className={dashIcon} />
                         ID Card
@@ -141,6 +136,16 @@ function Dashboard(props) {
                     <Link className={dashLink} to="/dashboard/holiday">
                         <HolidayVillageOutlinedIcon className={dashIcon} />
                         Holiday
+                    </Link>
+
+                    <Link className={dashLink} to="/dashboard/add_announcement">
+                        <CampaignIcon className={dashIcon} />
+                        Add Announcement
+                    </Link>
+
+                    <Link className={dashLink} to="/dashboard/add_course">
+                        <GolfCourseOutlinedIcon className={dashIcon} />
+                        Add Course
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/salary_sheet">

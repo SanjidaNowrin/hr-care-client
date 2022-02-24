@@ -33,8 +33,7 @@ const DashboardHome = () => {
     return (
         <>
             <div className="top-content" style={{ borderBottom: '3px solid rgb(1 87 138)', margin: '30px' }}>
-                <h3 style={{fontSize: '1.5rem'}}>Dashboard</h3>
-                
+                <h2 style={{fontSize: '2rem'}}>Dashboard</h2>
             </div>
             <Box style={{ padding: '40px' }}>
                 <Grid container spacing={4}>
