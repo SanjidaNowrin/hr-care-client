@@ -28,7 +28,7 @@ const Announcements = () => {
   const [data, setData] = useState([]);
   console.log(data);
   useEffect(() => {
-    fetch("http://localhost:5000/announcement")
+    fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
       .then((res) => res.json())
       .then((data) => setData(data.data));
   }, []);

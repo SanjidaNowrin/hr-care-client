@@ -19,7 +19,7 @@ const AddAnnouncement = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-        axios.post("http://localhost:5000/announcement", data);
+        axios.post("https://ancient-thicket-61342.herokuapp.com/announcement", data);
         reset();
         Swal.fire({
             position: "middle",

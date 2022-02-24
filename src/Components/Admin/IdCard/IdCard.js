@@ -10,7 +10,7 @@ const IdCard = () => {
     const [displayIdCards, setDisplayIdCards] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/employees")
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then(res => res.json())
             .then(data => setemployeeId(data.data))
     }, []);
