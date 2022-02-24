@@ -5,9 +5,9 @@ import { Grid } from "@mui/material";
 import { Typography, Button, Container, TextField } from "@mui/material";
 import Swal from 'sweetalert2'
 const MakeAdmin = () => {
-  const { register, handleSubmit,reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    fetch("https://murmuring-falls-58867.herokuapp.com/makeAdmin", {
+    fetch("https://ancient-thicket-61342.herokuapp.com/makeAdmin", {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -15,14 +15,14 @@ const MakeAdmin = () => {
       .then((res) => res.json())
       .then((result) => console.log(result));
     Swal.fire({
-        title: 'WOW!',
-        text: 'Added as an Admin',
-        imageUrl: 'https://i.ibb.co/c1Lnz5P/undraw-real-time-collaboration-c62i.png',
-        imageWidth: 300,
-        imageHeight: 200,
-        imageAlt: 'Custom image',
-      })
-      reset();
+      title: 'WOW!',
+      text: 'Added as an Admin',
+      imageUrl: 'https://i.ibb.co/c1Lnz5P/undraw-real-time-collaboration-c62i.png',
+      imageWidth: 300,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+    })
+    reset();
   };
   return (
     <Box sx={{ py: 10 }}>
@@ -37,11 +37,11 @@ const MakeAdmin = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-          <Typography  variant="h4" sx={{ fontWeight: '500', color: '#01578A',textAlign:"center" ,marginBottom:"18px"}}>Make <span style={{ color: "#000" }}>Admin</span></Typography>
+            <Typography variant="h4" sx={{ fontWeight: '500', color: '#01578A', textAlign: "center", marginBottom: "18px" }}>Make <span style={{ color: "#000" }}>Admin</span></Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ mb: 2 }}>
                 <label style={{ display: "block" }} htmlFor="title">
-                  Enter Email <span style={{ color: "red"}}>*</span>
+                  Enter Email <span style={{ color: "red" }}>*</span>
                 </label>
                 <TextField
                   sx={{ width: "100%" }}
