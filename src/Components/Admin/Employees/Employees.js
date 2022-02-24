@@ -23,12 +23,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-    const [employees, setEmployees] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/employees/')
-            .then(res => res.json())
-            .then(data => setEmployees(data))
-    }, [])
+  const [employeesinfo, setEmployeesinfo] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:5000/employees/')
+      .then(res => res.json())
+      .then(data => setEmployeesinfo(data))
+  }, [])
 
   return (
     <Container>
@@ -40,7 +40,7 @@ const Employees = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ margin:"0 auto", fontWeight: "700", color: "#01578A" }}>
+        <Typography variant="h4" sx={{ margin: "0 auto", fontWeight: "700", color: "#01578A" }}>
           All Employee
         </Typography>
       </Box>
@@ -56,7 +56,7 @@ const Employees = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {employees.map((item) => (
+            {employeesinfo.map((item) => (
               <Employee key={item.id} item={item}></Employee>
             ))}
           </TableBody>

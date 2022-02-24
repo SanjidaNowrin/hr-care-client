@@ -16,7 +16,7 @@ const MyInfo = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("https://ancient-thicket-61342.herokuapp.com/employees/", data);
+    axios.post("http://localhost:5000/employees", data);
     reset();
     Swal.fire({
       position: "middle",
