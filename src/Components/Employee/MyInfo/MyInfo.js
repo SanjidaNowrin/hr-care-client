@@ -68,7 +68,7 @@ const MyInfo = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 1, width: "33ch" },
+            "& > :not(style)": { m: 1, width: "30%" },
           }}
         >
           <TextField

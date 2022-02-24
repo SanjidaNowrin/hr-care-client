@@ -10,12 +10,12 @@ import ContactUs from './../ContactUs/ContactUs';
 const Home = () => {
     return (
         <>
-            <Navbar/>
-            <Banner/>
-            <Features/>
-            <Teams/>
-            <ContactUs/>
-            <Footer/>
+            <Navbar />
+            <Banner />
+            <Features />
+            <Teams />
+            <ContactUs />
+            <Footer />
         </>
     );
 };

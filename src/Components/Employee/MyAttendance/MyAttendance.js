@@ -54,7 +54,7 @@ const MyAttendance = () => {
     entryTime.leave = "";
 
     if (today?.date === entryTime.date) {
-      Swal.fire('You already Punch In')
+      Swal.fire('You already Punched In')
 
     } else {
       fetch("http://localhost:5000/attendance/", {
@@ -92,7 +92,7 @@ const MyAttendance = () => {
       console.log(leaveTime);
 
     } else {
-      alert('At first Punch IN')
+      Swal.fire('At first Punch IN')
     }
 
 
