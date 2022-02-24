@@ -23,12 +23,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-    const [employees, setEmployees] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/employees/')
-            .then(res => res.json())
-            .then(data => setEmployees(data))
-    }, [])
+  const employee = [{ id: 23, phone: 18190, department: "cvil", designation: "manager" }, { id: 30, phone: 5783, department: "elecrical", designation: "HR" }]
+
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    fetch('https://ancient-thicket-61342.herokuapp.com/employees')
+      .then(res => res.json())
+      .then(data => setEmployees(data.data))
+  }, [])
 
   return (
     <Container>
@@ -40,7 +42,7 @@ const Employees = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ margin:"0 auto", fontWeight: "700", color: "#01578A" }}>
+        <Typography variant="h4" sx={{ margin: "0 auto", fontWeight: "700", color: "#01578A" }}>
           All Employee
         </Typography>
       </Box>
