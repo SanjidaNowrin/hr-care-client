@@ -138,7 +138,6 @@ function Dashboard(props) {
                         Holiday
                     </Link>
 
-
                     <Link className={dashLink} to="/dashboard/add_announcement">
                         <CampaignIcon className={dashIcon} />
                         Add Announcement

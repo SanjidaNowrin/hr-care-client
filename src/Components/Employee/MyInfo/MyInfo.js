@@ -16,7 +16,7 @@ const MyInfo = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.post("https://ancient-thicket-61342.herokuapp.com/employees/", data);
+    axios.post("http://localhost:5000/employees", data);
     reset();
     Swal.fire({
       position: "middle",
@@ -68,7 +68,7 @@ const MyInfo = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 1, width: "33ch" },
+            "& > :not(style)": { m: 1, width: "30%" },
           }}
         >
           <TextField

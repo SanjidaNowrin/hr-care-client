@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import emailjs from "emailjs-com";
 import Box from "@mui/material/Box";
 import Swal from "sweetalert2";
@@ -32,14 +32,14 @@ const ContactUs = () => {
       );
     e.target.reset();
     Swal.fire({
-        position: "middle",
-        icon: "success",
-        title: "Mail Sent Successfully",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      position: "middle",
+      icon: "success",
+      title: "Mail Sent Successfully",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   };
-  
+
   return (
     <Box sx={{ py: 10 }}>
       <Container>
@@ -143,7 +143,6 @@ const ContactUs = () => {
                         Submit
                       </Button>
                     </Grid>
-                    {/* <Box className="row">{result ? <Result /> : null}</Box> */}
                   </Grid>
                 </form>
               </CardContent>
