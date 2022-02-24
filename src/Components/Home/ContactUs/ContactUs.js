@@ -60,7 +60,7 @@ const ContactUs = () => {
   const { formTitle, formPText, inputField } = useStyle();
 
   return (
-    <Box sx={{ py: 10 }}>
+    <Box className='contact_area' sx={{ py: 10 }}>
       <Container>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
@@ -81,6 +81,7 @@ const ContactUs = () => {
                 </Typography>
                 <Typography
                   className={formPText}
+                  sx={{ mb: 2 }}
                   variant="body2"
                   component="p"
                   gutterBottom
