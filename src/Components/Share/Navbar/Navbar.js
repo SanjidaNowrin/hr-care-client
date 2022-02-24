@@ -15,7 +15,7 @@ const Navbar = () => {
     const theme = useTheme();
     const useStyle = makeStyles({
         navContainer: {
-            background: "#01578A !important",
+            background: "#01578A !important"
         },
         navItem: {
             color: "white",
@@ -35,7 +35,7 @@ const Navbar = () => {
         navLogo: {
             [theme.breakpoints.down("sm")]: {
                 textAlign: "right",
-               
+
             },
         },
         mobileNavItem: {
@@ -99,7 +99,7 @@ const Navbar = () => {
                             <Link className={navItem} to="/">
                                 <div className="navbarlogo">
                                     <img src="https://i.ibb.co/GxkQtD9/hrcare-logo.png" alt="" className="logo" />
-                                    <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 2,  marginLeft:"9px"  }}>
+                                    <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 2, marginLeft: "9px" }}>
                                         HR CARE
                                     </Typography>
                                 </div>
@@ -149,7 +149,7 @@ const Navbar = () => {
                     >
                         <Box sx={{ background: '#009EFA' }}>
                             <Link className={navItem} to="/">
-                                <Typography variant="h5" sx={{ textAlign: 'center', my: 2}}>
+                                <Typography variant="h5" sx={{ textAlign: 'center', my: 2 }}>
                                     HR CARE
                                 </Typography>
                             </Link>
