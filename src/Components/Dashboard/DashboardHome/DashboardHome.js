@@ -29,7 +29,6 @@ const rows = [
 
 
 const DashboardHome = () => {
-    const pathname = window.location.pathname;
     return (
         <>
             <div className="top-content" style={{ borderBottom: '3px solid rgb(1 87 138)', margin: '30px' }}>

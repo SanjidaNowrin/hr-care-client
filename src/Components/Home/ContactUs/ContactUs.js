@@ -161,7 +161,6 @@ const ContactUs = () => {
                         </Button>
                       </Box>
                     </Grid>
-                    {/* <Box className="row">{result ? <Result /> : null}</Box> */}
                   </Grid>
                 </form>
               </CardContent>
