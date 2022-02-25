@@ -1,6 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -23,12 +22,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-    const [employees, setEmployees] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/employees/')
-            .then(res => res.json())
-            .then(data => setEmployees(data))
-    }, [])
+
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    fetch('https://ancient-thicket-61342.herokuapp.com/employees')
+      .then(res => res.json())
+      .then(data => setEmployees(data.data))
+  }, [])
 
   return (
     <Container>
@@ -40,11 +40,11 @@ const Employees = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ margin:"0 auto", fontWeight: "700", color: "#01578A" }}>
+        <Typography variant="h4" sx={{ margin: "0 auto", fontWeight: "700", color: "#01578A" }}>
           All Employee
         </Typography>
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} >
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
