@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
         width: '85%',
-        height: '95vh'
+        height: '95vh',
+        overflow: "scroll"
     },
 }));
 
@@ -95,6 +96,50 @@ const EmployeeModal = ({ item }) => {
                                     "& > :not(style)": { m: 1, width: "200px" },
                                 }}
                             >
+                                <Typography sx={{ m: 2 }} variant="h5">
+                                    Admin Fill Up
+                                </Typography>
+
+                                <TextField
+                                    {...register("ID")}
+                                    id="outlined-basic"
+                                    label="Company Unique ID"
+                                    type="text"
+                                    variant="outlined"
+                                    required
+                                />
+                                <TextField
+                                    {...register("DOJ")}
+                                    id="outlined-basic"
+                                    label="Date of Join"
+                                    type="text"
+                                    variant="outlined"
+                                    required
+                                />
+                                <TextField
+                                    {...register("Gross")}
+                                    id="outlined-basic"
+                                    label="Gross Salary"
+                                    type="text"
+                                    variant="outlined"
+                                    required
+                                />
+                                <TextField
+                                    {...register("Account")}
+                                    id="outlined-basic"
+                                    label="Bank Account Number"
+                                    type="number"
+                                    variant="outlined"
+                                    required
+                                />
+
+
+
+
+                                <Typography sx={{ m: 2 }} variant="h5">
+                                    Primary
+                                </Typography>
+
                                 <TextField
                                     {...register("name")}
                                     id="outlined-basic"
@@ -154,10 +199,10 @@ const EmployeeModal = ({ item }) => {
                                     id="date"
                                     label="Dath of Birth"
                                     type="date"
-
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
+                                    // InputLabelProps={{
+                                    //     shrink: true,
+                                    // }}
+                                    value={birth}
                                     required
                                 />
                                 <TextField
@@ -176,6 +221,7 @@ const EmployeeModal = ({ item }) => {
                                     {...register("designation")}
                                     id="outlined-basic"
                                     label="Designation"
+                                    value={designation}
                                     type="text"
                                     variant="outlined"
                                     required
@@ -206,7 +252,7 @@ const EmployeeModal = ({ item }) => {
                                     variant="outlined"
                                 />
                                 <Typography sx={{ m: 2 }} variant="h5">
-                                    Education information
+                                    Education
                                 </Typography>
 
                                 <TextField
