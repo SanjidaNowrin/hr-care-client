@@ -7,7 +7,7 @@ const Courses = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/courses")
             .then((res) => res.json())
-            .then((data) => setCourses(data.data));
+            .then((data) => setCourses(data?.data));
     }, []);
 
     return (
@@ -21,7 +21,7 @@ const Courses = () => {
             <Box sx={{ mb: 5 }}>
                 <Grid container spacing={4}>
                     {courses?.map((item) => (
-                        <Course key={item.id} item={item}></Course>
+                        <Course key={item._id} item={item}></Course>
                     ))}
                 </Grid>
             </Box>

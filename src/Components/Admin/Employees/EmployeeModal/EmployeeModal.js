@@ -199,9 +199,9 @@ const EmployeeModal = ({ item }) => {
                                     id="date"
                                     label="Dath of Birth"
                                     type="date"
-                                    // InputLabelProps={{
-                                    //     shrink: true,
-                                    // }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                     value={birth}
                                     required
                                 />

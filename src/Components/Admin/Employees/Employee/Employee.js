@@ -71,7 +71,7 @@ const StyledMenu = styled((props) => (
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { id, name, phone, department, designation } = item;
+    const { _id, name, phone, department, designation } = item;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
