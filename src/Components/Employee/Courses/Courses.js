@@ -5,9 +5,9 @@ import Course from "./Course/Course";
 const Courses = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/courses")
+        fetch("/courses.json")
             .then((res) => res.json())
-            .then((data) => setCourses(data.data));
+            .then((data) => setCourses(data));
     }, []);
 
     return (
