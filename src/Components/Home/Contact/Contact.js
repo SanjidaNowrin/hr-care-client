@@ -52,21 +52,21 @@ const Contact = () => {
                         </Box>
                         <form onSubmit={sendEmail}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                                <TextField sx={{ width: '100%', mr: 1 }} id="outlined-basic" label="Enter first name" variant="outlined" />
+                                <TextField sx={{ width: '100%', mr: 1 }} id="outlined-basic" label="Enter first name" variant="outlined" required name="firstName" type="text" />
 
-                                <TextField sx={{ width: '100%', ml: 1 }} id="outlined-basic" label="Enter last name" variant="outlined" />
+                                <TextField sx={{ width: '100%', ml: 1 }} id="outlined-basic" label="Enter last name" variant="outlined" required name="lastName" type="text" />
                             </Box>
 
                             <Box>
-                                <TextField sx={{ width: '100%' }} id="outlined-basic" label="Enter your email" variant="outlined" />
+                                <TextField sx={{ width: '100%' }} id="outlined-basic" label="Enter your email" variant="outlined" required name="email" type="email" />
 
-                                <TextField sx={{ width: '100%', my: 2 }} id="outlined-basic" label="Phone number" variant="outlined" />
+                                <TextField sx={{ width: '100%', my: 2 }} id="outlined-basic" label="Phone number" variant="outlined" required name="phone" type="number" />
 
-                                <TextField sx={{ width: '100%' }} rows={4} multiline id="outlined-basic" label="Write a massage" variant="outlined" />
+                                <TextField sx={{ width: '100%' }} rows={4} multiline id="outlined-basic" label="Write a massage" variant="outlined" required name="message" />
                             </Box>
 
                             <Box sx={{ mt: 2, textAlign: 'center' }}>
-                                <Button sx={{ width: '50%' }} className="btn_regular">
+                                <Button type='submit' sx={{ width: '50%' }} className="btn_regular">
                                     Submit
                                 </Button>
                             </Box>
