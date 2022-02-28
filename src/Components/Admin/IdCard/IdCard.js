@@ -1,65 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import './IdCard.css'
-import SingleId from '../SingleId/SingleId';
+import React, { useEffect, useState } from "react";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import "./IdCard.css";
+import SingleId from "../SingleId/SingleId";
+import { Typography } from "@mui/material";
 
 const IdCard = () => {
     const [employeesId, setemployeeId] = useState([]);
     const [displayIdCards, setDisplayIdCards] = useState([]);
+    // console.log(displayIdCards);
 
     useEffect(() => {
-        fetch("http://localhost:5000/employees")
-            .then(res => res.json())
-            .then(data => setemployeeId(data.data))
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+            .then((res) => res.json())
+            .then((data) => setemployeeId(data.data));
     }, []);
 
     //handle on change input
-    const handleOnChange = event => {
+    const handleOnChange = (event) => {
         const searchText = event.target.value;
-        const matchIdCards = employeesId.filter(employeeId => employeeId.name.toLowerCase().includes(searchText.toLowerCase()));
-        setDisplayIdCards(matchIdCards)
-        console.log(matchIdCards.length)
-    }
+        const matchIdCards = employeesId.filter((employeeId) => employeeId.name.toLowerCase().includes(searchText.toLowerCase()));
+        setDisplayIdCards(matchIdCards);
+        console.log(matchIdCards.length);
+    };
 
     return (
         <div>
             <div className="id-card-area">
                 <div className="id-content">
-                    <h2>Employee ID Card</h2>
+                    <Typography variant="h4" sx={{ fontWeight: "500", color: "#01578A", textAlign: "center", marginBottom: "18px" }}>
+                        Employee <span style={{ color: "#000" }}>ID Card</span>
+                    </Typography>
                 </div>
                 <div className="search-container">
-                    <input
-                        onChange={handleOnChange}
-                        type="text"
-                        placeholder='Search ID Card' />
-                    <Button>Search</Button>
+                    <input onChange={handleOnChange} type="text" placeholder="Search ID Card" />
+                    <Button className="btn_regular" sx={{ marginLeft: "1rem" }}>
+                        Search
+                    </Button>
                 </div>
                 <Grid container spacing={6}>
-                    {
-                        displayIdCards.map(employeeId => <SingleId
-                            key={employeeId._id}
-                            employeeId={employeeId}
-                        ></SingleId>)
-                    }
+                    {employeesId.map((employeeId) => (
+                        <SingleId key={employeeId._id} employeeId={employeeId}></SingleId>
+                    ))}
                 </Grid>
-
             </div>
         </div>
     );
 };
 
 export default IdCard;
-
-
-
-
-
-
-
-
-
-
 
 /*
 

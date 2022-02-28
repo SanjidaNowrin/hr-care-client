@@ -8,8 +8,8 @@ body {
 
 :root {
   --PT_font: 'PT Sans', sans-serif;
-  --color: #845EC2;
-  --secondary_color: #FF6F91;
+  --p_color: #01578A;
+  --s_color: #01578A;
   --bg_color: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
 }
 
@@ -71,6 +71,8 @@ a{
 */
 .btn_regular:hover{
   color: #01578A !important;
-  background-color: white !important;
+  background-color:#A3D2ED  !important;
   /* box-shadow: 0px 7px 15px rgb(0, 210, 252, .5) !important; */
 } 
+
+/* .contact_area .jss1{ background-color: #ffffff !important; } */

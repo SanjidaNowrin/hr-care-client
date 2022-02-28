@@ -1,6 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -23,11 +22,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-  const [employeesinfo, setEmployeesinfo] = useState([]);
+
+  const [employees, setEmployees] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/employees/')
+    fetch('https://ancient-thicket-61342.herokuapp.com/employees')
       .then(res => res.json())
-      .then(data => setEmployeesinfo(data))
+      .then(data => setEmployees(data.data))
   }, [])
 
   return (
@@ -44,7 +44,7 @@ const Employees = () => {
           All Employee
         </Typography>
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} >
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -56,8 +56,8 @@ const Employees = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {employeesinfo.map((item) => (
-              <Employee key={item.id} item={item}></Employee>
+            {employees.map((item) => (
+              <Employee key={item._id} item={item}></Employee>
             ))}
           </TableBody>
         </Table>

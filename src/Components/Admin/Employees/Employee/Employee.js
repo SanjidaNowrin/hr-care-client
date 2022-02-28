@@ -7,6 +7,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Menu from '@mui/material/Menu';
+import EmployeeModal from '../EmployeeModal/EmployeeModal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -70,7 +71,7 @@ const StyledMenu = styled((props) => (
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { name, phone, department, designation } = item;
+    const { _id, name, phone, department, designation } = item;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -90,7 +91,7 @@ const Employee = ({ item }) => {
                 <StyledTableCell align="left">{department}</StyledTableCell>
                 <StyledTableCell align="left">{designation}</StyledTableCell>
                 <StyledTableCell align="right">
-                    <SettingsIcon
+                    {/* <SettingsIcon
                         id="demo-customized-button"
                         aria-controls={open ? 'demo-customized-menu' : undefined}
                         aria-haspopup="true"
@@ -99,7 +100,8 @@ const Employee = ({ item }) => {
                         disableElevation
                         sx={{ cursor: 'pointer' }}
                         onClick={handleClick}
-                    />
+                    /> */}
+                    <EmployeeModal item={item} />
                 </StyledTableCell>
             </StyledTableRow>
 
