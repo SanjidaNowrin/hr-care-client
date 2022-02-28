@@ -59,7 +59,7 @@ const Announcements = () => {
                 position: 'absolute',
                 height: '5px',
                 width: '5px',
-                background: '#FF9671',
+                background: '#fff',
                 borderRadius: '50%',
                 top: '50%',
                 left: '11%',
