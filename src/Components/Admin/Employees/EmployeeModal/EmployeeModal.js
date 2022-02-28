@@ -37,7 +37,7 @@ const EmployeeModal = ({ item }) => {
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
 
-        fetch(`http://localhost:5000/employees/${_id}`, {
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

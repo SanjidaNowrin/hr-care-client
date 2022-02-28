@@ -13,7 +13,7 @@ const MyInfo = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/employees/${user.email}`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
     }, [user.email]);
