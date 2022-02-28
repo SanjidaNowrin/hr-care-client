@@ -13,29 +13,33 @@ const Announcement = ({ data }) => {
     }, [Id]);
 
     return (
-        <div>
+        <>
             {newData.length
                 ? newData.map((data) => (
-                      <Box key={data.id}>
-                          <Paper elevation={6} sx={{ padding: "15px" }}>
-                              <Typography variant="h5" sx={{ margin: "8px 0px" }}>
-                                  #{data.title}
-                              </Typography>
-                              <Typography sx={{ color: "gray" }}>{data.text}</Typography>
-                          </Paper>
-                      </Box>
-                  ))
+                    <Box key={data.id}>
+                        <Paper sx={{ p: 2, boxShadow: '1px 10px 30px #b6b7b7 !important', borderRadius: '13px !important', border: "2px solid #009EFA" }}>
+                            <Typography variant="h5"
+                                sx={{ fontWeight: '600', mb: 2 }}
+                            >
+                                {data.title}
+                            </Typography>
+                            <Typography variant="body1" sx={{ fontFamily: 'var(--PT_font) !important', }}>{data.text}</Typography>
+                        </Paper>
+                    </Box>
+                ))
                 : data.slice(0, 1).map((data) => (
-                      <Box key={data.id}>
-                          <Paper elevation={6} sx={{ padding: "15px" }}>
-                              <Typography variant="h5" sx={{ margin: "8px 0px" }}>
-                                  #{data.title}
-                              </Typography>
-                              <Typography sx={{ color: "gray" }}>{data.text}</Typography>
-                          </Paper>
-                      </Box>
-                  ))}
-        </div>
+                    <Box key={data.id}>
+                        <Paper sx={{ p: 2, boxShadow: '1px 10px 30px #b6b7b7 !important', borderRadius: '13px !important', border: "2px solid #009EFA" }}>
+                            <Typography variant="h5"
+                                sx={{ fontWeight: '600', mb: 2 }}
+                            >
+                                {data.title}
+                            </Typography>
+                            <Typography variant="body1" sx={{ fontFamily: 'var(--PT_font) !important', }}>{data.text}</Typography>
+                        </Paper>
+                    </Box>
+                ))}
+        </>
     );
 };
 
