@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Container, FormControl as FormGroup, MenuItem, TextField, Typography, useTheme } from "@mui/material";
 import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -9,8 +9,20 @@ import { makeStyles } from "@mui/styles";
 const MyInfo = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
+    const [employee, setEmployee] = useState([]);
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/employees/${user.email}`)
+            .then((res) => res.json())
+            .then((data) => setEmployee(data.result));
+    }, [user.email]);
+    // console.log(employee[0]);
+    // console.log(employee[0]?.father);
+
+
     const onSubmit = (data) => {
-        axios.post("http://localhost:5000/employees", data);
+        axios.post("https://ancient-thicket-61342.herokuapp.com/employees", data);
         reset();
         Swal.fire({
             position: "middle",
@@ -88,7 +100,10 @@ const MyInfo = () => {
                             label="Name"
                             type="text"
                             variant="outlined"
-                            value={user?.displayName}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            value={employee[0]?.name}
                             required
                         />
                         <TextField
@@ -99,6 +114,11 @@ const MyInfo = () => {
                             label="Father's Name"
                             type="text"
                             variant="outlined"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            value={employee[0]?.father}
+                            onInput
                             required
                         />
                         <TextField

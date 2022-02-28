@@ -75,4 +75,4 @@ a{
   /* box-shadow: 0px 7px 15px rgb(0, 210, 252, .5) !important; */
 } 
 
-/* .contact_area .jss1{ background-color: #ffffff !important; } */
+.swal2-container {  z-index: 9060;}
