@@ -4,7 +4,9 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Announcement from "./Announcement/Announcement";
-
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import {fetchAnnouncement} from '../../../redux/slices/eventsSlice'
 const Announcements = () => {
   const useStyle = makeStyles({
     announceBox: {
@@ -32,6 +34,11 @@ const Announcements = () => {
       .then((res) => res.json())
       .then((data) => setData(data.data));
   }, []);
+  // const dispatch = useDispatch()
+  //   useEffect(() => {
+  //       dispatch(fetchAnnouncement());
+  //   }, [])
+  //   const data = useSelector((state) => state.announcement.discover)
   return (
     <div>
       <Typography

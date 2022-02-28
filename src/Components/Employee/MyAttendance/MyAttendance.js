@@ -30,22 +30,22 @@ const MyAttendance = () => {
 
   let time = new Date().toLocaleString();
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`)
+    fetch(
+      `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setTimes(data.result));
   }, [user.email, times]);
 
   const todaydate = time.split(",")[0];
-  useEffect(
-    () => {
-      const foundToday = times.find(time => time.date === todaydate);
-      setToday(foundToday);
-    }, [times, todaydate]);
-  console.log(today?.date)
+  useEffect(() => {
+    const foundToday = times.find((time) => time.date === todaydate);
+    setToday(foundToday);
+  }, [times, todaydate]);
+  console.log(today?.date);
 
   //punchin
   const handlePunchIn = () => {
-
     let entryTime = {};
     entryTime.ID = 1;
     entryTime.email = user.email;
@@ -54,8 +54,7 @@ const MyAttendance = () => {
     entryTime.leave = "";
 
     if (today?.date === entryTime.date) {
-      Swal.fire('You already Punched In')
-
+      Swal.fire("You already Punched In");
     } else {
       fetch("https://ancient-thicket-61342.herokuapp.com/attendance/", {
         method: "POST",
@@ -65,37 +64,32 @@ const MyAttendance = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            console.log(data);
           }
         });
-      Swal.fire('You are Punched IN')
-
+      Swal.fire("You are Punched IN");
     }
-  }
+  };
 
   // punchout button
 
   const handlePunchOut = () => {
-
     let leaveTime = {};
     leaveTime.date = time.split(",")[0];
     if (today?.date === leaveTime.date) {
-
-      fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${today._id}`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(leaveTime),
-      })
+      fetch(
+        `https://ancient-thicket-61342.herokuapp.com/attendance/${today._id}`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(leaveTime),
+        }
+      )
         .then((res) => res.json())
         .then((data) => console.log(data));
-      Swal.fire('You are Punched Out')
-      console.log(leaveTime);
-
+      Swal.fire("You are Punched Out");
     } else {
-      Swal.fire('At first Punch IN')
+      Swal.fire("At first Punch IN");
     }
-
-
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -120,7 +114,7 @@ const MyAttendance = () => {
     },
   }));
   const classes = useStyles();
-  console.log(today?._id)
+  console.log(today?._id);
   return (
     <Box mt={7}>
       <Container>
@@ -148,10 +142,7 @@ const MyAttendance = () => {
               <CardActions
                 style={{ justifyContent: "center", marginBottom: "10px" }}
               >
-                <Button
-                  onClick={handlePunchIn}
-                  className="btn_regular"
-                >
+                <Button onClick={handlePunchIn} className="btn_regular">
                   Punch In
                 </Button>
                 <Button
