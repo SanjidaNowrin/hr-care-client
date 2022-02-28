@@ -53,7 +53,7 @@ const DashboardHome = () => {
     useEffect(() => {
         const filterData = attendance.filter(item => item.date === todaydate);
         setTodayPresent(filterData)
-    }, [attendance])
+    }, [todaydate, attendance])
 
     // on leave
     useEffect(() => {

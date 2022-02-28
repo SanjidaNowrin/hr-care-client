@@ -14,7 +14,7 @@ const TodayAttendance = ({ item }) => {
     useEffect(() => {
         const filterData = employees.filter(data => data.email === item.email);
         setPresent(filterData)
-    }, [employees])
+    }, [item.email, employees])
 
     return (
         <>

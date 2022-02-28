@@ -16,9 +16,9 @@ const MyInfo = () => {
         fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
-    }, [user.email]);
+    }, [user.email, employee]);
     // console.log(employee[0]);
-    // console.log(employee[0]?.father);
+    console.log(employee[0]?.father);
 
 
     const onSubmit = (data) => {
@@ -90,6 +90,8 @@ const MyInfo = () => {
                 Fill Your <span style={{ color: " #01578A" }}>Information</span>
             </Typography>
             <Box>
+
+
                 {/* useForm */}
                 <FormGroup sx={{ width: "100%" }} onSubmit={handleSubmit(onSubmit)}>
                     <Box className={dFlex}>
@@ -117,8 +119,8 @@ const MyInfo = () => {
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            value={employee[0]?.father}
-                            onInput
+                            defaultValue={employee[0]?.father}
+
                             required
                         />
                         <TextField
@@ -294,6 +296,8 @@ const MyInfo = () => {
                         Submit
                     </Button>
                 </FormGroup>
+
+
             </Box>
         </Container>
     );
