@@ -21,13 +21,13 @@ const localizer = dateFnsLocalizer({
 function HolidayCalendar() {
   const [newEvent, setNewEvent] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/holidays")
+    fetch("https://ancient-thicket-61342.herokuapp.com/holidays")
       .then((res) => res.json())
       .then((data) => setNewEvent(data.data));
   }, []);
   return (
     <>
-    <Typography
+      <Typography
         sx={{ textAlign: "center", margin: "25px", color: "#01578A" }}
         variant="h3"
       >

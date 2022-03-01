@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import "./IdCard.css";
-import SingleId from "../SingleId/SingleId";
-import { Typography } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import './IdCard.css'
+import SingleId from '../SingleId/SingleId';
+import { Typography } from '@material-ui/core';
 
 const IdCard = () => {
     const [employeesId, setemployeeId] = useState([]);
     const [displayIdCards, setDisplayIdCards] = useState([]);
-    // console.log(displayIdCards);
 
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
-            .then((res) => res.json())
-            .then((data) => setemployeeId(data.data));
+            .then(res => res.json())
+            .then(data => setemployeeId(data.data))
     }, []);
 
     //handle on change input
-    const handleOnChange = (event) => {
+    const handleOnChange = event => {
         const searchText = event.target.value;
-        const matchIdCards = employeesId.filter((employeeId) => employeeId.name.toLowerCase().includes(searchText.toLowerCase()));
-        setDisplayIdCards(matchIdCards);
-        console.log(matchIdCards.length);
-    };
+        const matchIdCards = employeesId.filter(employeeId => employeeId.name.toLowerCase().includes(searchText.toLowerCase()));
+        setDisplayIdCards(matchIdCards)
+        console.log(matchIdCards.length)
+    }
 
     return (
         <div>
@@ -33,16 +33,25 @@ const IdCard = () => {
                     </Typography>
                 </div>
                 <div className="search-container">
-                    <input onChange={handleOnChange} type="text" placeholder="Search ID Card" />
-                    <Button className="btn_regular" sx={{ marginLeft: "1rem" }}>
-                        Search
-                    </Button>
+                    <TextField
+                        className="search-i"
+                        id="outlined-basic"
+                        label="Search ID Card"
+                        onChange={handleOnChange}
+                        type="text"
+                        variant="outlined" />
+
+                    <Button>Search</Button>
                 </div>
                 <Grid container spacing={6}>
-                    {employeesId.map((employeeId) => (
-                        <SingleId key={employeeId._id} employeeId={employeeId}></SingleId>
-                    ))}
+                    {
+                        displayIdCards.map(employeeId => <SingleId
+                            key={employeeId._id}
+                            employeeId={employeeId}
+                        ></SingleId>)
+                    }
                 </Grid>
+
             </div>
         </div>
     );
