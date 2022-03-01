@@ -86,6 +86,11 @@ const Holidays = () => {
         }
         setOpen(false)
       });
+
+
+
+
+
     fetch("https://ancient-thicket-61342.herokuapp.com/holidays/attendance", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -98,6 +103,11 @@ const Holidays = () => {
         }
         setOpen(false)
       });
+
+
+
+
+
 
     toast.success('Holiday added successfully 👌!', {
       position: toast.POSITION.BOTTOM_CENTER,
