@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EmployeeModal = ({ item }) => {
-    const { _id, ID, DOJ, Gross, Account, name, father, mother, email, phone, nid, birth, department, designation } = item
+    const { _id, ID, DOJ, Gross, Account, name, father, mother, email, phone, nid, birth, department, designation, lastCompany, lastDepartment, lastDesignation, lastDegree, lastSubject, lastInstitute, lastGrade } = item
     console.log(item);
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
@@ -238,12 +238,14 @@ const EmployeeModal = ({ item }) => {
                                     Exprience
                                 </Typography>
 
+
                                 <TextField
                                     {...register("lastCompany")}
                                     id="outlined-basic"
                                     label="Company"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastCompany}
                                 />
                                 <TextField
                                     {...register("lastDepartment")}
@@ -251,6 +253,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Department"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastDepartment}
                                 />
                                 <TextField
                                     {...register("lastDesignation")}
@@ -258,9 +261,11 @@ const EmployeeModal = ({ item }) => {
                                     label="Designation"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastDesignation}
                                 />
+
                                 <Typography sx={{ m: 2 }} variant="h5">
-                                    Education
+                                    Education information
                                 </Typography>
 
                                 <TextField
@@ -269,6 +274,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Degree"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastDegree}
                                 />
                                 <TextField
                                     {...register("lastSubject")}
@@ -276,6 +282,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Subject"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastSubject}
                                 />
                                 <TextField
                                     {...register("lastInstitute")}
@@ -283,6 +290,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Institute"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastInstitute}
                                 />
                                 <TextField
                                     {...register("lastGrade")}
@@ -290,17 +298,16 @@ const EmployeeModal = ({ item }) => {
                                     label="Grade"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastGrade}
                                 />
-                                <Button
+                                <Button className="btn_regular"
                                     variant="outlined"
                                     style={{
-                                        backgroundColor: "#01578A",
-                                        color: "white",
                                         marginTop: "1rem",
                                     }}
                                     type="submit"
                                 >
-                                    Submit
+                                    Update
                                 </Button>
                             </Box>
                         </FormGroup>
