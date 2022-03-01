@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import {
     Box,
     Button,
+    Container,
     FormControl as FormGroup,
     TextField,
     Typography,
@@ -60,7 +61,7 @@ const EmployeeModal = ({ item }) => {
         setOpen(false);
     };
     return (
-        <div>
+        <Container>
             <button type="button" onClick={handleOpen}>
                 EDIT
             </button>
@@ -306,7 +307,7 @@ const EmployeeModal = ({ item }) => {
                     </Box>
                 </Fade>
             </Modal>
-        </div>
+        </Container>
     );
 };
 

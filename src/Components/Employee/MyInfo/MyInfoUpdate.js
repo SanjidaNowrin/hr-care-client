@@ -1,97 +1,120 @@
-import React, { useEffect, useState } from "react";
-import { Box, Button, Container, FormControl as FormGroup, MenuItem, TextField, Typography, useTheme } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, FormControl as FormGroup, MenuItem, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { makeStyles } from "@mui/styles";
 
 
 
-const MyInfoDetails = () => {
+const MyInfoUpdate = ({ oneEmployee }) => {
 
-    const { user } = useAuth();
-    const { register, handleSubmit, reset } = useForm();
-    const [employee, setEmployee] = useState([]);
+    const { _id, name, father, mother, email, phone, nid, birth, department, designation, lastCompany, lastDepartment, lastDesignation, lastDegree, lastSubject, lastInstitute, lastGrade } = oneEmployee
+
+    const { register, handleSubmit } = useForm();
+    console.log(_id)
+
+    const onUpdate = (data) => {
+        console.log(_id)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+        Swal.fire('Employee Information Update Successfully')
+        console.log(data);
+
+    };
+
+    const [onedepartment, setDepartment] = useState();
+
+    const handleChange = (event) => {
+        setDepartment(event.target.value);
+    };
+    const departments = [
+        {
+            value: "Human Resource",
+            label: "Human Resource",
+        },
+        {
+            value: "Information Technology",
+            label: "Information Technology",
+        },
+        {
+            value: "Marketing",
+            label: "Marketing",
+        },
+        {
+            value: "Accounting",
+            label: "Accounting",
+        },
+    ];
 
 
     return (
         <>
-            <FormGroup sx={{ width: "100%" }} onSubmit={handleSubmit(onSubmit)}>
-                <Box className={dFlex}>
+            <FormGroup sx={{ width: "100%" }} onSubmit={handleSubmit(onUpdate)}>
+                <Box
+                    component="form"
+                    sx={{
+                        "& > :not(style)": { m: 1, width: "30%" },
+                    }}
+                >
                     <TextField
                         {...register("name")}
-                        sx={{ width: "100% !important" }}
                         id="outlined-basic"
                         label="Name"
                         type="text"
                         variant="outlined"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        value={employee[0]?.name}
+                        defaultValue={name}
                         required
                     />
                     <TextField
-                        className={middleField}
-                        sx={{ width: "100%" }}
                         {...register("father")}
                         id="outlined-basic"
                         label="Father's Name"
                         type="text"
                         variant="outlined"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        defaultValue={employee[0]?.father}
-
+                        defaultValue={father}
                         required
                     />
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("mother")}
                         id="outlined-basic"
                         label="Mother's Name"
                         type="text"
                         variant="outlined"
+                        defaultValue={mother}
                         required
                     />
-                </Box>
-
-                <Box className={dFlex}>
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("email")}
                         id="outlined-basic"
                         label="Email"
                         type="email"
                         variant="outlined"
-                        value={user?.email}
+                        value={email}
                         required
                     />
                     <TextField
-                        className={middleField}
-                        sx={{ width: "100%" }}
                         {...register("phone")}
                         id="outlined-basic"
                         label="Cell Number"
                         type="number"
                         variant="outlined"
+                        defaultValue={phone}
                         required
                     />
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("nid")}
                         id="outlined-basic"
                         label="NID"
                         type="number"
                         variant="outlined"
+                        defaultValue={nid}
                         required
                     />
-                </Box>
-
-                <Box className={dFlex}>
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("birth")}
                         id="date"
                         label="Dath of Birth"
@@ -99,17 +122,17 @@ const MyInfoDetails = () => {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        defaultValue={birth}
                         required
                     />
                     <TextField
-                        className={middleField}
-                        sx={{ width: "100%" }}
                         {...register("department")}
                         id="outlined-select-currency"
                         select
                         label="Department"
-                        value={department}
+                        defaultValue={department ? department : onedepartment}
                         onChange={handleChange}
+                        helperText="Please select your Department"
                         required
                     >
                         {departments.map((option) => (
@@ -118,109 +141,95 @@ const MyInfoDetails = () => {
                             </MenuItem>
                         ))}
                     </TextField>
-
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("designation")}
                         id="outlined-basic"
                         label="Designation"
                         type="text"
                         variant="outlined"
+                        defaultValue={designation}
                         required
                     />
-                </Box>
 
-                {/* Experience Information */}
-                <Typography sx={{ m: 2 }} variant="h5">
-                    Exprience
-                </Typography>
+                    <Typography sx={{ m: 2 }} variant="h5">
+                        Exprience
+                    </Typography>
 
-                <Box className={dFlex}>
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("lastCompany")}
                         id="outlined-basic"
                         label="Company"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastCompany}
                     />
                     <TextField
-                        className={middleField}
-                        sx={{ width: "100%" }}
                         {...register("lastDepartment")}
                         id="outlined-basic"
                         label="Department"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastDepartment}
                     />
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("lastDesignation")}
                         id="outlined-basic"
                         label="Designation"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastDesignation}
                     />
-                </Box>
 
-                {/* Education Information */}
-                <Typography sx={{ m: 2 }} variant="h5">
-                    Education information
-                </Typography>
+                    <Typography sx={{ m: 2 }} variant="h5">
+                        Education information
+                    </Typography>
 
-                <Box className={dFlex}>
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("lastDegree")}
                         id="outlined-basic"
                         label="Degree"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastDegree}
                     />
                     <TextField
-                        sx={{ width: "100%", marginLeft: "10px" }}
                         {...register("lastSubject")}
                         id="outlined-basic"
                         label="Subject"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastSubject}
                     />
-                </Box>
-
-                <Box className={dFlex}>
                     <TextField
-                        sx={{ width: "100%" }}
                         {...register("lastInstitute")}
                         id="outlined-basic"
                         label="Institute"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastInstitute}
                     />
                     <TextField
-                        sx={{ width: "100%", marginLeft: "10px" }}
                         {...register("lastGrade")}
                         id="outlined-basic"
                         label="Grade"
                         type="text"
                         variant="outlined"
+                        defaultValue={lastGrade}
                     />
+                    <Button className="btn_regular"
+                        variant="outlined"
+                        style={{
+                            marginTop: "1rem",
+                        }}
+                        type="submit"
+                    >
+                        Update
+                    </Button>
                 </Box>
-                <Button
-                    variant="outlined"
-                    style={{
-                        backgroundColor: "#01578A",
-                        color: "white",
-                        marginTop: "1rem ",
-                        marginBottom: "2rem ",
-                        padding: "12px 0px",
-                    }}
-                    type="submit"
-                >
-                    Submit
-                </Button>
             </FormGroup>
+
         </>
     );
 };
 
-export default MyInfoDetails;
+export default MyInfoUpdate;
