@@ -1,10 +1,11 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import useAuth from "../../../hooks/useAuth";
 import './SingleId.css'
 
 const SingleId = ({employeeId}) => {
-
+    const { user } = useAuth();
     const handleOnclick = () =>{
        console.log("clicked")
     }
@@ -12,9 +13,9 @@ const SingleId = ({employeeId}) => {
         <Grid item xs={12} sm={12} md={4}>
             <div className="card" id="idCards">
                     <div className="upper-content">
-                            <h4 className="upper-title">Hr Care</h4>
+                            <h4 className="upper-title">HR CARE</h4>
                         <div className="img-container">
-                            <img src="https://i.ibb.co/DGPYn0C/person.jpg" alt="" height="100px" width="100px" />
+                            <img src={user.photoURL} alt="" height="100px" width="100px" />
                         </div>
                     </div>
                     <div className="lower-content">
@@ -25,9 +26,9 @@ const SingleId = ({employeeId}) => {
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
                                 <h5>ID NO</h5>
-                                <p>S-15012</p>
+                                <p>{employeeId.ID}</p>
                                 <h5>D.O.B</h5>
-                                <p>22/4/2021</p>
+                                <p>{employeeId.birth}</p>
                             </Grid>
                             <Grid item xs={4}>
                                 <h5>Joined Date</h5>
@@ -43,11 +44,29 @@ const SingleId = ({employeeId}) => {
                             </Grid>
                         </Grid>
                     </div>
-                    <div className="qr-area">
-                        <h4 className="qr">QR Code</h4>
-                        <img width= "100%" src="https://i.ibb.co/fxLKH5h/qr-code-g151cf237e-1280.png" alt="" />
+                    <div className="signiture-area">
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                               <div className="employee-signiture">
+                                   <div className="e-signiture">
+
+                                   </div>
+                                   <h5>Employee</h5>
+                               </div>
+                            </Grid>
+                            <Grid item xs={6}>
+                               <div className="director-signiture">
+                                    <div className="d-signiture">
+                                        <img width={"100%"} src="https://i.ibb.co/r5GjMHf/output-onlinepngtools.png" alt="" />
+                                    </div>
+                                    <h5>Director</h5>
+                               </div>
+                            </Grid>
+                        </Grid>
                     </div>
-                    
+                    <div className="card-bottom">
+                        <h5>www.hr-care.com</h5>
+                    </div>
                 </div>
                 <div className="form-button">
                     <Button className="btn_regular" onClick={() => handleOnclick()} variant="contained">Download PDF</Button>

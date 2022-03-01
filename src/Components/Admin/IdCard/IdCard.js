@@ -1,30 +1,28 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import './IdCard.css'
 import SingleId from '../SingleId/SingleId';
 
 const IdCard = () => {
-<<<<<<< HEAD
-=======
-   const [employeesId, setemployeeId] = useState([]);
-   const [displayIdCards, setDisplayIdCards] = useState([]);
+    const [employeesId, setemployeeId] = useState([]);
+    const [displayIdCards, setDisplayIdCards] = useState([]);
 
-   useEffect( () =>{
-       fetch("http://localhost:5000/allEmployees")
-       .then(res => res.json())
-       .then(data => setemployeeId(data.data))
-   } ,[]);
+    useEffect(() => {
+        fetch("http://localhost:5000/allemployees")
+            .then(res => res.json())
+            .then(data => setemployeeId(data.data))
+    }, []);
 
-   //handle on change input
-   const handleOnChange= event =>{
-       const searchText = event.target.value;
-       const matchIdCards = employeesId.filter(employeeId => employeeId.name.toLowerCase().includes(searchText.toLowerCase()));
-       setDisplayIdCards(matchIdCards)
-       console.log(matchIdCards.length)
-   }
+    //handle on change input
+    const handleOnChange = event => {
+        const searchText = event.target.value;
+        const matchIdCards = employeesId.filter(employeeId => employeeId.name.toLowerCase().includes(searchText.toLowerCase()));
+        setDisplayIdCards(matchIdCards)
+        console.log(matchIdCards.length)
+    }
 
->>>>>>> 1e21f2cbfeef9370b23e7f1bbe86e0c6a2475c4e
     return (
         <div>
             <div className="id-card-area">
@@ -32,21 +30,25 @@ const IdCard = () => {
                     <h2>Employee ID Card</h2>
                 </div>
                 <div className="search-container">
-                    <input 
-                    onChange={handleOnChange}
-                    type="text"
-                    placeholder='Search ID Card' />
+                    <TextField
+                        className="search-i"
+                        id="outlined-basic"
+                        label="Search ID Card"
+                        onChange={handleOnChange}
+                        type="text"
+                        variant="outlined" />
+
                     <Button>Search</Button>
                 </div>
                 <Grid container spacing={6}>
-                   {
-                       displayIdCards.map(employeeId => <SingleId
-                       key={employeeId._id}
-                       employeeId={employeeId}
-                       ></SingleId>)
-                   }
+                    {
+                        displayIdCards.map(employeeId => <SingleId
+                            key={employeeId._id}
+                            employeeId={employeeId}
+                        ></SingleId>)
+                    }
                 </Grid>
-                
+
             </div>
         </div>
     );
