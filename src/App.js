@@ -20,6 +20,7 @@ import IdCard from "./Components/Admin/IdCard/IdCard";
 import Employees from "./Components/Admin/Employees/Employees";
 import AddCourse from "./Components/Admin/AddCourse/AddCourse";
 import AddAnnouncement from "./Components/Admin/AddAnnouncement/AddAnnouncement";
+import HolidayCalender from './Components/Employee/HolidayCalender/HolidayCalender';
 
 function App() {
   return (
@@ -34,15 +35,12 @@ function App() {
 
             <Route exact path={`/dashboard`} element={<PrivateRoute> <Dashboard /> </PrivateRoute>} >
               <Route path={"/dashboard"} element={<DashboardHome />} />
-
               <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
               <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
               <Route path={"/dashboard/announcements"} element={<Announcements />} />
               <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
+              <Route path={"/dashboard/calendar"} element={<HolidayCalender />} />
               <Route path={"/dashboard/course"} element={<Courses />} />
-
-
-
               <Route path={'/dashboard/all_employees'} element={<Employees />} />
               <Route path={'/dashboard/id_card'} element={<IdCard />} />
               <Route path={'/dashboard/manage_attendance'} element={<AttendanceManage />} />

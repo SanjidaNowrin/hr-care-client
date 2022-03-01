@@ -11,8 +11,11 @@ import Paper from "@mui/material/Paper";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Modal from "@mui/material/Modal";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import useAuth from "../../../hooks/useAuth";
+import Tooltip from "@mui/material/Tooltip";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -46,9 +49,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
+toast.configure()
 const Holidays = () => {
   const [holidays, setHolidays] = useState([]);
-  // const [reload, setReload] = useState(true);
+  const { user } = useAuth();
 
   //current date
   const d = new Date();
@@ -80,14 +84,28 @@ const Holidays = () => {
         if (data.insertedId) {
           // setReload(!reload);
         }
+        setOpen(false)
+      });
+    fetch("http://localhost:5000/holidays/attendance", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({title:data.title,email:user.email}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          // setReload(!reload);
+        }
+        setOpen(false)
       });
 
-    // Swal.fire("data added successfully");
+      toast.success('Holiday added successfully 👌!', {
+        position: toast.POSITION.BOTTOM_CENTER ,
+        autoClose: 4000
+      })
     e.target.reset();
   };
   const handleDelete = (id) => {
-    const confirmation = window.confirm("are you sure to delete?");
-    if (confirmation) {
       fetch(`http://localhost:5000/holidays/${id}`, {
         method: "DELETE",
       })
@@ -97,8 +115,10 @@ const Holidays = () => {
             // setReload(!reload);
           }
         });
-    }
-    // console.log(id);
+        toast.success('Holiday deleted successfully 👌!', {
+          position: toast.POSITION.BOTTOM_CENTER ,
+          autoClose: 4000
+        })
   };
   return (
     <Container>
@@ -145,9 +165,11 @@ const Holidays = () => {
                   {item.end}
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  <DeleteOutlineOutlinedIcon
+                <Tooltip title="Delete">
+                  <DeleteOutlineOutlinedIcon sx={{cursor:"pointer"}}
                     onClick={() => handleDelete(item._id)}
                   />
+                  </Tooltip>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
