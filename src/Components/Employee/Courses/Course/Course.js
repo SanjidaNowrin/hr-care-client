@@ -46,12 +46,11 @@ const Course = ({ item }) => {
     const { courseCard, deleteBox } = useStyle();
 
     const handleDelete = (id) => {
-        console.log(id)
         axios.delete(`https://ancient-thicket-61342.herokuapp.com/courses/${id}`);
         Swal.fire({
             position: "middle",
             icon: "success",
-            title: "Course added successfully",
+            title: "successfully Deleted",
             showConfirmButton: false,
             timer: 2000,
         });
