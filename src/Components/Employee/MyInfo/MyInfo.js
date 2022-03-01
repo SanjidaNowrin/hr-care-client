@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
 import { Box, Button, Container, FormControl as FormGroup, MenuItem, TextField, Typography, useTheme } from "@mui/material";
-import useAuth from "../../../hooks/useAuth";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import Swal from "sweetalert2";
 import { makeStyles } from "@mui/styles";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const MyInfo = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const [employee, setEmployee] = useState([]);
-
 
     useEffect(() => {
         fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
@@ -20,17 +19,17 @@ const MyInfo = () => {
     // console.log(employee[0]);
     // console.log(employee[0]?.father);
 
-
     const onSubmit = (data) => {
-        axios.post("https://ancient-thicket-61342.herokuapp.com/employees", data);
-        reset();
-        Swal.fire({
-            position: "middle",
-            icon: "success",
-            title: "Employee Information Sent Successfully",
-            showConfirmButton: false,
-            timer: 2000,
-        });
+        console.log(data);
+        // axios.post("https://ancient-thicket-61342.herokuapp.com/employees", data);
+        // reset();
+        // Swal.fire({
+        //     position: "middle",
+        //     icon: "success",
+        //     title: "Employee Information Sent Successfully",
+        //     showConfirmButton: false,
+        //     timer: 2000,
+        // });
     };
     const departments = [
         {

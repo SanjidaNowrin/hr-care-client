@@ -1,5 +1,14 @@
-import * as React from "react";
-import PropTypes from "prop-types";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
+import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlined";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,21 +16,12 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
-import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlined";
-import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
-import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-import CampaignIcon from "@mui/icons-material/Campaign";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import { Link, Outlet } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import PropTypes from "prop-types";
+import * as React from "react";
+import { Link, Outlet } from "react-router-dom";
 import DashNav from "../DashNav/DashNav";
 
 const drawerWidth = 240;
@@ -105,6 +105,10 @@ function Dashboard(props) {
                         <GolfCourseOutlinedIcon className={dashIcon} />
                         Courses
                     </Link>
+                    <Link className={dashLink} to="/dashboard/leave">
+                        <ExitToAppOutlinedIcon className={dashIcon} />
+                        Leave
+                    </Link>
                 </List>
             </Box>
             <Divider />
@@ -128,9 +132,9 @@ function Dashboard(props) {
                         Attendance
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/leave">
+                    <Link className={dashLink} to="/dashboard/leaveApplications">
                         <ExitToAppOutlinedIcon className={dashIcon} />
-                        Leave
+                        Leave Application
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/holiday">
