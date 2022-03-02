@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import './IdCard.css'
 import SingleId from '../SingleId/SingleId';
-import { Typography } from '@mui/material';
+import { Typography } from '@material-ui/core';
 
 const IdCard = () => {
     const [employeesId, setemployeeId] = useState([]);
@@ -27,14 +28,20 @@ const IdCard = () => {
         <div>
             <div className="id-card-area">
                 <div className="id-content">
-                <Typography variant="h4" sx={{ fontWeight: '500', color: '#01578A', textAlign: "center", marginBottom: "18px" }}>Employee <span style={{ color: "#000" }}>ID Card</span></Typography>
+                    <Typography variant="h4" sx={{ fontWeight: "500", color: "#01578A", textAlign: "center", marginBottom: "18px" }}>
+                        Employee <span style={{ color: "#000" }}>ID Card</span>
+                    </Typography>
                 </div>
                 <div className="search-container">
-                    <input
+                    <TextField
+                        className="search-i"
+                        id="outlined-basic"
+                        label="Search ID Card"
                         onChange={handleOnChange}
                         type="text"
-                        placeholder='Search ID Card' />
-                    <Button className="btn_regular" sx={{marginLeft:"1rem"}}>Search</Button>
+                        variant="outlined" />
+
+                    <Button>Search</Button>
                 </div>
                 <Grid container spacing={6}>
                     {
@@ -51,16 +58,6 @@ const IdCard = () => {
 };
 
 export default IdCard;
-
-
-
-
-
-
-
-
-
-
 
 /*
 

@@ -71,7 +71,7 @@ const StyledMenu = styled((props) => (
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { id, name, phone, department, designation } = item;
+    const { _id, name, phone, department, designation } = item;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -88,8 +88,8 @@ const Employee = ({ item }) => {
                     {name}
                 </StyledTableCell>
                 <StyledTableCell align="left">{phone}</StyledTableCell>
-                <StyledTableCell align="left">{department}</StyledTableCell>
-                <StyledTableCell align="left">{designation}</StyledTableCell>
+                <StyledTableCell align="center">{department}</StyledTableCell>
+                <StyledTableCell align="center">{designation}</StyledTableCell>
                 <StyledTableCell align="right">
                     {/* <SettingsIcon
                         id="demo-customized-button"

@@ -28,7 +28,7 @@ const Employees = () => {
     fetch('https://ancient-thicket-61342.herokuapp.com/employees')
       .then(res => res.json())
       .then(data => setEmployees(data.data))
-  }, [])
+  }, [employees])
 
   return (
     <Container>
@@ -50,14 +50,14 @@ const Employees = () => {
             <TableRow>
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="left">Phone</StyledTableCell>
-              <StyledTableCell align="left">Department</StyledTableCell>
-              <StyledTableCell align="left">Designation</StyledTableCell>
+              <StyledTableCell align="center">Department</StyledTableCell>
+              <StyledTableCell align="center">Designation</StyledTableCell>
               <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {employees.map((item) => (
-              <Employee key={item.id} item={item}></Employee>
+              <Employee key={item._id} item={item}></Employee>
             ))}
           </TableBody>
         </Table>

@@ -68,13 +68,13 @@ const Holidays = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch("http://localhost:5000/holidays")
+    fetch("https://ancient-thicket-61342.herokuapp.com/holidays")
       .then((res) => res.json())
       .then((data) => setHolidays(data.data));
   }, [holidays]);
 
   const onSubmit = (data, e) => {
-    fetch("http://localhost:5000/holidays", {
+    fetch("https://ancient-thicket-61342.herokuapp.com/holidays", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -86,10 +86,15 @@ const Holidays = () => {
         }
         setOpen(false)
       });
-    fetch("http://localhost:5000/holidays/attendance", {
+
+
+
+
+
+    fetch("https://ancient-thicket-61342.herokuapp.com/holidays/attendance", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({title:data.title,email:user.email}),
+      body: JSON.stringify({ title: data.title, email: user.email }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -99,26 +104,31 @@ const Holidays = () => {
         setOpen(false)
       });
 
-      toast.success('Holiday added successfully 👌!', {
-        position: toast.POSITION.BOTTOM_CENTER ,
-        autoClose: 4000
-      })
+
+
+
+
+
+    toast.success('Holiday added successfully 👌!', {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 4000
+    })
     e.target.reset();
   };
   const handleDelete = (id) => {
-      fetch(`http://localhost:5000/holidays/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount === 1) {
-            // setReload(!reload);
-          }
-        });
-        toast.success('Holiday deleted successfully 👌!', {
-          position: toast.POSITION.BOTTOM_CENTER ,
-          autoClose: 4000
-        })
+    fetch(`https://ancient-thicket-61342.herokuapp.com/holidays/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount === 1) {
+          // setReload(!reload);
+        }
+      });
+    toast.success('Holiday deleted successfully 👌!', {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 4000
+    })
   };
   return (
     <Container>
@@ -165,10 +175,10 @@ const Holidays = () => {
                   {item.end}
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                <Tooltip title="Delete">
-                  <DeleteOutlineOutlinedIcon sx={{cursor:"pointer"}}
-                    onClick={() => handleDelete(item._id)}
-                  />
+                  <Tooltip title="Delete">
+                    <DeleteOutlineOutlinedIcon sx={{ cursor: "pointer" }}
+                      onClick={() => handleDelete(item._id)}
+                    />
                   </Tooltip>
                 </StyledTableCell>
               </StyledTableRow>
@@ -206,7 +216,7 @@ const Holidays = () => {
             </Box>
             <Box sx={{ mb: 2 }}>
               <label style={{ display: "block" }} htmlFor="date">
-               Start Date <span style={{ color: "red" }}>*</span>
+                Start Date <span style={{ color: "red" }}>*</span>
               </label>
               <TextField
                 sx={{ width: "100%" }}
@@ -218,7 +228,7 @@ const Holidays = () => {
             </Box>
             <Box>
               <label style={{ display: "block" }} htmlFor="date">
-               End Date <span style={{ color: "red" }}>*</span>
+                End Date <span style={{ color: "red" }}>*</span>
               </label>
               <TextField
                 sx={{ width: "100%" }}

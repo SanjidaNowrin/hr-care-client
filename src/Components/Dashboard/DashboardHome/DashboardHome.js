@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import LineAxisIcon from '@mui/icons-material/LineAxis';
-import GroupRemoveIcon from '@mui/icons-material/GroupRemove';
+import PersonOffIcon from '@mui/icons-material/PersonOff';
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import Typography from '@mui/material/Typography';
 //Employee table detail
 import Table from '@mui/material/Table';
@@ -14,138 +14,205 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { makeStyles } from '@mui/styles';
+import { Container } from '@mui/material';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+import { emphasize, styled } from '@mui/material/styles';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Chip from '@mui/material/Chip';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from 'react-router-dom';
+import TodayAttendance from './TodayAttendance/TodayAttendance';
 
-const rows = [
-  createData('Mohammad Arif', 'Present', '00:00', '00:00', '00:00','00:00'),
-  createData('Md:Rakibul','Present','00:00', '00:00', '00:00','00:00'),
-  createData('Israt Jahan','Absent', '00:00', '00:00','00:00','00:00'),
-  createData('Md:Ataur Rahman', 'Present', '00:00','00:00', '00:00','00:00'),
-  createData('Md:Umar Riaz', 'Present', '00:00', '00:00', '00:00','00:00'),
-];
 
 
 const DashboardHome = () => {
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+        fetch('https://ancient-thicket-61342.herokuapp.com/employees')
+            .then(res => res.json())
+            .then(data => setEmployees(data.data))
+    }, [])
+
+    const [attendance, setAttendance] = useState([]);
+    const [todayPresent, setTodayPresent] = useState([]);
+    const [leave, setLeave] = useState([]);
+
+    let time = new Date().toLocaleString();
+    const todaydate = time.split(",")[0];
+
+
+    useEffect(() => {
+        fetch('https://ancient-thicket-61342.herokuapp.com/attendance')
+            .then(res => res.json())
+            .then(data => setAttendance(data.data))
+    }, [])
+
+    // todayPresent
+    useEffect(() => {
+        const filterData = attendance.filter(item => item.date === todaydate);
+        setTodayPresent(filterData)
+    }, [todaydate, attendance])
+
+    // on leave
+    useEffect(() => {
+        const filterData = todayPresent.filter(item => item.leave !== "");
+        setLeave(filterData)
+    }, [todayPresent])
+
+    const totalEmployee = employees.length;
+    const present = todayPresent.length;
+    const absent = totalEmployee - present | 0;
+
+    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+        const backgroundColor =
+            theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[800];
+        return {
+            backgroundColor,
+            height: theme.spacing(3),
+            color: theme.palette.text.primary,
+            fontWeight: theme.typography.fontWeightRegular,
+            '&:hover, &:focus': {
+                backgroundColor: emphasize(backgroundColor, 0.06),
+            },
+            '&:active': {
+                boxShadow: theme.shadows[1],
+                backgroundColor: emphasize(backgroundColor, 0.12),
+            },
+        };
+    });
+
+    const useStyle = makeStyles({
+        dashTopBox: {
+            border: '1px solid #00D2FC',
+            borderRadius: '10px',
+            overflow: 'hidden',
+            width: '100%',
+            boxShadow: '1px 10px 30px #b6b7b7'
+        },
+        dashTopText: {
+            padding: '13px 10px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: '#00D2FC',
+        }
+    })
+
+    const { dashTopText, dashTopBox } = useStyle();
+
+    const date = new Date();
+    const takeDate = date.toString().slice(0, 16);
     return (
-        <>
-            <div className="top-content" style={{ borderBottom: '3px solid rgb(1 87 138)', margin: '30px' }}>
-                <h2 style={{fontSize: '2rem'}}>Dashboard</h2>
-            </div>
-            <Box style={{ padding: '40px' }}>
-                <Grid container spacing={4}>
-                    <Grid sx={{ border: '2px solid #000' }} item xs={12} sm={3} style={{background: '#3E497A',color: 'white'}}>
-                        <Box>
-                            <Grid container spacing={2}>
-                                <Grid item sm={8}>
-                                    <Typography variant="h3" gutterBottom component="div">
-                                        5
-                                    </Typography>
-                                </Grid>
-                                <Grid item sm={4}>
-                                    <PeopleAltIcon style={{ fontSize: '4rem' }}></PeopleAltIcon>
-                                </Grid>
-                                <Typography variant="h6" gutterBottom component="div" sx={{ marginTop: '1.9rem' }}>
+        <Container>
+            <Typography sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
+                Dashboard
+            </Typography>
+            <Breadcrumbs aria-label="breadcrumb">
+                <Link to="/dashboard">
+                    <StyledBreadcrumb
+                        to="/dashboard"
+                        label="Dashboard"
+                        icon={<HomeIcon fontSize="small" />}
+                    />
+                </Link>
+            </Breadcrumbs>
+            <Box sx={{ mt: 3 }}>
+                <Grid container spacing={3}>
+                    <Grid item xs={6} md={3}>
+                        <Box className={dashTopBox}>
+                            <Box className={dashTopText}>
+                                <Typography variant="h6" sx={{ color: '#fff' }}>
                                     Total Employee
                                 </Typography>
-                            </Grid>
+                                <PeopleAltIcon style={{ fontSize: '3rem', color: '#fff' }}></PeopleAltIcon>
+                            </Box>
+
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: '#00D2FC', py: 1 }}>
+                                0{employees.length}
+                            </Typography>
                         </Box>
                     </Grid>
-                    <Grid sx={{ border: '2px solid #000' }} item xs={12} sm={3} style={{background: '#139487',color: 'white'}}>
-                        <Box>
-                            <Grid container spacing={2}>
-                                <Grid item sm={8}>
-                                    <Typography variant="h3" gutterBottom component="div">
-                                        4
-                                    </Typography>
-                                </Grid>
-                                <Grid item sm={4}>
-                                    <CoPresentIcon style={{ fontSize: '4rem' }}></CoPresentIcon>
-                                </Grid>
-                                <Typography variant="h6" gutterBottom component="div" sx={{ marginTop: '1.9rem' }}>
+
+                    <Grid item xs={6} md={3}>
+                        <Box className={dashTopBox} sx={{ border: '1px solid #845EC2 !important' }}>
+                            <Box className={dashTopText} sx={{ background: '#845EC2 !important' }}>
+                                <Typography variant="h6" sx={{ color: '#fff' }}>
                                     Present Today
                                 </Typography>
-                            </Grid>
+                                <CoPresentIcon style={{ fontSize: '3rem', color: '#fff' }}></CoPresentIcon>
+                            </Box>
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: '#845EC2', py: 1 }}>
+                                0{present}
+                            </Typography>
                         </Box>
                     </Grid>
-                    <Grid sx={{ border: '2px solid #000' }} item xs={12} sm={3} style={{background: '#9B0000',color: 'white'}}>
-                        <Box>
-                            <Grid container spacing={2}>
-                                <Grid item sm={8}>
-                                    <Typography variant="h3" gutterBottom component="div">
-                                        1
-                                    </Typography>
-                                </Grid>
-                                <Grid item sm={4}>
-                                    <LineAxisIcon style={{ fontSize: '4rem' }}></LineAxisIcon>
-                                </Grid>
-                                <Typography variant="h6" gutterBottom component="div" sx={{ marginTop: '1.9rem' }}>
+
+                    <Grid item xs={6} md={3}>
+                        <Box className={dashTopBox} sx={{ border: '1px solid #fb3e6a !important' }}>
+                            <Box className={dashTopText} sx={{ background: '#fb3e6a !important' }}>
+                                <Typography variant="h6" sx={{ color: '#fff' }}>
                                     Total Absent
                                 </Typography>
-                            </Grid>
+                                <PersonOffIcon style={{ fontSize: '3rem', color: '#fff' }}></PersonOffIcon>
+                            </Box>
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: '#fb3e6a', py: 1 }}>
+                                0{absent}
+                            </Typography>
                         </Box>
                     </Grid>
-                    <Grid sx={{ border: '2px solid #000' }} item xs={12} sm={3} style={{background: 'rgb(1 87 138)',color: 'white'}}>
-                        <Box>
-                            <Grid container spacing={2}>
-                                <Grid item sm={8}>
-                                    <Typography variant="h3" gutterBottom component="div">
-                                        0
-                                    </Typography>
-                                </Grid>
-                                <Grid item sm={4}>
-                                    <GroupRemoveIcon style={{ fontSize: '4rem' }}></GroupRemoveIcon>
-                                </Grid>
-                                <Typography variant="h6" gutterBottom component="div" sx={{ marginTop: '1.9rem' }}>
-                                    On Leave Today
+
+                    <Grid item xs={6} md={3}>
+                        <Box className={dashTopBox} sx={{ border: '1px solid #18025B !important' }}>
+                            <Box className={dashTopText} sx={{ background: '#18025B !important' }}>
+                                <Typography variant="h6" sx={{ color: '#fff' }}>
+                                    On Leave
                                 </Typography>
-                            </Grid>
+                                <DirectionsWalkIcon style={{ fontSize: '3rem', color: '#fff' }}></DirectionsWalkIcon>
+                            </Box>
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: '#18025B', py: 1 }}>
+                                0{leave.length}
+                            </Typography>
                         </Box>
                     </Grid>
                 </Grid>
             </Box>
+
             {/* Total attendance chart area */}
-            <div className="total-attendance" style={{padding: '8px'}}>
-                <div className="total-attend-head" style={{padding: '5px', background: 'rgb(1 87 138)',color:'white',marginTop:'30px'}}>
-                    <h4>Today Attendance - 16-Feb-2022</h4>
-                </div>
+            <Box sx={{ my: 5 }}>
+                <Box sx={{ background: 'var(--s_color)', py: 2, px: 2, display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography sx={{ color: '#fff' }} variant="h5">Today Attendance</Typography>
+                    <Typography sx={{ color: '#fff' }} variant="h5">{takeDate}</Typography>
+                </Box>
                 {/* Table on employee details */}
-                <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Employee</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Late</TableCell>
-            <TableCell align="right">Early Leaving</TableCell>
-            <TableCell align="right">Overtime</TableCell>
-            <TableCell align="right">Total Work</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-            </div>
-            
-        </>
+                <Grid container spacing={0}>
+                    <Grid item xs={12} md={12}>
+                        <TableContainer sx={{ overflowX: 'scroll' }} component={Paper}>
+                            <Table aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Employee</TableCell>
+                                        <TableCell align="center">Department</TableCell>
+                                        <TableCell align="center">In Time</TableCell>
+                                        <TableCell align="right">Out Time</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {todayPresent.map((item) => <TodayAttendance
+                                        key={item._id}
+                                        item={item}
+                                    ></TodayAttendance>)}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                </Grid>
+            </Box>
+
+        </Container>
     );
 };
 

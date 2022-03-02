@@ -38,11 +38,12 @@ const MyAttendance = () => {
   }, [user.email, times]);
 
   const todaydate = time.split(",")[0];
-  useEffect(() => {
-    const foundToday = times.find((time) => time.date === todaydate);
-    setToday(foundToday);
-  }, [times, todaydate]);
-  console.log(today?.date);
+  useEffect(
+    () => {
+      const foundToday = times.find(time => time.date === todaydate);
+      setToday(foundToday);
+    }, [times, todaydate]);
+  // console.log(today?.date)
 
   //punchin
   const handlePunchIn = () => {
@@ -114,7 +115,7 @@ const MyAttendance = () => {
     },
   }));
   const classes = useStyles();
-  console.log(today?._id);
+  // console.log(today?._id)
   return (
     <Box mt={7}>
       <Container>
