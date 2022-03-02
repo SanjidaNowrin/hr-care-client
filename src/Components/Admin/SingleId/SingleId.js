@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import "./SingleId.css";
 import Swal from 'sweetalert2'
-import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import { PDFExport } from "@progress/kendo-react-pdf";
 const SingleId = ({ employeeId }) => {
   const { name, department, designation, phone } = employeeId;
   const pdfExportComponent=useRef(null);
