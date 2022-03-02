@@ -17,6 +17,12 @@ import MyInfoUpdate from "./MyInfoUpdate";
 
 const getUniqueId = (info) => {
 
+    const first = info.department === "Human Resource" ? "HR" : info.department === "Information Technology" ? "IT" : info.department === "Marketing" ? "MK" : "AC";
+    const randomNumber = Math.floor(Math.random() * 100);
+    const birthArray = info.birth.split('-');
+    const birth = birthArray.join("");
+    const uniqueId = first + "-" + birth + randomNumber;
+    return uniqueId
 }
 const MyInfo = () => {
     const { user } = useAuth();
@@ -34,6 +40,10 @@ const MyInfo = () => {
 
 
     const onSubmit = (data) => {
+        const id = getUniqueId(data);
+        console.log(id)
+        data.ID = id
+        console.log(data);
         axios.post("https://ancient-thicket-61342.herokuapp.com/employees", data);
         reset();
         Swal.fire({
