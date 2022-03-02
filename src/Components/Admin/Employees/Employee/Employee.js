@@ -88,8 +88,8 @@ const Employee = ({ item }) => {
                     {name}
                 </StyledTableCell>
                 <StyledTableCell align="left">{phone}</StyledTableCell>
-                <StyledTableCell align="left">{department}</StyledTableCell>
-                <StyledTableCell align="left">{designation}</StyledTableCell>
+                <StyledTableCell align="center">{department}</StyledTableCell>
+                <StyledTableCell align="center">{designation}</StyledTableCell>
                 <StyledTableCell align="right">
                     {/* <SettingsIcon
                         id="demo-customized-button"

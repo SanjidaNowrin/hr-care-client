@@ -36,8 +36,8 @@ function HolidayCalendar() {
       <Calendar
         localizer={localizer}
         events={newEvent}
-        startAccessor="start"
-        endAccessor="end"
+        startAccessor="startDate"
+        endAccessor="endDate"
         style={{ height: 500, margin: "50px" }}
       />
     </>
