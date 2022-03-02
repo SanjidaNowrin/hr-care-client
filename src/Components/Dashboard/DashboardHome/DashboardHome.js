@@ -187,6 +187,7 @@ const DashboardHome = () => {
                     <Typography sx={{ color: '#fff' }} variant="h5">Today Attendance</Typography>
                     <Typography sx={{ color: '#fff' }} variant="h5">{takeDate}</Typography>
                 </Box>
+
                 {/* Table on employee details */}
                 <Grid container spacing={0}>
                     <Grid item xs={12} md={12}>

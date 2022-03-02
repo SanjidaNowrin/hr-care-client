@@ -11,6 +11,7 @@ body {
   --p_color: #01578A;
   --s_color: #01578A;
   --bg_color: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
+  --t_shadow: 2px 2px 9px #969696;
 }
 
 .navbarlogo {
