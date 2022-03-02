@@ -31,7 +31,7 @@ const IdCard = () => {
     // filter employees id
     useEffect(() => {
         const filterID = employeesId.filter(data => parseInt(data.ID) === inputValue);
-        if (filterID.length > 0) {
+        if (filterID.length > 0 || inputValue > 0) {
             setFilterData(filterID)
         } else {
             setFilterData(employeesId)
