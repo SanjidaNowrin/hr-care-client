@@ -1,77 +1,168 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+import { useRef } from "react";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Swal from 'sweetalert2'
+import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import { makeStyles } from "@mui/styles";
+import { Box, Divider, Paper, Typography } from "@mui/material";
 import useAuth from "../../../hooks/useAuth";
-import './SingleId.css'
+import employeeSingnature from "../../../assets/images/employeesingnature.jpg"
+import director from "../../../assets/images/director.png"
+
 
 const SingleId = ({ employeeId }) => {
-  const { user } = useAuth();
-  const handleOnclick = () => {
-    console.log("clicked")
-  }
-  return (
-    <Grid item xs={12} sm={12} md={4}>
-      <div className="card" id="idCards">
-        <div className="upper-content">
-          <h4 className="upper-title">HR CARE</h4>
-          <div className="img-container">
-            <img src={user.photoURL} alt="" height="100px" width="100px" />
-          </div>
-        </div>
-        <div className="lower-content">
-          <h4>{employeeId.name}</h4>
-          <p style={{ fontSize: "14px" }}>{employeeId.department}</p>
-        </div>
-        <div className="bottom-content-id">
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <h5>ID NO</h5>
-              <p>{employeeId.ID}</p>
-              <h5>D.O.B</h5>
-              <p>{employeeId.birth}</p>
-            </Grid>
-            <Grid item xs={4}>
-              <h5>Joined Date</h5>
-              <p>22/06/2021</p>
-              <h5>Designation</h5>
-              <p>{employeeId.designation}</p>
-            </Grid>
-            <Grid item xs={4}>
-              <h5>Phone</h5>
-              <p>{employeeId.phone}</p>
-              <h5>B Group</h5>
-              <p>B+</p>
-            </Grid>
-          </Grid>
-        </div>
-        <div className="signiture-area">
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <div className="employee-signiture">
-                <div className="e-signiture">
+    const { user } = useAuth();
+    const { ID, name, department, designation, phone } = employeeId;
 
-                </div>
-                <h5>Employee</h5>
-              </div>
-            </Grid>
-            <Grid item xs={6}>
-              <div className="director-signiture">
-                <div className="d-signiture">
-                  <img width={"100%"} src="https://i.ibb.co/r5GjMHf/output-onlinepngtools.png" alt="" />
-                </div>
-                <h5>Director</h5>
-              </div>
-            </Grid>
-          </Grid>
-        </div>
-        <div className="card-bottom">
-          <h5>www.hr-care.com</h5>
-        </div>
-      </div>
-      <div className="form-button">
-        <Button className="btn_regular" onClick={() => handleOnclick()} variant="contained">Download PDF</Button>
-      </div>
-    </Grid>
-  );
+    const pdfExportComponent = useRef(null);
+    const handleOnclick = () => {
+        pdfExportComponent.current.save();
+
+        Swal.fire(
+            'Good job!',
+            'ID Card Downloaded Successfully!',
+            'success'
+        )
+
+    };
+
+    const useStyle = makeStyles({
+        cardBox: {
+            overflow: 'hidden',
+            transition: 'all .3s ease',
+            "&:hover": {
+                boxShadow: '1px 10px 30px #b6b7b7 !important'
+            },
+        },
+        cardTop: {
+            background: 'var(--p_color)',
+            height: '110px',
+            paddingTop: '10px'
+        },
+        imgBox: {
+            textAlign: 'center',
+            margin: '0 auto',
+            borderRadius: '50%',
+            position: 'relative',
+            top: '-53px',
+            height: '110px',
+            width: '110px',
+        },
+        imgTop: {
+            width: '100%',
+            borderRadius: '50%',
+            border: '6px solid #fff',
+        },
+        textBold: {
+            fontWeight: '700 !important'
+        },
+        signatureImg: {
+            width: '60px'
+        }
+    })
+
+    const { cardBox, cardTop, imgBox, imgTop, textBold, signatureImg } = useStyle();
+
+    return (
+        <Grid item xs={12} sm={12} md={4}>
+            <PDFExport ref={pdfExportComponent}>
+                <Paper className={cardBox}>
+                    <Box className={cardTop}>
+                        <Typography sx={{ textAlign: 'center', color: '#fff', textTransform: 'uppercase' }} variant="h4">HR Care</Typography>
+                    </Box>
+
+                    {/* employee image */}
+                    <Box className={imgBox}>
+                        <img
+                            src={user.photoURL}
+                            alt=""
+                            className={imgTop}
+                        />
+                    </Box>
+
+                    <Box sx={{ textAlign: 'center', marginTop: '-53px' }}>
+                        <Typography sx={{ textShadow: '2px 2px 9px #969696' }} variant="h5">{name}</Typography>
+                        <Typography sx={{ color: '#845EC2', textShadow: '2px 2px 9px #969696' }} variant="body1">{department}</Typography>
+                    </Box>
+
+                    {/* body content */}
+                    <Box sx={{ px: 2 }}>
+                        <Grid sx={{ mt: 1 }} container spacing={1}>
+                            <Grid item xs={4}>
+                                <Typography className={textBold} variant="body2">ID NO</Typography>
+                                <Typography variant="body2">{name.slice(0, 1)}#{ID}</Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography className={textBold} variant="body2">Phone</Typography>
+                                <Typography variant="body2">{phone}</Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography className={textBold} variant="body2">Joined Date</Typography>
+                                <Typography variant="body2">22/06/2021</Typography>
+                            </Grid>
+                        </Grid>
+
+                        <Grid sx={{ marginTop: '5px' }} container spacing={1}>
+                            <Grid item xs={4}>
+                                <Typography className={textBold} variant="body2">D.O.B</Typography>
+                                <Typography variant="body2">22/4/2021</Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography className={textBold} variant="body2">Designation</Typography>
+                                <Typography variant="body2">{designation}</Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography className={textBold} variant="body2">Blood Group</Typography>
+                                <Typography variant="body2">B+</Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
+
+                    <Divider sx={{ my: 2 }} variant="middle" />
+
+                    {/* signature box */}
+                    <Box sx={{ px: 2, pt: 1, pb: 2 }}>
+                        <Grid container spacing={10}>
+                            <Grid item xs={6}>
+                                <Box sx={{ textAlign: 'center' }}>
+                                    <img
+                                        className={signatureImg}
+                                        src={employeeSingnature}
+                                        alt="signature"
+                                    />
+                                </Box>
+
+                                <Divider />
+                                <Typography sx={{ textAlign: 'center' }} variant="body1">Employee</Typography>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <Box sx={{ textAlign: 'center' }}>
+                                    <img
+                                        className={signatureImg}
+                                        src={director}
+                                        alt="signature"
+                                    />
+                                </Box>
+                                <Divider />
+                                <Typography sx={{ textAlign: 'center' }} variant="body1">Director</Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Paper>
+            </PDFExport>
+            <Box sx={{ textAlign: 'center', my: 1 }}>
+                <Button
+                    className="btn_regular"
+                    onClick={() => handleOnclick()}
+                    variant="contained"
+                    sx={{ padding: '6px 50px 5px !important' }}
+                >
+                    Download PDF
+                </Button>
+            </Box>
+        </Grid >
+
+    );
 };
 export default SingleId;
