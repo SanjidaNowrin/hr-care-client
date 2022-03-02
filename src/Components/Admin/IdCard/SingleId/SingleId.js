@@ -5,9 +5,9 @@ import Swal from 'sweetalert2'
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import { makeStyles } from "@mui/styles";
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import useAuth from "../../../hooks/useAuth";
-import employeeSingnature from "../../../assets/images/employeesingnature.jpg"
-import director from "../../../assets/images/director.png"
+import employeeSingnature from "../../../../assets/images/employeesingnature.jpg"
+import director from "../../../../assets/images/director.png"
+import useAuth from "../../../../hooks/useAuth";
 
 
 const SingleId = ({ employeeId }) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import "./IdCard.css";
-import SingleId from "../SingleId/SingleId";
+import SingleId from "./SingleId/SingleId";
 import { Breadcrumbs, Container, TextField, Typography } from "@mui/material";
 
 // Breadcrumbs

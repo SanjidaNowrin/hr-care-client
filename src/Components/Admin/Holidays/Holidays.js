@@ -14,9 +14,8 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import useAuth from "../../../hooks/useAuth";
 import Tooltip from "@mui/material/Tooltip";
-import { map } from "@firebase/util";
+import dateFormat from "../../Share/Navbar/dateFormat";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,9 +53,9 @@ toast.configure()
 
 const Holidays = () => {
   const [holidays, setHolidays] = useState([]);
-  const [employees, setEmployees] = useState([])
+  const [employees, setEmployees] = useState([]);
+  const [findDate, setFindDate] = useState([]);
 
-  const { user } = useAuth();
 
   //current date
   const d = new Date();
@@ -99,11 +98,11 @@ const Holidays = () => {
     const endDate = new Date(data.endDate);
 
     for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
-      const currentDate = date.toLocaleString().split(",")[0];
+
+      const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
       console.log(currentDate)
 
       employees.map((user) => (
-
 
         fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
           method: "POST",
@@ -137,12 +136,17 @@ const Holidays = () => {
     const endDate = new Date(item.endDate);
 
     for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
-      const currentDate = date.toLocaleString().split(",")[0];
+
+      const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
       console.log(currentDate)
 
-      employees.map((user) => (
+      fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/date/${currentDate}`)
+        .then((res) => res.json())
+        .then((data) => setFindDate(data.result));
 
-        fetch(`https://ancient-thicket-61342.herokuapp.com/holidays/${item._id}`, {
+      findDate.map((onedate) => (
+
+        fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${onedate._id}`, {
           method: "DELETE",
         })
 
