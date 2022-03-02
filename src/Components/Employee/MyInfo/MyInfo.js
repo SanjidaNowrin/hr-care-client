@@ -6,10 +6,15 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { makeStyles } from "@mui/styles";
 
+
+const getUniqueId = (info) => {
+
+}
 const MyInfo = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
+        console.log(data)
         axios.post("http://localhost:5000/employees", data);
         reset();
         Swal.fire({

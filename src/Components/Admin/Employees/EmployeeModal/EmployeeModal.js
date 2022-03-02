@@ -39,15 +39,15 @@ const EmployeeModal = ({ item }) => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
         console.log(data)
-        // axios.post("https://ancient-thicket-61342.herokuapp.com/employees/", data);
-        // reset();
-        // Swal.fire({
-        //   position: "middle",
-        //   icon: "success",
-        //   title: "Employee Information Sent Successfully",
-        //   showConfirmButton: false,
-        //   timer: 2000,
-        // });
+        axios.put(`https://ancient-thicket-61342.herokuapp.com/employees/${id}`, data);
+        reset();
+        Swal.fire({
+            position: "middle",
+            icon: "success",
+            title: "Employee Information Update Successfully",
+            showConfirmButton: false,
+            timer: 2000,
+        });
     };
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
