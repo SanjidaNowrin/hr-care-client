@@ -16,22 +16,19 @@ import MyInfoUpdate from "./MyInfoUpdate";
 
 const MyInfo = () => {
     const { user } = useAuth();
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const [employee, setEmployee] = useState([]);
-
 
     useEffect(() => {
         fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
     }, [user.email]);
-    // console.log(employee[0]);
-    // console.log(employee[0]?.father);
 
 
     const onSubmit = (data) => {
+        console.log(data);
         axios.post("https://ancient-thicket-61342.herokuapp.com/employees", data);
-        reset();
         Swal.fire({
             position: "middle",
             icon: "success",
