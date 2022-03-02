@@ -4,17 +4,16 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
 import {
     Box,
     Button,
+    Container,
     FormControl as FormGroup,
-    MenuItem,
     TextField,
     Typography,
 } from "@mui/material";
-import { width } from '@mui/system';
+
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -27,27 +26,29 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        width: '85%',
+        width: '80%',
         height: '95vh',
         overflow: "scroll"
     },
 }));
 
 const EmployeeModal = ({ item }) => {
-    const { id, name, father, mother, email, phone, nid, birth, department, designation } = item
+    const { _id, ID, DOJ, Gross, Account, name, father, mother, email, phone, nid, birth, department, designation, lastCompany, lastDepartment, lastDesignation, lastDegree, lastSubject, lastInstitute, lastGrade } = item
     console.log(item);
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        console.log(data)
-        axios.put(`https://ancient-thicket-61342.herokuapp.com/employees/${id}`, data);
-        reset();
-        Swal.fire({
-            position: "middle",
-            icon: "success",
-            title: "Employee Information Update Successfully",
-            showConfirmButton: false,
-            timer: 2000,
-        });
+
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+        Swal.fire('Employee Information Update Successfully')
+        handleClose();
+        console.log(data);
+
     };
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -60,7 +61,7 @@ const EmployeeModal = ({ item }) => {
         setOpen(false);
     };
     return (
-        <div>
+        <Container>
             <button type="button" onClick={handleOpen}>
                 EDIT
             </button>
@@ -77,7 +78,7 @@ const EmployeeModal = ({ item }) => {
                 }}
             >
                 <Fade in={open}>
-                    <div className={classes.paper}>
+                    <Box className={classes.paper}>
                         <Typography
                             style={{
                                 textAlign: "center",
@@ -89,11 +90,11 @@ const EmployeeModal = ({ item }) => {
                         >
                             Employee <span style={{ color: " #01578A" }}>Information</span>
                         </Typography>
-                        <FormGroup onSubmit={handleSubmit(onSubmit)}>
+                        <FormGroup sx={{ width: "100%" }} onSubmit={handleSubmit(onSubmit)}>
                             <Box
                                 component="form"
                                 sx={{
-                                    "& > :not(style)": { m: 1, width: "200px" },
+                                    "& > :not(style)": { m: 1, width: "45%" },
                                 }}
                             >
                                 <Typography sx={{ m: 2 }} variant="h5">
@@ -106,22 +107,28 @@ const EmployeeModal = ({ item }) => {
                                     label="Company Unique ID"
                                     type="text"
                                     variant="outlined"
+                                    value={ID}
                                     required
                                 />
                                 <TextField
                                     {...register("DOJ")}
                                     id="outlined-basic"
                                     label="Date of Join"
-                                    type="text"
+                                    type="date"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                     variant="outlined"
+                                    defaultValue={DOJ}
                                     required
                                 />
                                 <TextField
                                     {...register("Gross")}
                                     id="outlined-basic"
                                     label="Gross Salary"
-                                    type="text"
+                                    type="number"
                                     variant="outlined"
+                                    defaultValue={Gross}
                                     required
                                 />
                                 <TextField
@@ -130,6 +137,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Bank Account Number"
                                     type="number"
                                     variant="outlined"
+                                    defaultValue={Account}
                                     required
                                 />
 
@@ -146,7 +154,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Name"
                                     type="text"
                                     variant="outlined"
-                                    value={name}
+                                    defaultValue={name}
                                     required
                                 />
                                 <TextField
@@ -155,7 +163,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Father's Name"
                                     type="text"
                                     variant="outlined"
-                                    value={father}
+                                    defaultValue={father}
                                     required
                                 />
                                 <TextField
@@ -164,7 +172,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Mother's Name"
                                     type="text"
                                     variant="outlined"
-                                    value={mother}
+                                    defaultValue={mother}
                                     required
                                 />
                                 <TextField
@@ -182,7 +190,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Cell Number"
                                     type="number"
                                     variant="outlined"
-                                    value={phone}
+                                    defaultValue={phone}
                                     required
                                 />
                                 <TextField
@@ -191,7 +199,7 @@ const EmployeeModal = ({ item }) => {
                                     label="NID"
                                     type="number"
                                     variant="outlined"
-                                    value={nid}
+                                    defaultValue={nid}
                                     required
                                 />
                                 <TextField
@@ -202,7 +210,7 @@ const EmployeeModal = ({ item }) => {
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    value={birth}
+                                    defaultValue={birth}
                                     required
                                 />
                                 <TextField
@@ -210,7 +218,7 @@ const EmployeeModal = ({ item }) => {
                                     id="outlined-basic"
 
                                     label="Department"
-                                    value={department}
+                                    defaultValue={department}
 
                                     helperText=" Department"
                                     required
@@ -221,7 +229,7 @@ const EmployeeModal = ({ item }) => {
                                     {...register("designation")}
                                     id="outlined-basic"
                                     label="Designation"
-                                    value={designation}
+                                    defaultValue={designation}
                                     type="text"
                                     variant="outlined"
                                     required
@@ -230,12 +238,14 @@ const EmployeeModal = ({ item }) => {
                                     Exprience
                                 </Typography>
 
+
                                 <TextField
                                     {...register("lastCompany")}
                                     id="outlined-basic"
                                     label="Company"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastCompany}
                                 />
                                 <TextField
                                     {...register("lastDepartment")}
@@ -243,6 +253,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Department"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastDepartment}
                                 />
                                 <TextField
                                     {...register("lastDesignation")}
@@ -250,9 +261,11 @@ const EmployeeModal = ({ item }) => {
                                     label="Designation"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastDesignation}
                                 />
+
                                 <Typography sx={{ m: 2 }} variant="h5">
-                                    Education
+                                    Education information
                                 </Typography>
 
                                 <TextField
@@ -261,6 +274,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Degree"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastDegree}
                                 />
                                 <TextField
                                     {...register("lastSubject")}
@@ -268,6 +282,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Subject"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastSubject}
                                 />
                                 <TextField
                                     {...register("lastInstitute")}
@@ -275,6 +290,7 @@ const EmployeeModal = ({ item }) => {
                                     label="Institute"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastInstitute}
                                 />
                                 <TextField
                                     {...register("lastGrade")}
@@ -282,24 +298,23 @@ const EmployeeModal = ({ item }) => {
                                     label="Grade"
                                     type="text"
                                     variant="outlined"
+                                    defaultValue={lastGrade}
                                 />
-                                <Button
+                                <Button className="btn_regular"
                                     variant="outlined"
                                     style={{
-                                        backgroundColor: "#01578A",
-                                        color: "white",
                                         marginTop: "1rem",
                                     }}
                                     type="submit"
                                 >
-                                    Submit
+                                    Update
                                 </Button>
                             </Box>
                         </FormGroup>
-                    </div>
+                    </Box>
                 </Fade>
             </Modal>
-        </div>
+        </Container>
     );
 };
 

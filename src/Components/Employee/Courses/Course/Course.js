@@ -1,7 +1,7 @@
-import { Grid, Rating } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+// import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import { Box } from "@mui/system";
 
 const Course = ({ item }) => {
-    const { name, des, author, authorImg, courseImg, rating, topic, date } = item;
+    const { name, des, author, authorImg, courseImg, topic, date } = item;
     return (
         <>
             <Grid item xs={12} md={4}>
@@ -25,7 +25,6 @@ const Course = ({ item }) => {
                             {topic}
                         </Typography>
 
-                        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                     </Box>
 
                     <CardContent>
@@ -40,7 +39,7 @@ const Course = ({ item }) => {
                     <CardHeader
                         avatar={<Avatar alt="Remy Sharp" src={authorImg} />}
                         action={
-                            <Button className="btn_regular" aria-label="settings" className="btn_regular">
+                            <Button className="btn_regular" aria-label="settings">
                                 Enroll
                             </Button>
                         }
