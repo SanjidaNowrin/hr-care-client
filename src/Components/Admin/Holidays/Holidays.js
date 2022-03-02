@@ -78,6 +78,13 @@ const Holidays = () => {
       .then((data) => setEmployees(data.data));
   }, []);
 
+  useEffect(() => {
+    findDate.map((onedate) => (
+      fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${onedate._id}`, {
+        method: "DELETE",
+      })
+    ))
+  }, [findDate])
 
   const onSubmit = (data, e) => {
     fetch("https://ancient-thicket-61342.herokuapp.com/holidays", {
@@ -143,14 +150,6 @@ const Holidays = () => {
       fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/date/${currentDate}`)
         .then((res) => res.json())
         .then((data) => setFindDate(data.result));
-
-      findDate.map((onedate) => (
-
-        fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${onedate._id}`, {
-          method: "DELETE",
-        })
-
-      ))
 
     }
 
