@@ -132,6 +132,11 @@ function Dashboard(props) {
             Attendance
           </Link>
 
+          <Link className={dashLink} to="/dashboard/LeaveRequests">
+            <ExitToAppOutlinedIcon className={dashIcon} />
+            Leave Requests
+          </Link>
+
           <Link className={dashLink} to="/dashboard/leaveApplications">
             <ExitToAppOutlinedIcon className={dashIcon} />
             Leave Application

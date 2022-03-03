@@ -1,24 +1,31 @@
-import { Grid, Paper, TextField, Typography } from "@mui/material";
+import { Grid, MenuItem, Paper, TextField, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
-import "./Leave.css";
+
 
 const Leave = () => {
     const { user } = useAuth();
-
     const [leaveData, setLeaveData] = useState({});
+    const [employee, setEmployee] = useState({});
+
+    useEffect(() => {
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user?.email}`)
+            .then((res) => res.json())
+            .then((data) => setEmployee(data.result[0]));
+    }, [user.email]);
+    console.log(employee)
 
     const handleOnChange = (e) => {
         const field = e.target.title;
         const value = e.target.value;
-        const newAnnounceData = { ...leaveData };
-        newAnnounceData[field] = value;
-        setLeaveData(newAnnounceData);
+        const newLeaveData = { ...leaveData };
+        newLeaveData[field] = value;
+        setLeaveData(newLeaveData);
     };
 
     const { register, handleSubmit, reset } = useForm();
@@ -34,6 +41,30 @@ const Leave = () => {
             timer: 2000,
         });
     };
+
+    const leaveTypes = [
+        {
+            value: "Casual Leave",
+            label: "Casual Leave",
+        },
+        {
+            value: "Sick Leave",
+            label: "Sick Leave",
+        },
+        {
+            value: "Marriage Leave",
+            label: "Marriage Leave",
+        },
+        {
+            value: "Maternity Leave",
+            label: "Maternity Leave",
+        },
+        {
+            value: "Earned Leave",
+            label: "Earned Leave",
+        }
+    ];
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -45,49 +76,121 @@ const Leave = () => {
                             <span style={{ color: " #01578A" }}> Leave</span> Form
                         </Typography>
                         <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
-                            <Box sx={{ mb: 1 }}>
-                                <label style={{ display: "block" }} htmlFor="title">
-                                    Name <span style={{ color: "red" }}>*</span>
-                                </label>
-                                <TextField
-                                    onBlur={handleOnChange}
-                                    value={user?.displayName}
-                                    sx={{ width: "100%" }}
-                                    variant="outlined"
-                                    id="title"
-                                    type="title"
-                                    {...register("name", { required: true })}
-                                />
+
+                            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", mb: 1 }}>
+                                <Box sx={{ width: "48%" }}>
+                                    <label style={{ display: "block" }} htmlFor="title">
+                                        ID <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <TextField
+                                        onBlur={handleOnChange}
+                                        value={employee?.ID}
+                                        sx={{ width: "100%" }}
+                                        variant="outlined"
+                                        id="title"
+                                        type="text"
+                                        {...register("ID", { required: true })}
+                                    />
+                                </Box>
+                                <Box sx={{ width: "48%" }}>
+                                    <label style={{ display: "block" }} htmlFor="title">
+                                        Name <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <TextField
+                                        onBlur={handleOnChange}
+                                        value={employee?.name}
+                                        sx={{ width: "100%" }}
+                                        variant="outlined"
+                                        id="title"
+                                        type="text"
+                                        {...register("name", { required: true })}
+                                    />
+                                </Box>
+
                             </Box>
+                            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", mb: 1 }}>
+                                <Box sx={{ width: "48%" }}>
+                                    <label style={{ display: "block" }} htmlFor="title">
+                                        Department <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <TextField
+                                        onBlur={handleOnChange}
+                                        value={employee?.department}
+                                        sx={{ width: "100%" }}
+                                        variant="outlined"
+                                        id="title"
+                                        type="text"
+                                        {...register("department", { required: true })}
+                                    />
+                                </Box>
+                                <Box sx={{ width: "48%" }}>
+                                    <label style={{ display: "block" }} htmlFor="title">
+                                        Designation <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <TextField
+                                        onBlur={handleOnChange}
+                                        value={employee?.designation}
+                                        sx={{ width: "100%" }}
+                                        variant="outlined"
+                                        id="title"
+                                        type="text"
+                                        {...register("designation", { required: true })}
+                                    />
+                                </Box>
+                            </Box>
+
                             <Box sx={{ mb: 1 }}>
                                 <label style={{ display: "block" }} htmlFor="title">
                                     Email <span style={{ color: "red" }}>*</span>
                                 </label>
                                 <TextField
                                     onBlur={handleOnChange}
-                                    value={user?.email}
+                                    value={employee?.email}
                                     sx={{ width: "100%" }}
                                     variant="outlined"
                                     id="title"
-                                    type="title"
+                                    type="text"
                                     {...register("email", { required: true })}
                                 />
                             </Box>
-                            <Box sx={{ mb: 1 }}>
-                                <label style={{ display: "block" }} htmlFor="title">
-                                    Reason <span style={{ color: "red" }}>*</span>
-                                </label>
-                                <TextField
-                                    onBlur={handleOnChange}
-                                    sx={{ width: "100%" }}
-                                    variant="outlined"
-                                    id="title"
-                                    type="title"
-                                    {...register("leaveType", { required: true })}
-                                />
+
+                            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", mb: 1 }}>
+                                <Box sx={{ width: "48%" }}>
+                                    <label style={{ display: "block" }} htmlFor="title">
+                                        Leave Type <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <TextField
+                                        onBlur={handleOnChange}
+                                        sx={{ width: "100%" }}
+                                        variant="outlined"
+                                        id="outlined-basic"
+                                        select
+                                        {...register("leaveType", { required: true })}
+                                    >
+                                        {leaveTypes.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Box>
+                                <Box sx={{ width: "48%" }}>
+                                    <label style={{ display: "block" }} htmlFor="title">
+                                        Leave Days <span style={{ color: "red" }}>*</span>
+                                    </label>
+                                    <TextField
+                                        onBlur={handleOnChange}
+                                        sx={{ width: "100%" }}
+                                        variant="outlined"
+                                        id="outlined-basic"
+                                        type="number"
+                                        {...register("leaveDays", { required: true })}
+                                    />
+                                </Box>
+
                             </Box>
                             <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", mb: 1 }}>
-                                <Box sx={{ marginRight: "10px" }}>
+                                <Box sx={{ width: "48%" }}>
                                     <label>
                                         Start Date <span style={{ color: "red" }}>*</span>
                                     </label>
@@ -100,7 +203,7 @@ const Leave = () => {
                                         variant="outlined"
                                     />
                                 </Box>
-                                <Box>
+                                <Box sx={{ width: "48%" }}>
                                     <label>
                                         End Day <span style={{ color: "red" }}>*</span>
                                     </label>
@@ -114,38 +217,11 @@ const Leave = () => {
                                     />
                                 </Box>
 
-                                {/* <Box>
-                                    <label style={{ display: "block" }} htmlFor="date">
-                                        Start Date <span style={{ color: "red" }}>*</span>
-                                    </label>
-                                    <TextField
-                                        onBlur={handleOnChange}
-                                        sx={{ width: "100%" }}
-                                        variant="outlined"
-                                        id="date"
-                                        type="date"
-                                        {...register("tripStart", { required: true })}
-                                    />
-                                </Box>
-
-                                <Box>
-                                    <label style={{ display: "block" }} htmlFor="date">
-                                        Total Day <span style={{ color: "red" }}>*</span>
-                                    </label>
-                                    <TextField
-                                        onBlur={handleOnChange}
-                                        sx={{ width: "100%" }}
-                                        variant="outlined"
-                                        id="date"
-                                        type="number"
-                                        {...register("tripEnd", { required: true })}
-                                    />
-                                </Box> */}
                             </Box>
 
                             <Box sx={{ mb: 1 }}>
                                 <label style={{ display: "block" }} htmlFor="title">
-                                    Write Text <span style={{ color: "red" }}>*</span>
+                                    Write your reason <span style={{ color: "red" }}>*</span>
                                 </label>
                                 <textarea
                                     onChange={handleOnChange}
@@ -171,7 +247,7 @@ const Leave = () => {
 
                 <Grid item xs={12} md={3} sm={0}></Grid>
             </Grid>
-        </div>
+        </div >
     );
 };
 

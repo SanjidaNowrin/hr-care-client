@@ -6,6 +6,7 @@ import Employees from "./Components/Admin/Employees/Employees";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import IdCard from "./Components/Admin/IdCard/IdCard";
 import LeaveApplications from "./Components/Admin/LeaveApplication/LeaveApplications";
+import LeaveRequests from "./Components/Admin/LeaveRequests/LeaveRequests";
 import MakeAdmin from "./Components/Admin/MakeAdmin/MakeAdmin";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
@@ -50,12 +51,14 @@ function App() {
                             <Route path={"/dashboard/announcements"} element={<Announcements />} />
                             <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
                             <Route path={"/dashboard/course"} element={<Courses />} />
-                            <Route path={"/dashboard/leaveApplications"} element={<LeaveApplications />} />
+                            <Route path={"/dashboard/leave"} element={<Leave />} />
 
                             <Route path={"/dashboard/all_employees"} element={<Employees />} />
                             <Route path={"/dashboard/id_card"} element={<IdCard />} />
                             <Route path={"/dashboard/manage_attendance"} element={<AttendanceManage />} />
-                            <Route path={"/dashboard/leave"} element={<Leave />} />
+                            <Route path={"/dashboard/leaveRequests"} element={<LeaveRequests />} />
+                            <Route path={"/dashboard/leaveRequests/:Id"} element={<LeaveRequests />} />
+                            <Route path={"/dashboard/leaveApplications"} element={<LeaveApplications />} />
                             <Route path={"/dashboard/holiday"} element={<Holidays />} />
                             <Route path={"/dashboard/add_announcement"} element={<AddAnnouncement />} />
                             <Route path={"/dashboard/add_course"} element={<AddCourse />} />
