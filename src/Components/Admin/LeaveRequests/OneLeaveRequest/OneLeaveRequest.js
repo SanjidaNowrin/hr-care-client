@@ -76,7 +76,7 @@ const OneLeaveRequest = ({ data }) => {
     const { announceTop, announceP, dateStyle } = useStyle();
     const [employees, setEmployees] = useState({});
     const [filterEmployee, setFilterEmployee] = useState({});
-    const [newData, setNewData] = useState([]);
+    const [newData, setNewData] = useState({});
     const { Id } = useParams();
 
     useEffect(() => {
@@ -85,37 +85,33 @@ const OneLeaveRequest = ({ data }) => {
     }, [Id, data]);
 
 
-    useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
-            .then((res) => res.json())
-            .then((data) => setEmployees(data.data));
-    }, []);
+    // useEffect(() => {
+    //     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/`)
+    //         .then((res) => res.json())
+    //         .then((data) => setEmployees(data.data));
+    // }, []);
 
     const onSubmit = (data) => {
         data.status = "Approved"
-        // fetch(`https://ancient-thicket-61342.herokuapp.com/leave/${data?._id}`, {
-        //     method: "PUT",
-        //     headers: { "content-type": "application/json" },
-        //     body: JSON.stringify(data),
-        // })
-        //     .then((res) => res.json())
-        //     .then((data) => console.log(data));
-
-        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${data?.email}`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/leave/${data?._id}`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data),
+        })
             .then((res) => res.json())
-            .then((data) => setEmployees(data.result[0]));
+            .then((data) => console.log(data));
 
+        // fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${data?.email}`)
+        //     .then((res) => res.json())
+        //     .then((data) => setEmployees(data.result[0]));
+        // console.log(employees)
 
-        setFilterEmployee(employees.filter((employee) => employee.email === data.email))
+        // const searchEmployee = employees.filter((employee) => employee?.email === data?.email)
+        // setFilterEmployee(searchEmployee)
+        // console.log(filterEmployee[0])
 
-
-        console.log(filterEmployee[0])
-
-
-
-
-        // const startDate = new Date(data.startDate);
-        // const endDate = new Date(data.endDate);
+        // const startDate = new Date(data?.tripStart);
+        // const endDate = new Date(data?.tripEnd);
 
         // for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
 
@@ -136,6 +132,13 @@ const OneLeaveRequest = ({ data }) => {
         Swal.fire(`${data?.name}'s Application Approved Successfully`);
 
     };
+    const handleDelete = (data) => {
+        fetch(`https://ancient-thicket-61342.herokuapp.com/leave/${data._id}`, {
+            method: "DELETE",
+        })
+        console.log(data)
+        Swal.fire(`${data?.name}'s Application Cancel Successfully`);
+    }
     return (
         <>
 
@@ -165,14 +168,20 @@ const OneLeaveRequest = ({ data }) => {
                             <br />
                             <Typography className={announceP} variant="body1">{data?.message}</Typography>
                             <br />
-                            <Box className={announceTop}>
-                                <Button variant="contained" color="success" onClick={() => onSubmit(data)} type="submit">
-                                    Approved
-                                </Button>
-                                <Button variant="outlined" color="error">
-                                    Cancel
-                                </Button>
-                            </Box>
+                            {
+                                (data.status === "Approved") ?
+                                    <Typography variant="body1" sx={{ color: "green" }}>This Application is Already Approved</Typography>
+                                    :
+                                    <Box className={announceTop}>
+                                        <Button variant="contained" color="success" onClick={() => onSubmit(data)} type="submit">
+                                            Approved
+                                        </Button>
+                                        <Button variant="outlined" color="error" onClick={() => handleDelete(data)} type="submit">
+                                            Cancel
+                                        </Button>
+                                    </Box>
+
+                            }
 
                         </Paper>
                     </Box>

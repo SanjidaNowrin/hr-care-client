@@ -137,11 +137,6 @@ function Dashboard(props) {
             Leave Requests
           </Link>
 
-          <Link className={dashLink} to="/dashboard/leaveApplications">
-            <ExitToAppOutlinedIcon className={dashIcon} />
-            Leave Application
-          </Link>
-
           <Link className={dashLink} to="/dashboard/holiday">
             <HolidayVillageOutlinedIcon className={dashIcon} />
             Holiday

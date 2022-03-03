@@ -89,7 +89,7 @@ const LeaveRequests = () => {
         fetch("https://ancient-thicket-61342.herokuapp.com/leave")
             .then((res) => res.json())
             .then((data) => setData(data.data));
-    }, []);
+    }, [data]);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
