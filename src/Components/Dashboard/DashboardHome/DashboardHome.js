@@ -16,14 +16,13 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
-
 import { emphasize, styled } from '@mui/material/styles';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 import TodayAttendance from './TodayAttendance/TodayAttendance';
-
+import CalenderChart from './HolidayCalender/CalenderChart';
 
 
 const DashboardHome = () => {
@@ -211,7 +210,7 @@ const DashboardHome = () => {
                     </Grid>
                 </Grid>
             </Box>
-
+         {/* <CalenderChart/> */}
         </Container>
     );
 };

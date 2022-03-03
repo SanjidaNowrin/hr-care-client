@@ -31,7 +31,8 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     lastGrade,
   } = oneEmployee;
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const [image, setImage] = useState(null);
   //signature
   let sigPad = useRef({});
   let signature = "";
@@ -39,24 +40,35 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     sigPad.current.clear();
   }
   function save() {
-    console.log((signature = sigPad.current.toDataURL()));
+    setImage(sigPad.current.toDataURL());
   }
+  console.log(image);
   function show() {
     sigPad.current.fromDataURL(signature);
   }
-
   const onUpdate = (data) => {
-    const newData = { ...data };
-    newData.signature = signature;
+    data.image = image;
+    console.log(data);
     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(newData),
+      body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-    Swal.fire("Employee Information Update Successfully");
-    console.log(newData);
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("success", result);
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+    reset();
+    Swal.fire({
+      position: "middle",
+      icon: "success",
+      title: "Employee Information Update Successfully",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   };
 
   const [onedepartment, setDepartment] = useState();
@@ -132,7 +144,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
             {...register("phone")}
             id="outlined-basic"
             label="Cell Number"
-            type="number"
+            type="String"
             variant="outlined"
             defaultValue={phone}
             required
@@ -184,7 +196,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
           />
 
           <Typography sx={{ m: 2 }} variant="h5">
-            Exprience
+            Experience
           </Typography>
 
           <TextField
@@ -253,8 +265,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
             <Button onClick={save}>Save</Button>
             <Button onClick={show}>Show</Button>
             <SignaturePad
-              sx={{ width: "30%" }}
-              {...register("signature")}
+              {...register("image")}
               ref={sigPad}
               penColor="green"
             />
