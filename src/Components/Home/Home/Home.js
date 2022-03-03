@@ -6,6 +6,7 @@ import Features from "../Features/Features";
 import Teams from "../Teams/Teams";
 import Footer from "../../Share/Footer/Footer";
 import Contact from "../Contact/Contact";
+import MainFeatures from "../MainFeatures/MainFeatures";
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Navbar />
             <Banner />
             <Features />
+            <MainFeatures></MainFeatures>
             <Teams />
             <Contact />
             <Footer />

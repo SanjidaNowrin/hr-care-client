@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body {
   margin: 0;
@@ -7,9 +7,10 @@ body {
 }
 
 :root {
-  --PT_font: 'PT Sans', sans-serif;
+  --PT_font: 'Poppins', sans-serif;
   --p_color: #01578A;
   --s_color: #01578A;
+  --pt_color: #74768B;
   --bg_color: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
   --t_shadow: 2px 2px 9px #969696;
 }
