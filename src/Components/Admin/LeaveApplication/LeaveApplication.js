@@ -42,7 +42,7 @@ const LeaveApplication = ({ leave, setIsChange, isChange }) => {
     const onSubmit = (data) => {
         setIsChange(!isChange);
         setSuccess("");
-        axios.put(`http://localhost:5000/leave/${_id}`, data);
+        axios.put(`https://ancient-thicket-61342.herokuapp.com/leave/${_id}`, data);
         reset();
         setSuccess("leave added successfully");
     };
@@ -148,15 +148,15 @@ const LeaveApplication = ({ leave, setIsChange, isChange }) => {
 
                                 <Box>
                                     <label style={{ display: "block" }} htmlFor="date">
-                                        Total Day <span style={{ color: "red" }}>*</span>
+                                        End Day <span style={{ color: "red" }}>*</span>
                                     </label>
                                     <TextField
                                         onBlur={handleOnChange}
                                         sx={{ width: "100%" }}
                                         defaultValue={tripEnd}
                                         variant="outlined"
-                                        id="number"
-                                        type="number"
+                                        id="date"
+                                        type="date"
                                         {...register("tripEnd", { required: true })}
                                     />
                                 </Box>
