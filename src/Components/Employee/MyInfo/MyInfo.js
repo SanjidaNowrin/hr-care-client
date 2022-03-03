@@ -16,6 +16,16 @@ import Swal from "sweetalert2";
 import MyInfoUpdate from "./MyInfoUpdate";
 import SignaturePad from "react-signature-pad-wrapper";
 
+
+const getUniqueId = (info) => {
+
+  const first = info.department === "Human Resource" ? "HR" : info.department === "Information Technology" ? "IT" : info.department === "Marketing" ? "MK" : "AC";
+  const randomNumber = Math.floor(Math.random() * 100);
+  const birthArray = info.birth.split('-');
+  const birth = birthArray.join("");
+  const uniqueId = first + "-" + birth + randomNumber;
+  return uniqueId
+}
 const MyInfo = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
@@ -44,7 +54,8 @@ const MyInfo = () => {
 
   const onSubmit = (data) => {
     data.image = image;
-
+    const ID = getUniqueId(data)
+    data.ID = ID
     fetch("https://ancient-thicket-61342.herokuapp.com/employees", {
       method: "POST",
       headers: { "content-type": "application/json" },
