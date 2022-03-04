@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import {  Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Carousel from 'react-material-ui-carousel';
 import Item from "../Item/Item";
 
@@ -25,18 +25,18 @@ const Banner = () => {
             description: "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
             img: "https://i.ibb.co/52VcGBf/banner.png"
         },
-        
+
     ]
 
 
     return (
 
-        <Box>
+        <Box sx={{ mb: "2 !important" }}>
             <Carousel>
-            {
-                items.map( (item, i) => <Item key={i} item={item} /> )
-            }
-        </Carousel>
+                {
+                    items.map((item, i) => <Item key={i} item={item} />)
+                }
+            </Carousel>
         </Box>
     );
 };
