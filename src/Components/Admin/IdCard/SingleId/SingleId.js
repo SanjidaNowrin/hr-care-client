@@ -11,7 +11,7 @@ import useAuth from "../../../../hooks/useAuth";
 
 const SingleId = ({ employeeId }) => {
     const { user } = useAuth();
-    const { ID, name, department, designation, phone ,image} = employeeId;
+    const { ID, name, profile, department, designation, phone, image } = employeeId;
     const pdfExportComponent = useRef(null);
     const handleOnclick = () => {
         pdfExportComponent.current.save();
@@ -72,14 +72,14 @@ const SingleId = ({ employeeId }) => {
                     {/* employee image */}
                     <Box className={imgBox}>
                         <img
-                            src={user.photoURL}
+                            src={profile}
                             alt=""
                             className={imgTop}
                         />
                     </Box>
 
                     <Box sx={{ textAlign: 'center', marginTop: '-53px' }}>
-                        <Typography  variant="h5">{name}</Typography>
+                        <Typography variant="h5">{name}</Typography>
                         <Typography sx={{ color: '#845EC2' }} variant="body1">{department}</Typography>
                     </Box>
 

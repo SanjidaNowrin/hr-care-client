@@ -2,6 +2,8 @@ import { Box, Container, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import Attendance from './Attendance/Attendance';
+import EmployeeIdCard from './EmployeeIdCard/EmployeeIdCard';
+import LeaveRequest from './LeaveRequest/LeaveRequest';
 
 const MainFeatures = () => {
     const useStyle = makeStyles({
@@ -42,6 +44,8 @@ const MainFeatures = () => {
             </Box>
 
             <Attendance></Attendance>
+            <LeaveRequest></LeaveRequest>
+            <EmployeeIdCard></EmployeeIdCard>
         </Container>
     );
 };
