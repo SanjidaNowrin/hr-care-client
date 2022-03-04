@@ -14,8 +14,8 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import useAuth from "../../../hooks/useAuth";
 import Tooltip from "@mui/material/Tooltip";
+import dateFormat from "../../Share/Navbar/dateFormat";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,9 +50,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 toast.configure()
+
 const Holidays = () => {
   const [holidays, setHolidays] = useState([]);
-  const { user } = useAuth();
+  const [employees, setEmployees] = useState([]);
+  const [findDate, setFindDate] = useState([]);
+
 
   //current date
   const d = new Date();
@@ -61,17 +64,27 @@ const Holidays = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     fetch("https://ancient-thicket-61342.herokuapp.com/holidays")
       .then((res) => res.json())
       .then((data) => setHolidays(data.data));
   }, [holidays]);
+
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+      .then((res) => res.json())
+      .then((data) => setEmployees(data.data));
+  }, []);
+
+  useEffect(() => {
+    findDate.map((onedate) => (
+      fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${onedate._id}`, {
+        method: "DELETE",
+      })
+    ))
+  }, [findDate])
 
   const onSubmit = (data, e) => {
     fetch("https://ancient-thicket-61342.herokuapp.com/holidays", {
@@ -88,26 +101,24 @@ const Holidays = () => {
       });
 
 
+    const startDate = new Date(data.startDate);
+    const endDate = new Date(data.endDate);
 
+    for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
 
+      const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
+      console.log(currentDate)
 
-    fetch("https://ancient-thicket-61342.herokuapp.com/holidays/attendance", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ title: data.title, email: user.email }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          // setReload(!reload);
-        }
-        setOpen(false)
-      });
+      employees.map((user) => (
 
+        fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title }),
+        })
+      ))
 
-
-
-
+    }
 
     toast.success('Holiday added successfully 👌!', {
       position: toast.POSITION.BOTTOM_CENTER,
@@ -115,8 +126,10 @@ const Holidays = () => {
     })
     e.target.reset();
   };
-  const handleDelete = (id) => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/holidays/${id}`, {
+
+
+  const handleDelete = (item) => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/holidays/${item._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -125,6 +138,21 @@ const Holidays = () => {
           // setReload(!reload);
         }
       });
+
+    const startDate = new Date(item.startDate);
+    const endDate = new Date(item.endDate);
+
+    for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
+
+      const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
+      console.log(currentDate)
+
+      fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/date/${currentDate}`)
+        .then((res) => res.json())
+        .then((data) => setFindDate(data.result));
+
+    }
+
     toast.success('Holiday deleted successfully 👌!', {
       position: toast.POSITION.BOTTOM_CENTER,
       autoClose: 4000
@@ -169,15 +197,15 @@ const Holidays = () => {
                   {item.title}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {item.start}
+                  {item.startDate}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {item.end}
+                  {item.endDate}
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   <Tooltip title="Delete">
                     <DeleteOutlineOutlinedIcon sx={{ cursor: "pointer" }}
-                      onClick={() => handleDelete(item._id)}
+                      onClick={() => handleDelete(item)}
                     />
                   </Tooltip>
                 </StyledTableCell>
@@ -223,7 +251,7 @@ const Holidays = () => {
                 variant="outlined"
                 id="date"
                 type="date"
-                {...register("start", { required: true })}
+                {...register("startDate", { required: true })}
               />
             </Box>
             <Box>
@@ -235,7 +263,7 @@ const Holidays = () => {
                 variant="outlined"
                 id="date"
                 type="date"
-                {...register("end", { required: true })}
+                {...register("endDate", { required: true })}
               />
             </Box>
             <Box sx={{ textAlign: "center", mt: 3 }}>

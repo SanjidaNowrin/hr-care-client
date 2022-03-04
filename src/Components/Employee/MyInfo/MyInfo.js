@@ -16,6 +16,16 @@ import Swal from "sweetalert2";
 import MyInfoUpdate from "./MyInfoUpdate";
 import SignaturePad from "react-signature-pad-wrapper";
 
+
+const getUniqueId = (info) => {
+
+  const first = info.department === "Human Resource" ? "HR" : info.department === "Information Technology" ? "IT" : info.department === "Marketing" ? "MK" : "AC";
+  const randomNumber = Math.floor(Math.random() * 100);
+  const birthArray = info.birth.split('-');
+  const birth = birthArray.join("");
+  const uniqueId = first + "-" + birth + randomNumber;
+  return uniqueId
+}
 const MyInfo = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
@@ -44,8 +54,9 @@ const MyInfo = () => {
 
   const onSubmit = (data) => {
     data.image = image;
-
-    fetch("http://localhost:5000/employees", {
+    const ID = getUniqueId(data)
+    data.ID = ID
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -53,18 +64,17 @@ const MyInfo = () => {
       .then((response) => response.json())
       .then((result) => {
         reset();
-    Swal.fire({
-      position: "middle",
-      icon: "success",
-      title: "Employee Information Sent Successfully",
-      showConfirmButton: false,
-      timer: 2000,
-    });
+        Swal.fire({
+          position: "middle",
+          icon: "success",
+          title: "Employee Information Sent Successfully",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       })
       .catch((error) => {
         console.error("error", error);
       });
-    
   };
   const departments = [
     {
@@ -272,6 +282,7 @@ const MyInfo = () => {
                 ref={sigPad}
                 penColor="green"
               />
+              <small sx={{ textAlign: "center" }}>After providing your signature, it must be saved</small>
             </Box>
             <Button
               className="btn_regular"

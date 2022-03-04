@@ -49,7 +49,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
   const onUpdate = (data) => {
     data.image = image;
     console.log(data);
-    fetch(`http://localhost:5000/employees/${_id}`, {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -260,16 +260,39 @@ const MyInfoUpdate = ({ oneEmployee }) => {
             variant="outlined"
             defaultValue={lastGrade}
           />
+          <Typography sx={{ m: 2 }} variant="h5">
+            Signature
+          </Typography>
+          <label style={{ display: "block",fontSize:"0.8rem"}}>
+            <span style={{ color: "red" }}>**</span> After providing your signature, it must be saved
+          </label>
           <Box sx={{ border: "1px solid black" }}>
-            <Button onClick={clear}>Clear</Button>
-            <Button onClick={save}>Save</Button>
-            <Button onClick={show}>Show</Button>
             <SignaturePad
               {...register("image")}
               ref={sigPad}
               penColor="green"
             />
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-evenly",
+                marginBottom: "4px",
+              }}
+            >
+              <Button className="btn_regular" onClick={clear}>
+                Clear
+              </Button>
+              <Button className="btn_regular" onClick={save}>
+                Save
+              </Button>
+              <Button className="btn_regular" onClick={show}>
+                Show
+              </Button>
+            </Box>
           </Box>
+
           <Button
             className="btn_regular"
             variant="outlined"

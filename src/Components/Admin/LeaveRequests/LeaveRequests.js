@@ -3,15 +3,14 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CampaignIcon from "@mui/icons-material/Campaign";
-import Announcement from "./Announcement/Announcement";
 
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
 import { emphasize, styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
+import OneLeaveRequest from "./OneLeaveRequest/OneLeaveRequest";
 
-const Announcements = () => {
+const LeaveRequests = () => {
     const theme = useTheme();
     const useStyle = makeStyles({
         announceBox: {
@@ -87,10 +86,10 @@ const Announcements = () => {
 
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
+        fetch("https://ancient-thicket-61342.herokuapp.com/leave")
             .then((res) => res.json())
             .then((data) => setData(data.data));
-    }, []);
+    }, [data]);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -118,7 +117,7 @@ const Announcements = () => {
             <Box>
                 <Typography
                     sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
-                    Announcements
+                    Leave Requests
                 </Typography>
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link to="/dashboard">
@@ -128,16 +127,17 @@ const Announcements = () => {
                             icon={<HomeIcon fontSize="small" />}
                         />
                     </Link>
-                    <Link to="/dashboard/announcements"><StyledBreadcrumb component="a" href="#" label="Announcements" /></Link>
+                    <Link to="/dashboard/leaveRequests"><StyledBreadcrumb component="a" href="#" label="Leave Requests" /></Link>
                 </Breadcrumbs>
             </Box>
 
             <Box sx={{ mt: 4 }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
+
                         {data?.map((data) => (
                             <Link
-                                to={`/dashboard/announcements/${data._id}`}>
+                                to={`/dashboard/leaveRequests/${data._id}`}>
                                 <Paper
                                     onClick={() => handleClick(data._id)}
                                     className={data._id === isActive ? activeAnnounceBox : announceBox}
@@ -145,19 +145,23 @@ const Announcements = () => {
                                 >
                                     <Box className={announceTop}>
                                         <Typography className={announceTitle} variant="h6">
-                                            <CampaignIcon sx={{ color: '#FF6F91' }} fontSize="medium" />
-                                            {data.title}
+                                            {data.name}
                                         </Typography>
 
-                                        <Typography variant="body2" className={dateStyle}>{data.date}</Typography>
+                                        <Typography variant="body2" className={dateStyle}>{data.leaveType}</Typography>
                                     </Box>
-                                    <Typography className={announceP} variant="body1">{data?.text}</Typography>
+                                    <Box className={announceTop}>
+                                        <Typography className={announceP} variant="body1">{data?.designation}</Typography>
+                                        <Typography className={announceP} variant="body1">{data?.department}</Typography>
+                                        <Typography className={announceP} variant="body1">{data?.status}</Typography>
+                                    </Box>
+
                                 </Paper>
                             </Link>
                         ))}
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <Announcement data={data}></Announcement>
+                        <OneLeaveRequest data={data}></OneLeaveRequest>
                     </Grid>
                 </Grid>
             </Box>
@@ -165,4 +169,4 @@ const Announcements = () => {
     );
 };
 
-export default Announcements;
+export default LeaveRequests;

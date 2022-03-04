@@ -5,9 +5,8 @@ import Swal from 'sweetalert2'
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import { makeStyles } from "@mui/styles";
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import useAuth from "../../../hooks/useAuth";
-import employeeSingnature from "../../../assets/images/employeesingnature.jpg"
-import director from "../../../assets/images/director.png"
+import director from "../../../../assets/images/director.png"
+import useAuth from "../../../../hooks/useAuth";
 
 
 const SingleId = ({ employeeId }) => {
@@ -56,7 +55,7 @@ const SingleId = ({ employeeId }) => {
             fontWeight: '700 !important'
         },
         signatureImg: {
-            width: '60px'
+            width: '90px'
         }
     })
 
@@ -80,8 +79,8 @@ const SingleId = ({ employeeId }) => {
                     </Box>
 
                     <Box sx={{ textAlign: 'center', marginTop: '-53px' }}>
-                        <Typography sx={{ textShadow: '2px 2px 9px #969696' }} variant="h5">{name}</Typography>
-                        <Typography sx={{ color: '#845EC2', textShadow: '2px 2px 9px #969696' }} variant="body1">{department}</Typography>
+                        <Typography  variant="h5">{name}</Typography>
+                        <Typography sx={{ color: '#845EC2' }} variant="body1">{department}</Typography>
                     </Box>
 
                     {/* body content */}

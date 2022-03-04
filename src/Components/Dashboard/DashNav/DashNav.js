@@ -66,7 +66,7 @@ const DashNav = () => {
             marginLeft: "auto",
           }}
         >
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          {/* <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
@@ -76,7 +76,7 @@ const DashNav = () => {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-          </Box>
+          </Box> */}
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
