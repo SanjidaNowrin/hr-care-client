@@ -260,17 +260,39 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         variant="outlined"
                         defaultValue={lastGrade}
                     />
-                    <Box sx={{ border: "1px solid black" }}>
-                        <Button onClick={clear}>Clear</Button>
-                        <Button onClick={save}>Save</Button>
-                        <Button onClick={show}>Show</Button>
+                    <Typography sx={{ m: 2 }} variant="h5">
+                        Signature
+                    </Typography>
+                    <label style={{ display: "block", fontSize: "0.8rem" }}>
+                        <span style={{ color: "red" }}>**</span> After providing your signature, it must be saved
+                    </label>
+                    <Box sx={{ border: "1px solid #01578A" }}>
                         <SignaturePad
                             {...register("image")}
                             ref={sigPad}
                             penColor="green"
                         />
-                        <small sx={{ textAlign: "center" }}>After providing your signature, it must be saved</small>
+
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-evenly",
+                                marginBottom: "4px",
+                            }}
+                        >
+                            <Button className="btn_regular" onClick={clear}>
+                                Clear
+                            </Button>
+                            <Button className="btn_regular" onClick={save}>
+                                Save
+                            </Button>
+                            <Button className="btn_regular" onClick={show}>
+                                Show
+                            </Button>
+                        </Box>
                     </Box>
+
                     <Button
                         className="btn_regular"
                         variant="outlined"

@@ -1,75 +1,102 @@
-import { Button, Card, CardContent, CardMedia, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Team = ({ team }) => {
-    const { name, developer, image, portfolio } = team;
-    const useStyle = makeStyles({
-        cardContainer: {
-            padding: "15px",
-            borderRadius: "5px",
-            border: "1px solid #01578A",
-            transition: "all .3s ease-in-out !important",
-            "&:hover": {
-                "& $cardBox": {
-                    background: "#009EFA !important",
-                    transform: "translateY(-30px)",
-                    boxShadow: "0px 7px 15px rgb(0, 210, 252, .5) !important",
-                },
-                "& $cardTitle": {
-                    color: "#fff",
-                },
-            },
+  const { name, developer, image, portfolio, github, linkedIn } = team;
+  const useStyle = makeStyles({
+    cardContainer: {
+      padding: "15px",
+      borderRadius: "5px",
+      border: "1px solid #01578A",
+      transition: "all .3s ease-in-out !important",
+      "&:hover": {
+        "& $cardBox": {
+          background: "#F2F2F2 !important",
+          transform: "translateY(-30px)",
         },
-        cardImg: {
-            height: "200px",
-            width: "200px",
-            borderRadius: "50%",
-            margin: "40px auto 20px",
+        "& $cardTitle": {
+          color: "black",
         },
-        cardBox: {
-            boxShadow: "0px 7px 15px rgb(0, 0, 0, .2) !important",
-            background: "transparent !important",
-            position: "relative",
-            transition: "all .3s ease-in-out !important",
-        },
-        cardContent: {
-            textAlign: "center",
-        },
-        cardTitle: {
-            fontWeight: "700",
-            color: "#01578A",
-            transition: "all .3s ease-in-out !important",
-        },
-    });
+      },
+    },
+    cardImg: {
+      height: "200px",
+      width: "200px",
+      borderRadius: "50%",
+      margin: "40px auto 20px",
+    },
+    cardBox: {
+      boxShadow: "0px 7px 15px rgb(0, 0, 0, .2) !important",
+      background: "transparent !important",
+      position: "relative",
+      transition: "all .3s ease-in-out !important",
+    },
+    cardContent: {
+      textAlign: "center",
+    },
+    cardTitle: {
+      fontWeight: "700",
+      color: "#01578A",
+      transition: "all .3s ease-in-out !important",
+    },
+  });
 
-    const { cardContainer, cardImg, cardBox, cardContent, cardTitle } = useStyle();
-    return (
-        <Grid item xs={12} sm={6} md={4}>
-            <Box className={cardContainer}>
-                <Card className={cardBox}>
-                    <CardMedia className={cardImg} image={image} />
+  const { cardContainer, cardImg, cardBox, cardContent, cardTitle } =
+    useStyle();
+  return (
+    <Grid item xs={12} sm={6} md={4}>
+      <Box className={cardContainer}>
+        <Card className={cardBox}>
+          <CardMedia className={cardImg} image={image} />
 
-                    <CardContent className={cardContent}>
-                        <Typography variant="h5" className={cardTitle}>
-                            {name}
-                        </Typography>
+          <CardContent className={cardContent}>
+            <Typography variant="h5" className={cardTitle}>
+              {name}
+            </Typography>
 
-                        <Typography variant="body1" sx={{ fontWeight: "600" }} color="text.secondary">
-                            {developer}
-                        </Typography>
-
-                        <a target="_blank" rel="noreferrer" href={portfolio}>
-                            <Button sx={{ mt: 2, width: "100%", border: "1px solid #fff" }} className="btn_regular ">
-                                Read More
-                            </Button>
-                        </a>
-                    </CardContent>
-                </Card>
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "600" }}
+              color="text.secondary"
+            >
+              {developer}
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-evenly",
+                my:2
+              }}
+            >
+              <a target="_blank" rel="noreferrer" href={linkedIn}>
+                <LinkedInIcon sx={{ color: "black !important",fontSize:"1.8rem" }} />
+              </a>
+              <a target="_blank" rel="noreferrer" href={github}>
+                <GitHubIcon sx={{ color: "black !important",fontSize:"1.8rem"  }} />
+              </a>
+              <a target="_blank" rel="noreferrer" href={portfolio}>
+                <AccountBoxIcon sx={{ color: "black !important",fontSize:"1.8rem"  }} />
+              </a>
             </Box>
-        </Grid>
-    );
+          </CardContent>
+        </Card>
+      </Box>
+    </Grid>
+  );
 };
 
 export default Team;
