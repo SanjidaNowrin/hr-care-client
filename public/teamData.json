@@ -3,42 +3,55 @@
                 "id": "1",
                 "name": "Md Mahedi Hassan",
                 "image": "https://i.ibb.co/wYv0cFZ/mahedi.jpg",
-                "developer": "Back-end Developer",
-                "portfolio": "https://md-mh.netlify.app/"
+                "developer": "Back-End Developer",
+                "portfolio": "https://md-mh.netlify.app/",
+                "linkedIn":"",
+                "github":"https://github.com/md-mh"
         },
         {
                 "id": "2",
                 "name": "Nurul Islam Tanvir",
                 "image": "https://i.ibb.co/7QxPFGY/tanvir.png",
                 "developer": "MERN Stack Developer",
-                "portfolio": "https://musing-turing-aea328.netlify.app/"
+                "portfolio": "https://musing-turing-aea328.netlify.app/",
+                "linkedIn":"",
+                "github":"https://github.com/NurulIslam-EEE"
         },
         {
                 "id": "3",
-                "name": "Asraful Islam Sowrav",
-                "image": "https://i.ibb.co/TYmmM1Q/sowrav-front-end-developer.jpg",
-                "developer": "Back-end Developer",
-                "portfolio": "https://sowrav.netlify.app/"
+                "name": "Sanjida Islam Nowrin",
+                "image": "https://i.ibb.co/WyH8qrc/Sanjida.jpg",
+                "developer": "Front-End Developer",
+                "portfolio": "https://sanjida-islam-nowrin.netlify.app/",
+                "linkedIn":"https://www.linkedin.com/in/sanjida-islam-nowrin/",
+                "github":"https://github.com/SanjidaNowrin" 
         },
         {
                 "id": "4",
-                "name": "Sanjida Islam Nowrin",
-                "image": "https://i.ibb.co/WyH8qrc/Sanjida.jpg",
-                "developer": "React Developer",
-                "portfolio": "https://sanjida-islam-nowrin.netlify.app/"
+                "name": "Asraful Islam Sowrav",
+                "image": "https://i.ibb.co/TYmmM1Q/sowrav-front-end-developer.jpg",
+                "developer": "Back-End Developer",
+                "portfolio": "https://sowrav.netlify.app/",
+                "linkedIn":"",
+                "github":"https://github.com/asrafulsow"
+                
         },
         {
                 "id": "5",
                 "name": "MD Forid Hosssin",
                 "image": "https://i.ibb.co/DGPYn0C/person.jpg",
-                "developer": "Front-end Developer",
-                "portfolio": "https://azaz-personal-by-forid.netlify.app/"
+                "developer": "Front-End Developer",
+                "portfolio": "https://azaz-personal-by-forid.netlify.app/",
+                "linkedIn":"",
+                "github":""
         },
         {
                 "id": "6",
                 "name": "Md Kawsar Ali",
                 "image": "https://i.ibb.co/3fdB6Nh/kap.jpg",
-                "developer": "Front-end Developer",
-                "portfolio": ""
+                "developer": "Front-End Developer",
+                "portfolio": "",
+                "linkedIn":"",
+                "github":"https://github.com/kawsaralidev"
         }
 ]

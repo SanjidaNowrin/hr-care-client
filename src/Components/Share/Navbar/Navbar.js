@@ -74,7 +74,7 @@ const Navbar = () => {
         <Divider />
         <ListItem className={mobileNavItem} button>
           <ListItemText>
-            <Link to="/">Features</Link>
+            <Link to="/teams">Teams</Link>
           </ListItemText>
         </ListItem>
 
@@ -130,8 +130,8 @@ const Navbar = () => {
                   <Button color="inherit">Home</Button>
                 </Link>
 
-                <Link className={navItem} to="/">
-                  <Button color="inherit">Features</Button>
+                <Link className={navItem} to="/teams">
+                  <Button color="inherit">About us</Button>
                 </Link>
                 <NavLink className={navItem} to="/dashboard">
                   <Button className="btn_regular" color="inherit">

@@ -21,6 +21,7 @@ import Employees from "./Components/Admin/Employees/Employees";
 import AddCourse from "./Components/Admin/AddCourse/AddCourse";
 import AddAnnouncement from "./Components/Admin/AddAnnouncement/AddAnnouncement";
 import HolidayCalender from './Components/Employee/HolidayCalender/HolidayCalender';
+import Teams from './Components/Home/Teams/Teams';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/teams" element={<Teams />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 

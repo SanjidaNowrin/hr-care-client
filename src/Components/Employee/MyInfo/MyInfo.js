@@ -53,17 +53,18 @@ const MyInfo = () => {
       .then((response) => response.json())
       .then((result) => {
         reset();
-        Swal.fire({
-          position: "middle",
-          icon: "success",
-          title: "Employee Information Sent Successfully",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+    Swal.fire({
+      position: "middle",
+      icon: "success",
+      title: "Employee Information Sent Successfully",
+      showConfirmButton: false,
+      timer: 2000,
+    });
       })
       .catch((error) => {
         console.error("error", error);
       });
+    
   };
   const departments = [
     {
