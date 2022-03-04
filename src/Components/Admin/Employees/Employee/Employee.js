@@ -8,6 +8,8 @@ import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Menu from '@mui/material/Menu';
 import EmployeeModal from '../EmployeeModal/EmployeeModal';
+import { Avatar, CardHeader } from '@mui/material';
+import useAuth from '../../../../hooks/useAuth';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -81,12 +83,23 @@ const Employee = ({ item }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const { user } = useAuth();
     return (
         <>
             <StyledTableRow>
-                <StyledTableCell component="th" scope="row">
-                    {name}
-                </StyledTableCell>
+                <TableCell component="th" scope="row">
+                    <CardHeader
+                        sx={{ padding: '0 !important', color: '#845EC2' }}
+                        avatar={
+                            <Avatar sx={{ background: '#00D2FC !important' }} aria-label="recipe">
+                                {name.slice(0, 1)}
+                            </Avatar>
+                        }
+                        title={name}
+                        subheader={user.email}
+                    />
+                </TableCell>
                 <StyledTableCell align="left">{phone}</StyledTableCell>
                 <StyledTableCell align="center">{department}</StyledTableCell>
                 <StyledTableCell align="center">{designation}</StyledTableCell>

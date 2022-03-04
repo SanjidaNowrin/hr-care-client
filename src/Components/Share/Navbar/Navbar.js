@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
@@ -12,13 +13,52 @@ import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { styled } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
+import Menu from "@mui/material/Menu";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Tooltip from "@mui/material/Tooltip";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import useAuth from "../../../hooks/useAuth";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#44b700",
+    color: "#44b700",
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    "&::after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      borderRadius: "50%",
+      animation: "ripple 1.2s infinite ease-in-out",
+      border: "1px solid currentColor",
+      content: '""',
+    },
+  },
+  "@keyframes ripple": {
+    "0%": {
+      transform: "scale(.8)",
+      opacity: 1,
+    },
+    "100%": {
+      transform: "scale(2.4)",
+      opacity: 0,
+    },
+  },
+}));
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
   const [state, setState] = React.useState(false);
   const theme = useTheme();
   const useStyle = makeStyles({
@@ -61,6 +101,15 @@ const Navbar = () => {
     navContainer,
   } = useStyle();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   // drawer item
   const list = (
     <Box sx={{ width: 250 }} role="presentation">
@@ -90,6 +139,7 @@ const Navbar = () => {
       </List>
     </Box>
   );
+
   return (
     <>
       {/* main navigation */}
@@ -138,6 +188,87 @@ const Navbar = () => {
                     Dashboard
                   </Button>
                 </NavLink>
+
+                <NavLink className={navItem} to="/">
+                  {
+                    user.email ?
+                      <Tooltip title="Account settings">
+                        <IconButton
+                          onClick={handleClick}
+                          size="small"
+                          sx={{ ml: 2 }}
+                          aria-controls={open ? "account-menu" : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                        >
+                          <StyledBadge
+                            overlap="circular"
+                            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                            variant="dot"
+                          >
+                            <Avatar alt="Remy Sharp" src={user.photoURL} />
+                          </StyledBadge>
+                        </IconButton>
+                      </Tooltip>
+                      :
+                      <NavLink className={navItem} to="/login">
+                        <Button color="inherit">
+                          Login
+                        </Button>
+                      </NavLink>
+                  }
+                </NavLink>
+
+
+                <Menu
+                  anchorEl={anchorEl}
+                  id="account-menu"
+                  open={open}
+                  onClose={handleClose}
+                  onClick={handleClose}
+                  PaperProps={{
+                    elevation: 0,
+                    sx: {
+                      overflow: "visible",
+                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                      mt: 1.5,
+                      "& .MuiAvatar-root": {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      "&:before": {
+                        content: '""',
+                        display: "block",
+                        position: "absolute",
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: "background.paper",
+                        transform: "translateY(-50%) rotate(45deg)",
+                        zIndex: 0,
+                      },
+                    },
+                  }}
+                  transformOrigin={{ horizontal: "right", vertical: "top" }}
+                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                >
+                  <MenuItem>
+                    <Avatar />
+                    My Profile
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem>
+                    <ListItemIcon>
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
+                    <Button sx={{ color: "black", padding: "0" }} onClick={logOut}>
+                      Logout
+                    </Button>
+                  </MenuItem>
+                </Menu>
               </Box>
             </Toolbar>
           </Container>
@@ -148,7 +279,7 @@ const Navbar = () => {
       <>
         <React.Fragment>
           <Drawer open={state} anchor="right" onClose={() => setState(false)}>
-            <Box sx={{ background: "#009EFA" }}>
+            <Box sx={{ background: "#01578A !important" }}>
               <Link className={navItem} to="/">
                 <Typography variant="h5" sx={{ textAlign: "center", my: 2 }}>
                   HR CARE

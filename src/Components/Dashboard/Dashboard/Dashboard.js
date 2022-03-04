@@ -86,14 +86,15 @@ function Dashboard(props) {
         {/* Employees */}
         <Typography variant="h6">Employees</Typography>
         <List className={linkItem}>
-          <Link className={dashLink} to="/dashboard/attendance">
-            <CoPresentOutlinedIcon className={dashIcon} />
-            Attendance
-          </Link>
 
           <Link className={dashLink} to="/dashboard/myinfo">
             <AccountBoxOutlinedIcon className={dashIcon} />
             My Information
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/attendance">
+            <CoPresentOutlinedIcon className={dashIcon} />
+            Attendance
           </Link>
 
           <Link className={dashLink} to="/dashboard/announcements">

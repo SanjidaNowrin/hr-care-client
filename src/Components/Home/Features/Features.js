@@ -18,7 +18,7 @@ const Features = () => {
             '&:hover': {
                 background: '#c3e4f7 !important',
                 '& $icon': {
-                    color: 'black !important'
+                    color: '#fff !important'
                 }
             }
         },

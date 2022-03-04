@@ -79,7 +79,7 @@ const Announcements = () => {
     });
     const { announceBox, activeAnnounceBox, announceTop, announceTitle, dateStyle, announceP } = useStyle();
 
-    const [isActive, setActive] = useState();
+    const [isActive, setActive] = useState('6213be7d1b7ceeb243b9178a');
     const handleClick = (id) => {
         console.log(id)
         setActive(id);

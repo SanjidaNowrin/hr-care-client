@@ -1,11 +1,16 @@
-import { Grid, MenuItem, Paper, TextField, Typography } from "@mui/material";
+import { Container, Box, Grid, MenuItem, Paper, TextField, Typography, Breadcrumbs } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+
+// Breadcrumbs
+import Chip from '@mui/material/Chip';
+import { emphasize, styled } from '@mui/material/styles';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from "react-router-dom";
 
 
 const Leave = () => {
@@ -65,8 +70,47 @@ const Leave = () => {
         }
     ];
 
+    // Breadcrumbs
+    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+        const backgroundColor =
+            theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[800];
+        return {
+            backgroundColor,
+            height: theme.spacing(3),
+            color: theme.palette.text.primary,
+            fontWeight: theme.typography.fontWeightRegular,
+            '&:hover, &:focus': {
+                backgroundColor: emphasize(backgroundColor, 0.06),
+            },
+            '&:active': {
+                boxShadow: theme.shadows[1],
+                backgroundColor: emphasize(backgroundColor, 0.12),
+            },
+        };
+    });
+
     return (
-        <div>
+        <Container>
+            {/* Breadcrumbs */}
+            <Box sx={{ mb: 4 }}>
+                <Typography
+                    sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
+                    Leave
+                </Typography>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link to="/dashboard">
+                        <StyledBreadcrumb
+                            to="/dashboard"
+                            label="Dashboard"
+                            icon={<HomeIcon fontSize="small" />}
+                        />
+                    </Link>
+                    <Link to="/dashboard/leave"><StyledBreadcrumb component="a" href="#" label="Leave" /></Link>
+                </Breadcrumbs>
+            </Box>
+
             <Grid container spacing={2}>
                 <Grid item xs={12} md={3} sm={0}></Grid>
 
@@ -247,7 +291,7 @@ const Leave = () => {
 
                 <Grid item xs={12} md={3} sm={0}></Grid>
             </Grid>
-        </div >
+        </Container >
     );
 };
 

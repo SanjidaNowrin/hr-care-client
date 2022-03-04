@@ -14,6 +14,7 @@ const Footer = () => {
             background: '#01578A',
             marginTop: '60px',
             position: 'relative',
+            color: 'white',
             '&::after': {
                 position: 'absolute',
                 content: '""',
@@ -77,7 +78,7 @@ const Footer = () => {
             padding: '20px 0',
             background: '#01578A',
             marginTop: '20px',
-            color:'white',
+            color: 'white',
             boxShadow: '0 0 30px 15px #0000004f'
         }
     })
