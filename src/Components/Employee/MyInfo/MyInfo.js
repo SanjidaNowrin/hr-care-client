@@ -16,13 +16,11 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import MyInfoUpdate from "./MyInfoUpdate";
 import SignaturePad from "react-signature-pad-wrapper";
-
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
 import { emphasize, styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
-
 
 const getUniqueId = (info) => {
 
@@ -83,7 +81,6 @@ const MyInfo = () => {
                 console.error("error", error);
             });
     };
-
     const departments = [
         {
             value: "Human Resource",
@@ -131,7 +128,7 @@ const MyInfo = () => {
     });
 
     return (
-        <Container>
+        <Container style={{}}>
             {/* Breadcrumbs */}
             <Box sx={{ mb: 4 }}>
                 <Typography
@@ -146,7 +143,7 @@ const MyInfo = () => {
                             icon={<HomeIcon fontSize="small" />}
                         />
                     </Link>
-                    <Link to="/dashboard/myinfo"><StyledBreadcrumb component="a" href="#" label="Myinfo" /></Link>
+                    <Link to="/dashboard/myinfo"><StyledBreadcrumb component="a" href="#" label="My Info" /></Link>
                 </Breadcrumbs>
             </Box>
 
@@ -163,7 +160,8 @@ const MyInfo = () => {
                         component="form"
                         sx={{
                             "& > :not(style)": { m: 1, width: "30%" },
-                        }}>
+                        }}
+                    >
                         <TextField
                             {...register("name")}
                             id="outlined-basic"
@@ -307,7 +305,6 @@ const MyInfo = () => {
                             type="text"
                             variant="outlined"
                         />
-
                         <Box sx={{ border: "1px solid black" }}>
                             <Button onClick={clear}>Clear</Button>
                             <Button onClick={save}>Save</Button>

@@ -6,6 +6,7 @@ import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import Carousel from 'react-material-ui-carousel';
 
 const Attendance = () => {
     const useStyle = makeStyles({
@@ -41,12 +42,24 @@ const Attendance = () => {
         featureCard: {
             textAlign: 'center',
             padding: '10px 0',
-            border: '1px solid #00D2FC',
-            background: '#00D2FC !important',
-            boxShadow: '0px 7px 15px rgb(0, 210, 252, .5) !important'
+            border: '1px solid #F2F2F2',
+            background: '#F2F2F2 !important',
+            boxShadow: '0px 7px 15px rgb(0, 0, 0, .3) !important',
+            color: '#000 !important'
         }
     })
     const { topText, sectionTitle, pText, iconWrap, listText, featureCard } = useStyle();
+
+    var slideImg = [
+        {
+            id: "01",
+            img: "https://i.ibb.co/8mHnSB2/a.png"
+        },
+        {
+            id: "02",
+            img: "https://i.ibb.co/NmtBBQC/2.png"
+        }
+    ]
     return (
         <Box sx={{ py: 8 }}>
             <Grid container spacing={2}>
@@ -64,9 +77,9 @@ const Attendance = () => {
                             <Grid container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <OfflineBoltIcon sx={{ color: '#fff' }} fontSize="large" />
+                                        <OfflineBoltIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
-                                        <Typography variant='body1'>
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
                                             Faster attendance <br /> process.
                                         </Typography>
                                     </Paper>
@@ -74,9 +87,9 @@ const Attendance = () => {
 
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <PlayCircleOutlineIcon sx={{ color: '#fff' }} fontSize="large" />
+                                        <PlayCircleOutlineIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
-                                        <Typography variant='body1'>
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
                                             Punch In to start <br /> work.
                                         </Typography>
                                     </Paper>
@@ -84,9 +97,9 @@ const Attendance = () => {
 
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <StopCircleIcon sx={{ color: '#fff' }} fontSize="large" />
+                                        <StopCircleIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
-                                        <Typography variant='body1'>
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
                                             Punch Out to end <br /> work.
                                         </Typography>
                                     </Paper>
@@ -94,9 +107,9 @@ const Attendance = () => {
 
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <AccessTimeIcon sx={{ color: '#fff' }} fontSize="large" />
+                                        <AccessTimeIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
-                                        <Typography variant='body1'>
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
                                             Calculate your work<br /> Time.
                                         </Typography>
                                     </Paper>
@@ -108,9 +121,15 @@ const Attendance = () => {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <Box>
-                        <img style={{ width: '100%' }} src="https://i.ibb.co/X3NtB4g/HR-Care-1.png" alt="img" />
-                    </Box>
+                    <Carousel>
+                        {
+                            slideImg.map(item =>
+                                <Box key={item.id}>
+                                    <img src={item.img} alt={item.id} />
+                                </Box>
+                            )
+                        }
+                    </Carousel>
                 </Grid>
             </Grid>
         </Box>

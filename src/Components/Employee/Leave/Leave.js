@@ -115,7 +115,7 @@ const Leave = () => {
                 <Grid item xs={12} md={3} sm={0}></Grid>
 
                 <Grid item xs={12} md={6} sm={12}>
-                    <Paper sx={{ p: 4, mt: 5, mb: 5 }} elevation={6}>
+                    <Paper sx={{ p: 4, mt: 2, mb: 5 }} elevation={6}>
                         <Typography sx={{ textAlign: "center", margin: "15px" }} variant="h4">
                             <span style={{ color: " #01578A" }}> Leave</span> Form
                         </Typography>
