@@ -305,7 +305,13 @@ const MyInfo = () => {
                             type="text"
                             variant="outlined"
                         />
-                        <Box sx={{ border: "1px solid black" }}>
+                        <Typography sx={{ m: 2 }} variant="h5">
+                            Signature
+                        </Typography>
+                        <label style={{ display: "block", fontSize: "0.8rem" }}>
+                            <span style={{ color: "red" }}>**</span> After providing your signature, it must be saved
+                        </label>
+                        <Box sx={{ border: "1px solid #01578A" }}>
                             <Button onClick={clear}>Clear</Button>
                             <Button onClick={save}>Save</Button>
                             <Button onClick={show}>Show</Button>
@@ -314,6 +320,7 @@ const MyInfo = () => {
                                 ref={sigPad}
                                 penColor="green"
                             />
+
                         </Box>
                         <Button
                             className="btn_regular"
