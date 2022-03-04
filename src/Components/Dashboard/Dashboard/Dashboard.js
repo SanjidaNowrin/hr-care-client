@@ -69,7 +69,7 @@ function Dashboard(props) {
           marginBottom: "20px",
         }}
       >
-        HR CARE
+        <Link style={{color: "white"}} to="/home"> HR CARE</Link>
       </Typography>
       <Box sx={{ pl: 2 }}>
         <Typography variant="h6">Main</Typography>
