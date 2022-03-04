@@ -2,9 +2,10 @@ import { Paper, Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import StopCircleIcon from '@mui/icons-material/StopCircle';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import BeenhereIcon from '@mui/icons-material/Beenhere';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -18,7 +19,7 @@ import SwiperCore, {
 } from 'swiper';
 SwiperCore.use([Navigation, Autoplay]);
 
-const Attendance = () => {
+const LeaveRequest = () => {
     const useStyle = makeStyles({
         topText: {
             textTransform: 'capitalize',
@@ -63,73 +64,21 @@ const Attendance = () => {
     var slideImg = [
         {
             id: "01",
-            img: "https://i.ibb.co/gyVvTyP/a.png"
+            img: "https://i.ibb.co/2Yn1L7p/leave2.webp"
         },
         {
             id: "02",
-            img: "https://i.ibb.co/rHCTncT/2.png"
+            img: "https://i.ibb.co/j3rK8fv/leave.webp"
+        }
+        ,
+        {
+            id: "02",
+            img: "https://i.ibb.co/pyC9kjv/leave3.webp"
         }
     ]
     return (
         <Box sx={{ py: 8 }}>
             <Grid container spacing={4}>
-                <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'conter' }}>
-                    <Box>
-                        <Typography className={topText} variant="h6">Daily Attendance</Typography>
-                        <Typography variant="h4" className={sectionTitle}>
-                            Every employee given Their Daily Attendance
-                        </Typography>
-                        <Typography variant="body1" className={pText}>
-                            HR Software is system for company to maintain a database of their employers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.
-                        </Typography>
-
-                        <Box sx={{ mr: 6, mt: 4 }}>
-                            <Grid container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                                <Grid item xs={2} sm={4} md={6}>
-                                    <Paper className={featureCard}>
-                                        <OfflineBoltIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
-
-                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Faster attendance <br /> process.
-                                        </Typography>
-                                    </Paper>
-                                </Grid>
-
-                                <Grid item xs={2} sm={4} md={6}>
-                                    <Paper className={featureCard}>
-                                        <PlayCircleOutlineIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
-
-                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Punch In to start <br /> work.
-                                        </Typography>
-                                    </Paper>
-                                </Grid>
-
-                                <Grid item xs={2} sm={4} md={6}>
-                                    <Paper className={featureCard}>
-                                        <StopCircleIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
-
-                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Punch Out to end <br /> work.
-                                        </Typography>
-                                    </Paper>
-                                </Grid>
-
-                                <Grid item xs={2} sm={4} md={6}>
-                                    <Paper className={featureCard}>
-                                        <AccessTimeIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
-
-                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Calculate your work<br /> Time.
-                                        </Typography>
-                                    </Paper>
-                                </Grid>
-                            </Grid>
-                        </Box>
-
-                    </Box>
-                </Grid>
-
                 <Grid item xs={12} md={6}>
                     <Swiper
                         loop={true} autoplay={{ delay: 3000, disableOnInteraction: false }} navigation={true} className="mySwiper">
@@ -142,9 +91,66 @@ const Attendance = () => {
                         }
                     </Swiper>
                 </Grid>
+
+                <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'conter' }}>
+                    <Box>
+                        <Typography className={topText} variant="h6">Leave Requests</Typography>
+                        <Typography variant="h4" className={sectionTitle}>
+                            Every employee can request his leave
+                        </Typography>
+                        <Typography variant="body1" className={pText}>
+                            An employee can submit different types of leave applications. Different types of leaves are casual, sick, earn, maternity, married, etc. Admin can be granted employees leave or cancel leave.
+                        </Typography>
+
+                        <Box sx={{ mr: 6, mt: 4 }}>
+                            <Grid container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <OfflineBoltIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
+                                            Employee submit <br /> request.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <DynamicFeedIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
+                                            Multiple vacation <br /> options.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <BeenhereIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
+                                            Admin granted <br /> leave.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <HighlightOffIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+
+                                        <Typography sx={{ fontWeight: '600' }} variant='body1'>
+                                            Admin cancel <br /> leave.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                        </Box>
+
+                    </Box>
+                </Grid>
             </Grid>
         </Box>
     );
 };
 
-export default Attendance;
+export default LeaveRequest;

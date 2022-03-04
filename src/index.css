@@ -27,6 +27,11 @@ a{
   text-decoration: none !important;
 }
 
+.swiper-button-prev,
+.swiper-button-next{
+  display: none !important;
+}
+
 .section_title{
   position: relative;
   text-align: center;

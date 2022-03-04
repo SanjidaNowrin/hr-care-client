@@ -1,10 +1,11 @@
 import { Paper, Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import StopCircleIcon from '@mui/icons-material/StopCircle';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import DownloadForOfflineOutlinedIcon from '@mui/icons-material/DownloadForOfflineOutlined';
+import DynamicFormOutlinedIcon from '@mui/icons-material/DynamicFormOutlined';
+import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -18,7 +19,7 @@ import SwiperCore, {
 } from 'swiper';
 SwiperCore.use([Navigation, Autoplay]);
 
-const Attendance = () => {
+const EmployeeIdCard = () => {
     const useStyle = makeStyles({
         topText: {
             textTransform: 'capitalize',
@@ -63,11 +64,11 @@ const Attendance = () => {
     var slideImg = [
         {
             id: "01",
-            img: "https://i.ibb.co/gyVvTyP/a.png"
+            img: "https://i.ibb.co/ZgL7Gnc/id.webp"
         },
         {
             id: "02",
-            img: "https://i.ibb.co/rHCTncT/2.png"
+            img: "https://i.ibb.co/kxhPXNC/2id.webp"
         }
     ]
     return (
@@ -75,52 +76,52 @@ const Attendance = () => {
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'conter' }}>
                     <Box>
-                        <Typography className={topText} variant="h6">Daily Attendance</Typography>
+                        <Typography className={topText} variant="h6">Employee ID Card</Typography>
                         <Typography variant="h4" className={sectionTitle}>
-                            Every employee given Their Daily Attendance
+                            Every employee will get their company ID card
                         </Typography>
                         <Typography variant="body1" className={pText}>
-                            HR Software is system for company to maintain a database of their employers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.
+                            Employee ID cards help to increase security due to the magnetic scanning strips on the back of the cards, can make clocking in and out easier, helps to simplify scheduling and makes transitions. Employee ID cards benefit not only your business and it's employees, but your customers as well.
                         </Typography>
 
                         <Box sx={{ mr: 6, mt: 4 }}>
                             <Grid container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <OfflineBoltIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+                                        <PersonSearchIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
                                         <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Faster attendance <br /> process.
+                                            Admin can find employee <br /> id card.
                                         </Typography>
                                     </Paper>
                                 </Grid>
 
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <PlayCircleOutlineIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+                                        <DownloadForOfflineOutlinedIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
                                         <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Punch In to start <br /> work.
+                                            PDF formate Download <br /> id card
                                         </Typography>
                                     </Paper>
                                 </Grid>
 
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <StopCircleIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+                                        <DynamicFormOutlinedIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
                                         <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Punch Out to end <br /> work.
+                                            Empolyee id card fully <br /> dynamic.
                                         </Typography>
                                     </Paper>
                                 </Grid>
 
                                 <Grid item xs={2} sm={4} md={6}>
                                     <Paper className={featureCard}>
-                                        <AccessTimeIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
+                                        <SyncAltOutlinedIcon sx={{ color: 'var(--p_color)' }} fontSize="large" />
 
                                         <Typography sx={{ fontWeight: '600' }} variant='body1'>
-                                            Calculate your work<br /> Time.
+                                            Admin also update <br /> id card.
                                         </Typography>
                                     </Paper>
                                 </Grid>
@@ -131,20 +132,22 @@ const Attendance = () => {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <Swiper
-                        loop={true} autoplay={{ delay: 3000, disableOnInteraction: false }} navigation={true} className="mySwiper">
-                        {
-                            slideImg.map(item =>
-                                <SwiperSlide key={item.id}>
-                                    <img style={{ width: '100%' }} src={item.img} alt={item.id} />
-                                </SwiperSlide>
-                            )
-                        }
-                    </Swiper>
+                    <Box>
+                        <Swiper
+                            loop={true} autoplay={{ delay: 3000, disableOnInteraction: false }} navigation={true} className="mySwiper">
+                            {
+                                slideImg.map(item =>
+                                    <SwiperSlide key={item.id}>
+                                        <img style={{ width: '100%' }} src={item.img} alt={item.id} />
+                                    </SwiperSlide>
+                                )
+                            }
+                        </Swiper>
+                    </Box>
                 </Grid>
             </Grid>
         </Box>
     );
 };
 
-export default Attendance;
+export default EmployeeIdCard;
