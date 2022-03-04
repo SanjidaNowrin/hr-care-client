@@ -1,7 +1,11 @@
-import { Avatar, Box, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, Paper, Box, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
+import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import StopCircleIcon from '@mui/icons-material/StopCircle';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const Attendance = () => {
     const useStyle = makeStyles({
@@ -33,9 +37,16 @@ const Attendance = () => {
             left: '-15px',
             fontSize: '1.2rem !important',
             color: 'var(--p_color) !important'
+        },
+        featureCard: {
+            textAlign: 'center',
+            padding: '10px 0',
+            border: '1px solid #00D2FC',
+            background: '#00D2FC !important',
+            boxShadow: '0px 7px 15px rgb(0, 210, 252, .5) !important'
         }
     })
-    const { topText, sectionTitle, pText, iconWrap, listText } = useStyle();
+    const { topText, sectionTitle, pText, iconWrap, listText, featureCard } = useStyle();
     return (
         <Box sx={{ py: 8 }}>
             <Grid container spacing={2}>
@@ -49,60 +60,50 @@ const Attendance = () => {
                             HR Software is system for company to maintain a database of their employers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.
                         </Typography>
 
-                        {/* list item */}
-                        <List sx={{ mt: 2 }}>
-                            <ListItem sx={{ py: 0 }}>
-                                <ListItemAvatar>
-                                    <Avatar className={iconWrap}>
-                                        <CheckIcon fontSize="medium" />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText>
-                                    <Typography className={listText} variant="body1">
-                                        Faster attendance process.
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
+                        <Box sx={{ mr: 6, mt: 4 }}>
+                            <Grid container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <OfflineBoltIcon sx={{ color: '#fff' }} fontSize="large" />
 
-                            <ListItem sx={{ py: 0 }}>
-                                <ListItemAvatar>
-                                    <Avatar className={iconWrap}>
-                                        <CheckIcon fontSize="medium" />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText>
-                                    <Typography className={listText} variant="body1">
-                                        Punch In to start work.
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
+                                        <Typography variant='body1'>
+                                            Faster attendance <br /> process.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
 
-                            <ListItem sx={{ py: 0 }}>
-                                <ListItemAvatar>
-                                    <Avatar className={iconWrap}>
-                                        <CheckIcon fontSize="medium" />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText>
-                                    <Typography className={listText} variant="body1">
-                                        Punch Out to end work.
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <PlayCircleOutlineIcon sx={{ color: '#fff' }} fontSize="large" />
 
-                            <ListItem sx={{ py: 0 }}>
-                                <ListItemAvatar>
-                                    <Avatar className={iconWrap}>
-                                        <CheckIcon fontSize="medium" />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText>
-                                    <Typography className={listText} variant="body1">
-                                        Punch In to start work.
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
-                        </List>
+                                        <Typography variant='body1'>
+                                            Punch In to start <br /> work.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <StopCircleIcon sx={{ color: '#fff' }} fontSize="large" />
+
+                                        <Typography variant='body1'>
+                                            Punch Out to end <br /> work.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+
+                                <Grid item xs={2} sm={4} md={6}>
+                                    <Paper className={featureCard}>
+                                        <AccessTimeIcon sx={{ color: '#fff' }} fontSize="large" />
+
+                                        <Typography variant='body1'>
+                                            Calculate your work<br /> Time.
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                        </Box>
+
                     </Box>
                 </Grid>
 

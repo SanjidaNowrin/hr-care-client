@@ -5,13 +5,14 @@ import Swal from 'sweetalert2'
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import { makeStyles } from "@mui/styles";
 import { Box, Divider, Paper, Typography } from "@mui/material";
-import useAuth from "../../../hooks/useAuth";
+import employeeSingnature from "../../../../assets/images/employeesingnature.jpg"
+import director from "../../../../assets/images/director.png"
+import useAuth from "../../../../hooks/useAuth";
 
 
 const SingleId = ({ employeeId }) => {
     const { user } = useAuth();
-    const { ID, name, department, designation, phone } = employeeId;
-
+    const { ID, name, department, designation, phone ,image} = employeeId;
     const pdfExportComponent = useRef(null);
     const handleOnclick = () => {
         pdfExportComponent.current.save();
@@ -125,7 +126,7 @@ const SingleId = ({ employeeId }) => {
                                 <Box sx={{ textAlign: 'center' }}>
                                     <img
                                         className={signatureImg}
-                                        src="https://signaturely.com/wp-content/uploads/2020/04/mark-cuban-signature-signaturely-image.png"
+                                        src={`data:image/jpeg;base64,${image?.split(",")[1]}`}
                                         alt="signature"
                                     />
                                 </Box>
@@ -138,7 +139,7 @@ const SingleId = ({ employeeId }) => {
                                 <Box sx={{ textAlign: 'center' }}>
                                     <img
                                         className={signatureImg}
-                                        src="https://www.seoclerk.com/pics/211935-1qeWBB1398605222.jpg"
+                                        src={director}
                                         alt="signature"
                                     />
                                 </Box>

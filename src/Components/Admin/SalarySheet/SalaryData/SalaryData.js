@@ -29,7 +29,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const SalaryData = ({ employee }) => {
   const { name, email, year, fee } = employee;
 
- 
+
   return (
     <>
       <StyledTableRow>
@@ -45,12 +45,12 @@ const SalaryData = ({ employee }) => {
           {year}
         </StyledTableCell>
 
-        <StyledTableCell align="left" component="th" scope="row">
+        <StyledTableCell align="right" component="th" scope="row">
           {fee}
         </StyledTableCell>
-       
+
       </StyledTableRow>
-      
+
     </>
   );
 };

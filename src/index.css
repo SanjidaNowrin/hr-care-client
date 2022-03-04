@@ -27,6 +27,30 @@ a{
   text-decoration: none !important;
 }
 
+.section_title{
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  font-family: var(--PT_font) !important;
+}
+
+.section_title::before,
+.section_title::after{
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 40%;
+  top: 43px;
+  left: 1%;
+  background: #00D2FC;
+}
+
+.section_title::after{
+  width: 20% !important;
+  left: 41% !important;
+  background: #845EC2 !important;
+}
+
 .btn_regular{
   color: white !important;
   background-color: #01578A !important;

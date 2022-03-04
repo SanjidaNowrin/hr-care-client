@@ -34,18 +34,12 @@ const Contact = () => {
   };
   return (
     <Container>
-      <Box sx={{ textAlign: "center", my: 6, pt: 4 }}>
-        <Typography
-          sx={{
-            textTransform: "uppercase",
-            color: "#01578A",
-            fontWeight: "700",
-          }}
-          variant="h3"
-        >
+      <Box sx={{ pt: 8, pb: 4, textAlign: 'center', }}>
+        <Typography className="section_title" variant="h4">
           Contact Us
         </Typography>
-        <Typography variant="body1">
+
+        <Typography sx={{ mt: 2 }} variant="body1">
           Fill up the form and our team will get back to you within 24 hours.
         </Typography>
       </Box>

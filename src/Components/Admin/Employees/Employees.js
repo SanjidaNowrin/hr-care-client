@@ -1,6 +1,5 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -10,60 +9,119 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Employee from "./Employee/Employee";
 
+// Breadcrumbs
+import Chip from '@mui/material/Chip';
+import { emphasize, styled } from '@mui/material/styles';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from "react-router-dom";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#a3d2ed",
-    color: theme.palette.common.black,
-    fontSize: 24,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 18,
-  },
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: "#a3d2ed",
+        color: theme.palette.common.black,
+        fontSize: 24,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 18,
+    },
 }));
 
 const Employees = () => {
+    const [employees, setEmployees] = useState([]);
+    useEffect(() => {
+        fetch('https://ancient-thicket-61342.herokuapp.com/employees')
+            .then(res => res.json())
+            .then(data => setEmployees(data.data))
+    }, [employees])
 
-  const [employees, setEmployees] = useState([]);
-  useEffect(() => {
-    fetch('https://ancient-thicket-61342.herokuapp.com/employees')
-      .then(res => res.json())
-      .then(data => setEmployees(data.data))
-  }, [])
+    // Breadcrumbs
+    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+        const backgroundColor =
+            theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[800];
+        return {
+            backgroundColor,
+            height: theme.spacing(3),
+            color: theme.palette.text.primary,
+            fontWeight: theme.typography.fontWeightRegular,
+            '&:hover, &:focus': {
+                backgroundColor: emphasize(backgroundColor, 0.06),
+            },
+            '&:active': {
+                boxShadow: theme.shadows[1],
+                backgroundColor: emphasize(backgroundColor, 0.12),
+            },
+        };
+    });
+    return (
+        <Container>
+            {/* Breadcrumbs */}
+            <Box sx={{ mb: 4 }}>
+                <Typography
+                    sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
+                    All Employees
+                </Typography>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link to="/dashboard">
+                        <StyledBreadcrumb
+                            to="/dashboard"
+                            label="Dashboard"
+                            icon={<HomeIcon fontSize="small" />}
+                        />
+                    </Link>
+                    <Link to="/dashboard/all_employees"><StyledBreadcrumb component="a" href="#" label="All Employees" /></Link>
+                </Breadcrumbs>
+            </Box>
 
-  return (
-    <Container>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          my: 5,
-        }}
-      >
-        <Typography variant="h4" sx={{ margin: "0 auto", fontWeight: "700", color: "#01578A" }}>
-          All Employee
-        </Typography>
-      </Box>
-      <TableContainer component={Paper} >
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell align="left">Phone</StyledTableCell>
-              <StyledTableCell align="left">Department</StyledTableCell>
-              <StyledTableCell align="left">Designation</StyledTableCell>
-              <StyledTableCell align="right">Action</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {employees.map((item) => (
-              <Employee key={item._id} item={item}></Employee>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Container>
-  );
+            <TableContainer component={Paper} >
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <TableHead sx={{ background: 'var(--p_color) !important' }}>
+                        <TableRow>
+                            <StyledTableCell
+                                sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                            >
+                                Employee
+                            </StyledTableCell>
+
+                            <StyledTableCell
+                                sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                align="left"
+                            >
+                                Phone
+                            </StyledTableCell>
+
+                            <StyledTableCell
+                                sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                align="center"
+                            >
+                                Department
+                            </StyledTableCell>
+
+                            <StyledTableCell
+                                sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                align="center"
+                            >
+                                Designation
+                            </StyledTableCell>
+
+                            <StyledTableCell
+                                sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                align="right"
+                            >
+                                Action
+                            </StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {employees.map((item) => (
+                            <Employee key={item._id} item={item}></Employee>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Container>
+    );
 };
 
 export default Employees;

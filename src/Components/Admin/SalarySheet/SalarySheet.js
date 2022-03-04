@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Button, Container, Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,6 +20,13 @@ import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
 import DownloadForOfflineRoundedIcon from "@mui/icons-material/DownloadForOfflineRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+
+// Breadcrumbs
+import Chip from '@mui/material/Chip';
+import { emphasize } from '@mui/material/styles';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from "react-router-dom";
+
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -160,8 +167,47 @@ const SalarySheet = () => {
     doc.save("Employee Salary.pdf");
   };
 
+  // Breadcrumbs
+  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+    const backgroundColor =
+      theme.palette.mode === 'light'
+        ? theme.palette.grey[100]
+        : theme.palette.grey[800];
+    return {
+      backgroundColor,
+      height: theme.spacing(3),
+      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightRegular,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(backgroundColor, 0.06),
+      },
+      '&:active': {
+        boxShadow: theme.shadows[1],
+        backgroundColor: emphasize(backgroundColor, 0.12),
+      },
+    };
+  });
+
   return (
     <Container>
+      {/* Breadcrumbs */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
+          Employees Salary Sheet
+        </Typography>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link to="/dashboard">
+            <StyledBreadcrumb
+              to="/dashboard"
+              label="Dashboard"
+              icon={<HomeIcon fontSize="small" />}
+            />
+          </Link>
+          <Link to="/dashboard/salary_sheet"><StyledBreadcrumb component="a" href="#" label="Salary Sheet" /></Link>
+        </Breadcrumbs>
+      </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -170,9 +216,7 @@ const SalarySheet = () => {
           my: 5,
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "700", color: "#01578A" }}>
-          Employee <span style={{ color: "#000" }}>Details</span>
-        </Typography>
+
         {/* searchbar */}
         <Box>
           <Search>
@@ -236,7 +280,7 @@ const SalarySheet = () => {
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="left">Email</StyledTableCell>
               <StyledTableCell align="left">Year</StyledTableCell>
-              <StyledTableCell align="left">Fee</StyledTableCell>
+              <StyledTableCell align="right">Salary</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

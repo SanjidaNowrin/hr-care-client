@@ -14,7 +14,7 @@ const MainFeatures = () => {
                 content: '""',
                 position: 'absolute',
                 height: '3px',
-                width: '120px',
+                width: '40%',
                 background: '#00D2FC',
                 top: '43px',
                 left: '0'
@@ -23,7 +23,7 @@ const MainFeatures = () => {
                 content: '""',
                 position: 'absolute',
                 height: '3px',
-                width: '70px',
+                width: '20%',
                 background: '#845EC2',
                 top: '43px',
                 left: '118px'
@@ -36,12 +36,12 @@ const MainFeatures = () => {
     return (
         <Container>
             <Box sx={{ pt: 8, textAlign: 'center', }}>
-                <Typography className={topTitle} variant="h4">
+                <Typography className="section_title" variant="h4">
                     Our Main Features
                 </Typography>
             </Box>
+
             <Attendance></Attendance>
-            <h1>MainFeatures comming</h1>
         </Container>
     );
 };

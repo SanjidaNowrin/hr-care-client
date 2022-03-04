@@ -1,5 +1,14 @@
-import * as React from "react";
-import PropTypes from "prop-types";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
+import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlined";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,22 +16,12 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
-import HolidayVillageOutlinedIcon from "@mui/icons-material/HolidayVillageOutlined";
-import GolfCourseOutlinedIcon from "@mui/icons-material/GolfCourseOutlined";
-import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-import CampaignIcon from "@mui/icons-material/Campaign";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import { Link, Outlet } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import PropTypes from "prop-types";
+import * as React from "react";
+import { Link, Outlet } from "react-router-dom";
 import DashNav from "../DashNav/DashNav";
 
 const drawerWidth = 240;
@@ -55,9 +54,7 @@ function Dashboard(props) {
   const { linkItem, dashLink, dashIcon } = useStyle();
 
   const drawer = (
-    <div
-      style={{ background: "rgb(1 87 138)", color: "white", height: "1000px" }}
-    >
+    <div style={{ background: "rgb(1 87 138)", color: "white", height: "1000px" }}>
       <Typography
         variant="h4"
         component="div"
@@ -89,18 +86,16 @@ function Dashboard(props) {
         {/* Employees */}
         <Typography variant="h6">Employees</Typography>
         <List className={linkItem}>
-          <Link className={dashLink} to="/dashboard/myinfo">
-            <AccountBoxOutlinedIcon className={dashIcon} />
-            My Information
-          </Link>
           <Link className={dashLink} to="/dashboard/attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
           </Link>
-          <Link className={dashLink} to="/dashboard/calendar">
-            <DateRangeIcon className={dashIcon} />
-            Calendar
+
+          <Link className={dashLink} to="/dashboard/myinfo">
+            <AccountBoxOutlinedIcon className={dashIcon} />
+            My Information
           </Link>
+
           <Link className={dashLink} to="/dashboard/announcements">
             <CampaignIcon className={dashIcon} />
             Announcement
@@ -109,6 +104,10 @@ function Dashboard(props) {
           <Link className={dashLink} to="/dashboard/course">
             <GolfCourseOutlinedIcon className={dashIcon} />
             Courses
+          </Link>
+          <Link className={dashLink} to="/dashboard/leave">
+            <ExitToAppOutlinedIcon className={dashIcon} />
+            Leave
           </Link>
         </List>
       </Box>
@@ -133,9 +132,9 @@ function Dashboard(props) {
             Attendance
           </Link>
 
-          <Link className={dashLink} to="/dashboard/leave">
+          <Link className={dashLink} to="/dashboard/LeaveRequests">
             <ExitToAppOutlinedIcon className={dashIcon} />
-            Leave
+            Leave Requests
           </Link>
 
           <Link className={dashLink} to="/dashboard/holiday">
@@ -173,8 +172,7 @@ function Dashboard(props) {
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -199,11 +197,7 @@ function Dashboard(props) {
           <DashNav />
         </Toolbar>
       </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
+      <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
@@ -215,10 +209,7 @@ function Dashboard(props) {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
         >
           {drawer}
@@ -227,10 +218,7 @@ function Dashboard(props) {
           variant="permanent"
           sx={{
             display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
           open
         >
@@ -238,14 +226,7 @@ function Dashboard(props) {
         </Drawer>
       </Box>
 
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          mt: 8,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, mt: 8, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Outlet />
       </Box>
     </Box>

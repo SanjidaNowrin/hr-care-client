@@ -25,9 +25,9 @@ const TodayAttendance = ({ item }) => {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell component="th" scope="row">
                             <CardHeader
-                                sx={{ padding: '0 !important' }}
+                                sx={{ padding: '0 !important', color: '#845EC2' }}
                                 avatar={
-                                    <Avatar aria-label="recipe">
+                                    <Avatar sx={{ background: '#00D2FC !important' }} aria-label="recipe">
                                         {data.name.slice(0, 1)}
                                     </Avatar>
                                 }

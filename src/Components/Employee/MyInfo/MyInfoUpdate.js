@@ -1,29 +1,74 @@
-import React, { useState } from "react";
-import { Box, Button, FormControl as FormGroup, MenuItem, TextField, Typography } from "@mui/material";
+import React, { useState, useRef } from "react";
+import {
+    Box,
+    Button,
+    FormControl as FormGroup,
+    MenuItem,
+    TextField,
+    Typography,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-
-
-
+import SignaturePad from "react-signature-pad-wrapper";
 const MyInfoUpdate = ({ oneEmployee }) => {
+    const {
+        _id,
+        name,
+        father,
+        mother,
+        email,
+        phone,
+        nid,
+        birth,
+        department,
+        designation,
+        lastCompany,
+        lastDepartment,
+        lastDesignation,
+        lastDegree,
+        lastSubject,
+        lastInstitute,
+        lastGrade,
+    } = oneEmployee;
 
-    const { _id, name, father, mother, email, phone, nid, birth, department, designation, lastCompany, lastDepartment, lastDesignation, lastDegree, lastSubject, lastInstitute, lastGrade } = oneEmployee
-
-    const { register, handleSubmit } = useForm();
-    console.log(_id)
-
+    const { register, handleSubmit, reset } = useForm();
+    const [image, setImage] = useState(null);
+    //signature
+    let sigPad = useRef({});
+    let signature = "";
+    function clear() {
+        sigPad.current.clear();
+    }
+    function save() {
+        setImage(sigPad.current.toDataURL());
+    }
+    console.log(image);
+    function show() {
+        sigPad.current.fromDataURL(signature);
+    }
     const onUpdate = (data) => {
-        console.log(_id)
-        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
+        data.image = image;
+        console.log(data);
+        fetch(`http://localhost:5000/employees/${_id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),
         })
-            .then((res) => res.json())
-            .then((data) => console.log(data));
-        Swal.fire('Employee Information Update Successfully')
-        console.log(data);
-
+            .then((response) => response.json())
+            .then((result) => {
+                console.log("success", result);
+            })
+            .catch((error) => {
+                console.error("error", error);
+            });
+        reset();
+        Swal.fire({
+            position: "middle",
+            icon: "success",
+            title: "Employee Information Update Successfully",
+            showConfirmButton: false,
+            timer: 2000,
+        });
     };
 
     const [onedepartment, setDepartment] = useState();
@@ -49,7 +94,6 @@ const MyInfoUpdate = ({ oneEmployee }) => {
             label: "Accounting",
         },
     ];
-
 
     return (
         <>
@@ -100,7 +144,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         {...register("phone")}
                         id="outlined-basic"
                         label="Cell Number"
-                        type="number"
+                        type="String"
                         variant="outlined"
                         defaultValue={phone}
                         required
@@ -152,7 +196,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                     />
 
                     <Typography sx={{ m: 2 }} variant="h5">
-                        Exprience
+                        Experience
                     </Typography>
 
                     <TextField
@@ -216,7 +260,18 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         variant="outlined"
                         defaultValue={lastGrade}
                     />
-                    <Button className="btn_regular"
+                    <Box sx={{ border: "1px solid black" }}>
+                        <Button onClick={clear}>Clear</Button>
+                        <Button onClick={save}>Save</Button>
+                        <Button onClick={show}>Show</Button>
+                        <SignaturePad
+                            {...register("image")}
+                            ref={sigPad}
+                            penColor="green"
+                        />
+                    </Box>
+                    <Button
+                        className="btn_regular"
                         variant="outlined"
                         style={{
                             marginTop: "1rem",
@@ -227,7 +282,6 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                     </Button>
                 </Box>
             </FormGroup>
-
         </>
     );
 };
