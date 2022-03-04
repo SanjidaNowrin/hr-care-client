@@ -269,6 +269,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
               ref={sigPad}
               penColor="green"
             />
+            <small sx={{ textAlign: "center" }}>After providing your signature, it must be saved</small>
           </Box>
           <Button
             className="btn_regular"
