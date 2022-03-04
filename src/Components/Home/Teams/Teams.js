@@ -17,12 +17,12 @@ const Teams = () => {
     <>
       <Navbar />
       <Box sx={{ pt: 4 }}>
-        <Typography
-          sx={{ textAlign: "center", mb:4,fontWeight: "500" }}
-          variant="h2"
-        >
-          Our <span style={{ color: " #01578A" }}>Team</span>
-        </Typography>
+        <Box sx={{ pb: 6, pt: 2, textAlign: 'center', }}>
+          <Typography className="section_title" variant="h4">
+            Our Team
+          </Typography>
+        </Box>
+
         <Container>
           <Grid container spacing={4}>
             {teams.map((team) => (

@@ -11,7 +11,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import LanguageIcon from '@mui/icons-material/Language';
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Team = ({ team }) => {
@@ -24,7 +24,7 @@ const Team = ({ team }) => {
       transition: "all .3s ease-in-out !important",
       "&:hover": {
         "& $cardBox": {
-          background: "#F2F2F2 !important",
+          background: "#c3e4f7 !important",
           transform: "translateY(-30px)",
         },
         "& $cardTitle": {
@@ -79,17 +79,17 @@ const Team = ({ team }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
-                my:2
+                my: 2
               }}
             >
               <a target="_blank" rel="noreferrer" href={linkedIn}>
-                <LinkedInIcon sx={{ color: "black !important",fontSize:"1.8rem" }} />
+                <LinkedInIcon fontSize="large" sx={{ color: "var(--p_color) !important" }} />
               </a>
               <a target="_blank" rel="noreferrer" href={github}>
-                <GitHubIcon sx={{ color: "black !important",fontSize:"1.8rem"  }} />
+                <GitHubIcon fontSize="large" sx={{ color: "var(--p_color) !important" }} />
               </a>
               <a target="_blank" rel="noreferrer" href={portfolio}>
-                <AccountBoxIcon sx={{ color: "black !important",fontSize:"1.8rem"  }} />
+                <LanguageIcon fontSize="large" sx={{ color: "var(--p_color) !important" }} />
               </a>
             </Box>
           </CardContent>

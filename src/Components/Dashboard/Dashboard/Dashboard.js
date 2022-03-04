@@ -69,7 +69,7 @@ function Dashboard(props) {
           marginBottom: "20px",
         }}
       >
-        <Link style={{color: "white"}} to="/home"> HR CARE</Link>
+        <Link style={{ color: "white" }} to="/home"> HR CARE</Link>
       </Typography>
       <Box sx={{ pl: 2 }}>
         <Typography variant="h6">Main</Typography>
@@ -128,10 +128,10 @@ function Dashboard(props) {
             ID Card
           </Link>
 
-          <Link className={dashLink} to="/dashboard/manage_attendance">
+          {/* <Link className={dashLink} to="/dashboard/manage_attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
-          </Link>
+          </Link> */}
 
           <Link className={dashLink} to="/dashboard/LeaveRequests">
             <ExitToAppOutlinedIcon className={dashIcon} />

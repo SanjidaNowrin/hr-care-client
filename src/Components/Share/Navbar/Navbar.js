@@ -181,7 +181,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link className={navItem} to="/teams">
-                  <Button color="inherit">About us</Button>
+                  <Button color="inherit">Team</Button>
                 </Link>
                 <NavLink className={navItem} to="/dashboard">
                   <Button className="btn_regular" color="inherit">

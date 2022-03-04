@@ -118,7 +118,7 @@ const AddAnnouncement = () => {
                                 </label>
                                 <textarea
                                     onChange={handleOnChange}
-                                    style={{ width: "490px", height: "120px" }}
+                                    style={{ width: "100%", height: "120px" }}
                                     variant="outlined"
                                     id="text"
                                     type="text"
