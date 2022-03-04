@@ -266,7 +266,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
           <label style={{ display: "block",fontSize:"0.8rem"}}>
             <span style={{ color: "red" }}>**</span> After providing your signature, it must be saved
           </label>
-          <Box sx={{ border: "1px solid black" }}>
+          <Box sx={{ border: "1px solid #01578A" }}>
             <SignaturePad
               {...register("image")}
               ref={sigPad}
