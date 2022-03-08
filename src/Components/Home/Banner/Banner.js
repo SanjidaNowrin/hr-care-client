@@ -1,42 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import { Container } from "@mui/material";
-import Carousel from 'react-material-ui-carousel';
-import Item from "../Item/Item";
+import { Button, Container, Grid, Typography, useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+// import required modules
+import SwiperCore, {
+    Navigation, Autoplay
+} from 'swiper';
+SwiperCore.use([Navigation, Autoplay]);
 
 const Banner = () => {
+    const [banner, setBanner] = useState([]);
+    useEffect(() => {
+        fetch('./banner.json')
+            .then(res => res.json())
+            .then(data => setBanner(data))
+    }, [])
 
-    var items = [
-        {
-            name: " HR Care",
-            title: "Human Resource Management Admin Template",
-            description: "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
-            img: "https://i.ibb.co/1q179X9/output-onlinepngtools-1.png"
+    const theme = useTheme();
+    const useStyle = makeStyles({
+        verticalCenter: {
+            display: "flex",
+            alignItems: "center",
+            [theme.breakpoints.down("sm")]: {
+                textAlign: 'center !important'
+            }
         },
-        {
-            name: "Our Design",
-            title: "Our Goal Is Employee Satisfication",
-            description: "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
-            img: "https://i.ibb.co/XjzvjsN/output-onlinepngtools-2.png"
-        },
-        {
-            name: "Dashboard System",
-            title: "Our Main Focuse Is Dashboard",
-            description: "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
-            img: "https://i.ibb.co/52VcGBf/banner.png"
-        },
+        bannerTitle: {
+            marginBottom: '20px !important',
+            fontWeight: '600 !important',
+            color: '#01578A'
+        }
+    })
 
-    ]
-
+    const { verticalCenter, bannerTitle } = useStyle();
 
     return (
+        <Box sx={{ my: 8 }}>
+            <Container>
+                <Swiper
+                    loop={true} autoplay={{ delay: 4000, disableOnInteraction: false }} navigation={true} className="mySwiper">
+                    {
+                        banner.map(item =>
+                            <SwiperSlide key={item.id}>
+                                <Grid container spacing={8}>
+                                    <Grid item xs={12} md={6} className={verticalCenter}>
+                                        <Box>
+                                            <Typography variant="h3" className={bannerTitle}>
+                                                {item.name}
+                                            </Typography>
+                                            <Typography variant="h5" style={{ color: '#845EC2', fontWeight: '400' }}>
+                                                {item.title}
+                                            </Typography>
+                                            <Typography variant="body1" sx={{ mt: 1, color: 'var(--pt_color)', fontFamily: 'var(--PT_font)' }}>
+                                                {item.description}
+                                            </Typography>
 
-        <Box>
-            <Carousel>
-                {
-                    items.map((item, i) => <Item key={i} item={item} />)
-                }
-            </Carousel>
+                                            <Link to="/dashboard">
+                                                <Button className="btn_regular" sx={{ mt: 3 }}>
+                                                    Let's Start
+                                                </Button>
+                                            </Link>
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <img
+                                            src={item.img}
+                                            alt="banner"
+                                            border="0"
+                                            style={{ width: "100%" }}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </SwiperSlide>
+                        )
+                    }
+                </Swiper>
+            </Container>
         </Box>
     );
 };
