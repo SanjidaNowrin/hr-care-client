@@ -42,7 +42,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     function save() {
         setImage(sigPad.current.toDataURL());
     }
-    console.log(image);
+  
     function show() {
         sigPad.current.fromDataURL(image);
     }
@@ -113,14 +113,14 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         defaultValue={name}
                         required
                     />
-                    <TextField
+                    {/* <TextField
                         {...register("photo")}
                         id="outlined-basic"
                         label="Photo URL"
                         type="text"
                         variant="outlined"
                         defaultValue={photo}
-                    />
+                    /> */}
                     <TextField
                         {...register("father")}
                         id="outlined-basic"

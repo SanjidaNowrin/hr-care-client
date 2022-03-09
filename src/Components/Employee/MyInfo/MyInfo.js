@@ -176,14 +176,14 @@ const MyInfo = () => {
               value={user?.displayName}
               required
             />
-            <TextField
+            {/* <TextField
               {...register("photo")}
               id="outlined-basic"
               label="Photo URL"
               type="text"
               variant="outlined"
               value={user?.photoURL}
-            />
+            /> */}
             <TextField
               {...register("father")}
               id="outlined-basic"

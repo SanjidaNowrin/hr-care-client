@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -13,7 +13,6 @@ import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button, Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import {useDropzone} from 'react-dropzone'
 
 const style = {
   position: "absolute",
@@ -68,22 +67,28 @@ const DashNav = () => {
   };
   const { logOut, user } = useAuth();
   const [start, setOpen] = React.useState(false);
+  const [employee, setEmployee] = useState([]);
+  const[photoURL,setPhotoUrl]=useState(true);
   const handleOpen = () => setOpen(true);
   const close = () => setOpen(false);
+  // get data
+  useEffect(() => {
+    fetch(`http://localhost:5000/employees/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setEmployee(data.result));
+  }, [photoURL,user.email, employee]);
   //form submit
   const handleSubmit = (e) => {
     const formData = new FormData();
     formData.append("photo", photo);
-    fetch(
-      `http://localhost:5000/employees/profile/${user.email}`,
-      {
-        method: "PUT",
-        body: formData,
-      }
-    )
+    fetch(`http://localhost:5000/employees/profile/${user.email}`, {
+      method: "PUT",
+      body: formData,
+    })
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
+        setPhotoUrl(!photoURL)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -127,7 +132,19 @@ const DashNav = () => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 variant="dot"
               >
-                <Avatar alt="Remy Sharp" src={user.photoURL} />
+                {employee[0]?.photo ? (
+                  employee.map((employeePhoto) => (
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
+                    />
+                  ))
+                ) : (
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                  />
+                )}
               </StyledBadge>
             </IconButton>
           </Tooltip>
