@@ -128,10 +128,10 @@ function Dashboard(props) {
             ID Card
           </Link>
 
-          {/* <Link className={dashLink} to="/dashboard/manage_attendance">
+          <Link className={dashLink} to="/dashboard/manage_attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
-          </Link> */}
+          </Link>
 
           <Link className={dashLink} to="/dashboard/LeaveRequests">
             <ExitToAppOutlinedIcon className={dashIcon} />

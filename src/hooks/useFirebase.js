@@ -28,11 +28,11 @@ const useFirebase = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                setUser(user);
+                // setUser(user);
+                // save user to the database
+                saveUserInfo(user.email, user.displayName, "PUT");
                 const destination = location?.state?.from || "/home";
                 navigate(destination);
-                // save user to the database
-                saveUserInfo(user.email, user.displayName, user.photoURL, "PUT");
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -44,13 +44,13 @@ const useFirebase = () => {
 
     // Register New User
     // Register New User
-    const registerUser = (name, email, password, photo, location, navigate) => {
+    const registerUser = (email, name, password, photo, location, navigate) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 verifyEmail();
                 // save user to the database
-                saveUserInfo(email, name, photo, "POST");
+                saveUserInfo(email, name, "POST");
 
                 updateProfile(auth.currentUser, {
                     displayName: name,
@@ -115,28 +115,33 @@ const useFirebase = () => {
     };
 
     //save user to database
-    const saveUserInfo = (email, displayName, photoURL, method) => {
-        const user = { email, displayName, photoURL };
-        fetch("https://ancient-thicket-61342.herokuapp.com/users", {
+    const saveUserInfo = (email, displayName, method) => {
+        const user = { name: displayName, email };
+        console.log(user);
+        fetch("http://localhost:5000/user", {
             method: method,
             headers: {
                 "content-type": "application/json",
             },
             body: JSON.stringify(user),
-        }).then();
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
     };
     //makeadmin
     useEffect(() => {
-        fetch(`https://ancient-thicket-61342.herokuapp.com/checkAdmin/${user?.email}`)
+        fetch(`http://localhost:5000/user/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
-                if (data[0]?.role === "admin") {
+                console.log(data);
+                if (data[0]?.result.role === "admin") {
                     setIsAdmin(true);
                 } else {
                     setIsAdmin(false);
                 }
             });
     }, [user?.email]);
+    console.log(isAdmin);
     return {
         user,
         googleSignIn,

@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   IconButton,
   Toolbar,
   Typography,
@@ -16,7 +17,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
@@ -286,7 +286,22 @@ const Navbar = () => {
                 </Typography>
               </Link>
             </Box>
-            {list}
+
+            {/* responsive drawer */}
+            <>
+              <React.Fragment>
+                <Drawer open={state} anchor="right" onClose={() => setState(false)}>
+                  <Box sx={{ background: "#009EFA" }}>
+                    <Link className={navItem} to="/">
+                      <Typography variant="h5" sx={{ textAlign: "center", my: 2 }}>
+                        HR CARE
+                      </Typography>
+                    </Link>
+                  </Box>
+                  {list}
+                </Drawer>
+              </React.Fragment>
+            </>
           </Drawer>
         </React.Fragment>
       </>
