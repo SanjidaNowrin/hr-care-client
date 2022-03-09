@@ -76,11 +76,19 @@ const SingleId = ({ employeeId }) => {
 
           {/* employee image */}
           <Box className={imgBox}>
-            <img
-              src={`data:image/jpeg;base64,${photo}`}
-              alt=""
-              className={imgTop}
-            />
+            {photo ? (
+              <img
+                src={`data:image/jpeg;base64,${photo}`}
+                alt=""
+                className={imgTop}
+              />
+            ) : (
+              <img
+                src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                alt=""
+                className={imgTop}
+              />
+            )}
           </Box>
 
           <Box sx={{ textAlign: "center", marginTop: "-53px" }}>
