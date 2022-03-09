@@ -1,51 +1,61 @@
 import HomeIcon from "@mui/icons-material/Home";
-import { Breadcrumbs, Container, TextField, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
-// Breadcrumbs
+import {
+    Breadcrumbs,
+    Button,
+    Container,
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
+} from "@mui/material";
 import Chip from "@mui/material/Chip";
-import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 import { emphasize, styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./IdCard.css";
-import SingleId from "./SingleId/SingleId";
+import AttendanceManage from "./AttendanceManage";
 
-const IdCard = () => {
-    const [employeesId, setemployeeId] = useState([]);
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: "#00D2FC",
+        color: theme.palette.common.black,
+        fontSize: 24,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 18,
+    },
+}));
+
+const AttendanceManages = () => {
+    const [attendances, setAttendances] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [filterData, setFilterData] = useState([]);
 
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+        fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
             .then((res) => res.json())
-            .then((data) => setemployeeId(data.data));
+            .then((data) => setAttendances(data.data));
     }, []);
 
-    const handleOnChange = (e) => {
-        const number = parseInt(e.target.value);
+    const handleOnBlur = (e) => {
+        const number = e.target.value;
         setInputValue(number);
     };
 
-    // filter employees id
+    // filter employees ID
     useEffect(() => {
-        const filterID = employeesId.filter((data) => parseInt(data.ID) === inputValue);
+        const filterID = attendances.filter((data) => data.ID === inputValue);
         if (filterID.length > 0 || inputValue > 0) {
             setFilterData(filterID);
         } else {
-            setFilterData(employeesId);
+            setFilterData(attendances);
         }
-    }, [inputValue, employeesId]);
-
-    // click to search
-    const handleOnSearch = (e) => {
-        const filterID = employeesId.filter((data) => parseInt(data.ID) === inputValue);
-        if (filterID.length > 0) {
-            setFilterData(filterID);
-        } else {
-            setFilterData(employeesId);
-        }
-    };
+    }, [inputValue, attendances]);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -64,20 +74,19 @@ const IdCard = () => {
             },
         };
     });
-
     return (
         <Container>
             {/* Breadcrumbs */}
             <Box sx={{ mb: 4 }}>
                 <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
-                    Employee ID Card
+                    Attendance Manages
                 </Typography>
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link to="/dashboard">
                         <StyledBreadcrumb to="/dashboard" label="Dashboard" icon={<HomeIcon fontSize="small" />} />
                     </Link>
-                    <Link to="/dashboard/id_card">
-                        <StyledBreadcrumb component="a" href="#" label="ID Card" />
+                    <Link to="/dashboard/manage_attendance">
+                        <StyledBreadcrumb component="a" href="#" label="Attendance Manages" />
                     </Link>
                 </Breadcrumbs>
             </Box>
@@ -96,7 +105,7 @@ const IdCard = () => {
                 <TextField
                     placeholder="Search ID Card According to ID Number"
                     variant="outlined"
-                    onChange={handleOnChange}
+                    onChange={handleOnBlur}
                     sx={{ width: "100%" }}
                 />
 
@@ -108,20 +117,32 @@ const IdCard = () => {
                         transform: "translate(-50%, -50%)",
                     }}
                     className="btn_regular"
-                    onClick={handleOnSearch}
                 >
                     Search
                 </Button>
             </Box>
 
-            {/* card box */}
-            <Grid container spacing={4} sx={{ mb: 4 }}>
-                {filterData.slice(0, 3).map((employeeId) => (
-                    <SingleId key={employeeId._id} employeeId={employeeId}></SingleId>
-                ))}
-            </Grid>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>ID</StyledTableCell>
+                            <StyledTableCell align="left">Date</StyledTableCell>
+                            <StyledTableCell align="center">Entry</StyledTableCell>
+                            <StyledTableCell align="center">Leave</StyledTableCell>
+                            <StyledTableCell align="right">Vacation</StyledTableCell>
+                            <StyledTableCell align="right">Holiday</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filterData.map((attendance) => (
+                            <AttendanceManage key={attendance._id} attendance={attendance}></AttendanceManage>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </Container>
     );
 };
 
-export default IdCard;
+export default AttendanceManages;

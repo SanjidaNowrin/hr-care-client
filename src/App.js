@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddAnnouncement from "./Components/Admin/AddAnnouncement/AddAnnouncement";
 import AddCourse from "./Components/Admin/AddCourse/AddCourse";
-import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceManage";
+import AttendanceManages from "./Components/Admin/AttendanceManage/AttendanceManages";
 import Employees from "./Components/Admin/Employees/Employees";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import IdCard from "./Components/Admin/IdCard/IdCard";
@@ -56,7 +56,7 @@ function App() {
 
                             <Route path={"/dashboard/all_employees"} element={<Employees />} />
                             <Route path={"/dashboard/id_card"} element={<IdCard />} />
-                            <Route path={"/dashboard/manage_attendance"} element={<AttendanceManage />} />
+                            <Route path={"/dashboard/manage_attendance"} element={<AttendanceManages />} />
                             <Route path={"/dashboard/leaveRequests"} element={<LeaveRequests />} />
                             <Route path={"/dashboard/leaveRequests/:Id"} element={<LeaveRequests />} />
                             <Route path={"/dashboard/leaveApplications"} element={<LeaveApplications />} />
