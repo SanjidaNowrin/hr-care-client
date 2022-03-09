@@ -14,6 +14,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     const {
         _id,
         name,
+        photo,
         father,
         mother,
         email,
@@ -35,7 +36,6 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     const [image, setImage] = useState(null);
     //signature
     let sigPad = useRef({});
-    let signature = "";
     function clear() {
         sigPad.current.clear();
     }
@@ -44,12 +44,12 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     }
     console.log(image);
     function show() {
-        sigPad.current.fromDataURL(signature);
+        sigPad.current.fromDataURL(image);
     }
     const onUpdate = (data) => {
         data.image = image;
         console.log(data);
-        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
+        fetch(`http://localhost:5000/employees/${_id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),
@@ -112,6 +112,14 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         variant="outlined"
                         defaultValue={name}
                         required
+                    />
+                    <TextField
+                        {...register("photo")}
+                        id="outlined-basic"
+                        label="Photo URL"
+                        type="text"
+                        variant="outlined"
+                        defaultValue={photo}
                     />
                     <TextField
                         {...register("father")}
