@@ -29,11 +29,13 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
+import dateFormat from "../../Share/DateFormat/dateFormat";
 
 const MyAttendance = () => {
     const { user } = useAuth();
     const [times, setTimes] = useState([]);
     const [today, setToday] = useState({});
+    const [employee, setEmployee] = useState({});
 
     let time = new Date().toLocaleString();
     useEffect(() => {
@@ -42,7 +44,7 @@ const MyAttendance = () => {
             .then((data) => setTimes(data.result));
     }, [user.email, times]);
 
-    const todaydate = time.split(",")[0];
+    const todaydate = dateFormat(time.split(",")[0], 'yyyy-MM-dd');
     useEffect(
         () => {
             const foundToday = times.find(time => time.date === todaydate);
@@ -50,13 +52,18 @@ const MyAttendance = () => {
         }, [times, todaydate]);
     // console.log(today?.date)
 
+    useEffect(() => {
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+            .then((res) => res.json())
+            .then((data) => setEmployee(data.result));
+    }, [user.email]);
     //punchin
     const handlePunchIn = () => {
 
         let entryTime = {};
-        entryTime.ID = 1;
+        entryTime.ID = employee?.ID;
         entryTime.email = user.email;
-        entryTime.date = time.split(",")[0];
+        entryTime.date = dateFormat(time.split(",")[0], 'yyyy-MM-dd');
         entryTime.entry = time.split(",")[1];
         entryTime.leave = "";
 
@@ -85,7 +92,7 @@ const MyAttendance = () => {
     const handlePunchOut = () => {
 
         let leaveTime = {};
-        leaveTime.date = time.split(",")[0];
+        leaveTime.date = dateFormat(time.split(",")[0], 'yyyy-MM-dd');
         if (today?.date === leaveTime.date) {
 
             fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${today._id}`, {

@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import dateFormat from "../../../Share/Navbar/dateFormat";
+import dateFormat from "../../../Share/DateFormat/dateFormat";
 
 const OneLeaveRequest = ({ data }) => {
 
@@ -75,7 +75,7 @@ const OneLeaveRequest = ({ data }) => {
     });
     const { announceTop, announceP, dateStyle } = useStyle();
     const [employees, setEmployees] = useState({});
-    const [filterEmployee, setFilterEmployee] = useState({});
+    const [oneLeave, setOneLeave] = useState({});
     const [newData, setNewData] = useState({});
     const { Id } = useParams();
 
@@ -84,12 +84,35 @@ const OneLeaveRequest = ({ data }) => {
         setNewData(filterData);
     }, [Id, data]);
 
+    useEffect(() => {
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${oneLeave?.email}`)
+            .then((res) => res.json())
+            .then((data) => setEmployees(data.result[0]));
+    }, [oneLeave]);
 
     // useEffect(() => {
-    //     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/`)
-    //         .then((res) => res.json())
-    //         .then((data) => setEmployees(data.data));
-    // }, []);
+
+    //     const startDate = new Date(oneLeave?.tripStart);
+    //     const endDate = new Date(oneLeave?.tripEnd);
+
+    //     for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
+
+    //         const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
+    //         console.log(currentDate)
+
+    //         employees.map((user) => (
+
+    //             fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
+    //                 method: "POST",
+    //                 headers: { "content-type": "application/json" },
+    //                 body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, vacation: oneLeave?.leaveType }),
+    //             })
+    //         ))
+
+    //     }
+    // }, [oneLeave, employees]);
+    // console.log(oneLeave)
+    // console.log(employees)
 
     const onSubmit = (data) => {
         data.status = "Approved"
@@ -101,33 +124,26 @@ const OneLeaveRequest = ({ data }) => {
             .then((res) => res.json())
             .then((data) => console.log(data));
 
-        // fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${data?.email}`)
-        //     .then((res) => res.json())
-        //     .then((data) => setEmployees(data.result[0]));
-        // console.log(employees)
+        setOneLeave(data)
 
-        // const searchEmployee = employees.filter((employee) => employee?.email === data?.email)
-        // setFilterEmployee(searchEmployee)
-        // console.log(filterEmployee[0])
+        const startDate = new Date(data?.tripStart);
+        const endDate = new Date(data?.tripEnd);
 
-        // const startDate = new Date(data?.tripStart);
-        // const endDate = new Date(data?.tripEnd);
+        for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
 
-        // for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
+            const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
+            console.log(currentDate)
 
-        //     const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
-        //     console.log(currentDate)
+            employees.map((user) => (
 
-        //     employees.map((user) => (
+                fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, vacation: oneLeave?.leaveType }),
+                })
+            ))
 
-        //         fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
-        //             method: "POST",
-        //             headers: { "content-type": "application/json" },
-        //             body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title }),
-        //         })
-        //     ))
-
-        // }
+        }
         console.log(data)
         Swal.fire(`${data?.name}'s Application Approved Successfully`);
 
@@ -152,7 +168,7 @@ const OneLeaveRequest = ({ data }) => {
                                     {data?.name}
                                 </Typography>
 
-                                <Typography variant="body2" className={dateStyle}>{data.leaveType}</Typography>
+                                <Typography variant="body2" className={dateStyle}>{data?.leaveType}</Typography>
                             </Box>
                             <Box className={announceTop}>
                                 <Typography className={announceP} variant="body1">{data?.designation}</Typography>

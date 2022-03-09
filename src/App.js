@@ -5,7 +5,6 @@ import AttendanceManage from "./Components/Admin/AttendanceManage/AttendanceMana
 import Employees from "./Components/Admin/Employees/Employees";
 import Holidays from "./Components/Admin/Holidays/Holidays";
 import IdCard from "./Components/Admin/IdCard/IdCard";
-import LeaveApplications from "./Components/Admin/LeaveApplication/LeaveApplications";
 import LeaveRequests from "./Components/Admin/LeaveRequests/LeaveRequests";
 import MakeAdmin from "./Components/Admin/MakeAdmin/MakeAdmin";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
@@ -79,10 +78,6 @@ function App() {
               <Route
                 path={"/dashboard/leaveRequests/:Id"}
                 element={<LeaveRequests />}
-              />
-              <Route
-                path={"/dashboard/leaveApplications"}
-                element={<LeaveApplications />}
               />
               <Route path={"/dashboard/holiday"} element={<Holidays />} />
               <Route

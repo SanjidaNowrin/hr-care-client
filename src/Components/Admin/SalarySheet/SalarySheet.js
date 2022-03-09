@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Breadcrumbs, Button, Container, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Button, Container, TextField, Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,14 +18,15 @@ import Tooltip from "@mui/material/Tooltip";
 import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
 import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
 import DownloadForOfflineRoundedIcon from "@mui/icons-material/DownloadForOfflineRounded";
-import SearchIcon from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
 
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
 import { emphasize } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import dateFormat from "../../Share/DateFormat/dateFormat";
 
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -79,44 +80,8 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  boxShadow: "0 3px 6px rgba(0, 0, 0, 0.2)",
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
 const SalarySheet = () => {
-  const [employees, setEmployees] = useState([]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -126,11 +91,7 @@ const SalarySheet = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  useEffect(() => {
-    fetch("/employeesData.json")
-      .then((res) => res.json())
-      .then((data) => setEmployees(data));
-  }, []);
+
   //download data in excel format
   const downloadExcel = () => {
     const newData = employees.map((row) => {
@@ -151,9 +112,9 @@ const SalarySheet = () => {
   //download data in pdf format
   const columns = [
     { title: "Name", field: "name" },
-    { title: "Email", field: "email" },
-    { title: "Acc", field: "bankAcc" },
-    { title: "Year", field: "year", type: "numeric" },
+    { title: "Designation", field: "designation" },
+    { title: "Acc", field: "Account" },
+    { title: "Gross", field: "Gross", type: "numeric" },
     { title: "Fee", field: "fee", type: "currency" },
   ];
   const downloadPdf = () => {
@@ -188,6 +149,44 @@ const SalarySheet = () => {
     };
   });
 
+  const [employees, setEmployees] = useState([]);
+  const { register, handleSubmit } = useForm();
+  const [Dates, setDates] = useState([]);
+  const [filterDates, setFilterDates] = useState([]);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+      .then((res) => res.json())
+      .then((data) => setEmployees(data.data));
+  }, []);
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/`)
+      .then((res) => res.json())
+      .then((data) => setDates(data.data));
+  }, [])
+  console.log(Dates)
+
+  useEffect(() => {
+    const newFilterDate = Dates.filter(date => date?.date >= startDate && date?.date <= endDate)
+    setFilterDates(newFilterDate)
+  }, [Dates, startDate, endDate])
+  console.log(filterDates)
+
+  const onSubmit = (data, e) => {
+
+    const newStartDate = dateFormat(new Date(data.startDate), 'yyyy-MM-dd');
+    setStartDate(newStartDate)
+    const newEndDate = dateFormat(new Date(data.endDate), 'yyyy-MM-dd');
+    setEndDate(newEndDate)
+
+    toast.success('Salary Process successfully 👌!', {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 4000
+    })
+  };
   return (
     <Container>
       {/* Breadcrumbs */}
@@ -219,15 +218,47 @@ const SalarySheet = () => {
 
         {/* searchbar */}
         <Box>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon sx={{ color: "#01578A" }} />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+              <Box sx={{ width: "35%" }}>
+                <label>
+                  Start Date <span style={{ color: "red" }}>*</span>
+                </label>
+                <TextField
+                  sx={{ width: "100%" }}
+                  {...register("startDate")}
+                  id="outlined-basic"
+                  type="date"
+                  variant="outlined"
+                />
+              </Box>
+              <Box sx={{ width: "35%" }}>
+                <label>
+                  End Day <span style={{ color: "red" }}>*</span>
+                </label>
+                <TextField
+                  sx={{ width: "100%" }}
+                  {...register("endDate")}
+                  id="outlined-basic"
+                  type="date"
+                  variant="outlined"
+                />
+              </Box>
+              <Box sx={{ width: "20%" }}>
+                <Button
+                  sx={{
+                    background: "#01578A !important",
+                    color: "#fff !important",
+                    width: "100%",
+                  }}
+                  className="btn_regular"
+                  type="Search"
+                >
+                  Search
+                </Button>
+              </Box>
+            </Box>
+          </form>
         </Box>
         {/*dropdown */}
         <Button
@@ -285,7 +316,7 @@ const SalarySheet = () => {
           </TableHead>
           <TableBody>
             {employees.map((employee) => (
-              <SalaryData key={employee.id} employee={employee}></SalaryData>
+              <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
             ))}
           </TableBody>
         </Table>
