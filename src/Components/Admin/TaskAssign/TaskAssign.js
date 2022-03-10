@@ -24,13 +24,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Tooltip from "@mui/material/Tooltip";
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 const TaskAssign = () => {
   const { register, handleSubmit, reset } = useForm();
   const [employees, setEmployees] = useState([]);
   const [employeeName, setEmployeeName] = useState([]);
   const [task, setTask] = useState([]);
+  const [tags, setTags] = useState([]);
 
-  //   setEmployeeEmail(findEmployeeEmail)
+  console.log(tags);
 
   // Breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -84,8 +87,8 @@ const TaskAssign = () => {
   }, []);
   //submit form
   const onSubmit = (data, e) => {
-    let newTask = [];
-    newTask.push(data.task);
+    // let newTask = [];
+    // newTask.push(data.task);
     fetch("http://localhost:5000/taskAssign", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -94,7 +97,7 @@ const TaskAssign = () => {
         ID: data.employee.ID,
         name: data.employee.name,
         date: data.date,
-        task: newTask,
+        tags: tags,
         startTime: data.startTime,
         endTime: data.endTime,
       }),
@@ -198,6 +201,29 @@ const TaskAssign = () => {
                     marginBottom: "10px",
                     marginTop: "1rem",
                   }}
+                  htmlFor="title"
+                >
+                  Add Task <span style={{ color: "red" }}>*</span>
+                </label>
+                <ReactTagInput
+                  label="Add Task"
+                  style={{ width: "100%" }}
+                  {...register("tags")}
+                  tags={tags}
+                  value={tags}
+                  placeholder="Type and press enter"
+                  maxTags={10}
+                  editable={true}
+                  readOnly={false}
+                  removeOnBackspace={true}
+                  onChange={(newTags) => setTags(newTags)}
+                />
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "10px",
+                    marginTop: "1rem",
+                  }}
                   htmlFor="date"
                 >
                   Date <span style={{ color: "red" }}>*</span>
@@ -210,23 +236,8 @@ const TaskAssign = () => {
                   {...register("date", { required: true })}
                 />
                 {/* end */}
-                <label
-                  style={{
-                    display: "block",
-                    marginBottom: "10px",
-                    marginTop: "1rem",
-                  }}
-                  htmlFor="title"
-                >
-                  Add Task <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  id="outlined-select-currency"
-                  label="Add Task"
-                  style={{ width: "100%" }}
-                  {...register("task")}
-                  placeholder="Write Task Here"
-                />
+
+                {/* </TextField> */}
                 <label
                   style={{
                     display: "block",
@@ -298,8 +309,8 @@ const TaskAssign = () => {
                       <StyledTableCell align="center">
                         {item.date}
                       </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.task}
+                      <StyledTableCell align="left">
+                        {item.tags.map((tag)=>(<li>{tag}</li>))}
                       </StyledTableCell>
                       <StyledTableCell align="right">
                         <Tooltip title="Delete">
