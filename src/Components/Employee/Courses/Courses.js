@@ -55,7 +55,6 @@ const Courses = () => {
         setFilterData(filterUser)
         filterData.map(item => setEnrollEmail(item.email));
     }, [enrolls, user.email])
-    // console.log(filterData)
 
     return (
         <Container>
@@ -85,26 +84,33 @@ const Courses = () => {
                         </Typography>
                     </Box>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} md={8}>
-                            {
-                                filterData.map(item =>
+                        {
+                            filterData.map(item =>
+                                <Grid item xs={12} md={6}>
                                     <Box sx={{ display: { md: 'flex' } }} key={item._id}>
-                                        <img src={item.courseImg} alt="" />
-                                        <Box sx={{ display: 'flex', flexDirection: 'column', px: 1, py: 3, justifyContent: 'space-between' }}>
-                                            <Typography sx={{ width: { xs: '250px' } }} component="div" variant="h5">
-                                                {item.courseName}
-                                            </Typography>
-                                            <Box sx={{ display: 'flex', alignItems: 'center', mt: { xs: '1' } }}>
-                                                <Avatar alt="Remy Sharp" src={item.authorImg} />
-                                                <Typography sx={{ ml: 1 }} component="div" variant="body1">
-                                                    {item.author}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
+                                        <Grid container>
+                                            <Grid item xs={12} md={5}>
+                                                <img style={{ width: '100%' }} src={item.courseImg} alt="" />
+                                            </Grid>
+                                            <Grid item xs={12} md={7}>
+                                                <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', py: 1, pl: 1 }}>
+                                                    <Typography component="div" variant="h5">
+                                                        {item.courseName}
+                                                    </Typography>
+                                                    <Box sx={{ display: 'flex', alignItems: 'center', mt: { xs: '1' }, mb: 1 }}>
+                                                        <Avatar alt="Remy Sharp" src={item.authorImg} />
+                                                        <Typography sx={{ ml: 1 }} component="div" variant="body1">
+                                                            {item.author}
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
+                                            </Grid>
+                                        </Grid>
                                     </Box>
-                                )
-                            }
-                        </Grid>
+
+                                </Grid>
+                            )
+                        }
                     </Grid>
                     <Box sx={{ pt: 6, pb: 2, textAlign: 'center' }}>
                         <Typography className="section_title" variant="h4">
