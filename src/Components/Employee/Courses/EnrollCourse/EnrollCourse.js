@@ -67,7 +67,7 @@ const EnrollCourse = () => {
     }
 
     const [enrolls, setEnrolls] = useState([]);
-    const [enrollEmail, setEnrollEmail] = useState('');
+    const [userId, setUserId] = useState('');
     const [filterData, setFilterData] = useState([]);
     useEffect(() => {
         fetch('https://ancient-thicket-61342.herokuapp.com/enrolls')
@@ -77,8 +77,10 @@ const EnrollCourse = () => {
     useEffect(() => {
         const filterUser = enrolls.filter(data => data.email === user.email);
         setFilterData(filterUser)
-        filterData.map(item => setEnrollEmail(item.email));
+        filterData.map(item => setUserId(item.courseId));
     }, [enrolls, user, id, filterData])
+
+    // console.log(enrollEmail)
 
     return (
         <Container>
@@ -122,7 +124,7 @@ const EnrollCourse = () => {
                             <img src={item.courseImg} alt="" />
                         </Box>
                         {
-                            enrollEmail ? <Button className='btn_regular'>Already Enroll</Button> : <Button onClick={() => handleEnroll(item)} className='btn_regular'>Start Course</Button>
+                            id === userId ? <Button className='btn_regular'>Already Enroll</Button> : <Button onClick={() => handleEnroll(item)} className='btn_regular'>Start Course</Button>
                         }
 
                     </Box>
