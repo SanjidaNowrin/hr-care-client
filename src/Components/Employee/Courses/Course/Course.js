@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 // import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,8 +13,10 @@ import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
-const Course = ({ item }) => {
+const Course = ({ item, email }) => {
     const { _id, name, des, author, authorImg, courseImg, topic, date } = item;
 
     const useStyle = makeStyles({
@@ -84,9 +86,11 @@ const Course = ({ item }) => {
                     <CardHeader
                         avatar={<Avatar alt="Remy Sharp" src={authorImg} />}
                         action={
-                            <Button className="btn_regular" aria-label="settings">
-                                Enroll
-                            </Button>
+                            <Link to={`/dashboard/course/${_id}`}>
+                                <Button className="btn_regular">
+                                    Enroll
+                                </Button>
+                            </Link>
                         }
                         title={author}
                         subheader={date}
