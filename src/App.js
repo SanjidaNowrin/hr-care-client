@@ -23,6 +23,7 @@ import Register from "./Components/Login/Register/Register";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Teams from './Components/Home/Teams/Teams';
 import AuthProvider from "./contexts/AuthProvider";
+import TaskAssign from './Components/Admin/TaskAssign/TaskAssign';
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
                 element={<LeaveApplications />}
               />
               <Route path={"/dashboard/holiday"} element={<Holidays />} />
+              <Route path={"/dashboard/task_assign"} element={<TaskAssign />} />
               <Route
                 path={"/dashboard/add_announcement"}
                 element={<AddAnnouncement />}

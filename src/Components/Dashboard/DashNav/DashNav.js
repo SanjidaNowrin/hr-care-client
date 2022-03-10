@@ -13,13 +13,15 @@ import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button, Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
+import EventIcon from "@mui/icons-material/Event";
+import CalenderChart from "./../DashboardHome/HolidayCalender/CalenderChart";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 900,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -68,15 +70,19 @@ const DashNav = () => {
   const { logOut, user } = useAuth();
   const [start, setOpen] = React.useState(false);
   const [employee, setEmployee] = useState([]);
-  const[photoURL,setPhotoUrl]=useState(true);
+  const [photoURL, setPhotoUrl] = useState(true);
   const handleOpen = () => setOpen(true);
   const close = () => setOpen(false);
+  // calendar modal
+  const [holiday, setHoliday] = React.useState(false);
+  const holidayOpen = () => setHoliday(true);
+  const holidayClose = () => setHoliday(false);
   // get data
   useEffect(() => {
     fetch(`http://localhost:5000/employees/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
-  }, [photoURL,user.email, employee]);
+  }, [photoURL, user.email, employee]);
   //form submit
   const handleSubmit = (e) => {
     const formData = new FormData();
@@ -88,7 +94,7 @@ const DashNav = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setPhotoUrl(!photoURL)
+        setPhotoUrl(!photoURL);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -107,17 +113,26 @@ const DashNav = () => {
             marginLeft: "auto",
           }}
         >
-          {/* <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton size="large" color="inherit">
+              <Badge color="error">
+                <EventIcon onClick={holidayOpen} />
               </Badge>
             </IconButton>
-          </Box> */}
+          </Box>
+          {/* calender modal */}
+          <Modal
+            open={holiday}
+            onClose={holidayClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <CalenderChart />
+            </Box>
+          </Modal>
+          {/* calender modal end*/}
+
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}

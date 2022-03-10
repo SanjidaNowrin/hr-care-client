@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
 import MyInfoUpdate from "./MyInfoUpdate";
 import SignaturePad from "react-signature-pad-wrapper";
