@@ -84,11 +84,11 @@ const OneLeaveRequest = ({ data }) => {
         setNewData(filterData);
     }, [Id, data]);
 
-    useEffect(() => {
-        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${oneLeave?.email}`)
-            .then((res) => res.json())
-            .then((data) => setEmployees(data.result[0]));
-    }, [oneLeave]);
+    // useEffect(() => {
+    //     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${oneLeave?.email}`)
+    //         .then((res) => res.json())
+    //         .then((data) => setEmployees(data.result[0]));
+    // }, [oneLeave]);
 
     // useEffect(() => {
 
@@ -124,7 +124,7 @@ const OneLeaveRequest = ({ data }) => {
             .then((res) => res.json())
             .then((data) => console.log(data));
 
-        setOneLeave(data)
+        console.log(data)
 
         const startDate = new Date(data?.tripStart);
         const endDate = new Date(data?.tripEnd);
@@ -134,17 +134,13 @@ const OneLeaveRequest = ({ data }) => {
             const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
             console.log(currentDate)
 
-            employees.map((user) => (
-
-                fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
-                    method: "POST",
-                    headers: { "content-type": "application/json" },
-                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, vacation: oneLeave?.leaveType }),
-                })
-            ))
+            fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ ID: data?.ID, email: data?.email, date: currentDate, entry: "", vacation: data?.leaveType }),
+            })
 
         }
-        console.log(data)
         Swal.fire(`${data?.name}'s Application Approved Successfully`);
 
     };
@@ -180,6 +176,10 @@ const OneLeaveRequest = ({ data }) => {
                                 <Typography className={announceP} variant="body1"><b>From: </b>{data?.tripStart}</Typography>
                                 <Typography className={announceP} variant="body1"><b>To: </b>{data?.tripEnd}</Typography>
                                 <Typography className={announceP} variant="body1"><b>Days: </b>{data?.leaveDays}</Typography>
+                            </Box>
+                            <Box className={announceTop} sx={{ display: "none !important" }}>
+                                <Typography className={announceP} variant="body1"><b>From: </b>{data?.ID}</Typography>
+                                <Typography className={announceP} variant="body1"><b>To: </b>{data?.email}</Typography>
                             </Box>
                             <br />
                             <Typography className={announceP} variant="body1">{data?.message}</Typography>
