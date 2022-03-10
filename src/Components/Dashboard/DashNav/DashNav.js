@@ -68,20 +68,20 @@ const DashNav = () => {
   const { logOut, user } = useAuth();
   const [start, setOpen] = React.useState(false);
   const [employee, setEmployee] = useState([]);
-  const[photoURL,setPhotoUrl]=useState(true);
+  const [photoURL, setPhotoUrl] = useState(true);
   const handleOpen = () => setOpen(true);
   const close = () => setOpen(false);
   // get data
   useEffect(() => {
-    fetch(`http://localhost:5000/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
-  }, [photoURL,user.email, employee]);
+  }, [photoURL, user.email, employee]);
   //form submit
   const handleSubmit = (e) => {
     const formData = new FormData();
     formData.append("photo", photo);
-    fetch(`http://localhost:5000/employees/profile/${user.email}`, {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
       method: "PUT",
       body: formData,
     })

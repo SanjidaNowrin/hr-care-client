@@ -115,7 +115,7 @@ const SalarySheet = () => {
     { title: "Designation", field: "designation" },
     { title: "Acc", field: "Account" },
     { title: "Gross", field: "Gross", type: "numeric" },
-    { title: "Fee", field: "fee", type: "currency" },
+    { title: "Basic", field: "basic", type: "currency" },
   ];
   const downloadPdf = () => {
     const doc = new jsPDF();
@@ -308,9 +308,10 @@ const SalarySheet = () => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#01578A !important" }}>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell align="left">Email</StyledTableCell>
-              <StyledTableCell align="left">Year</StyledTableCell>
+              <StyledTableCell>Name <hr />ID</StyledTableCell>
+              <StyledTableCell align="left">Designation <hr /> Department</StyledTableCell>
+              <StyledTableCell align="left">Basic <hr /> Gross</StyledTableCell>
+              <StyledTableCell align="left">Pay Day</StyledTableCell>
               <StyledTableCell align="right">Salary</StyledTableCell>
             </TableRow>
           </TableHead>

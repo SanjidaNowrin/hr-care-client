@@ -9,7 +9,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import Menu from '@mui/material/Menu';
 import EmployeeModal from '../EmployeeModal/EmployeeModal';
 import { Avatar, CardHeader } from '@mui/material';
-import useAuth from '../../../../hooks/useAuth';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -73,7 +72,7 @@ const StyledMenu = styled((props) => (
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { _id, name, phone, department, designation } = item;
+    const { _id, name, email, phone, department, designation } = item;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -84,7 +83,6 @@ const Employee = ({ item }) => {
         setAnchorEl(null);
     };
 
-    const { user } = useAuth();
     return (
         <>
             <StyledTableRow>
@@ -97,23 +95,13 @@ const Employee = ({ item }) => {
                             </Avatar>
                         }
                         title={name}
-                        subheader={user.email}
+                        subheader={email}
                     />
                 </TableCell>
                 <StyledTableCell align="left">{phone}</StyledTableCell>
                 <StyledTableCell align="center">{department}</StyledTableCell>
                 <StyledTableCell align="center">{designation}</StyledTableCell>
                 <StyledTableCell align="right">
-                    {/* <SettingsIcon
-                        id="demo-customized-button"
-                        aria-controls={open ? 'demo-customized-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        variant="contained"
-                        disableElevation
-                        sx={{ cursor: 'pointer' }}
-                        onClick={handleClick}
-                    /> */}
                     <EmployeeModal item={item} />
                 </StyledTableCell>
             </StyledTableRow>

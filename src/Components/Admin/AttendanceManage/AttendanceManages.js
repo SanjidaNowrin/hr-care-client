@@ -17,7 +17,10 @@ import { emphasize, styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import dateFormat from "../../Share/DateFormat/dateFormat";
 import AttendanceManage from "./AttendanceManage";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -34,14 +37,37 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const AttendanceManages = () => {
     const [attendances, setAttendances] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const { register, handleSubmit } = useForm();
+    const [filterDates, setFilterDates] = useState([]);
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
     const [filterData, setFilterData] = useState([]);
+
 
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
             .then((res) => res.json())
-            .then((data) => setAttendances(data.data));
+            .then((data) => setAttendances(data.data.reverse()));
     }, []);
 
+    useEffect(() => {
+        const newFilterDate = attendances.filter(date => date?.date >= startDate && date?.date <= endDate)
+        setFilterDates(newFilterDate)
+    }, [attendances, startDate, endDate])
+    console.log(filterDates)
+
+    const onSubmit = (data, e) => {
+
+        const newStartDate = dateFormat(new Date(data.startDate), 'yyyy-MM-dd');
+        setStartDate(newStartDate)
+        const newEndDate = dateFormat(new Date(data.endDate), 'yyyy-MM-dd');
+        setEndDate(newEndDate)
+
+        toast.success('Filtering Attendance', {
+            position: toast.POSITION.BOTTOM_CENTER,
+            autoClose: 4000
+        })
+    };
     const handleOnBlur = (e) => {
         const number = e.target.value;
         setInputValue(number);
@@ -49,13 +75,23 @@ const AttendanceManages = () => {
 
     // filter employees ID
     useEffect(() => {
-        const filterID = attendances.filter((data) => data.ID === inputValue);
-        if (filterID.length > 0 || inputValue > 0) {
-            setFilterData(filterID);
+        if (filterDates.length > 0) {
+            const filterID = filterDates.filter((data) => data.ID === inputValue);
+            if (filterID.length > 0 || inputValue > 0) {
+                setFilterData(filterID);
+            } else {
+                setFilterData(filterDates);
+            }
         } else {
-            setFilterData(attendances);
+            const filterID = attendances.filter((data) => data.ID === inputValue);
+            if (filterID.length > 0 || inputValue > 0) {
+                setFilterData(filterID);
+            } else {
+                setFilterData(attendances);
+            }
         }
-    }, [inputValue, attendances]);
+    }, [inputValue, attendances, filterDates]);
+
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -92,34 +128,77 @@ const AttendanceManages = () => {
             </Box>
 
             {/* search box */}
-            <Box
-                sx={{
-                    textAlign: "center",
-                    width: { xs: "80%", sm: "90%", md: "50%" },
-                    margin: "0 auto",
-                    position: "relative",
-                    mb: 6,
-                }}
-                className="id_search"
-            >
-                <TextField
-                    placeholder="Search ID Card According to ID Number"
-                    variant="outlined"
-                    onChange={handleOnBlur}
-                    sx={{ width: "100%" }}
-                />
-
-                <Button
+            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 5, }}>
+                <Box
                     sx={{
-                        position: "absolute",
-                        top: "50%",
-                        right: "-45px",
-                        transform: "translate(-50%, -50%)",
+                        textAlign: "center",
+                        width: "40%",
+                        margin: "0 auto",
+                        position: "relative",
                     }}
-                    className="btn_regular"
+                    className="id_search"
                 >
-                    Search
-                </Button>
+                    <label>
+                        Search by ID
+                    </label>
+                    <TextField
+                        placeholder="Search ID Card According to ID Number"
+                        variant="outlined"
+                        onChange={handleOnBlur}
+                        sx={{ width: "100%" }}
+                    />
+                </Box>
+                <Box
+                    sx={{
+                        textAlign: "center",
+                        width: "50%",
+                        margin: "0 auto",
+                        position: "relative",
+                    }}
+                    className="id_search"
+                >
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+                            <Box sx={{ width: "35%" }}>
+                                <label>
+                                    Start Date
+                                </label>
+                                <TextField
+                                    sx={{ width: "100%" }}
+                                    {...register("startDate")}
+                                    id="outlined-basic"
+                                    type="date"
+                                    variant="outlined"
+                                />
+                            </Box>
+                            <Box sx={{ width: "35%" }}>
+                                <label>
+                                    End Day
+                                </label>
+                                <TextField
+                                    sx={{ width: "100%" }}
+                                    {...register("endDate")}
+                                    id="outlined-basic"
+                                    type="date"
+                                    variant="outlined"
+                                />
+                            </Box>
+                            <Box sx={{ width: "20%" }}>
+                                <Button
+                                    sx={{
+                                        background: "#01578A !important",
+                                        color: "#fff !important",
+                                        width: "100%",
+                                    }}
+                                    className="btn_regular"
+                                    type="Search"
+                                >
+                                    Search
+                                </Button>
+                            </Box>
+                        </Box>
+                    </form>
+                </Box>
             </Box>
 
             <TableContainer component={Paper}>

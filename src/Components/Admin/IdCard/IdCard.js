@@ -23,13 +23,13 @@ const IdCard = () => {
     }, []);
 
     const handleOnChange = (e) => {
-        const number = parseInt(e.target.value);
+        const number = (e.target.value);
         setInputValue(number);
     };
 
     // filter employees id
     useEffect(() => {
-        const filterID = employeesId.filter((data) => parseInt(data.ID) === inputValue);
+        const filterID = employeesId.filter((data) => (data.ID) === inputValue);
         if (filterID.length > 0 || inputValue > 0) {
             setFilterData(filterID);
         } else {
@@ -39,7 +39,7 @@ const IdCard = () => {
 
     // click to search
     const handleOnSearch = (e) => {
-        const filterID = employeesId.filter((data) => parseInt(data.ID) === inputValue);
+        const filterID = employeesId.filter((data) => (data.ID) === inputValue);
         if (filterID.length > 0) {
             setFilterData(filterID);
         } else {

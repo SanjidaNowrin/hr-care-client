@@ -57,11 +57,14 @@ const MyAttendance = () => {
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
     }, [user.email]);
+
+    console.log(employee)
+
     //punchin
     const handlePunchIn = () => {
 
         let entryTime = {};
-        entryTime.ID = employee?.ID;
+        entryTime.ID = employee[0]?.ID;
         entryTime.email = user.email;
         entryTime.date = dateFormat(time.split(",")[0], 'yyyy-MM-dd');
         entryTime.entry = time.split(",")[1];
@@ -181,7 +184,7 @@ const MyAttendance = () => {
                                 className={classes.imgStyle}
                                 align="center"
                                 component="img"
-                                src={user.photoURL}
+                                src={`data:image/jpeg;base64,${employee[0]?.photo}`}
                             />
                             <CardContent>
                                 <Typography

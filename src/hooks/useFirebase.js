@@ -56,8 +56,8 @@ const useFirebase = () => {
                     displayName: name,
                     photoURL: photo,
                 })
-                    .then(() => {})
-                    .catch((error) => {});
+                    .then(() => { })
+                    .catch((error) => { });
                 const destanition = location?.state?.from || "/";
                 navigate(destanition);
             })
@@ -118,7 +118,7 @@ const useFirebase = () => {
     const saveUserInfo = (email, displayName, method) => {
         const user = { name: displayName, email };
         console.log(user);
-        fetch("http://localhost:5000/user", {
+        fetch("https://ancient-thicket-61342.herokuapp.com/user", {
             method: method,
             headers: {
                 "content-type": "application/json",
@@ -130,7 +130,7 @@ const useFirebase = () => {
     };
     //makeadmin
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
