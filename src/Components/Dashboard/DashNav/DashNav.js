@@ -14,14 +14,26 @@ import useAuth from "./../../../hooks/useAuth";
 import { Button, Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import EventIcon from "@mui/icons-material/Event";
-import CalenderChart from "./../DashboardHome/HolidayCalender/CalenderChart";
-
+import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
+import HolidayCalendar from "./../../Employee/HolidayCalender/HolidayCalender";
+import LogoutIcon from "@mui/icons-material/Logout";
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 900,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+const styleImage = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -128,7 +140,7 @@ const DashNav = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <CalenderChart />
+              <HolidayCalendar />
             </Box>
           </Modal>
           {/* calender modal end*/}
@@ -200,13 +212,17 @@ const DashNav = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem>
-            <Avatar />
-            <Button onClick={handleOpen}> Edit Picture </Button>
+            <ListItemIcon>
+              <LinkedCameraIcon />
+            </ListItemIcon>
+            <Button sx={{ color: "black", padding: "0" }} onClick={handleOpen}>
+              Change Picture
+            </Button>
           </MenuItem>
           <Divider />
           <MenuItem>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <LogoutIcon />
             </ListItemIcon>
             <Button sx={{ color: "black", padding: "0" }} onClick={logOut}>
               Logout
@@ -221,14 +237,20 @@ const DashNav = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={styleImage}>
           <form onSubmit={handleSubmit}>
             <Input
               accept="image/*"
               type="file"
               onChange={(e) => setPhoto(e.target.files[0])}
             ></Input>
-            <Button type="submit">Submit</Button>
+            <Button
+              sx={{ marginTop: "10px" }}
+              className="btn_regular"
+              type="submit"
+            >
+              Submit
+            </Button>
           </form>
         </Box>
       </Modal>

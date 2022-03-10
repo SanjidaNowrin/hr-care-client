@@ -126,16 +126,15 @@ function Dashboard(props) {
             <AccountBoxOutlinedIcon className={dashIcon} />
             Task Assign
           </Link>
-
           <Link className={dashLink} to="/dashboard/id_card">
             <BadgeOutlinedIcon className={dashIcon} />
             ID Card
           </Link>
 
-          {/* <Link className={dashLink} to="/dashboard/manage_attendance">
+          <Link className={dashLink} to="/dashboard/manage_attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
-          </Link> */}
+          </Link>
 
           <Link className={dashLink} to="/dashboard/LeaveRequests">
             <ExitToAppOutlinedIcon className={dashIcon} />

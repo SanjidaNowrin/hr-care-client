@@ -16,11 +16,22 @@ import { emphasize, styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import HomeIcon from "@mui/icons-material/Home";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import Tooltip from "@mui/material/Tooltip";
 const TaskAssign = () => {
   const { register, handleSubmit, reset } = useForm();
   const [employees, setEmployees] = useState([]);
-  const [employeeName, setEmployeeName] = useState("");
-  const [task,setTask]=useState([]);
+  const [employeeName, setEmployeeName] = useState([]);
+  const [task, setTask] = useState([]);
+
+  //   setEmployeeEmail(findEmployeeEmail)
+
   // Breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
@@ -41,11 +52,31 @@ const TaskAssign = () => {
       },
     };
   });
+  //   table
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: "#a3d2ed",
+      color: theme.palette.common.black,
+      fontSize: 24,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 18,
+    },
+  }));
 
-  const handleChange = (event) => {
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+  const handleData = (event) => {
     setEmployeeName(event.target.value);
   };
-  console.log(employeeName);
+
   useEffect(() => {
     fetch("https://ancient-thicket-61342.herokuapp.com/employees")
       .then((res) => res.json())
@@ -53,31 +84,49 @@ const TaskAssign = () => {
   }, []);
   //submit form
   const onSubmit = (data, e) => {
-    // data.completedTask = [];
-    console.log(data);
+    let newTask = [];
+    newTask.push(data.task);
     fetch("http://localhost:5000/taskAssign", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        email: data.employee.email,
+        ID: data.employee.ID,
+        name: data.employee.name,
+        date: data.date,
+        task: newTask,
+        startTime: data.startTime,
+        endTime: data.endTime,
+      }),
     })
       .then((res) => res.json())
       .then((result) => console.log(result));
     e.target.reset();
   };
-  let time = new Date().toLocaleString();
-  const todaydate = time.split(",")[0];
-  console.log(todaydate);
+
   //get task
-//   useEffect(() => {
-//     fetch(`http://localhost:5000/comment/${id}`)
-//       .then((res) => res.json())
-//       .then((data) => setTask(data));
-//   }, [task]);
+  useEffect(() => {
+    fetch("http://localhost:5000/taskAssign")
+      .then((res) => res.json())
+      .then((data) => setTask(data.data));
+  }, [task]);
+  // delete
+  const handleDelete = (item) => {
+    fetch(`http://localhost:5000/taskAssign/${item._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount === 1) {
+        }
+      });
+  };
+
   return (
     <>
       <Container>
         {/* Breadcrumbs */}
-        <Box sx={{ mb: 4 }}>
+        <Box sx={{ mb: 3 }}>
           <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
             Employee Task
           </Typography>
@@ -95,17 +144,29 @@ const TaskAssign = () => {
           </Breadcrumbs>
         </Box>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3} sm={0}></Grid>
-
-          <Grid item xs={12} md={6} sm={12}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4} sm={12}>
             <Paper sx={{ p: 4, mt: 2, mb: 5 }} elevation={6}>
-              <Typography
-                sx={{ textAlign: "center", margin: "15px" }}
-                variant="h4"
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "0.9rem",
+                }}
               >
-                <span style={{ color: " #01578A" }}> Assign </span> Task
-              </Typography>
+                <Typography
+                  sx={{
+                    textAlign: "center",
+                    marginTop: "0px",
+                    fontSize: "1.9rem",
+                  }}
+                  variant="h5"
+                >
+                  <span style={{ color: " #01578A" }}> Assign </span> Task
+                </Typography>
+                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" />{" "}
+              </Box>
               <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                 <Box sx={{ width: "100%" }}>
                   <label
@@ -116,22 +177,39 @@ const TaskAssign = () => {
                   </label>
                   <TextField
                     style={{ width: "100%" }}
-                    {...register("email")}
+                    {...register("employee")}
                     id="outlined-select-currency"
                     select
                     label="Name"
                     value={employeeName}
-                    onChange={handleChange}
+                    onChange={handleData}
                     required
                   >
                     {employees.map((option) => (
-                      <MenuItem key={option.name} value={option.email}>
+                      <MenuItem key={option.name} value={option}>
                         {option.name}
                       </MenuItem>
                     ))}
                   </TextField>
                 </Box>
-
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "10px",
+                    marginTop: "1rem",
+                  }}
+                  htmlFor="date"
+                >
+                  Date <span style={{ color: "red" }}>*</span>
+                </label>
+                <TextField
+                  sx={{ width: "100%" }}
+                  variant="outlined"
+                  id="date"
+                  type="date"
+                  {...register("date", { required: true })}
+                />
+                {/* end */}
                 <label
                   style={{
                     display: "block",
@@ -149,6 +227,41 @@ const TaskAssign = () => {
                   {...register("task")}
                   placeholder="Write Task Here"
                 />
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "10px",
+                    marginTop: "1rem",
+                  }}
+                  htmlFor="title"
+                >
+                  Today Meeting Start <span style={{ color: "red" }}>*</span>
+                </label>
+                <TextField
+                  sx={{ width: "100%" }}
+                  variant="outlined"
+                  id="startTime"
+                  type="time"
+                  {...register("startTime", { required: true })}
+                />
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "10px",
+                    marginTop: "1rem",
+                  }}
+                  htmlFor="title"
+                >
+                  Today Meeting End <span style={{ color: "red" }}>*</span>
+                </label>
+                <TextField
+                  sx={{ width: "100%" }}
+                  variant="outlined"
+                  id="endTime"
+                  type="time"
+                  {...register("endTime", { required: true })}
+                />
+
                 <Box sx={{ textAlign: "center", mt: 3 }}>
                   <Button
                     sx={{
@@ -165,8 +278,43 @@ const TaskAssign = () => {
               </form>
             </Paper>
           </Grid>
-
-          <Grid item xs={12} md={3} sm={0}></Grid>
+          <Grid item xs={12} md={8} sm={0} sx={{ marginTop: "1rem" }}>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Employee</StyledTableCell>
+                    <StyledTableCell align="center">Date</StyledTableCell>
+                    <StyledTableCell align="center">Task</StyledTableCell>
+                    <StyledTableCell align="right">Action</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {task.map((item) => (
+                    <StyledTableRow>
+                      <StyledTableCell component="th" scope="row">
+                        {item.name}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {item.date}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {item.task}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        <Tooltip title="Delete">
+                          <DeleteOutlineOutlinedIcon
+                            sx={{ cursor: "pointer" }}
+                            onClick={() => handleDelete(item)}
+                          />
+                        </Tooltip>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
         </Grid>
       </Container>
     </>

@@ -23,6 +23,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 import TodayAttendance from './TodayAttendance/TodayAttendance';
 import CalenderChart from './HolidayCalender/CalenderChart';
+import dateFormat from '../../Share/DateFormat/dateFormat';
 
 
 const DashboardHome = () => {
@@ -39,7 +40,7 @@ const DashboardHome = () => {
     const [leave, setLeave] = useState([]);
 
     let time = new Date().toLocaleString();
-    const todaydate = time.split(",")[0];
+    const todaydate = dateFormat(time.split(",")[0], 'yyyy-MM-dd');
 
 
     useEffect(() => {

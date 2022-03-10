@@ -42,14 +42,14 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     function save() {
         setImage(sigPad.current.toDataURL());
     }
-  
+
     function show() {
         sigPad.current.fromDataURL(image);
     }
     const onUpdate = (data) => {
         data.image = image;
         console.log(data);
-        fetch(`http://localhost:5000/employees/${_id}`, {
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),
