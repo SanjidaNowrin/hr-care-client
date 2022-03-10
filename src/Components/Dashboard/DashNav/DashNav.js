@@ -56,7 +56,7 @@ const DashNav = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
             .then((res) => res.json())
-            .then((notification) => setNotification(notification.data));
+            .then((notification) => setNotification(notification.data.reverse()));
     }, []);
 
   //
