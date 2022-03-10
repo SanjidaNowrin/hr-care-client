@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -7,13 +7,24 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import useAuth from "./../../../hooks/useAuth";
-import { Button } from "@mui/material";
+import { Button, Input } from "@mui/material";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -45,6 +56,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const DashNav = () => {
+  const [photo, setPhoto] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -54,7 +66,36 @@ const DashNav = () => {
     setAnchorEl(null);
   };
   const { logOut, user } = useAuth();
-
+  const [start, setOpen] = React.useState(false);
+  const [employee, setEmployee] = useState([]);
+  const[photoURL,setPhotoUrl]=useState(true);
+  const handleOpen = () => setOpen(true);
+  const close = () => setOpen(false);
+  // get data
+  useEffect(() => {
+    fetch(`http://localhost:5000/employees/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setEmployee(data.result));
+  }, [photoURL,user.email, employee]);
+  //form submit
+  const handleSubmit = (e) => {
+    const formData = new FormData();
+    formData.append("photo", photo);
+    fetch(`http://localhost:5000/employees/profile/${user.email}`, {
+      method: "PUT",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setPhotoUrl(!photoURL)
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    e.preventDefault();
+    close();
+  };
   return (
     <>
       <React.Fragment>
@@ -91,7 +132,19 @@ const DashNav = () => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 variant="dot"
               >
-                <Avatar alt="Remy Sharp" src={user.photoURL} />
+                {employee[0]?.photo ? (
+                  employee.map((employeePhoto) => (
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
+                    />
+                  ))
+                ) : (
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                  />
+                )}
               </StyledBadge>
             </IconButton>
           </Tooltip>
@@ -133,15 +186,9 @@ const DashNav = () => {
         >
           <MenuItem>
             <Avatar />
-            My Profile
+            <Button onClick={handleOpen}> Edit Picture </Button>
           </MenuItem>
           <Divider />
-          <MenuItem>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            <Button sx={{ color: "black", padding: "0" }}>Settings</Button>
-          </MenuItem>
           <MenuItem>
             <ListItemIcon>
               <Logout fontSize="small" />
@@ -152,6 +199,24 @@ const DashNav = () => {
           </MenuItem>
         </Menu>
       </React.Fragment>
+      {/* modal */}
+      <Modal
+        open={start}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <form onSubmit={handleSubmit}>
+            <Input
+              accept="image/*"
+              type="file"
+              onChange={(e) => setPhoto(e.target.files[0])}
+            ></Input>
+            <Button type="submit">Submit</Button>
+          </form>
+        </Box>
+      </Modal>
     </>
   );
 };

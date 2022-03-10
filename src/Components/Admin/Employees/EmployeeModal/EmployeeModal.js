@@ -55,7 +55,6 @@ const EmployeeModal = ({ item }) => {
     lastInstitute,
     lastGrade,
   } = item;
-  console.log(item);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
