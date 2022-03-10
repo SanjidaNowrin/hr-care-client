@@ -22,6 +22,7 @@ import Register from "./Components/Login/Register/Register";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Teams from './Components/Home/Teams/Teams';
 import AuthProvider from "./contexts/AuthProvider";
+import EnrollCourse from "./Components/Employee/Courses/EnrollCourse/EnrollCourse";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
                 element={<Announcements />}
               />
               <Route path={"/dashboard/course"} element={<Courses />} />
+              <Route path={"/dashboard/course/:id"} element={<EnrollCourse />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route path={"/dashboard/all_employees"} element={<Employees />} />
