@@ -82,7 +82,6 @@ function App() {
               <Route path={"/dashboard/add_course"} element={<AddCourse />} />
               <Route path={"/dashboard/salary_sheet"} element={<SalarySheet />} />
               <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
-
               <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
             </Route>
           </Routes>

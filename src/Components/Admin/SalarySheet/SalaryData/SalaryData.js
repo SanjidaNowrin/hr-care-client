@@ -28,6 +28,7 @@ const SalaryData = (props) => {
   const { ID, name, designation, department, Gross } = props.employee;
 
   const basic = ((Gross - 1850) / 1.5).toFixed(0);
+  const payment = ((Gross / 30) * props.date.length).toFixed(0);
 
   console.log(props.date);
 
@@ -62,7 +63,7 @@ const SalaryData = (props) => {
         </StyledTableCell>
 
         <StyledTableCell align="right" component="th" scope="row">
-          {(Gross / 30) * props.date.length}
+          {payment}
         </StyledTableCell>
 
       </StyledTableRow>
