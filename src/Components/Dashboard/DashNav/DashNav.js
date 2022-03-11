@@ -71,6 +71,18 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const DashNav = () => {
   const [photo, setPhoto] = useState(null);
+
+  //notification
+  const [notification, setNotification] = useState([]);
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
+      .then((res) => res.json())
+      .then((notification) => setNotification(notification.data.reverse()));
+  }, []);
+
+  //
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
