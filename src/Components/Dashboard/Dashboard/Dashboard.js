@@ -90,6 +90,10 @@ function Dashboard(props) {
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
           </Link>
+          <Link className={dashLink} to="/dashboard/employeeDashboard">
+            <CoPresentOutlinedIcon className={dashIcon} />
+            My dashboard
+          </Link>
 
           <Link className={dashLink} to="/dashboard/myinfo">
             <AccountBoxOutlinedIcon className={dashIcon} />

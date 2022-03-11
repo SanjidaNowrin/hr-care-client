@@ -11,6 +11,7 @@ import MakeAdmin from "./Components/Admin/MakeAdmin/MakeAdmin";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
+import EmployeeDashboardHome from "./Components/Dashboard/DashboardHome/EmployeeDashboardHome";
 import Announcements from "./Components/Employee/Announcements/Announcements";
 import Courses from "./Components/Employee/Courses/Courses";
 import Leave from "./Components/Employee/Leave/Leave";
@@ -47,7 +48,8 @@ function App() {
                             <Route path={"/dashboard"} element={<DashboardHome />} />
 
                             <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
-                            <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
+                            <Route path={"/dashboard/employeeDashboard"} element={<EmployeeDashboardHome />} />
+                            {/* <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
                             <Route path={"/dashboard/announcements"} element={<Announcements />} />
                             <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
                             <Route path={"/dashboard/course"} element={<Courses />} />
@@ -65,7 +67,7 @@ function App() {
                             <Route path={"/dashboard/salary_sheet"} element={<SalarySheet />} />
                             <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
 
-                            <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
+                            <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} /> */}
                         </Route>
                     </Routes>
                 </Router>

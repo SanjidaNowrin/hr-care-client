@@ -24,7 +24,6 @@ import { Link } from 'react-router-dom';
 import TodayAttendance from './TodayAttendance/TodayAttendance';
 import CalenderChart from './HolidayCalender/CalenderChart';
 
-
 const DashboardHome = () => {
     const [employees, setEmployees] = useState([]);
 
@@ -106,7 +105,7 @@ const DashboardHome = () => {
     const date = new Date();
     const takeDate = date.toString().slice(0, 16);
     return (
-        <Container>
+        <Container >
             <Typography sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
                 Dashboard
             </Typography>
@@ -180,6 +179,9 @@ const DashboardHome = () => {
                 </Grid>
             </Box>
 
+
+
+
             {/* Total attendance chart area */}
             <Box sx={{ my: 5 }}>
                 <Box sx={{ background: 'var(--s_color)', py: 2, px: 2, display: 'flex', justifyContent: 'space-between' }}>
@@ -210,7 +212,7 @@ const DashboardHome = () => {
                     </Grid>
                 </Grid>
             </Box>
-         {/* <CalenderChart/> */}
+            {/* <CalenderChart/> */}
         </Container>
     );
 };
