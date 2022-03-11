@@ -43,7 +43,7 @@ const EmployeeDashboardHome = () => {
                 setHoliday(filteredHoliday)
                 console.log(data.result, filteredData, filteredHoliday)
             })
-    }, [])
+    }, [dateString, user?.email])
 
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         const backgroundColor =

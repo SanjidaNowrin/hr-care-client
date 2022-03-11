@@ -103,11 +103,6 @@ function Dashboard(props) {
             My Information
           </Link>
 
-          <Link className={dashLink} to="/dashboard/attendance">
-            <CoPresentOutlinedIcon className={dashIcon} />
-            Attendance
-          </Link>
-
           <Link className={dashLink} to="/dashboard/announcements">
             <CampaignIcon className={dashIcon} />
             Announcement
