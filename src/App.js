@@ -64,7 +64,7 @@ function App() {
                 element={<Announcements />}
               />
               <Route path={"/dashboard/course"} element={<Courses />} />
-              <Route path={"/dashboard/course/:id"} element={<EnrollCourse />} />
+              <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route path={"/dashboard/all_employees"} element={<Employees />} />
