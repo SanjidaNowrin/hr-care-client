@@ -12,8 +12,8 @@ const PieChartsChartJs = ({ attendance, dateString, holiday }) => {
 
     const w = attendance.length
     const h = holiday.length;
-    const p = w - h
-    const p = w - (ab + h)
+    let p = w - h
+    // p = w - (ab + h)
     const data = {
         labels: ['Present', 'Absent', 'Holiday'],
         datasets: [{

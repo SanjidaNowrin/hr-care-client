@@ -20,7 +20,7 @@ import LineChartsChartJs from '../Charts/LineChartsChartJs';
 import PieChartsChartJs from '../Charts/PieChartsChartJs';
 import dateFormat from '../../Share/DateFormat/dateFormat';
 import useAuth from '../../../hooks/useAuth';
-import dateFormat from '../../Share/DateFormat/dateFormat';
+
 const EmployeeDashboardHome = () => {
     const { user } = useAuth();
     console.log(user)
