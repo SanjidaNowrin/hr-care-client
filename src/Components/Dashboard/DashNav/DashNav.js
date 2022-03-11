@@ -6,12 +6,24 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { styled } from "@mui/material/styles";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
+
+import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import EventIcon from "@mui/icons-material/Event";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
@@ -22,7 +34,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 900,
+  width: 850,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -92,6 +104,23 @@ const DashNav = () => {
     setAnchorEl(null);
   };
   const { logOut, user } = useAuth();
+
+  //
+  const HtmlTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      width: '100%',
+      height: "50vh",
+      overflow: "scroll",
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+  }));
+
+  //
   const [start, setOpen] = React.useState(false);
   const [employee, setEmployee] = useState([]);
   const [photoURL, setPhotoUrl] = useState(true);
@@ -138,6 +167,52 @@ const DashNav = () => {
           }}
         >
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+
+
+            {/* ss */}
+
+            <HtmlTooltip
+              title={
+                <React.Fragment>
+                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
+                  {notification?.map((data) => (
+                    <Link
+                      to={`/dashboard/announcements`}>
+                      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                        <nav aria-label="main mailbox folders">
+                          <List>
+                            <ListItem disablePadding>
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <CircleNotificationsIcon style={{ color: 'orange' }} />
+                                </ListItemIcon>
+                                <ListItemText style={{ color: 'black' }} primary={data.title} />
+                              </ListItemButton>
+                            </ListItem>
+                          </List>
+                        </nav>
+
+                      </Box>
+
+                    </Link>
+                  ))}
+                </React.Fragment>
+              }
+            >
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={notification.length} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            </HtmlTooltip>
+
+            {/* ss */}
+
+
             <IconButton size="large" color="inherit">
               <Badge color="error">
                 <EventIcon onClick={holidayOpen} />

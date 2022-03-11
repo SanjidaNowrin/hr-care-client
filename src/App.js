@@ -64,7 +64,7 @@ function App() {
                 element={<Announcements />}
               />
               <Route path={"/dashboard/course"} element={<Courses />} />
-              <Route path={"/dashboard/course/:id"} element={<EnrollCourse />} />
+              <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route path={"/dashboard/all_employees"} element={<Employees />} />
@@ -82,7 +82,6 @@ function App() {
               <Route path={"/dashboard/add_course"} element={<AddCourse />} />
               <Route path={"/dashboard/salary_sheet"} element={<SalarySheet />} />
               <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
-
               <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
             </Route>
           </Routes>

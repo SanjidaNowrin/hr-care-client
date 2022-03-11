@@ -32,6 +32,8 @@
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.23",
     "material-table": "^1.69.3",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34",
     "react": "^17.0.2",
     "react-big-calendar": "^0.38.9",
     "react-chartjs-2": "^4.0.1",
