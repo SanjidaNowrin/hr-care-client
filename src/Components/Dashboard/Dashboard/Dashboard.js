@@ -122,7 +122,10 @@ function Dashboard(props) {
             <AccountBoxOutlinedIcon className={dashIcon} />
             All Employees
           </Link>
-
+          <Link className={dashLink} to="/dashboard/task_assign">
+            <AccountBoxOutlinedIcon className={dashIcon} />
+            Task Assign
+          </Link>
           <Link className={dashLink} to="/dashboard/id_card">
             <BadgeOutlinedIcon className={dashIcon} />
             ID Card

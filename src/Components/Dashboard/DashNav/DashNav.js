@@ -6,18 +6,29 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button, Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
-import { Link } from "react-router-dom";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-
+import EventIcon from "@mui/icons-material/Event";
+import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
+import HolidayCalendar from "./../../Employee/HolidayCalender/HolidayCalender";
+import LogoutIcon from "@mui/icons-material/Logout";
 const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 900,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+const styleImage = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -28,9 +39,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
-
-
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -63,18 +71,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const DashNav = () => {
   const [photo, setPhoto] = useState(null);
-
-  //notification
-  const [notification, setNotification] = useState([]);
-  useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
-      .then((res) => res.json())
-      .then((notification) => setNotification(notification.data));
-  }, []);
-
-  //
-
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -89,9 +85,13 @@ const DashNav = () => {
   const [photoURL, setPhotoUrl] = useState(true);
   const handleOpen = () => setOpen(true);
   const close = () => setOpen(false);
+  // calendar modal
+  const [holiday, setHoliday] = React.useState(false);
+  const holidayOpen = () => setHoliday(true);
+  const holidayClose = () => setHoliday(false);
   // get data
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`http://localhost:5000/employees/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [photoURL, user.email, employee]);
@@ -99,14 +99,14 @@ const DashNav = () => {
   const handleSubmit = (e) => {
     const formData = new FormData();
     formData.append("photo", photo);
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
+    fetch(`http://localhost:5000/employees/profile/${user.email}`, {
       method: "PUT",
       body: formData,
     })
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setPhotoUrl(!photoURL)
+        setPhotoUrl(!photoURL);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -114,21 +114,6 @@ const DashNav = () => {
     e.preventDefault();
     close();
   };
-
-  //
-  const HtmlTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: '#f5f5f9',
-      color: 'rgba(0, 0, 0, 0.87)',
-      maxWidth: 220,
-      fontSize: theme.typography.pxToRem(12),
-      border: '1px solid #dadde9',
-    },
-  }));
-
-  //
   return (
     <>
       <React.Fragment>
@@ -141,50 +126,25 @@ const DashNav = () => {
           }}
         >
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-
-
-            {/* ss */}
-
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
-                  {notification?.map((data) => (
-                    <Link
-                      to={`/dashboard/announcements`}>
-                      <div style={{ border: '1px solid', padding: '4px', marginBottom: '5px' }}>
-                        <Typography style={{ marginBottom: '5px' }} variant="body2">
-                          {data.title}
-                        </Typography>
-                      </div>
-                    </Link>
-                  ))}
-                </React.Fragment>
-              }
-            >
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={notification.length} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </HtmlTooltip>
-
-            {/* ss */}
-
-            {/* <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={5} color="error">
-                <NotificationsIcon />
+            <IconButton size="large" color="inherit">
+              <Badge color="error">
+                <EventIcon onClick={holidayOpen} />
               </Badge>
-            </IconButton> */}
+            </IconButton>
           </Box>
+          {/* calender modal */}
+          <Modal
+            open={holiday}
+            onClose={holidayClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <HolidayCalendar />
+            </Box>
+          </Modal>
+          {/* calender modal end*/}
+
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
@@ -252,13 +212,17 @@ const DashNav = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem>
-            <Avatar />
-            <Button onClick={handleOpen}> Edit Picture </Button>
+            <ListItemIcon>
+              <LinkedCameraIcon />
+            </ListItemIcon>
+            <Button sx={{ color: "black", padding: "0" }} onClick={handleOpen}>
+              Change Picture
+            </Button>
           </MenuItem>
           <Divider />
           <MenuItem>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <LogoutIcon />
             </ListItemIcon>
             <Button sx={{ color: "black", padding: "0" }} onClick={logOut}>
               Logout
@@ -273,14 +237,20 @@ const DashNav = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={styleImage}>
           <form onSubmit={handleSubmit}>
             <Input
               accept="image/*"
               type="file"
               onChange={(e) => setPhoto(e.target.files[0])}
             ></Input>
-            <Button type="submit">Submit</Button>
+            <Button
+              sx={{ marginTop: "10px" }}
+              className="btn_regular"
+              type="submit"
+            >
+              Submit
+            </Button>
           </form>
         </Box>
       </Modal>
