@@ -91,7 +91,7 @@ const DashNav = () => {
   const holidayClose = () => setHoliday(false);
   // get data
   useEffect(() => {
-    fetch(`http://localhost:5000/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [photoURL, user.email, employee]);
@@ -99,7 +99,7 @@ const DashNav = () => {
   const handleSubmit = (e) => {
     const formData = new FormData();
     formData.append("photo", photo);
-    fetch(`http://localhost:5000/employees/profile/${user.email}`, {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
       method: "PUT",
       body: formData,
     })
