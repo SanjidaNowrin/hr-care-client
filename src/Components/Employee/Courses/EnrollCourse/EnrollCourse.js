@@ -1,14 +1,14 @@
 import { Box, Breadcrumbs, Button, Container, Divider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import useAuth from '../../../../hooks/useAuth';
+import axios from 'axios';
+import Swal from "sweetalert2";
 
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
 import { emphasize, styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link, useParams } from "react-router-dom";
-import useAuth from '../../../../hooks/useAuth';
-import axios from 'axios';
-import Swal from "sweetalert2";
 
 const EnrollCourse = () => {
     const { user } = useAuth();
@@ -25,27 +25,6 @@ const EnrollCourse = () => {
         const filterData = courses.filter(data => data._id === id);
         setEnroll(filterData)
     }, [id, courses]);
-
-    // Breadcrumbs
-    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-        const backgroundColor =
-            theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[800];
-        return {
-            backgroundColor,
-            height: theme.spacing(3),
-            color: theme.palette.text.primary,
-            fontWeight: theme.typography.fontWeightRegular,
-            '&:hover, &:focus': {
-                backgroundColor: emphasize(backgroundColor, 0.06),
-            },
-            '&:active': {
-                boxShadow: theme.shadows[1],
-                backgroundColor: emphasize(backgroundColor, 0.12),
-            },
-        };
-    });
 
     const handleEnroll = (data) => {
         const email = user.email;
@@ -73,15 +52,34 @@ const EnrollCourse = () => {
         fetch('https://ancient-thicket-61342.herokuapp.com/enrolls')
             .then(res => res.json())
             .then(data => setEnrolls(data.data))
-    }, [])
+    }, [enrolls])
     useEffect(() => {
         const filterUser = enrolls.filter(data => data.email === user.email);
         setFilterData(filterUser)
         filterData.map(item => setUserId(item.courseId));
-    }, [enrolls, user, id, filterData])
+    }, [id, filterData, userId])
 
-    // console.log(enrollEmail)
 
+    // Breadcrumbs
+    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+        const backgroundColor =
+            theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[800];
+        return {
+            backgroundColor,
+            height: theme.spacing(3),
+            color: theme.palette.text.primary,
+            fontWeight: theme.typography.fontWeightRegular,
+            '&:hover, &:focus': {
+                backgroundColor: emphasize(backgroundColor, 0.06),
+            },
+            '&:active': {
+                boxShadow: theme.shadows[1],
+                backgroundColor: emphasize(backgroundColor, 0.12),
+            },
+        };
+    });
     return (
         <Container>
             {/* Breadcrumbs */}
@@ -99,37 +97,39 @@ const EnrollCourse = () => {
                         />
                     </Link>
                     <Link to="/dashboard/course"><StyledBreadcrumb component="a" href="#" label="Courses" /></Link>
-                    <Link to={`/dashboard/course/${id}`}><StyledBreadcrumb component="a" href="#" label="Enroll" /></Link>
+                    <Link to="/dashboard/course"><StyledBreadcrumb component="a" href="#" label="Enroll" /></Link>
                 </Breadcrumbs>
             </Box>
 
-            {
-                enroll.map(item =>
-                    <Box key={item._id} sx={{ mb: 4 }}>
-                        <Typography variant='h5'>
-                            {item.topic}
-                        </Typography>
-                        <Typography variant='h3' sx={{ width: { md: '65%' }, color: 'var(--p_color)', fontWeight: '700', mb: 2 }}>
-                            {item.name}
-                        </Typography>
-                        <Divider />
-                        <Typography sx={{ my: 1 }} variant='body1'>
-                            by <span style={{ color: '#845EC2' }}>{item.author}</span> - {item.date}
-                        </Typography>
-                        <Divider />
-                        <Box sx={{ display: { md: 'flex' }, alignItems: 'center', justifyContent: 'space-between', my: 4 }}>
-                            <Typography sx={{ width: { md: '60%' }, mb: { sm: 2, xs: 2 } }} variant='body1'>
-                                {item.des}
+            <>
+                {
+                    enroll.map(item =>
+                        <Box key={item._id} sx={{ mb: 4 }}>
+                            <Typography variant='h5'>
+                                {item.topic}
                             </Typography>
-                            <img src={item.courseImg} alt="" />
-                        </Box>
-                        {
-                            id === userId ? <Button className='btn_regular'>Already Enroll</Button> : <Button onClick={() => handleEnroll(item)} className='btn_regular'>Start Course</Button>
-                        }
+                            <Typography variant='h3' sx={{ width: { md: '65%' }, color: 'var(--p_color)', fontWeight: '700', mb: 2 }}>
+                                {item.name}
+                            </Typography>
+                            <Divider />
+                            <Typography sx={{ my: 1 }} variant='body1'>
+                                by <span style={{ color: '#845EC2' }}>{item.author}</span> - {item.date}
+                            </Typography>
+                            <Divider />
+                            <Box sx={{ display: { md: 'flex' }, alignItems: 'center', justifyContent: 'space-between', my: 4 }}>
+                                <Typography sx={{ width: { md: '60%' }, mb: { sm: 2, xs: 2 } }} variant='body1'>
+                                    {item.des}
+                                </Typography>
+                                <img src={item.courseImg} alt="" />
+                            </Box>
+                            {
+                                id !== userId ? <Button onClick={() => handleEnroll(item)} className='btn_regular'>Start Course</Button> : <Button className='btn_regular'>Already Enroll</Button>
+                            }
 
-                    </Box>
-                )
-            }
+                        </Box>
+                    )
+                }
+            </>
         </Container>
     );
 };

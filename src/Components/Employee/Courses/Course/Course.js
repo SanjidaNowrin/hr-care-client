@@ -16,7 +16,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
 
-const Course = ({ item, email }) => {
+const Course = ({ item }) => {
     const { _id, name, des, author, authorImg, courseImg, topic, date } = item;
 
     const useStyle = makeStyles({
@@ -86,7 +86,7 @@ const Course = ({ item, email }) => {
                     <CardHeader
                         avatar={<Avatar alt="Remy Sharp" src={authorImg} />}
                         action={
-                            <Link to={`/dashboard/course/${_id}`}>
+                            <Link to={`/dashboard/enroll/${_id}`}>
                                 <Button className="btn_regular">
                                     Enroll
                                 </Button>
