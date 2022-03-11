@@ -13,12 +13,12 @@ const PieChartsChartJs = ({ attendance, dateString, holiday }) => {
     const w = attendance.length
     const h = holiday.length;
     const p = w - h
-    const p = w - (ab + h)
+    const ab = w - (ab + h)
     const data = {
         labels: ['Present', 'Absent', 'Holiday'],
         datasets: [{
             label: '# of Votes',
-            data: [p, h, h],
+            data: [p, ab, h],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
 
