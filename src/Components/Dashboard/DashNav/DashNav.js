@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { styled } from "@mui/material/styles";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import useAuth from "./../../../hooks/useAuth";
@@ -17,6 +18,11 @@ import { Button } from "@mui/material";
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 
 
 
@@ -53,11 +59,11 @@ const DashNav = () => {
 
   //notification
   const [notification, setNotification] = useState([]);
-    useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
-            .then((res) => res.json())
-            .then((notification) => setNotification(notification.data.reverse()));
-    }, []);
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
+      .then((res) => res.json())
+      .then((notification) => setNotification(notification.data.reverse()));
+  }, []);
 
   //
 
@@ -72,20 +78,20 @@ const DashNav = () => {
   };
   const { logOut, user } = useAuth();
 
-//
-const HtmlTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: '1px solid #dadde9',
-  },
-}));
+  //
+  const HtmlTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 520,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+  }));
 
-//
+  //
   return (
     <>
       <React.Fragment>
@@ -103,44 +109,47 @@ const HtmlTooltip = styled(({ className, ...props }) => (
             {/* ss */}
 
             <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography style={{marginBottom:'5px', fontWeight:'bold',textAlign:'center'}} color="inherit">Announcement</Typography>
-              {notification?.map((data) => (
-                <Link
-                    to={`/dashboard/announcements`}>
-                      <div style={{border: '1px solid',padding:'4px',marginBottom:'5px'}}>
-                      <Typography style={{marginBottom:'5px'}} variant="body2"> 
-                          {data.title}
-                      </Typography>
-                      </div>
-                </Link>
-            ))}
-          </React.Fragment>
-        }
-      >
-        <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
+              title={
+                <React.Fragment>
+                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
+                  {notification?.map((data) => (
+                    <Link
+                      to={`/dashboard/announcements`}>
+                      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                        <nav aria-label="main mailbox folders">
+                          <List>
+                            <ListItem disablePadding>
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <CircleNotificationsIcon style={{ color: 'orange' }} />
+                                </ListItemIcon>
+                                <ListItemText style={{ color: 'black' }} primary={data.title} />
+                              </ListItemButton>
+                            </ListItem>
+                          </List>
+                        </nav>
+
+                      </Box>
+
+                    </Link>
+                  ))}
+                </React.Fragment>
+              }
             >
-              <Badge badgeContent={notification.length} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-      </HtmlTooltip>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={notification.length} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            </HtmlTooltip>
 
             {/* ss */}
 
-            {/* <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={5} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
+
           </Box>
           <Tooltip title="Account settings">
             <IconButton

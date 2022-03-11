@@ -47,11 +47,11 @@ function App() {
             >
               <Route path={"/dashboard"} element={<DashboardHome />} />
 
-              <Route
+              {/* <Route
                 path={"/dashboard/attendance"}
                 element={<MyAttendance />}
-              />
-              <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
+              /> */}
+              {/* <Route path={"/dashboard/myinfo"} element={<MyInfo />} /> */}
               <Route
                 path={"/dashboard/announcements"}
                 element={<Announcements />}
@@ -60,7 +60,7 @@ function App() {
                 path={"/dashboard/announcements/:Id"}
                 element={<Announcements />}
               />
-              <Route path={"/dashboard/course"} element={<Courses />} />
+              {/* <Route path={"/dashboard/course"} element={<Courses />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route
@@ -71,8 +71,8 @@ function App() {
               <Route
                 path={"/dashboard/manage_attendance"}
                 element={<AttendanceManage />}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 path={"/dashboard/leaveRequests"}
                 element={<LeaveRequests />}
               />
@@ -84,19 +84,19 @@ function App() {
                 path={"/dashboard/leaveApplications"}
                 element={<LeaveApplications />}
               />
-              <Route path={"/dashboard/holiday"} element={<Holidays />} />
-              <Route
+              <Route path={"/dashboard/holiday"} element={<Holidays />} /> */}
+              {/* <Route
                 path={"/dashboard/add_announcement"}
                 element={<AddAnnouncement />}
-              />
-              <Route path={"/dashboard/add_course"} element={<AddCourse />} />
+              /> */}
+              {/* <Route path={"/dashboard/add_course"} element={<AddCourse />} />
               <Route
                 path={"/dashboard/salary_sheet"}
                 element={<SalarySheet />}
               />
               <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
 
-              <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
+              <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} /> */}
             </Route>
           </Routes>
         </Router>
