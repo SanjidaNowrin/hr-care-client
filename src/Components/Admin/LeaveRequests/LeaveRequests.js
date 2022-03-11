@@ -88,7 +88,7 @@ const LeaveRequests = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/leave")
             .then((res) => res.json())
-            .then((data) => setData(data.data));
+            .then((data) => setData(data.data.reverse()));
     }, [data]);
 
     // Breadcrumbs

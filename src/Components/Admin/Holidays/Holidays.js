@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Tooltip from "@mui/material/Tooltip";
-import dateFormat from "../../Share/Navbar/dateFormat";
+import dateFormat from "../../Share/DateFormat/dateFormat";
 
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
@@ -119,7 +119,7 @@ const Holidays = () => {
                 fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
-                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title }),
+                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, entry: "", holiday: data?.title }),
                 })
             ))
 
@@ -275,6 +275,18 @@ const Holidays = () => {
                                 id="title"
                                 type="text"
                                 {...register("title", { required: true })}
+                            />
+                        </Box>
+                        <Box sx={{ mb: 2 }}>
+                            <label style={{ display: "block" }} htmlFor="title">
+                                Holiday Days <span style={{ color: "red" }}>*</span>
+                            </label>
+                            <TextField
+                                sx={{ width: "100%" }}
+                                variant="outlined"
+                                id="title"
+                                type="number"
+                                {...register("days", { required: true })}
                             />
                         </Box>
                         <Box sx={{ mb: 2 }}>

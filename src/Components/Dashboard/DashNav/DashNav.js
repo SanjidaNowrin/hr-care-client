@@ -1,18 +1,16 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
-import { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { styled } from "@mui/material/styles";
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import Badge from "@mui/material/Badge";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import useAuth from "./../../../hooks/useAuth";
 import { Button } from "@mui/material";
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
@@ -25,6 +23,34 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 
+import { Input } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import EventIcon from "@mui/icons-material/Event";
+import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
+import HolidayCalendar from "./../../Employee/HolidayCalender/HolidayCalender";
+import LogoutIcon from "@mui/icons-material/Logout";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 900,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+const styleImage = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -56,6 +82,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const DashNav = () => {
+  const [photo, setPhoto] = useState(null);
 
   //notification
   const [notification, setNotification] = useState([]);
@@ -85,13 +112,49 @@ const DashNav = () => {
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: '#f5f5f9',
       color: 'rgba(0, 0, 0, 0.87)',
-      maxWidth: 520,
+      width: '100%',
+      height: "50vh",
+      overflow: "scroll",
       fontSize: theme.typography.pxToRem(12),
       border: '1px solid #dadde9',
     },
   }));
 
   //
+  const [start, setOpen] = React.useState(false);
+  const [employee, setEmployee] = useState([]);
+  const [photoURL, setPhotoUrl] = useState(true);
+  const handleOpen = () => setOpen(true);
+  const close = () => setOpen(false);
+  // calendar modal
+  const [holiday, setHoliday] = React.useState(false);
+  const holidayOpen = () => setHoliday(true);
+  const holidayClose = () => setHoliday(false);
+  // get data
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setEmployee(data.result));
+  }, [photoURL, user.email, employee]);
+  //form submit
+  const handleSubmit = (e) => {
+    const formData = new FormData();
+    formData.append("photo", photo);
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
+      method: "PUT",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setPhotoUrl(!photoURL);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    e.preventDefault();
+    close();
+  };
   return (
     <>
       <React.Fragment>
@@ -150,7 +213,25 @@ const DashNav = () => {
             {/* ss */}
 
 
+            <IconButton size="large" color="inherit">
+              <Badge color="error">
+                <EventIcon onClick={holidayOpen} />
+              </Badge>
+            </IconButton>
           </Box>
+          {/* calender modal */}
+          <Modal
+            open={holiday}
+            onClose={holidayClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <HolidayCalendar />
+            </Box>
+          </Modal>
+          {/* calender modal end*/}
+
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
@@ -165,7 +246,19 @@ const DashNav = () => {
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 variant="dot"
               >
-                <Avatar alt="Remy Sharp" src={user.photoURL} />
+                {employee[0]?.photo ? (
+                  employee.map((employeePhoto) => (
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
+                    />
+                  ))
+                ) : (
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                  />
+                )}
               </StyledBadge>
             </IconButton>
           </Tooltip>
@@ -206,19 +299,17 @@ const DashNav = () => {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem>
-            <Avatar />
-            My Profile
+            <ListItemIcon>
+              <LinkedCameraIcon />
+            </ListItemIcon>
+            <Button sx={{ color: "black", padding: "0" }} onClick={handleOpen}>
+              Change Picture
+            </Button>
           </MenuItem>
           <Divider />
           <MenuItem>
             <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            <Button sx={{ color: "black", padding: "0" }}>Settings</Button>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Logout fontSize="small" />
+              <LogoutIcon />
             </ListItemIcon>
             <Button sx={{ color: "black", padding: "0" }} onClick={logOut}>
               Logout
@@ -226,6 +317,30 @@ const DashNav = () => {
           </MenuItem>
         </Menu>
       </React.Fragment>
+      {/* modal */}
+      <Modal
+        open={start}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styleImage}>
+          <form onSubmit={handleSubmit}>
+            <Input
+              accept="image/*"
+              type="file"
+              onChange={(e) => setPhoto(e.target.files[0])}
+            ></Input>
+            <Button
+              sx={{ marginTop: "10px" }}
+              className="btn_regular"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </form>
+        </Box>
+      </Modal>
     </>
   );
 };

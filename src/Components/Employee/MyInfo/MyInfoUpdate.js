@@ -14,6 +14,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     const {
         _id,
         name,
+        photo,
         father,
         mother,
         email,
@@ -35,16 +36,15 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     const [image, setImage] = useState(null);
     //signature
     let sigPad = useRef({});
-    let signature = "";
     function clear() {
         sigPad.current.clear();
     }
     function save() {
         setImage(sigPad.current.toDataURL());
     }
-    console.log(image);
+
     function show() {
-        sigPad.current.fromDataURL(signature);
+        sigPad.current.fromDataURL(image);
     }
     const onUpdate = (data) => {
         data.image = image;
@@ -113,6 +113,14 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         defaultValue={name}
                         required
                     />
+                    {/* <TextField
+                        {...register("photo")}
+                        id="outlined-basic"
+                        label="Photo URL"
+                        type="text"
+                        variant="outlined"
+                        defaultValue={photo}
+                    /> */}
                     <TextField
                         {...register("father")}
                         id="outlined-basic"

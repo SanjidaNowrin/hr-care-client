@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import dateFormat from "../../../Share/Navbar/dateFormat";
+import dateFormat from "../../../Share/DateFormat/dateFormat";
 
 const OneLeaveRequest = ({ data }) => {
 
@@ -28,7 +28,6 @@ const OneLeaveRequest = ({ data }) => {
             border: "2px solid #fff",
             borderRadius: '13px !important',
             marginBottom: '20px',
-            border: "2px solid #009EFA",
             boxShadow: '1px 10px 30px #b6b7b7 !important'
         },
         announceTop: {
@@ -74,8 +73,6 @@ const OneLeaveRequest = ({ data }) => {
         }
     });
     const { announceTop, announceP, dateStyle } = useStyle();
-    const [employees, setEmployees] = useState({});
-    const [filterEmployee, setFilterEmployee] = useState({});
     const [newData, setNewData] = useState({});
     const { Id } = useParams();
 
@@ -84,12 +81,6 @@ const OneLeaveRequest = ({ data }) => {
         setNewData(filterData);
     }, [Id, data]);
 
-
-    // useEffect(() => {
-    //     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/`)
-    //         .then((res) => res.json())
-    //         .then((data) => setEmployees(data.data));
-    // }, []);
 
     const onSubmit = (data) => {
         data.status = "Approved"
@@ -101,34 +92,23 @@ const OneLeaveRequest = ({ data }) => {
             .then((res) => res.json())
             .then((data) => console.log(data));
 
-        // fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${data?.email}`)
-        //     .then((res) => res.json())
-        //     .then((data) => setEmployees(data.result[0]));
-        // console.log(employees)
-
-        // const searchEmployee = employees.filter((employee) => employee?.email === data?.email)
-        // setFilterEmployee(searchEmployee)
-        // console.log(filterEmployee[0])
-
-        // const startDate = new Date(data?.tripStart);
-        // const endDate = new Date(data?.tripEnd);
-
-        // for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
-
-        //     const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
-        //     console.log(currentDate)
-
-        //     employees.map((user) => (
-
-        //         fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
-        //             method: "POST",
-        //             headers: { "content-type": "application/json" },
-        //             body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title }),
-        //         })
-        //     ))
-
-        // }
         console.log(data)
+
+        const startDate = new Date(data?.tripStart);
+        const endDate = new Date(data?.tripEnd);
+
+        for (let date = startDate; date <= endDate; new Date(date.setDate(date.getDate() + 1))) {
+
+            const currentDate = dateFormat(date.toLocaleString().split(",")[0], 'yyyy-MM-dd');
+            console.log(currentDate)
+
+            fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ ID: data?.ID, email: data?.email, date: currentDate, entry: "", vacation: data?.leaveType }),
+            })
+
+        }
         Swal.fire(`${data?.name}'s Application Approved Successfully`);
 
     };
@@ -152,7 +132,7 @@ const OneLeaveRequest = ({ data }) => {
                                     {data?.name}
                                 </Typography>
 
-                                <Typography variant="body2" className={dateStyle}>{data.leaveType}</Typography>
+                                <Typography variant="body2" className={dateStyle}>{data?.leaveType}</Typography>
                             </Box>
                             <Box className={announceTop}>
                                 <Typography className={announceP} variant="body1">{data?.designation}</Typography>

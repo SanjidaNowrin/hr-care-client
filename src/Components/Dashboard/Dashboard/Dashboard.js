@@ -2,6 +2,7 @@ import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
@@ -122,16 +123,19 @@ function Dashboard(props) {
             <AccountBoxOutlinedIcon className={dashIcon} />
             All Employees
           </Link>
-
+          <Link className={dashLink} to="/dashboard/task_assign">
+            <AddTaskIcon className={dashIcon} />
+            Task Assign
+          </Link>
           <Link className={dashLink} to="/dashboard/id_card">
             <BadgeOutlinedIcon className={dashIcon} />
             ID Card
           </Link>
 
-          {/* <Link className={dashLink} to="/dashboard/manage_attendance">
+          <Link className={dashLink} to="/dashboard/manage_attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
-          </Link> */}
+          </Link>
 
           <Link className={dashLink} to="/dashboard/LeaveRequests">
             <ExitToAppOutlinedIcon className={dashIcon} />

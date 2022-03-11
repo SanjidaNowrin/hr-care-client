@@ -32,24 +32,15 @@ const CalenderChart = () => {
       .then((data) => setNewEvent(data.data));
   }, []);
   return (
-    <Box sx={{ py: 10 }}>
-      <Container>
-        <Grid container spacing={8}>
-          <Grid item xs={12} md={8}>
-            <Calendar
-              localizer={localizer}
-              events={newEvent}
-              startAccessor="startDate"
-              endAccessor="endDate"
-              style={{ height: 500, margin: "50px" }}
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            asdfghjk
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+    <>
+      <Calendar
+        localizer={localizer}
+        events={newEvent}
+        startAccessor="startDate"
+        endAccessor="endDate"
+        style={{ height: 500, margin: "50px" }}
+      />
+    </>
   );
 };
 
