@@ -79,7 +79,7 @@ const Announcements = () => {
     });
     const { announceBox, activeAnnounceBox, announceTop, announceTitle, dateStyle, announceP } = useStyle();
 
-    const [isActive, setActive] = useState();
+    const [isActive, setActive] = useState('6213be7d1b7ceeb243b9178a');
     const handleClick = (id) => {
         console.log(id)
         setActive(id);
@@ -89,7 +89,7 @@ const Announcements = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
             .then((res) => res.json())
-            .then((data) => setData(data.data));
+            .then((data) => setData(data.data.reverse()));
     }, []);
 
     // Breadcrumbs

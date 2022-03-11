@@ -27,7 +27,7 @@ const TodayAttendance = ({ item }) => {
                             <CardHeader
                                 sx={{ padding: '0 !important' }}
                                 avatar={
-                                    <Avatar aria-label="recipe">
+                                    <Avatar sx={{ background: 'var(--p_color) !important' }} aria-label="recipe">
                                         {data.name.slice(0, 1)}
                                     </Avatar>
                                 }

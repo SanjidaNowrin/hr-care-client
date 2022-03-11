@@ -1,12 +1,10 @@
 import React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import MenuItem from "@mui/material/MenuItem";
-import EditIcon from "@mui/icons-material/Edit";
-import Menu from "@mui/material/Menu";
-import SettingsIcon from "@mui/icons-material/Settings";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -26,31 +24,41 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-const SalaryData = ({ employee }) => {
-  const { name, email, year, fee } = employee;
+const SalaryData = (props) => {
+  const { ID, name, designation, department, Gross } = props.employee;
 
- 
+  const basic = ((Gross - 1850) / 1.5).toFixed(0);
+
+  console.log(props.date);
+
   return (
     <>
+
       <StyledTableRow>
+
         <StyledTableCell component="th" scope="row">
-          {name}
+          {name} <br />
+          {ID}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">
-          {email}
+          {designation} <br /> {department}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">
-          {year}
+          {basic} <br /> {Gross}
         </StyledTableCell>
 
-        <StyledTableCell align="left" component="th" scope="row">
-          {fee}
+        <StyledTableCell component="th" scope="row">
+          {props.date.length}
         </StyledTableCell>
-       
+
+        <StyledTableCell align="right" component="th" scope="row">
+          {(Gross / 30) * props.date.length}
+        </StyledTableCell>
+
       </StyledTableRow>
-      
+
     </>
   );
 };

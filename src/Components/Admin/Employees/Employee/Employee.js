@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import Menu from '@mui/material/Menu';
 import EmployeeModal from '../EmployeeModal/EmployeeModal';
+import { Avatar, CardHeader } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -71,7 +72,7 @@ const StyledMenu = styled((props) => (
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { _id, name, phone, department, designation } = item;
+    const { _id, name, email, phone, department, designation } = item;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -81,26 +82,26 @@ const Employee = ({ item }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     return (
         <>
             <StyledTableRow>
-                <StyledTableCell component="th" scope="row">
-                    {name}
-                </StyledTableCell>
+                <TableCell component="th" scope="row">
+                    <CardHeader
+                        sx={{ padding: '0 !important' }}
+                        avatar={
+                            <Avatar sx={{ background: 'var(--p_color) !important' }} aria-label="recipe">
+                                {name.slice(0, 1)}
+                            </Avatar>
+                        }
+                        title={name}
+                        subheader={email}
+                    />
+                </TableCell>
                 <StyledTableCell align="left">{phone}</StyledTableCell>
                 <StyledTableCell align="center">{department}</StyledTableCell>
                 <StyledTableCell align="center">{designation}</StyledTableCell>
                 <StyledTableCell align="right">
-                    {/* <SettingsIcon
-                        id="demo-customized-button"
-                        aria-controls={open ? 'demo-customized-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        variant="contained"
-                        disableElevation
-                        sx={{ cursor: 'pointer' }}
-                        onClick={handleClick}
-                    /> */}
                     <EmployeeModal item={item} />
                 </StyledTableCell>
             </StyledTableRow>

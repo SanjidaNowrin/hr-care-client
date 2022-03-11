@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   Box,
+  Breadcrumbs,
   Button,
   Container,
   FormControl as FormGroup,
@@ -11,21 +12,30 @@ import {
 } from "@mui/material";
 import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
 import MyInfoUpdate from "./MyInfoUpdate";
 import SignaturePad from "react-signature-pad-wrapper";
-
+// Breadcrumbs
+import Chip from "@mui/material/Chip";
+import { emphasize, styled } from "@mui/material/styles";
+import HomeIcon from "@mui/icons-material/Home";
+import { Link } from "react-router-dom";
 
 const getUniqueId = (info) => {
-
-  const first = info.department === "Human Resource" ? "HR" : info.department === "Information Technology" ? "IT" : info.department === "Marketing" ? "MK" : "AC";
+  const first =
+    info.department === "Human Resource"
+      ? "HR"
+      : info.department === "Information Technology"
+      ? "IT"
+      : info.department === "Marketing"
+      ? "MK"
+      : "AC";
   const randomNumber = Math.floor(Math.random() * 100);
-  const birthArray = info.birth.split('-');
+  const birthArray = info.birth.split("-");
   const birth = birthArray.join("");
   const uniqueId = first + "-" + birth + randomNumber;
-  return uniqueId
-}
+  return uniqueId;
+};
 const MyInfo = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
@@ -40,22 +50,20 @@ const MyInfo = () => {
   const [image, setImage] = useState(null);
   //signature
   let sigPad = useRef({});
-  let signature = "";
   function clear() {
     sigPad.current.clear();
   }
   function save() {
     setImage(sigPad.current.toDataURL());
   }
-  console.log(image);
   function show() {
-    sigPad.current.fromDataURL(signature);
+    sigPad.current.fromDataURL(image);
   }
 
   const onSubmit = (data) => {
     data.image = image;
-    const ID = getUniqueId(data)
-    data.ID = ID
+    const ID = getUniqueId(data);
+    data.ID = ID;
     fetch("https://ancient-thicket-61342.herokuapp.com/employees", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -101,19 +109,47 @@ const MyInfo = () => {
     setDepartment(event.target.value);
   };
 
+  // Breadcrumbs
+  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+    const backgroundColor =
+      theme.palette.mode === "light"
+        ? theme.palette.grey[100]
+        : theme.palette.grey[800];
+    return {
+      backgroundColor,
+      height: theme.spacing(3),
+      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightRegular,
+      "&:hover, &:focus": {
+        backgroundColor: emphasize(backgroundColor, 0.06),
+      },
+      "&:active": {
+        boxShadow: theme.shadows[1],
+        backgroundColor: emphasize(backgroundColor, 0.12),
+      },
+    };
+  });
+
   return (
     <Container style={{}}>
-      <Typography
-        style={{
-          textAlign: "center",
-          fontWeight: "500",
-          marginTop: "2rem",
-          marginBottom: "2rem",
-        }}
-        variant="h4"
-      >
-        Fill Your <span style={{ color: " #01578A" }}>Information</span>
-      </Typography>
+      {/* Breadcrumbs */}
+      <Box sx={{ mb: 4 }}>
+        <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
+          Fill Your Information
+        </Typography>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link to="/dashboard">
+            <StyledBreadcrumb
+              to="/dashboard"
+              label="Dashboard"
+              icon={<HomeIcon fontSize="small" />}
+            />
+          </Link>
+          <Link to="/dashboard/myinfo">
+            <StyledBreadcrumb component="a" href="#" label="My Info" />
+          </Link>
+        </Breadcrumbs>
+      </Box>
 
       {employee[0]?.email ? (
         employee.map((oneEmployee) => (
@@ -139,6 +175,14 @@ const MyInfo = () => {
               value={user?.displayName}
               required
             />
+            {/* <TextField
+              {...register("photo")}
+              id="outlined-basic"
+              label="Photo URL"
+              type="text"
+              variant="outlined"
+              value={user?.photoURL}
+            /> */}
             <TextField
               {...register("father")}
               id="outlined-basic"
@@ -273,7 +317,14 @@ const MyInfo = () => {
               type="text"
               variant="outlined"
             />
-            <Box sx={{ border: "1px solid black" }}>
+            <Typography sx={{ m: 2 }} variant="h5">
+              Signature
+            </Typography>
+            <label style={{ display: "block", fontSize: "0.8rem" }}>
+              <span style={{ color: "red" }}>**</span> After providing your
+              signature, it must be saved
+            </label>
+            <Box sx={{ border: "1px solid #01578A" }}>
               <Button onClick={clear}>Clear</Button>
               <Button onClick={save}>Save</Button>
               <Button onClick={show}>Show</Button>

@@ -1,8 +1,15 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Button, Container, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+
+// Breadcrumbs
+import Chip from '@mui/material/Chip';
+import { emphasize, styled } from '@mui/material/styles';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from "react-router-dom";
+
 const AddCourse = () => {
   const {
     register,
@@ -22,19 +29,47 @@ const AddCourse = () => {
       timer: 2000,
     });
   };
+
+  // Breadcrumbs
+  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+    const backgroundColor =
+      theme.palette.mode === 'light'
+        ? theme.palette.grey[100]
+        : theme.palette.grey[800];
+    return {
+      backgroundColor,
+      height: theme.spacing(3),
+      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightRegular,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(backgroundColor, 0.06),
+      },
+      '&:active': {
+        boxShadow: theme.shadows[1],
+        backgroundColor: emphasize(backgroundColor, 0.12),
+      },
+    };
+  });
   return (
     <Container>
-      <Typography
-        style={{
-          textAlign: "center",
-          fontWeight: "500",
-          marginTop: "1.5rem",
-          marginBottom: "2rem",
-        }}
-        variant="h4"
-      >
-        Add New <span style={{ color: " #01578A" }}>Courses</span>
-      </Typography>
+      {/* Breadcrumbs */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
+          Add New Courses
+        </Typography>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link to="/dashboard">
+            <StyledBreadcrumb
+              to="/dashboard"
+              label="Dashboard"
+              icon={<HomeIcon fontSize="small" />}
+            />
+          </Link>
+          <Link to="/dashboard/add_course"><StyledBreadcrumb component="a" href="#" label="Add Course" /></Link>
+        </Breadcrumbs>
+      </Box>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box sx={{ mb: 2 }}>
           <label style={{ display: "block" }} htmlFor="title">
