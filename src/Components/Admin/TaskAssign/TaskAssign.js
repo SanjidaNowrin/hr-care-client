@@ -26,6 +26,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import Tooltip from "@mui/material/Tooltip";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
+import SendIcon from "@mui/icons-material/Send";
 const TaskAssign = () => {
   const { register, handleSubmit, reset } = useForm();
   const [employees, setEmployees] = useState([]);
@@ -87,9 +88,7 @@ const TaskAssign = () => {
   }, []);
   //submit form
   const onSubmit = (data, e) => {
-    // let newTask = [];
-    // newTask.push(data.task);
-    fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign", {
+    fetch("http://localhost:5000/taskAssign", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -104,7 +103,7 @@ const TaskAssign = () => {
     })
       .then((res) => res.json())
       .then((result) => console.log(result));
-    e.target.reset();
+    reset();
   };
 
   //get task
@@ -129,8 +128,11 @@ const TaskAssign = () => {
     <>
       <Container>
         {/* Breadcrumbs */}
-        <Box sx={{ mb: 3 }}>
-          <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
+        <Box sx={{ mb: 2 }}>
+          <Typography
+            sx={{ mt: 2, mb: 1, color: "var(--p_color)" }}
+            variant="h4"
+          >
             Employee Task
           </Typography>
           <Breadcrumbs aria-label="breadcrumb">
@@ -173,7 +175,7 @@ const TaskAssign = () => {
               <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                 <Box sx={{ width: "100%" }}>
                   <label
-                    style={{ display: "block", marginBottom: "10px" }}
+                    style={{ display: "block", marginBottom: "4px" }}
                     htmlFor="title"
                   >
                     Employee Name <span style={{ color: "red" }}>*</span>
@@ -198,8 +200,8 @@ const TaskAssign = () => {
                 <label
                   style={{
                     display: "block",
-                    marginBottom: "10px",
-                    marginTop: "1rem",
+                    marginBottom: "4px",
+                    marginTop: "0.7rem",
                   }}
                   htmlFor="title"
                 >
@@ -221,8 +223,8 @@ const TaskAssign = () => {
                 <label
                   style={{
                     display: "block",
-                    marginBottom: "10px",
-                    marginTop: "1rem",
+                    marginBottom: "4px",
+                    marginTop: "0.7rem",
                   }}
                   htmlFor="date"
                 >
@@ -235,14 +237,11 @@ const TaskAssign = () => {
                   type="date"
                   {...register("date", { required: true })}
                 />
-                {/* end */}
-
-                {/* </TextField> */}
                 <label
                   style={{
                     display: "block",
-                    marginBottom: "10px",
-                    marginTop: "1rem",
+                    marginBottom: "4px",
+                    marginTop: "0.7rem",
                   }}
                   htmlFor="title"
                 >
@@ -258,8 +257,8 @@ const TaskAssign = () => {
                 <label
                   style={{
                     display: "block",
-                    marginBottom: "10px",
-                    marginTop: "1rem",
+                    marginBottom: "4px",
+                    marginTop: "0.7rem",
                   }}
                   htmlFor="title"
                 >
@@ -283,7 +282,8 @@ const TaskAssign = () => {
                     className="btn_regular"
                     type="submit"
                   >
-                    Submit
+                    Send{" "}
+                    <SendIcon sx={{ marginLeft: "5px", fontSize: "1rem" }} />
                   </Button>
                 </Box>
               </form>
@@ -310,9 +310,11 @@ const TaskAssign = () => {
                         {item.date}
                       </StyledTableCell>
                       <StyledTableCell align="left">
-                        {item.tags.map((tag) => (<li>{tag}</li>))}
+                        {item.tags.map((tag) => (
+                          <li>{tag}</li>
+                        ))}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         <Tooltip title="Delete">
                           <DeleteOutlineOutlinedIcon
                             sx={{ cursor: "pointer" }}
