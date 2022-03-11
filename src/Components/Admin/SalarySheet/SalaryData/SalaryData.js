@@ -37,16 +37,24 @@ const SalaryData = (props) => {
       <StyledTableRow>
 
         <StyledTableCell component="th" scope="row">
-          {name} <br />
           {ID}
         </StyledTableCell>
-
         <StyledTableCell component="th" scope="row">
-          {designation} <br /> {department}
+          {name}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">
-          {basic} <br /> {Gross}
+          {designation}
+        </StyledTableCell>
+        <StyledTableCell component="th" scope="row">
+          {department}
+        </StyledTableCell>
+
+        <StyledTableCell component="th" scope="row">
+          {basic}
+        </StyledTableCell>
+        <StyledTableCell component="th" scope="row">
+          {Gross}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">

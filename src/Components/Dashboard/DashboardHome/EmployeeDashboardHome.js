@@ -13,8 +13,8 @@ import BarChartJs from '../Charts/BarChartJs';
 import DoughnutChartJs from '../Charts/DoughnutChartJs';
 import LineChartsChartJs from '../Charts/LineChartsChartJs';
 import PieChartsChartJs from '../Charts/PieChartsChartJs';
-import dateFormat from '../../Share/Navbar/dateFormat';
 import useAuth from '../../../hooks/useAuth';
+import dateFormat from '../../Share/DateFormat/dateFormat';
 const EmployeeDashboardHome = () => {
     const { user } = useAuth();
     console.log(user)
@@ -25,7 +25,7 @@ const EmployeeDashboardHome = () => {
     const dateString = currentDate.split('-')[1];
     console.log(dateString, currentDate)
     useEffect(() => {
-        fetch('https://ancient-thicket-61342.herokuapp.com/attendance/nowrin.cse18@gmail.com')
+        fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${user?.email}`)
             .then(res => res.json())
             .then(data => {
 
