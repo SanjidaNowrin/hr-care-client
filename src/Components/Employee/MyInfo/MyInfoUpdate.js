@@ -2,7 +2,9 @@ import React, { useState, useRef } from "react";
 import {
     Box,
     Button,
+    Divider,
     FormControl as FormGroup,
+    Grid,
     MenuItem,
     TextField,
     Typography,
@@ -10,11 +12,11 @@ import {
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SignaturePad from "react-signature-pad-wrapper";
+import { makeStyles } from "@mui/styles";
 const MyInfoUpdate = ({ oneEmployee }) => {
     const {
         _id,
         name,
-        photo,
         father,
         mother,
         email,
@@ -48,7 +50,6 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     }
     const onUpdate = (data) => {
         data.image = image;
-        console.log(data);
         fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
@@ -95,219 +96,305 @@ const MyInfoUpdate = ({ oneEmployee }) => {
         },
     ];
 
+    const useStyle = makeStyles({
+        inputFiend: {
+            width: '100% !important'
+        }
+    })
+    const { inputFiend } = useStyle();
+
     return (
         <>
             <FormGroup sx={{ width: "100%" }} onSubmit={handleSubmit(onUpdate)}>
                 <Box
                     component="form"
-                    sx={{
-                        "& > :not(style)": { m: 1, width: "30%" },
-                    }}
                 >
-                    <TextField
-                        {...register("name")}
-                        id="outlined-basic"
-                        label="Name"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={name}
-                        required
-                    />
-                    {/* <TextField
-                        {...register("photo")}
-                        id="outlined-basic"
-                        label="Photo URL"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={photo}
-                    /> */}
-                    <TextField
-                        {...register("father")}
-                        id="outlined-basic"
-                        label="Father's Name"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={father}
-                        required
-                    />
-                    <TextField
-                        {...register("mother")}
-                        id="outlined-basic"
-                        label="Mother's Name"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={mother}
-                        required
-                    />
-                    <TextField
-                        {...register("email")}
-                        id="outlined-basic"
-                        label="Email"
-                        type="email"
-                        variant="outlined"
-                        value={email}
-                        required
-                    />
-                    <TextField
-                        {...register("phone")}
-                        id="outlined-basic"
-                        label="Cell Number"
-                        type="String"
-                        variant="outlined"
-                        defaultValue={phone}
-                        required
-                    />
-                    <TextField
-                        {...register("nid")}
-                        id="outlined-basic"
-                        label="NID"
-                        type="number"
-                        variant="outlined"
-                        defaultValue={nid}
-                        required
-                    />
-                    <TextField
-                        {...register("birth")}
-                        id="date"
-                        label="Dath of Birth"
-                        type="date"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        defaultValue={birth}
-                        required
-                    />
-                    <TextField
-                        {...register("department")}
-                        id="outlined-select-currency"
-                        select
-                        label="Department"
-                        defaultValue={department ? department : onedepartment}
-                        onChange={handleChange}
-                        helperText="Please select your Department"
-                        required
-                    >
-                        {departments.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        {...register("designation")}
-                        id="outlined-basic"
-                        label="Designation"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={designation}
-                        required
-                    />
+                    <Typography sx={{ mb: 3 }} variant="h4">
+                        <Divider textAlign="right">Update Your Information</Divider>
+                    </Typography>
 
-                    <Typography sx={{ m: 2 }} variant="h5">
+                    <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        {/* name */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("name")}
+                                id="outlined-basic"
+                                label="Name"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={name}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* father name */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("father")}
+                                id="outlined-basic"
+                                label="Father's Name"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={father}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* mother name */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("mother")}
+                                id="outlined-basic"
+                                label="Mother's Name"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={mother}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* email address */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("email")}
+                                id="outlined-basic"
+                                label="Email"
+                                type="email"
+                                variant="outlined"
+                                value={email}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* phone number */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("phone")}
+                                id="outlined-basic"
+                                label="Cell Number"
+                                type="String"
+                                variant="outlined"
+                                defaultValue={phone}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* nid number */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("nid")}
+                                id="outlined-basic"
+                                label="NID"
+                                type="number"
+                                variant="outlined"
+                                defaultValue={nid}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* birthday */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("birth")}
+                                id="date"
+                                label="Dath of Birth"
+                                type="date"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                defaultValue={birth}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* department */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("department")}
+                                id="outlined-select-currency"
+                                select
+                                label="Department"
+                                defaultValue={department ? department : onedepartment}
+                                onChange={handleChange}
+                                required
+                                className={inputFiend}
+                            >
+                                {departments.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+
+                        {/* designation */}
+                        <Grid item xs={4} sm={8} md={4}>
+                            <TextField
+                                {...register("designation")}
+                                id="outlined-basic"
+                                label="Designation"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={designation}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    {/* Experience */}
+                    <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: 'var(--PT_font)' }}>
                         Experience
                     </Typography>
+                    <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        {/* lastCompany */}
+                        <Grid item xs={4} sm={8} md={4}>
+                            <TextField
+                                {...register("lastCompany")}
+                                id="outlined-basic"
+                                label="Company"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastCompany}
+                                className={inputFiend}
+                            />
+                        </Grid>
 
-                    <TextField
-                        {...register("lastCompany")}
-                        id="outlined-basic"
-                        label="Company"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastCompany}
-                    />
-                    <TextField
-                        {...register("lastDepartment")}
-                        id="outlined-basic"
-                        label="Department"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastDepartment}
-                    />
-                    <TextField
-                        {...register("lastDesignation")}
-                        id="outlined-basic"
-                        label="Designation"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastDesignation}
-                    />
+                        {/* lastDepartment */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("lastDepartment")}
+                                id="outlined-basic"
+                                label="Department"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastDepartment}
+                                className={inputFiend}
+                            />
+                        </Grid>
 
-                    <Typography sx={{ m: 2 }} variant="h5">
-                        Education information
+                        {/* lastDesignation */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("lastDesignation")}
+                                id="outlined-basic"
+                                label="Designation"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastDesignation}
+                                className={inputFiend}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    {/* Education information */}
+                    <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: 'var(--PT_font)' }}>
+                        Education
                     </Typography>
+                    <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        {/* Institute */}
+                        <Grid item xs={4} sm={4} md={12}>
+                            <TextField
+                                {...register("lastInstitute")}
+                                id="outlined-basic"
+                                label="Institute"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastInstitute}
+                                className={inputFiend}
+                            />
+                        </Grid>
 
-                    <TextField
-                        {...register("lastDegree")}
-                        id="outlined-basic"
-                        label="Degree"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastDegree}
-                    />
-                    <TextField
-                        {...register("lastSubject")}
-                        id="outlined-basic"
-                        label="Subject"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastSubject}
-                    />
-                    <TextField
-                        {...register("lastInstitute")}
-                        id="outlined-basic"
-                        label="Institute"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastInstitute}
-                    />
-                    <TextField
-                        {...register("lastGrade")}
-                        id="outlined-basic"
-                        label="Grade"
-                        type="text"
-                        variant="outlined"
-                        defaultValue={lastGrade}
-                    />
-                    <Typography sx={{ m: 2 }} variant="h5">
+                        {/* Subject */}
+                        <Grid item xs={4} sm={4} md={4}>
+                            <TextField
+                                {...register("lastSubject")}
+                                id="outlined-basic"
+                                label="Subject"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastSubject}
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* Degree */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("lastDegree")}
+                                id="outlined-basic"
+                                label="Degree"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastDegree}
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* Grade */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("lastGrade")}
+                                id="outlined-basic"
+                                label="Grade"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={lastGrade}
+                                className={inputFiend}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    {/* Signature */}
+                    <Typography variant="h5" sx={{ mt: 3, fontFamily: 'var(--PT_font)' }}>
                         Signature
                     </Typography>
-                    <label style={{ display: "block", fontSize: "0.8rem" }}>
-                        <span style={{ color: "red" }}>**</span> After providing your signature, it must be saved
-                    </label>
-                    <Box sx={{ border: "1px solid #01578A" }}>
-                        <SignaturePad
-                            {...register("image")}
-                            ref={sigPad}
-                            penColor="green"
-                        />
+                    <Typography variant="body2">
+                        After providing your signature, it must be saved <span style={{ color: "red" }}>*</span>
+                    </Typography>
+                    <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        <Grid item xs={4} sm={4} md={4}>
+                            <Box sx={{ border: "1px solid var(--p_color)" }}>
+                                <SignaturePad
+                                    {...register("image")}
+                                    ref={sigPad}
+                                    penColor="green"
+                                />
 
-                        <Box
-                            sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-evenly",
-                                marginBottom: "4px",
-                            }}
-                        >
-                            <Button className="btn_regular" onClick={clear}>
-                                Clear
-                            </Button>
-                            <Button className="btn_regular" onClick={save}>
-                                Save
-                            </Button>
-                            <Button className="btn_regular" onClick={show}>
-                                Show
-                            </Button>
-                        </Box>
-                    </Box>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-evenly",
+                                        marginBottom: "4px",
+                                    }}
+                                >
+                                    <Button className="btn_regular" onClick={clear}>
+                                        Clear
+                                    </Button>
+                                    <Button className="btn_regular" onClick={save}>
+                                        Save
+                                    </Button>
+                                    <Button className="btn_regular" onClick={show}>
+                                        Show
+                                    </Button>
+                                </Box>
+                            </Box>
+                        </Grid>
+                    </Grid>
 
                     <Button
                         className="btn_regular"
                         variant="outlined"
-                        style={{
-                            marginTop: "1rem",
-                        }}
                         type="submit"
+                        sx={{ mt: 2, mb: 4 }}
                     >
                         Update
                     </Button>

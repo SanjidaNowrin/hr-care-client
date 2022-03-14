@@ -40,7 +40,7 @@ const style = {
     transform: "translate(-50%, -50%)",
     width: 460,
     bgcolor: "background.paper",
-    border: "1px solid #01578A",
+    border: "1px solid var(--p_color)",
     boxShadow: 24,
     px: 5,
     py: 3,
@@ -208,7 +208,7 @@ const Holidays = () => {
                 <Button
                     onClick={handleOpen}
                     className="btn_regular"
-                    sx={{ background: "#01578A !important", color: "#fff !important" }}
+                    sx={{ background: "var(--p_color) !important", color: "#fff !important" }}
                 >
                     <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} />
                     Add Holidays
@@ -260,7 +260,7 @@ const Holidays = () => {
                 <Box sx={style}>
                     <Typography
                         variant="h4"
-                        sx={{ color: "#01578A", textAlign: "center", mb: 3 }}
+                        sx={{ color: "var(--p_color)", textAlign: "center", mb: 3 }}
                     >
                         New Holiday
                     </Typography>
@@ -316,7 +316,7 @@ const Holidays = () => {
                         <Box sx={{ textAlign: "center", mt: 3 }}>
                             <Button
                                 sx={{
-                                    background: "#01578A !important",
+                                    background: "var(--p_color) !important",
                                     color: "#fff !important",
                                     width: "100%",
                                 }}

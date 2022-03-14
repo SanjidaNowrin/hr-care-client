@@ -44,7 +44,7 @@
 .card-bottom{
     text-align: center;
     padding: 10px;
-    background: #01578a;
+    background: var(--p_color);
     color: white;
 }
 .card-bottom h5{
