@@ -224,7 +224,7 @@ const MyAttendance = () => {
                         sx={{ textAlign: "center !important", fontWeight: "400" }}
                         variant="h4"
                     >
-                        Todays <span style={{ color: " #01578A" }}>Activities</span>
+                        Todays <span style={{ color: "var(--p_color)" }}>Activities</span>
                     </Typography>
                     <Timeline align="alternate">
                         <TimelineItem>

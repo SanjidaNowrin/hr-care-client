@@ -63,7 +63,7 @@ const Navbar = () => {
   const theme = useTheme();
   const useStyle = makeStyles({
     navContainer: {
-      background: "#01578A !important",
+      background: "var(--p_color) !important",
     },
     navItem: {
       color: "white",
@@ -279,7 +279,7 @@ const Navbar = () => {
       <>
         <React.Fragment>
           <Drawer open={state} anchor="right" onClose={() => setState(false)}>
-            <Box sx={{ background: "#01578A !important" }}>
+            <Box sx={{ background: "var(--p_color) !important" }}>
               <Link className={navItem} to="/">
                 <Typography variant="h5" sx={{ textAlign: "center", my: 2 }}>
                   HR CARE

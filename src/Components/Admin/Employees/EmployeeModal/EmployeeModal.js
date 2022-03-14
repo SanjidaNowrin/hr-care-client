@@ -106,7 +106,7 @@ const EmployeeModal = ({ item }) => {
               }}
               variant="h4"
             >
-              Employee <span style={{ color: " #01578A" }}>Information</span>
+              Employee <span style={{ color: "var(--p_color)" }}>Information</span>
             </Typography>
             <FormGroup sx={{ width: "100%" }} onSubmit={handleSubmit(onSubmit)}>
               <Box

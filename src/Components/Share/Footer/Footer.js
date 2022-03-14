@@ -11,7 +11,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 const Footer = () => {
     const useStyle = makeStyles({
         footer: {
-            background: '#01578A',
+            background: 'var(--p_color)',
             marginTop: '60px',
             position: 'relative',
             color: 'white',
@@ -43,7 +43,7 @@ const Footer = () => {
             '&:hover': {
                 background: '#fff',
                 '& $icon': {
-                    color: '#01578A'
+                    color: 'var(--p_color)'
                 }
             }
         },
@@ -76,7 +76,7 @@ const Footer = () => {
             textAlign: 'center',
             borderTop: '1px solid #fff',
             padding: '20px 0',
-            background: '#01578A',
+            background: 'var(--p_color)',
             marginTop: '20px',
             color: 'white',
             boxShadow: '0 0 30px 15px #0000004f'

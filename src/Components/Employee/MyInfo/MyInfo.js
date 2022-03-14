@@ -27,10 +27,10 @@ const getUniqueId = (info) => {
     info.department === "Human Resource"
       ? "HR"
       : info.department === "Information Technology"
-      ? "IT"
-      : info.department === "Marketing"
-      ? "MK"
-      : "AC";
+        ? "IT"
+        : info.department === "Marketing"
+          ? "MK"
+          : "AC";
   const randomNumber = Math.floor(Math.random() * 100);
   const birthArray = info.birth.split("-");
   const birth = birthArray.join("");
@@ -325,7 +325,7 @@ const MyInfo = () => {
               <span style={{ color: "red" }}>**</span> After providing your
               signature, it must be saved
             </label>
-            <Box sx={{ border: "1px solid #01578A" }}>
+            <Box sx={{ border: "1px solid var(--p_color)" }}>
               <Button onClick={clear}>Clear</Button>
               <Button onClick={save}>Save</Button>
               <Button onClick={show}>Show</Button>

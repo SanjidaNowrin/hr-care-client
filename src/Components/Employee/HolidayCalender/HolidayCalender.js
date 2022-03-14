@@ -27,7 +27,7 @@ function HolidayCalendar() {
     return (
         <>
             <Typography
-                sx={{ textAlign: "center", margin: "25px", color: "#01578A" }}
+                sx={{ textAlign: "center", margin: "25px", color: "var(--p_color)" }}
                 variant="h3"
             >
                 Calendar

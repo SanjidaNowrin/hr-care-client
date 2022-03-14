@@ -37,7 +37,7 @@ const MakeAdmin = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" sx={{ fontWeight: '500', color: '#01578A', textAlign: "center", marginBottom: "18px" }}>Make <span style={{ color: "#000" }}>Admin</span></Typography>
+            <Typography variant="h4" sx={{ fontWeight: '500', color: 'var(--p_color)', textAlign: "center", marginBottom: "18px" }}>Make <span style={{ color: "#000" }}>Admin</span></Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ mb: 2 }}>
                 <label style={{ display: "block" }} htmlFor="title">
@@ -55,7 +55,7 @@ const MakeAdmin = () => {
               <Box sx={{ textAlign: "center", mt: 3 }}>
                 <Button
                   sx={{
-                    background: "#01578A !important",
+                    background: "var(--p_color) !important",
                     color: "#fff !important",
                   }}
                   className="btn_regular"
