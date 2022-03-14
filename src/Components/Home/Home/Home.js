@@ -1,22 +1,21 @@
 import React from "react";
-
 import Navbar from "../../Share/Navbar/Navbar";
 import Banner from "../Banner/Banner";
 import Features from "../Features/Features";
 import Footer from "../../Share/Footer/Footer";
 import Contact from "../Contact/Contact";
 import MainFeatures from "../MainFeatures/MainFeatures";
-import Swiper from "../Swiper/Swiper"
-
+import useAuth from "../../../hooks/useAuth"
 
 const Home = () => {
+    const { isAdmin } = useAuth()
+    console.log(isAdmin)
     return (
         <>
             <Navbar />
             <Banner />
             <Features />
             <MainFeatures />
-            {/* <Swiper/> */}
             <Contact />
             <Footer />
         </>

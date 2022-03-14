@@ -108,13 +108,13 @@ const TaskAssign = () => {
 
   //get task
   useEffect(() => {
-    fetch("http://localhost:5000/taskAssign")
+    fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
       .then((res) => res.json())
       .then((data) => setTask(data.data));
   }, [task]);
   // delete
   const handleDelete = (item) => {
-    fetch(`http://localhost:5000/taskAssign/${item._id}`, {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/taskAssign/${item._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -170,7 +170,7 @@ const TaskAssign = () => {
                 >
                   <span style={{ color: " #01578A" }}> Assign </span> Task
                 </Typography>
-                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" />{" "}
+                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" alt="icon" />{" "}
               </Box>
               <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                 <Box sx={{ width: "100%" }}>

@@ -1,8 +1,6 @@
 import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Course from "./Course/Course";
-import Divider from '@mui/material/Divider';
-import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 
 // Breadcrumbs
@@ -19,7 +17,7 @@ const Courses = () => {
         fetch("https://ancient-thicket-61342.herokuapp.com/courses")
             .then((res) => res.json())
             .then((data) => setCourses(data?.data));
-    }, [courses]);
+    }, []);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -43,7 +41,6 @@ const Courses = () => {
     });
 
     const [enrolls, setEnrolls] = useState([]);
-    const [enrollEmail, setEnrollEmail] = useState('');
     const [filterData, setFilterData] = useState([]);
     useEffect(() => {
         fetch('https://ancient-thicket-61342.herokuapp.com/enrolls')
@@ -53,8 +50,7 @@ const Courses = () => {
     useEffect(() => {
         const filterUser = enrolls.filter(data => data.email === user.email);
         setFilterData(filterUser)
-        filterData.map(item => setEnrollEmail(item.email));
-    }, [enrolls, user.email])
+    }, [user, enrolls])
 
     return (
         <Container>
@@ -123,7 +119,7 @@ const Courses = () => {
             <Box sx={{ mb: 5 }}>
                 <Grid container spacing={4}>
                     {courses?.map((item) => (
-                        <Course key={item._id} item={item} email={enrollEmail}></Course>
+                        <Course key={item._id} item={item}></Course>
                     ))}
                 </Grid>
             </Box>

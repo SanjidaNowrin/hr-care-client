@@ -7,17 +7,13 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 // Import Swiper React components
+import { Card, CardContent } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
-
-// import required modules
-import SwiperCore, {
-    Navigation, Autoplay
-} from 'swiper';
-SwiperCore.use([Navigation, Autoplay]);
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "../../Swiper/Swipper.css";
+import { EffectCoverflow, Pagination } from "swiper";
 
 const LeaveRequest = () => {
     const useStyle = makeStyles({
@@ -57,9 +53,16 @@ const LeaveRequest = () => {
             background: '#F2F2F2 !important',
             boxShadow: '0px 7px 15px rgb(0, 0, 0, .3) !important',
             color: '#000 !important'
-        }
+        },
+        cardBox: {
+          background: "#FFFFFF !important",
+          textAlign: "center",
+          paddingTop: "20px",
+          transition: "all .3s !important",
+          cursor: "pointer",
+        },
     })
-    const { topText, sectionTitle, pText, iconWrap, listText, featureCard } = useStyle();
+    const { topText, sectionTitle, pText, cardBox,featureCard } = useStyle();
 
     var slideImg = [
         {
@@ -75,16 +78,72 @@ const LeaveRequest = () => {
         <Box sx={{ py: 8 }}>
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6}>
-                    <Swiper
-                        loop={true} autoplay={{ delay: 3000, disableOnInteraction: false }} navigation={true} className="mySwiper">
-                        {
-                            slideImg.map(item =>
-                                <SwiperSlide key={item.id}>
-                                    <img style={{ width: '100%' }} src={item.img} alt={item.id} />
-                                </SwiperSlide>
-                            )
-                        }
-                    </Swiper>
+                <Swiper
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              modules={[EffectCoverflow, Pagination]}
+              className="mySwiper"
+            >
+              <SwiperSlide className="features-slide">
+                <Card
+                  sx={{ my: 3 }}
+                  elevation={12}
+                  className={cardBox}
+                  sx={{ borderRadius: 4 }}
+                >
+                  <CardContent>
+                    <img src="https://i.ibb.co/2Yn1L7p/leave2.webp" />
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+              <SwiperSlide className="features-slide">
+                <Card
+                  sx={{ my: 4 }}
+                  elevation={12}
+                  className={cardBox}
+                  sx={{ borderRadius: 4 }}
+                >
+                  <CardContent>
+                    <img src="https://i.ibb.co/pyC9kjv/leave3.webp" />
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+              <SwiperSlide className="features-slide">
+                <Card
+                  sx={{ my: 4 }}
+                  elevation={12}
+                  className={cardBox}
+                  sx={{ borderRadius: 4 }}
+                >
+                  <CardContent>
+                    <img src="https://i.ibb.co/2Yn1L7p/leave2.webp" />
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+              <SwiperSlide className="features-slide">
+                <Card
+                  sx={{ my: 4 }}
+                  elevation={12}
+                  className={cardBox}
+                  sx={{ borderRadius: 4 }}
+                >
+                  <CardContent>
+                    <img src="https://i.ibb.co/pyC9kjv/leave3.webp" />
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+            </Swiper>
                 </Grid>
 
                 <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'conter' }}>

@@ -119,7 +119,7 @@ const Holidays = () => {
                 fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
-                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title }),
+                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title, status: "Holiday" }),
                 })
             ))
 

@@ -6,7 +6,7 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Card, CardContent } from "@mui/material";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -52,9 +52,21 @@ const Attendance = () => {
       boxShadow: "0px 7px 15px rgb(0, 0, 0, .3) !important",
       color: "#000 !important",
     },
+    cardBox: {
+      background: "#FFFFFF !important",
+      textAlign: "center",
+      paddingTop: "20px",
+      transition: "all .3s !important",
+      cursor: "pointer",
+    },
   });
-  const { topText, sectionTitle, pText, iconWrap, listText, featureCard } =
-    useStyle();
+  const {
+    topText,
+    sectionTitle,
+    pText,
+    featureCard,
+    cardBox,
+  } = useStyle();
 
   var slideImg = [
     {
@@ -157,6 +169,7 @@ const Attendance = () => {
 
         <Grid item xs={12} md={6}>
           <Swiper
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
@@ -165,9 +178,6 @@ const Attendance = () => {
               rotate: 50,
               stretch: 0,
               depth: 100,
-              autoplay: {
-                delay: 1000,
-              },
               modifier: 1,
               slideShadows: true,
             }}
@@ -176,19 +186,52 @@ const Attendance = () => {
             className="mySwiper"
           >
             <SwiperSlide className="features-slide">
-              <img src="https://i.ibb.co/rHCTncT/2.png" />
+              <Card
+                sx={{ my: 3 }}
+                elevation={12}
+                className={cardBox}
+                sx={{ borderRadius: 4 }}
+              >
+                <CardContent>
+                  <img src="https://i.ibb.co/rHCTncT/2.png" />
+                </CardContent>
+              </Card>
             </SwiperSlide>
             <SwiperSlide className="features-slide">
-              <img src="https://i.ibb.co/gyVvTyP/a.png" />
+              <Card
+                sx={{ my: 4 }}
+                elevation={12}
+                className={cardBox}
+                sx={{ borderRadius: 4 }}
+              >
+                <CardContent>
+                  <img src="https://i.ibb.co/rHCTncT/2.png" />
+                </CardContent>
+              </Card>
             </SwiperSlide>
             <SwiperSlide className="features-slide">
-              <img src="https://i.ibb.co/rHCTncT/2.png" />
+              <Card
+                sx={{ my: 4 }}
+                elevation={12}
+                className={cardBox}
+                sx={{ borderRadius: 4 }}
+              >
+                <CardContent>
+                  <img src="https://i.ibb.co/rHCTncT/2.png" />
+                </CardContent>
+              </Card>
             </SwiperSlide>
             <SwiperSlide className="features-slide">
-              <img src="https://i.ibb.co/rHCTncT/2.png" />
-            </SwiperSlide>
-            <SwiperSlide className="features-slide">
-              <img src="https://i.ibb.co/gyVvTyP/a.png" />
+              <Card
+                sx={{ my: 4 }}
+                elevation={12}
+                className={cardBox}
+                sx={{ borderRadius: 4 }}
+              >
+                <CardContent>
+                  <img src="https://i.ibb.co/rHCTncT/2.png" />
+                </CardContent>
+              </Card>
             </SwiperSlide>
           </Swiper>
         </Grid>

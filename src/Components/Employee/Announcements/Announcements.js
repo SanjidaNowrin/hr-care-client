@@ -89,7 +89,7 @@ const Announcements = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
             .then((res) => res.json())
-            .then((data) => setData(data.data));
+            .then((data) => setData(data.data.reverse()));
     }, []);
 
     // Breadcrumbs

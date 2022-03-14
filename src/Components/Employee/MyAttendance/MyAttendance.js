@@ -67,6 +67,7 @@ const MyAttendance = (props) => {
     entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
     entryTime.entry = time.split(",")[1];
     entryTime.leave = "";
+    entryTime.status = "Present";
 
     if (today?.date === entryTime.date) {
       Swal.fire("You already Punched In");

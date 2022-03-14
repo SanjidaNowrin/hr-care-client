@@ -78,10 +78,10 @@ const Login = () => {
     } = useStyle();
 
     return (
-        <Box className={loginContiner}>
+        <Box data-testid="loginComponent" className={loginContiner}>
             <Box className={loginBox}>
                 <Box className="input_title">
-                    <h1>Login</h1>
+                    <h1 >Login</h1>
                 </Box>
                 <form onSubmit={handleOnSubmit}>
                     <Box>
