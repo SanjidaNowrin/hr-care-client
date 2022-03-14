@@ -15,15 +15,15 @@ const Footer = () => {
             marginTop: '60px',
             position: 'relative',
             color: 'white',
-            '&::after': {
-                position: 'absolute',
-                content: '""',
-                backgroundImage: 'url("https://i.ibb.co/pQYnnrH/footer-shape.png")',
-                backgroundSize: 'cover',
-                height: '53px',
-                width: '100%',
-                top: '0'
-            }
+            // '&::after': {
+            //     position: 'absolute',
+            //     content: '""',
+            //     // backgroundImage: 'url("https://i.ibb.co/pQYnnrH/footer-shape.png")',
+            //     backgroundSize: 'cover',
+            //     height: '53px',
+            //     width: '100%',
+            //     top: '0'
+            // }
         },
         socialIcon: {
             display: 'flex',
@@ -86,8 +86,8 @@ const Footer = () => {
     return (
         <Box className={footer}>
             <Container>
-                <Box sx={{ pt: 12 }}>
-                    <Grid container spacing={4}>
+                <Box sx={{ pt: 5 }}>
+                    <Grid container spacing={6}>
                         <Grid item xs={12} md={4}>
                             <Box className="single-ooter">
                                 <Typography variant="h4" sx={{ mb: 2, fontWeight: '700', color: '#fff' }}>HR Care
@@ -102,7 +102,7 @@ const Footer = () => {
                                     <a className={iconItem} href="#">
                                         <TwitterIcon className={icon} fontSize='small' />
                                     </a>
-                                    <a className={iconItem} href="#">
+                                    <a className={iconItem} href="https://github.com/md-mh/hr-care-client" target="_blank">
                                         <GitHubIcon className={icon} fontSize='small' />
                                     </a>
                                     <a className={iconItem} href="#">
@@ -118,27 +118,27 @@ const Footer = () => {
                                 </Typography>
                                 <ul className={unorderList}>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/home">
                                             <ArrowRightIcon fontSize='large' /> home
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/dashboard">
                                             <ArrowRightIcon fontSize='large' /> Features
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/teams">
                                             <ArrowRightIcon fontSize='large' /> Team
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/dashboard">
                                             <ArrowRightIcon fontSize='large' />services
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/home">
                                             <ArrowRightIcon fontSize='large' /> contact us
                                         </Link>
                                     </li>
@@ -152,22 +152,17 @@ const Footer = () => {
                                 </Typography>
                                 <ul className={unorderList}>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/dashboard/course">
                                             <ArrowRightIcon fontSize='large' /> Help
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={footerLink} to="/">
-                                            <ArrowRightIcon fontSize='large' /> Videos
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/dashboard">
                                             <ArrowRightIcon fontSize='large' /> Terms of Use
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className={footerLink} to="/">
+                                        <Link className={footerLink} to="/dashboard">
                                             <ArrowRightIcon fontSize='large' /> Privacy Policy
                                         </Link>
                                     </li>
