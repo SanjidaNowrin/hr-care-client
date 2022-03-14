@@ -107,7 +107,7 @@ const SingleId = ({ employeeId }) => {
                   ID NO
                 </Typography>
                 <Typography variant="body2">
-                  {name.slice(0, 1)}#{ID}
+                  {ID}
                 </Typography>
               </Grid>
               <Grid item xs={4}>

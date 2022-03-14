@@ -4,6 +4,7 @@ import { Button, Container, Grid, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -72,12 +73,14 @@ const Banner = () => {
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} md={6}>
-                                        <img
-                                            src={item.img}
-                                            alt="banner"
-                                            border="0"
-                                            style={{ width: "100%" }}
-                                        />
+                                        <Box>
+                                            <img
+                                                src={item.img}
+                                                alt="banner"
+                                                border="0"
+                                                style={{ width: "100%" }}
+                                            />
+                                        </Box>
                                     </Grid>
                                 </Grid>
                             </SwiperSlide>

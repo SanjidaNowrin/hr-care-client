@@ -4,6 +4,7 @@ import React from "react";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 
+
 const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
@@ -53,13 +54,15 @@ const Contact = () => {
             justifyContent: "center",
           }}
         >
-          <Box>
-            <img
-              style={{ width: "100%" }}
-              src="https://i.ibb.co/JQZKyYx/undraw-Personal-email-re-4lx7.png"
-              alt=""
-            />
-          </Box>
+          <div data-aos="fade-right" >
+            <Box>
+              <img
+                style={{ width: "100%" }}
+                src="https://i.ibb.co/JQZKyYx/undraw-Personal-email-re-4lx7.png"
+                alt=""
+              />
+            </Box>
+          </div>
         </Grid>
         <Grid item md={6}>
           <Box
