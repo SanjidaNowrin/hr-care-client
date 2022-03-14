@@ -25,7 +25,7 @@ import AttendanceManage from "./AttendanceManage";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#00D2FC",
+        backgroundColor: "#A3D2ED",
         color: theme.palette.common.black,
         fontSize: 24,
     },

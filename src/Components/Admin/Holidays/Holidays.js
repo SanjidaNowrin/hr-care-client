@@ -119,7 +119,7 @@ const Holidays = () => {
                 fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
-                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title }),
+                    body: JSON.stringify({ ID: user?.ID, email: user?.email, date: currentDate, holiday: data?.title, status: "Holiday" }),
                 })
             ))
 
@@ -275,6 +275,18 @@ const Holidays = () => {
                                 id="title"
                                 type="text"
                                 {...register("title", { required: true })}
+                            />
+                        </Box>
+                        <Box sx={{ mb: 2 }}>
+                            <label style={{ display: "block" }} htmlFor="title">
+                                Holiday Days <span style={{ color: "red" }}>*</span>
+                            </label>
+                            <TextField
+                                sx={{ width: "100%" }}
+                                variant="outlined"
+                                id="title"
+                                type="number"
+                                {...register("days", { required: true })}
                             />
                         </Box>
                         <Box sx={{ mb: 2 }}>

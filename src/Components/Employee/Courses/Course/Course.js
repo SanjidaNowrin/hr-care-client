@@ -14,7 +14,6 @@ import { makeStyles } from "@mui/styles";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import useAuth from "../../../../hooks/useAuth";
 
 const Course = ({ item }) => {
     const { _id, name, des, author, authorImg, courseImg, topic, date } = item;

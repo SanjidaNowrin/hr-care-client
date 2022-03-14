@@ -10,6 +10,7 @@ import MakeAdmin from "./Components/Admin/MakeAdmin/MakeAdmin";
 import SalarySheet from "./Components/Admin/SalarySheet/SalarySheet";
 import Dashboard from "./Components/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
+import EmployeeDashboardHome from "./Components/Dashboard/DashboardHome/EmployeeDashboardHome";
 import Announcements from "./Components/Employee/Announcements/Announcements";
 import Courses from "./Components/Employee/Courses/Courses";
 import Leave from "./Components/Employee/Leave/Leave";
@@ -22,6 +23,7 @@ import Register from "./Components/Login/Register/Register";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Teams from './Components/Home/Teams/Teams';
 import AuthProvider from "./contexts/AuthProvider";
+import TaskAssign from './Components/Admin/TaskAssign/TaskAssign';
 import EnrollCourse from "./Components/Employee/Courses/EnrollCourse/EnrollCourse";
 
 function App() {
@@ -45,6 +47,7 @@ function App() {
                 </PrivateRoute>
               }
             >
+              <Route path={"/dashboard/employeeDashboard"} element={<EmployeeDashboardHome />} />
               <Route path={"/dashboard"} element={<DashboardHome />} />
 
               <Route
@@ -70,11 +73,15 @@ function App() {
               <Route path={"/dashboard/leaveRequests"} element={<LeaveRequests />} />
               <Route path={"/dashboard/leaveRequests/:Id"} element={<LeaveRequests />} />
               <Route path={"/dashboard/holiday"} element={<Holidays />} />
+              <Route path={"/dashboard/task_assign"} element={<TaskAssign />} />
+              <Route
+                path={"/dashboard/add_announcement"}
+                element={<AddAnnouncement />}
+              />
               <Route path={"/dashboard/add_announcement"} element={<AddAnnouncement />} />
               <Route path={"/dashboard/add_course"} element={<AddCourse />} />
               <Route path={"/dashboard/salary_sheet"} element={<SalarySheet />} />
               <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
-
               <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
             </Route>
           </Routes>

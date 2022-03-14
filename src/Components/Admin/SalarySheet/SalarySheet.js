@@ -308,9 +308,12 @@ const SalarySheet = () => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
-              <StyledTableCell>Name <hr />ID</StyledTableCell>
-              <StyledTableCell align="left">Designation <hr /> Department</StyledTableCell>
-              <StyledTableCell align="left">Basic <hr /> Gross</StyledTableCell>
+              <StyledTableCell>ID</StyledTableCell>
+              <StyledTableCell>Name </StyledTableCell>
+              <StyledTableCell align="left">Designation </StyledTableCell>
+              <StyledTableCell align="left">Department</StyledTableCell>
+              <StyledTableCell align="left">Basic </StyledTableCell>
+              <StyledTableCell align="left"> Gross</StyledTableCell>
               <StyledTableCell align="left">Pay Day</StyledTableCell>
               <StyledTableCell align="right">Salary</StyledTableCell>
             </TableRow>
