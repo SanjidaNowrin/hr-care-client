@@ -10,6 +10,7 @@ import {
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SignaturePad from "react-signature-pad-wrapper";
+import QRCode from 'qrcode';
 const MyInfoUpdate = ({ oneEmployee }) => {
     const {
         _id,
@@ -49,7 +50,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
     const onUpdate = (data) => {
         data.image = image;
         console.log(data);
-        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${_id}`, {
+        fetch(`http://localhost:5000/employees/${_id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

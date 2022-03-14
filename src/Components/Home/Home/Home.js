@@ -6,6 +6,8 @@ import Features from "../Features/Features";
 import Footer from "../../Share/Footer/Footer";
 import Contact from "../Contact/Contact";
 import MainFeatures from "../MainFeatures/MainFeatures";
+import Swiper from "../Swiper/Swiper"
+
 
 const Home = () => {
     return (
@@ -14,6 +16,7 @@ const Home = () => {
             <Banner />
             <Features />
             <MainFeatures />
+            {/* <Swiper/> */}
             <Contact />
             <Footer />
         </>

@@ -20,7 +20,7 @@ import Chip from "@mui/material/Chip";
 import { emphasize, styled } from "@mui/material/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
-
+import QRCode from "qrcode";
 const getUniqueId = (info) => {
   const first =
     info.department === "Human Resource"
@@ -59,11 +59,28 @@ const MyInfo = () => {
   function show() {
     sigPad.current.fromDataURL(image);
   }
+  //qrcode
+  const [text, setText] = useState(user?.email);
+  const [qrUrl, setQrUrl] = useState(null);
+  const generateQrCode = async () => {
+    try {
+      const response = await QRCode.toDataURL(text);
+      setQrUrl(response);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
+    const response = await QRCode.toDataURL(text);
+    // setQrUrl(response);
     data.image = image;
+    data.qrUrl = response;
+    console.log(response);
     const ID = getUniqueId(data);
     data.ID = ID;
+    console.log(data);
     fetch("https://ancient-thicket-61342.herokuapp.com/employees", {
       method: "POST",
       headers: { "content-type": "application/json" },

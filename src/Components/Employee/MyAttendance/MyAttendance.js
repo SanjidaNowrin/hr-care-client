@@ -23,7 +23,7 @@ import TimerTwoToneIcon from "@material-ui/icons/TimerTwoTone";
 import PauseCircleFilledTwoToneIcon from "@material-ui/icons/PauseCircleFilledTwoTone";
 import PlayCircleFilledWhiteTwoToneIcon from "@material-ui/icons/PlayCircleFilledWhiteTwoTone";
 import Swal from "sweetalert2";
-
+import { QrReader } from "react-qr-reader";
 import { emphasize, styled } from "@mui/material/styles";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Chip from "@mui/material/Chip";
@@ -31,7 +31,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 
-const MyAttendance = () => {
+const MyAttendance = (props) => {
   const { user } = useAuth();
   const [times, setTimes] = useState([]);
   const [today, setToday] = useState({});
@@ -54,12 +54,10 @@ const MyAttendance = () => {
   // console.log(today?.date)
 
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`http://localhost:5000/employees/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [user.email]);
-
-  console.log(employee);
 
   //punchin
   const handlePunchIn = () => {
@@ -111,6 +109,12 @@ const MyAttendance = () => {
     }
   };
 
+  const [findPerson, setFindPerson] = useState(() => {
+    const saved = sessionStorage.getItem("items");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  sessionStorage.setItem("items", JSON.stringify(findPerson));
   const useStyles = makeStyles((theme) => ({
     paper: {
       padding: "6px 16px",
@@ -130,6 +134,13 @@ const MyAttendance = () => {
       borderRadius: "50% !important",
       width: "50% !important",
       margin: "40px auto 20px",
+    },
+    qrImage: {
+      "&:hover": {
+        transform: "scale(1.3)",
+        marginLeft: "1.5rem !important",
+        margin: "0 auto !important",
+      },
     },
   }));
   const classes = useStyles();
@@ -156,7 +167,7 @@ const MyAttendance = () => {
   return (
     <Container>
       {/* Breadcrumbs */}
-      <Box sx={{ mb: 4 }}>
+      <Box sx={{ mb: 1 }}>
         <Typography
           sx={{ mt: 2, color: "var(--p_color) !important" }}
           variant="h4"
@@ -176,44 +187,129 @@ const MyAttendance = () => {
           </Link>
         </Breadcrumbs>
       </Box>
+      <Box mt={5} sx={{ display: "flex", alignItems: "center" }}>
+          <Typography variant="h6">
+            <span style={{ color: "red" }}>*</span> Scan by QRCode
+          </Typography>
+          <a
+            href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+            download
+          >
+            <img
+              className={classes.qrImage}
+              width="30% !important"
+              src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+              alt="Employee QrCode"
+            />
+          </a>
+          </Box>
+      <Grid
+        container
+        spacing={2}
+        sx={{ display: "flex", alignItems: "center" }}
+      >
+        <Grid
+          item
+          xs={12}
+          md={5}
+          sx={{
+            border: "1px solid #01578A !important",
+            paddingLeft: "1rem",
+            paddingRight: "1rem",
+          }}
+        >     
+          <QrReader
+            onResult={(result, error) => {
+              if (!!result) {
+                setFindPerson(result?.text);
+              }
 
-      <Grid container spacing={8}>
-        <Grid item xs={12} md={6}>
-          <Card className={classes.cardStyle}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.imgStyle}
-                align="center"
-                component="img"
-                src={`data:image/jpeg;base64,${employee[0]?.photo}`}
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h3"
-                  align="center"
-                >
-                  {user.displayName}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions
-              style={{ justifyContent: "center", marginBottom: "10px" }}
+              if (!!error) {
+                console.info(error);
+              }
+            }}
+            style={{ width: "100%", height: "100% !important" }}
+          />
+          {findPerson ? (
+            <h4 style={{ fontWeight: "500", textAlign: "center" }}>
+              <span style={{ color: "green" }}>Verified Successfully!</span>{" "}
+              {user.displayName}
+            </h4>
+          ) : (
+            <h3
+              style={{ color: "red", fontWeight: "500", textAlign: "center" }}
             >
-              <Button onClick={handlePunchIn} className="btn_regular">
-                Punch In
-              </Button>
-              <Button
-                onClick={handlePunchOut}
-                size="small"
-                className="btn_regular"
-              >
-                Punch Out
-              </Button>
-            </CardActions>
-          </Card>
+              Not Verified yet !!
+            </h3>
+          )}
         </Grid>
+        {/* <Grid item xs={12} md={4}>
+          <a
+            href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+            download
+          >
+            <img
+              className={classes.qrImage}
+              width="30% !important"
+              src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+              alt="Employee QrCode"
+            />
+          </a>
+        </Grid> */}
+
+        <Grid item xs={12} md={7}>
+          {/* timeline */}
+          <img
+            width="90%"
+            src="https://i.ibb.co/Jz2xWP8/undraw-Authentication-re-svpt.png"
+            alt="undraw-Authentication-re-svpt"
+            border="0"
+          />
+        </Grid>
+      </Grid>
+      {/* trial */}
+      <Grid container spacing={8}>
+        {user?.email == findPerson ? (
+          <Grid item xs={12} md={6}>
+            <Card className={classes.cardStyle}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.imgStyle}
+                  align="center"
+                  component="img"
+                  src={`data:image/jpeg;base64,${employee[0]?.photo}`}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h3"
+                    align="center"
+                  >
+                    {user.displayName}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions
+                style={{ justifyContent: "center", marginBottom: "10px" }}
+              >
+                <Button onClick={handlePunchIn} className="btn_regular">
+                  Punch In
+                </Button>
+                <Button
+                  onClick={handlePunchOut}
+                  size="small"
+                  className="btn_regular"
+                >
+                  Punch Out
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ) : (
+          ""
+        )}
+
         <Grid item xs={12} md={6}>
           {/* timeline */}
           <Typography
