@@ -54,15 +54,13 @@ const Contact = () => {
             justifyContent: "center",
           }}
         >
-          <div data-aos="fade-right" >
-            <Box>
-              <img
-                style={{ width: "100%" }}
-                src="https://i.ibb.co/JQZKyYx/undraw-Personal-email-re-4lx7.png"
-                alt=""
-              />
-            </Box>
-          </div>
+          <Box>
+            <img
+              style={{ width: "100%" }}
+              src="https://i.ibb.co/JQZKyYx/undraw-Personal-email-re-4lx7.png"
+              alt=""
+            />
+          </Box>
         </Grid>
         <Grid item md={6}>
           <Box

@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SignaturePad from "react-signature-pad-wrapper";
 import { makeStyles } from "@mui/styles";
+import QRCode from 'qrcode';
 const MyInfoUpdate = ({ oneEmployee }) => {
     const {
         _id,

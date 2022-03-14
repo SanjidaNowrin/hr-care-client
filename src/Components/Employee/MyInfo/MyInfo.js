@@ -23,6 +23,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
+import QRCode from "qrcode";
 const getUniqueId = (info) => {
     const first =
         info.department === "Human Resource"
