@@ -171,176 +171,176 @@ const DashNav = () => {
 
             {/* ss */}
 
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
-                  {notification?.map((data) => (
-                    <Link
-                      to={`/dashboard/announcements`}>
-                      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                        <nav aria-label="main mailbox folders">
-                          <List>
-                            <ListItem disablePadding>
-                              <ListItemButton>
-                                <ListItemIcon>
-                                  <CircleNotificationsIcon style={{ color: 'orange' }} />
-                                </ListItemIcon>
-                                <ListItemText style={{ color: 'black' }} primary={data.title} />
-                              </ListItemButton>
-                            </ListItem>
-                          </List>
-                        </nav>
+            <Tooltip
+            title={
+              <React.Fragment>
+                <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
+                {notification?.map((data) => (
+                  <Link
+                    to={`/dashboard/announcements/${data._id}`}>
+                    <Box sx={{ width: '100%', bgcolor: 'background.paper'}}>
+                      <nav aria-label="main mailbox folders">
+                        <List>
+                          <ListItem disablePadding>
+                            <ListItemButton>
+                              <ListItemIcon>
+                                <CircleNotificationsIcon style={{ color: 'orange' }} />
+                              </ListItemIcon>
+                              <ListItemText style={{ color: 'black' }} primary={data.title} />
+                            </ListItemButton>
+                          </ListItem>
+                        </List>
+                      </nav>
 
-                      </Box>
+                    </Box>
 
-                    </Link>
-                  ))}
-                </React.Fragment>
-              }
+                  </Link>
+                ))}
+              </React.Fragment>
+            }
             >
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={notification.length} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </HtmlTooltip>
-
-            {/* ss */}
-
-
-            <IconButton size="large" color="inherit">
-              <Badge color="error">
-                <EventIcon onClick={holidayOpen} />
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={notification.length} color="error">
+                <NotificationsIcon />
               </Badge>
             </IconButton>
-          </Box>
-          {/* calender modal */}
-          <Modal
-            open={holiday}
-            onClose={holidayClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <HolidayCalendar />
-            </Box>
-          </Modal>
-          {/* calender modal end*/}
+          </Tooltip>
 
-          <Tooltip title="Account settings">
-            <IconButton
-              onClick={handleClick}
-              size="small"
-              sx={{ ml: 2 }}
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+          {/* ss */}
+
+
+          <IconButton size="large" color="inherit">
+            <Badge color="error">
+              <EventIcon onClick={holidayOpen} />
+            </Badge>
+          </IconButton>
+        </Box>
+        {/* calender modal */}
+        <Modal
+          open={holiday}
+          onClose={holidayClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <HolidayCalendar />
+          </Box>
+        </Modal>
+        {/* calender modal end*/}
+
+        <Tooltip title="Account settings">
+          <IconButton
+            onClick={handleClick}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? "account-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+          >
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
             >
-              <StyledBadge
-                overlap="circular"
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                variant="dot"
-              >
-                {employee[0]?.photo ? (
-                  employee.map((employeePhoto) => (
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
-                    />
-                  ))
-                ) : (
+              {employee[0]?.photo ? (
+                employee.map((employeePhoto) => (
                   <Avatar
                     alt="Remy Sharp"
-                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                    src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
                   />
-                )}
-              </StyledBadge>
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Menu
-          anchorEl={anchorEl}
-          id="account-menu"
-          open={open}
-          onClose={handleClose}
-          onClick={handleClose}
-          PaperProps={{
-            elevation: 0,
-            sx: {
-              overflow: "visible",
-              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-              mt: 1.5,
-              "& .MuiAvatar-root": {
-                width: 32,
-                height: 32,
-                ml: -0.5,
-                mr: 1,
-              },
-              "&:before": {
-                content: '""',
-                display: "block",
-                position: "absolute",
-                top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
-                bgcolor: "background.paper",
-                transform: "translateY(-50%) rotate(45deg)",
-                zIndex: 0,
-              },
+                ))
+              ) : (
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                />
+              )}
+            </StyledBadge>
+          </IconButton>
+        </Tooltip>
+      </Box>
+      <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            mt: 1.5,
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
             },
-          }}
-          transformOrigin={{ horizontal: "right", vertical: "top" }}
-          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-        >
-          <MenuItem>
-            <ListItemIcon>
-              <LinkedCameraIcon />
-            </ListItemIcon>
-            <Button sx={{ color: "black", padding: "0" }} onClick={handleOpen}>
-              Change Picture
-            </Button>
-          </MenuItem>
-          <Divider />
-          <MenuItem>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <Button sx={{ color: "black", padding: "0" }} onClick={logOut}>
-              Logout
-            </Button>
-          </MenuItem>
-        </Menu>
-      </React.Fragment>
-      {/* modal */}
-      <Modal
-        open={start}
-        onClose={close}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+            "&:before": {
+              content: '""',
+              display: "block",
+              position: "absolute",
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Box sx={styleImage}>
-          <form onSubmit={handleSubmit}>
-            <Input
-              accept="image/*"
-              type="file"
-              onChange={(e) => setPhoto(e.target.files[0])}
-            ></Input>
-            <Button
-              sx={{ marginTop: "10px" }}
-              className="btn_regular"
-              type="submit"
-            >
-              Submit
-            </Button>
-          </form>
-        </Box>
-      </Modal>
+        <MenuItem>
+          <ListItemIcon>
+            <LinkedCameraIcon />
+          </ListItemIcon>
+          <Button sx={{ color: "black", padding: "0" }} onClick={handleOpen}>
+            Change Picture
+          </Button>
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <LogoutIcon />
+          </ListItemIcon>
+          <Button sx={{ color: "black", padding: "0" }} onClick={logOut}>
+            Logout
+          </Button>
+        </MenuItem>
+      </Menu>
+    </React.Fragment>
+      {/* modal */ }
+  <Modal
+    open={start}
+    onClose={close}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
+    <Box sx={styleImage}>
+      <form onSubmit={handleSubmit}>
+        <Input
+          accept="image/*"
+          type="file"
+          onChange={(e) => setPhoto(e.target.files[0])}
+        ></Input>
+        <Button
+          sx={{ marginTop: "10px" }}
+          className="btn_regular"
+          type="submit"
+        >
+          Submit
+        </Button>
+      </form>
+    </Box>
+  </Modal>
     </>
   );
 };
