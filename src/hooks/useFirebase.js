@@ -18,6 +18,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+
     const [isAdmin, setIsAdmin] = useState(false);
     const auth = getAuth();
     // google sign in
@@ -56,8 +57,8 @@ const useFirebase = () => {
                     displayName: name,
                     photoURL: photo,
                 })
-                    .then(() => { })
-                    .catch((error) => { });
+                    .then(() => {})
+                    .catch((error) => {});
                 const destanition = location?.state?.from || "/";
                 navigate(destanition);
             })
@@ -144,13 +145,13 @@ const useFirebase = () => {
     console.log(isAdmin);
     return {
         user,
+        isLoading,
+        error,
+        isAdmin,
         googleSignIn,
         logOut,
         passwordLoginUser,
         registerUser,
-        isLoading,
-        error,
-        isAdmin,
     };
 };
 
