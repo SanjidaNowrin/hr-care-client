@@ -86,7 +86,7 @@ const Footer = () => {
     return (
         <Box className={footer}>
             <Container>
-                <Box sx={{ pt: 5 }}>
+                <Box sx={{ pt: 6 }}>
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4}>
                             <Box className="single-ooter">
