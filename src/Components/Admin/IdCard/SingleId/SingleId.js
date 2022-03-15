@@ -177,11 +177,15 @@ const SingleId = ({ employeeId }) => {
 
               <Grid item xs={4}>
                 <Box sx={{ textAlign: "center" }}>
-                  <img
-                    width="100% !important"
-                    src={`data:image/jpeg;base64,${qrUrl.split(",")[1]}`}
-                    alt="Employee QrCode"
-                  />
+                  {
+                    qrUrl && (
+                      <img
+                        width="100% !important"
+                        src={`data:image/jpeg;base64,${qrUrl.split(",")[1]}`}
+                        alt="Employee QrCode"
+                      />
+                    )
+                  }
                 </Box>
               </Grid>
               <Grid item xs={4}>

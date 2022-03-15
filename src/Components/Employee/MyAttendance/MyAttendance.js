@@ -192,17 +192,21 @@ const MyAttendance = (props) => {
         <Typography variant="h6">
           <span style={{ color: "red" }}>*</span> Scan by QRCode
         </Typography>
-        <a
-          href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-          download
-        >
-          <img
-            className={classes.qrImage}
-            width="30% !important"
-            src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-            alt="Employee QrCode"
-          />
-        </a>
+
+        {employee[0]?.qrUrl &&
+          <a
+            href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+            download
+          >
+            <img
+              className={classes.qrImage}
+              width="30% !important"
+              src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+              alt="Employee QrCode"
+            />
+          </a>
+        }
+
       </Box>
       <Grid
         container

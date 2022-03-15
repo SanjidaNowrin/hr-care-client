@@ -63,7 +63,23 @@ const MyInfo = () => {
         sigPad.current.fromDataURL(image);
     }
 
-    const onSubmit = (data) => {
+    //qrcode
+    const [text, setText] = useState(user?.email);
+    const [qrUrl, setQrUrl] = useState(null);
+    const generateQrCode = async () => {
+        try {
+            const response = await QRCode.toDataURL(text);
+            setQrUrl(response);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+    const onSubmit = async (data) => {
+        const response = await QRCode.toDataURL(text);
+        data.qrUrl = response;
         data.image = image;
         const ID = getUniqueId(data);
         data.ID = ID;
