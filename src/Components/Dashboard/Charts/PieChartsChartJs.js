@@ -8,47 +8,53 @@ ChartJS.register(
 )
 
 
-const PieChartsChartJs = ({ attendance, dateString, holiday }) => {
+const PieChartsChartJs = ({ attendance, dateString, holiday, leave }) => {
 
     const w = attendance.length
-    const h = holiday.length;
-    const p = w - h
-    const ab = w - (ab + h)
+    const h = holiday.length
+    const l = leave.length;
+    const p = (w - (h + l))
+
     const data = {
-        labels: ['Present', 'Absent', 'Holiday'],
+
         datasets: [{
             label: '# of Votes',
-            data: [p, ab, h],
+            data: [p, l, h],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
+                'rgba(75, 192, 192, .7)',
 
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
+                'rgba(255, 205, 86, .7)',
 
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 99, 132, .7)',
+
+
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
 
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
+                'rgba(75, 192, 192, .7)',
+                'rgba(255, 205, 86, .7)',
 
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 99, 132, .7)',
+
+
             ],
             borderWidth: 1
-        }]
+        }],
+        labels: ['Present', 'Absent', 'Holiday'],
     }
     const options = {
         maintainAspectRatio: false,
+        responsive: false,
         scales: {
             y: {
+                display: false,
                 beginAtZero: true,
                 grid: {
                     display: false
                 }
             },
             x: {
-
+                display: false,
                 grid: {
                     display: false
                 }
@@ -61,15 +67,15 @@ const PieChartsChartJs = ({ attendance, dateString, holiday }) => {
         }
     }
     return (
-        <div>
-            <Pie
-                data={data}
-                height={250}
-                options={options}
-            >
 
-            </Pie>
-        </div>
+        <Pie
+            data={data}
+            height='250px'
+            options={options}
+        >
+
+        </Pie>
+
     );
 };
 
