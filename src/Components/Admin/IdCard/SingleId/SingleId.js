@@ -7,11 +7,20 @@ import { makeStyles } from "@mui/styles";
 import { Box, Divider, Paper, Typography } from "@mui/material";
 import director from "../../../../assets/images/director.png";
 import useAuth from "../../../../hooks/useAuth";
-
+import Avatar from "@mui/material/Avatar";
 const SingleId = ({ employeeId }) => {
   const { user } = useAuth();
-  const { ID, name, profile, department, designation, phone, image, photo } =
-    employeeId;
+  const {
+    ID,
+    name,
+    profile,
+    department,
+    designation,
+    phone,
+    image,
+    photo,
+    qrUrl,
+  } = employeeId;
   const pdfExportComponent = useRef(null);
   const handleOnclick = () => {
     pdfExportComponent.current.save();
@@ -85,7 +94,7 @@ const SingleId = ({ employeeId }) => {
               />
             ) : (
               <img
-                src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                src="https://i.ibb.co/gvzdw1g/images.png"
                 alt=""
                 className={imgTop}
               />
@@ -150,8 +159,8 @@ const SingleId = ({ employeeId }) => {
 
           {/* signature box */}
           <Box sx={{ px: 2, pt: 1, pb: 2 }}>
-            <Grid container spacing={10}>
-              <Grid item xs={6}>
+            <Grid container spacing={5}>
+              <Grid item xs={4}>
                 <Box sx={{ textAlign: "center" }}>
                   <img
                     className={signatureImg}
@@ -166,7 +175,16 @@ const SingleId = ({ employeeId }) => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={6}>
+              <Grid item xs={4}>
+                <Box sx={{ textAlign: "center" }}>
+                  <img
+                    width="100% !important"
+                    src={`data:image/jpeg;base64,${qrUrl.split(",")[1]}`}
+                    alt="Employee QrCode"
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={4}>
                 <Box sx={{ textAlign: "center" }}>
                   <img
                     className={signatureImg}

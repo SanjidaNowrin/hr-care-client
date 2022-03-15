@@ -255,8 +255,8 @@ const DashNav = () => {
                   ))
                 ) : (
                   <Avatar
-                    alt="Remy Sharp"
-                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
+                    alt="Employee Image"
+                    src="https://i.ibb.co/gvzdw1g/images.png"
                   />
                 )}
               </StyledBadge>
