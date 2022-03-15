@@ -131,7 +131,7 @@ const DashboardHome = () => {
                             </Box>
 
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#00D2FC', py: 1 }}>
-                                0{employees.length}
+                                {employees.length}
                             </Typography>
                         </Box>
                     </Grid>
@@ -145,7 +145,7 @@ const DashboardHome = () => {
                                 <CoPresentIcon style={{ fontSize: '3rem', color: '#fff' }}></CoPresentIcon>
                             </Box>
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#845EC2', py: 1 }}>
-                                0{present}
+                                {present}
                             </Typography>
                         </Box>
                     </Grid>
@@ -159,7 +159,7 @@ const DashboardHome = () => {
                                 <PersonOffIcon style={{ fontSize: '3rem', color: '#fff' }}></PersonOffIcon>
                             </Box>
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#fb3e6a', py: 1 }}>
-                                0{absent}
+                                {absent}
                             </Typography>
                         </Box>
                     </Grid>
@@ -173,7 +173,7 @@ const DashboardHome = () => {
                                 <DirectionsWalkIcon style={{ fontSize: '3rem', color: '#fff' }}></DirectionsWalkIcon>
                             </Box>
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#18025B', py: 1 }}>
-                                0{leave.length}
+                                {leave.length}
                             </Typography>
                         </Box>
                     </Grid>
