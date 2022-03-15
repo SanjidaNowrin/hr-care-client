@@ -1,27 +1,29 @@
+import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
-import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { Grid } from "@mui/material";
-import { Typography, Button, Container, TextField } from "@mui/material";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+
 const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = (data) => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/makeAdmin", {
+    fetch("https://ancient-thicket-61342.herokuapp.com/user", {
       method: "PUT",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+      },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((result) => console.log(result));
     Swal.fire({
-      title: 'WOW!',
-      text: 'Added as an Admin',
-      imageUrl: 'https://i.ibb.co/c1Lnz5P/undraw-real-time-collaboration-c62i.png',
+      title: "WOW!",
+      text: "Added as an Admin",
+      imageUrl: "https://i.ibb.co/c1Lnz5P/undraw-real-time-collaboration-c62i.png",
       imageWidth: 300,
       imageHeight: 200,
-      imageAlt: 'Custom image',
-    })
+      imageAlt: "Custom image",
+    });
     reset();
   };
   return (
@@ -29,15 +31,12 @@ const MakeAdmin = () => {
       <Container>
         <Grid container spacing={8}>
           <Grid item xs={12} md={6}>
-            <img
-              src="https://i.ibb.co/d78Sb8X/undraw-Add-user-re-5oib.png"
-              alt="banner"
-              border="0"
-              style={{ width: "100%" }}
-            />
+            <img src="https://i.ibb.co/d78Sb8X/undraw-Add-user-re-5oib.png" alt="banner" border="0" style={{ width: "100%" }} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4" sx={{ fontWeight: '500', color: 'var(--p_color)', textAlign: "center", marginBottom: "18px" }}>Make <span style={{ color: "#000" }}>Admin</span></Typography>
+            <Typography variant="h4" sx={{ fontWeight: "500", color: "#01578A", textAlign: "center", marginBottom: "18px" }}>
+              Make <span style={{ color: "#000" }}>Admin</span>
+            </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ mb: 2 }}>
                 <label style={{ display: "block" }} htmlFor="title">
@@ -55,7 +54,7 @@ const MakeAdmin = () => {
               <Box sx={{ textAlign: "center", mt: 3 }}>
                 <Button
                   sx={{
-                    background: "var(--p_color) !important",
+                    background: "#01578A !important",
                     color: "#fff !important",
                   }}
                   className="btn_regular"
