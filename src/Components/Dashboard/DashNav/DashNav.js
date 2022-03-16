@@ -8,19 +8,18 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { styled } from "@mui/material/styles";
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button } from "@mui/material";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 
 import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
@@ -93,7 +92,6 @@ const DashNav = () => {
 
   //
 
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -109,13 +107,13 @@ const DashNav = () => {
     <Tooltip {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: '#f5f5f9',
-      color: 'rgba(0, 0, 0, 0.87)',
-      width: '100%',
+      backgroundColor: "#f5f5f9",
+      color: "rgba(0, 0, 0, 0.87)",
+      width: "100%",
       height: "50vh",
       overflow: "scroll",
       fontSize: theme.typography.pxToRem(12),
-      border: '1px solid #dadde9',
+      border: "1px solid #dadde9",
     },
   }));
 
@@ -141,11 +139,13 @@ const DashNav = () => {
     const formData = new FormData();
     console.log(photo)
     formData.append("photo", photo);
-    console.log(formData)
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
-      method: "PUT",
-      body: formData,
-    })
+    fetch(
+      `https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`,
+      {
+        method: "PUT",
+        body: formData,
+      }
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
@@ -168,14 +168,21 @@ const DashNav = () => {
           }}
         >
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-
-
             {/* ss */}
 
             <Tooltip
               title={
                 <React.Fragment>
-                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
+                  <Typography
+                    style={{
+                      marginBottom: "5px",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                    color="inherit"
+                  >
+                    Announcement
+                  </Typography>
                   {notification?.map((data) => (
                     <Link
                       to={`/dashboard/announcements/${data._id}`}>
@@ -185,16 +192,19 @@ const DashNav = () => {
                             <ListItem disablePadding>
                               <ListItemButton>
                                 <ListItemIcon>
-                                  <CircleNotificationsIcon style={{ color: 'orange' }} />
+                                  <CircleNotificationsIcon
+                                    style={{ color: "orange" }}
+                                  />
                                 </ListItemIcon>
-                                <ListItemText style={{ color: 'black' }} primary={data.title} />
+                                <ListItemText
+                                  style={{ color: "black" }}
+                                  primary={data.title}
+                                />
                               </ListItemButton>
                             </ListItem>
                           </List>
                         </nav>
-
                       </Box>
-
                     </Link>
                   ))}
                 </React.Fragment>
@@ -212,8 +222,6 @@ const DashNav = () => {
             </Tooltip>
 
             {/* ss */}
-
-
             <IconButton size="large" color="inherit">
               <Badge color="error">
                 <EventIcon onClick={holidayOpen} />
@@ -250,7 +258,7 @@ const DashNav = () => {
                 {employee[0]?.photo ? (
                   employee.map((employeePhoto) => (
                     <Avatar
-                      alt="Remy Sharp"
+                      alt="Employee Image"
                       src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
                     />
                   ))
