@@ -19,9 +19,10 @@ import SignaturePad from "react-signature-pad-wrapper";
 // Breadcrumbs
 import Chip from "@mui/material/Chip";
 import { emphasize, styled } from "@mui/material/styles";
-import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import HomeIcon from "@mui/icons-material/Home";
+
 
 import QRCode from "qrcode";
 const getUniqueId = (info) => {
@@ -63,7 +64,23 @@ const MyInfo = () => {
         sigPad.current.fromDataURL(image);
     }
 
-    const onSubmit = (data) => {
+    //qrcode
+    const [text, setText] = useState(user?.email);
+    const [qrUrl, setQrUrl] = useState(null);
+    const generateQrCode = async () => {
+        try {
+            const response = await QRCode.toDataURL(text);
+            setQrUrl(response);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+    const onSubmit = async (data) => {
+        const response = await QRCode.toDataURL(text);
+        data.qrUrl = response;
         data.image = image;
         const ID = getUniqueId(data);
         data.ID = ID;

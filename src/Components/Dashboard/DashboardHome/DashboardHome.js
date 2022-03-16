@@ -131,7 +131,7 @@ const DashboardHome = () => {
                             </Box>
 
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#00D2FC', py: 1 }}>
-                                0{employees.length}
+                                {employees.length}
                             </Typography>
                         </Box>
                     </Grid>
@@ -145,7 +145,7 @@ const DashboardHome = () => {
                                 <CoPresentIcon style={{ fontSize: '3rem', color: '#fff' }}></CoPresentIcon>
                             </Box>
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#845EC2', py: 1 }}>
-                                0{present}
+                                {present}
                             </Typography>
                         </Box>
                     </Grid>
@@ -159,7 +159,7 @@ const DashboardHome = () => {
                                 <PersonOffIcon style={{ fontSize: '3rem', color: '#fff' }}></PersonOffIcon>
                             </Box>
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#fb3e6a', py: 1 }}>
-                                0{absent}
+                                {absent}
                             </Typography>
                         </Box>
                     </Grid>
@@ -173,7 +173,7 @@ const DashboardHome = () => {
                                 <DirectionsWalkIcon style={{ fontSize: '3rem', color: '#fff' }}></DirectionsWalkIcon>
                             </Box>
                             <Typography variant="h3" sx={{ textAlign: 'center', color: '#18025B', py: 1 }}>
-                                0{leave.length}
+                                {leave.length}
                             </Typography>
                         </Box>
                     </Grid>
@@ -185,9 +185,9 @@ const DashboardHome = () => {
 
             {/* Total attendance chart area */}
             <Box sx={{ my: 5 }}>
-                <Box sx={{ background: 'var(--s_color)', py: 2, px: 2, display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography sx={{ color: '#fff' }} variant="h5">Today Attendance</Typography>
-                    <Typography sx={{ color: '#fff' }} variant="h5">{takeDate}</Typography>
+                <Box sx={{ background: 'var(--t_color)', py: 2, px: 2, display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="h5">Today Attendance</Typography>
+                    <Typography variant="h5">{takeDate}</Typography>
                 </Box>
 
                 {/* Table on employee details */}

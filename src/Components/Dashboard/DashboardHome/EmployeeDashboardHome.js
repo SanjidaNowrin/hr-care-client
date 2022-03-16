@@ -21,16 +21,33 @@ import PieChartsChartJs from '../Charts/PieChartsChartJs';
 import dateFormat from '../../Share/DateFormat/dateFormat';
 import useAuth from '../../../hooks/useAuth';
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Checkbox from '@mui/material/Checkbox';
+import Avatar from '@mui/material/Avatar';
+
 const EmployeeDashboardHome = () => {
     const { user } = useAuth();
     console.log(user)
     const [attendance, setAttendance] = useState([]);
     const [holiday, setHoliday] = useState([]);
+    const [leave, setLeave] = useState([]);
+
+    const [toDo, setToDo] = useState([]);
+    const [checked, setChecked] = React.useState([]);
+    const [thisMonthTask, setThisMonthTask] = React.useState([]);
+
+    const [taskUpdate, setTaskUpdate] = useState(false);
+    console.log(taskUpdate, thisMonthTask)
+    console.log(checked)
     // fetch attendence
 
     const currentDate = dateFormat(new Date().toLocaleString().split(",")[0], 'yyyy-MM-dd');
     const dateString = currentDate.split('-')[1];
-    console.log(dateString, currentDate)
+    console.log(dateString, currentDate, holiday, attendance)
     useEffect(() => {
         fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`)
             .then(res => res.json())
@@ -38,12 +55,29 @@ const EmployeeDashboardHome = () => {
 
                 const filteredData = data?.result?.filter(x => x?.date?.split('-')[1] === dateString)
 
-                const filteredHoliday = data?.result?.filter(y => y.entry === '')
+                const filteredHoliday = data?.result?.filter(y => y.status === 'Holiday');
+                const filteredLeave = data?.result?.filter(y => y.status === 'Leave');
+                setLeave(filteredLeave)
                 setAttendance(filteredData)
                 setHoliday(filteredHoliday)
                 console.log(data.result, filteredData, filteredHoliday)
             })
-    }, [])
+    }, [dateString, user?.email]);
+
+    //assign task 
+    useEffect(() => {
+        fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
+            .then((res) => res.json())
+            .then((data) => {
+                const filterThisMonthTask = data?.data?.filter(task => (task.email === user.email && task.date.split('-')[1] === dateString));
+                const filterTask = data?.data?.filter(task => (task.email === user.email && task.date === currentDate))
+                console.log(filterTask)
+                setToDo(filterTask)
+                setChecked(filterTask[0]?.taskDone)
+                setThisMonthTask(filterThisMonthTask)
+                console.log(filterThisMonthTask)
+            });
+    }, [taskUpdate, user.email, currentDate, checked, dateString]);
 
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         const backgroundColor =
@@ -71,6 +105,7 @@ const EmployeeDashboardHome = () => {
             borderRadius: '10px',
             overflow: 'hidden',
             width: '100%',
+            height: '120px',
             background: 'white'
             // boxShadow: '1px 10px 10px #b6b7b7'
         },
@@ -84,6 +119,36 @@ const EmployeeDashboardHome = () => {
     })
 
     const { dashTopText, dashTopBox } = useStyle();
+
+    // Assign task
+
+    const handleToggle = (value) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+        console.log(newChecked)
+        setChecked(newChecked);
+        fetch(`https://ancient-thicket-61342.herokuapp.com/taskAssign`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                email: user.email,
+                date: currentDate,
+                task: newChecked
+            })
+
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result)
+                setTaskUpdate(!taskUpdate)
+            })
+    };
     return (
         <Container sx={{ background: '#F7F9FE' }}>
             <Typography sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
@@ -105,30 +170,33 @@ const EmployeeDashboardHome = () => {
                         <Box className={dashTopBox}>
                             <Box className={dashTopText}>
 
-                                <Typography variant="h5" sx={{ color: 'rgba(75, 192, 192, 1)' }}>
+                                <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, 1)', textAlign: 'center' }}>
                                     Total Working Day
                                 </Typography>
-                                {/* <TodayIcon></TodayIcon> */}
-                                <Typography variant="h4" sx={{ textAlign: 'center', color: 'rgba(75, 192, 192, 1)', py: 1 }}>
-                                    {attendance.length}
-                                </Typography>
+                                <br />
+
                             </Box>
+                            {/* <TodayIcon></TodayIcon> */}
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: 'rgba(75, 192, 192, 1)', py: 1 }}>
+                                {attendance.length}
+                            </Typography>
                         </Box>
                     </Grid>
 
                     <Grid item xs={6} md={3}>
                         <Box className={dashTopBox} sx={{}}>
                             <Box className={dashTopText} sx={{}}>
-                                <Typography data-testid="typography" variant="h5" sx={{ color: 'rgba(255, 206, 86, 1)' }}>
+                                <Typography variant="h6" sx={{ color: 'rgba(255, 206, 86, 1)' }}>
                                     Present
                                 </Typography>
 
 
-                                <Typography variant="h4" sx={{ textAlign: 'center', color: 'rgba(255, 206, 86, 1)', py: 1 }}>
-                                    {attendance.length}
-                                </Typography>
-                                {/* <TrendingUpIcon></TrendingUpIcon> */}
+
                             </Box>
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: 'rgba(255, 206, 86, 1)', py: 1 }}>
+                                {attendance.length - holiday.length - leave.length}
+                            </Typography>
+                            {/* <TrendingUpIcon></TrendingUpIcon> */}
                         </Box>
                     </Grid>
 
@@ -140,11 +208,12 @@ const EmployeeDashboardHome = () => {
                                 </Typography>
 
 
-                                <Typography variant="h6" sx={{ textAlign: 'center', color: 'rgba(255, 99, 132, .8)', py: 1 }}>
-                                    0
-                                </Typography>
-                                {/* <TrendingDownIcon></TrendingDownIcon> */}
+
                             </Box>
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: 'rgba(255, 99, 132, .8)', py: 1 }}>
+                                0
+                            </Typography>
+                            {/* <TrendingDownIcon></TrendingDownIcon> */}
                         </Box>
                     </Grid>
 
@@ -152,14 +221,22 @@ const EmployeeDashboardHome = () => {
                         <Box className={dashTopBox} sx={{}}>
                             <Box className={dashTopText} sx={{}}>
                                 <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)' }}>
-                                    Remaining Leave
+                                    Holiday
                                 </Typography>
 
 
-                                <Typography variant="h6" sx={{ textAlign: 'center', color: 'rgba(255, 159, 64, 1)', py: 1 }}>
-                                    0
-                                </Typography>
+
                             </Box>
+                            <Typography variant="h3" sx={{ textAlign: 'center', color: 'rgba(255, 159, 64, 1)', py: 1 }}>
+                                {holiday.length}
+                            </Typography>
+                            {/*  <Box sx={{ height: '300px', width: '300px', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
+                                    Attendance
+                                </Typography>
+
+                                <PieChartsChartJs holiday={holiday} leave={leave} attendance={attendance} dateString={dateString}></PieChartsChartJs>
+                            </Box>*/}
                         </Box>
                     </Grid>
                 </Grid>
@@ -170,26 +247,59 @@ const EmployeeDashboardHome = () => {
             {/* charts */}
 
             <Box sx={{ height: '300px', width: '100%', display: 'flex', marginTop: '40px', }}>
-                <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
+                {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
                     <BarChartJs></BarChartJs>
-                </Box>
+                </Box> */}
                 {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
                     <DoughnutChartJs attendance={attendance} dateString={dateString}></DoughnutChartJs>
                 </Box> */}
-                <Box sx={{ height: '300px', width: '50%', margin: '30px', background: 'white' }}>
-                    <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)' }}>
+
+                <Box sx={{ height: '300px', width: '300px', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
                         Attendance
                     </Typography>
 
-                    <PieChartsChartJs holiday={holiday} attendance={attendance} dateString={dateString}></PieChartsChartJs>
+                    <PieChartsChartJs holiday={holiday} leave={leave} attendance={attendance} dateString={dateString}></PieChartsChartJs>
+                </Box>
+                <Box sx={{ height: '300px', width: '100%', display: 'flex', marginTop: '40px' }}>
+                    <Box sx={{ height: '300px', width: '100%', margin: '30px', background: 'white' }}>
+                        <LineChartsChartJs thisMonthTask={thisMonthTask}></LineChartsChartJs>
+                    </Box>
+
+
                 </Box>
             </Box>
 
-            <Box sx={{ height: '300px', width: '100%', display: 'flex', marginTop: '40px' }}>
-                <Box sx={{ height: '300px', width: '100%', margin: '30px', background: 'white' }}>
-                    <LineChartsChartJs></LineChartsChartJs>
-                </Box>
 
+            {/* ASSIGN Task */}
+            <Box sx={{ height: '300px', width: '100%', display: 'flex', marginTop: '40px' }}>
+                <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                    <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)' }}>
+                        Assign Task
+                    </Typography>
+                    {toDo[0]?.tags?.map((value) => {
+                        const labelId = `checkbox-list-secondary-label-${value}`;
+                        return (
+                            <ListItem
+                                key={value}
+                                secondaryAction={
+                                    <Checkbox
+                                        edge="end"
+                                        onChange={handleToggle(value)}
+                                        checked={toDo[0]?.taskDone.indexOf(value) !== -1}
+                                        inputProps={{ 'aria-labelledby': labelId }}
+                                    />
+                                }
+                                disablePadding
+                            >
+                                <ListItemButton>
+
+                                    <ListItemText id={value._id} primary={value} />
+                                </ListItemButton>
+                            </ListItem>
+                        );
+                    })}
+                </List>
             </Box>
 
             {/* 

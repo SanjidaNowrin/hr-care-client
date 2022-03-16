@@ -187,7 +187,7 @@ const Holidays = () => {
     return (
         <Container>
             {/* Breadcrumbs */}
-            <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box sx={{ mb: 4, display: { md: 'flex' }, alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
                     <Typography
                         sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
@@ -208,7 +208,7 @@ const Holidays = () => {
                 <Button
                     onClick={handleOpen}
                     className="btn_regular"
-                    sx={{ background: "var(--p_color) !important", color: "#fff !important" }}
+                    sx={{ background: "var(--p_color) !important", color: "#fff !important", mt: { xs: 4, sm: 4 } }}
                 >
                     <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} />
                     Add Holidays

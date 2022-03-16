@@ -13,6 +13,7 @@ body {
 :root {
   --PT_font: 'Poppins', sans-serif;
   --p_color: #01578A;
+  --t_color: #A3D2ED;
   --s_color: #845ec2;
   --pt_color: #74768B;
   --bg_color: linear-gradient(to right, #845ec2, #af5dbb, #d15eaf, #ec64a0, #ff6f91);
