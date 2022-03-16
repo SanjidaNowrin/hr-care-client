@@ -185,9 +185,9 @@ const DashboardHome = () => {
 
             {/* Total attendance chart area */}
             <Box sx={{ my: 5 }}>
-                <Box sx={{ background: 'var(--s_color)', py: 2, px: 2, display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography sx={{ color: '#fff' }} variant="h5">Today Attendance</Typography>
-                    <Typography sx={{ color: '#fff' }} variant="h5">{takeDate}</Typography>
+                <Box sx={{ background: 'var(--t_color)', py: 2, px: 2, display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="h5">Today Attendance</Typography>
+                    <Typography variant="h5">{takeDate}</Typography>
                 </Box>
 
                 {/* Table on employee details */}

@@ -6,20 +6,11 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { styled } from "@mui/material/styles";
-import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button } from "@mui/material";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
@@ -27,6 +18,7 @@ import EventIcon from "@mui/icons-material/Event";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import HolidayCalendar from "./../../Employee/HolidayCalender/HolidayCalender";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Notification from "../Notification/Notification";
 const style = {
   position: "absolute",
   top: "50%",
@@ -82,16 +74,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const DashNav = () => {
   const [photo, setPhoto] = useState(null);
 
-  //notification
-  const [notification, setNotification] = useState([]);
-  useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
-      .then((res) => res.json())
-      .then((notification) => setNotification(notification.data.reverse()));
-  }, []);
-
-  //
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -102,22 +84,6 @@ const DashNav = () => {
   };
   const { logOut, user } = useAuth();
 
-  //
-  const HtmlTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: "#f5f5f9",
-      color: "rgba(0, 0, 0, 0.87)",
-      width: "100%",
-      height: "50vh",
-      overflow: "scroll",
-      fontSize: theme.typography.pxToRem(12),
-      border: "1px solid #dadde9",
-    },
-  }));
-
-  //
   const [start, setOpen] = React.useState(false);
   const [employee, setEmployee] = useState([]);
   const [photoURL, setPhotoUrl] = useState(true);
@@ -135,17 +101,12 @@ const DashNav = () => {
   }, [photoURL, user.email, employee]);
   //form submit
   const handleSubmit = (e) => {
-    e.preventDefault();
     const formData = new FormData();
-    console.log(photo)
     formData.append("photo", photo);
-    fetch(
-      `https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`,
-      {
-        method: "PUT",
-        body: formData,
-      }
-    )
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
+      method: "PUT",
+      body: formData,
+    })
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
@@ -154,8 +115,10 @@ const DashNav = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    e.preventDefault();
     close();
   };
+
   return (
     <>
       <React.Fragment>
@@ -168,61 +131,11 @@ const DashNav = () => {
           }}
         >
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {/* ss */}
+            {/* Notification */}
+            <Notification></Notification>
 
-            <Tooltip
-              title={
-                <React.Fragment>
-                  <Typography
-                    style={{
-                      marginBottom: "5px",
-                      fontWeight: "bold",
-                      textAlign: "center",
-                    }}
-                    color="inherit"
-                  >
-                    Announcement
-                  </Typography>
-                  {notification?.map((data) => (
-                    <Link
-                      to={`/dashboard/announcements/${data._id}`}>
-                      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                        <nav aria-label="main mailbox folders">
-                          <List>
-                            <ListItem disablePadding>
-                              <ListItemButton>
-                                <ListItemIcon>
-                                  <CircleNotificationsIcon
-                                    style={{ color: "orange" }}
-                                  />
-                                </ListItemIcon>
-                                <ListItemText
-                                  style={{ color: "black" }}
-                                  primary={data.title}
-                                />
-                              </ListItemButton>
-                            </ListItem>
-                          </List>
-                        </nav>
-                      </Box>
-                    </Link>
-                  ))}
-                </React.Fragment>
-              }
-            >
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={notification.length} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-
-            {/* ss */}
-            <IconButton size="large" color="inherit">
+            {/* calender */}
+            <IconButton sx={{ background: 'transparent' }} size="large" color="inherit">
               <Badge color="error">
                 <EventIcon onClick={holidayOpen} />
               </Badge>
@@ -258,20 +171,24 @@ const DashNav = () => {
                 {employee[0]?.photo ? (
                   employee.map((employeePhoto) => (
                     <Avatar
-                      alt="Employee Image"
+                      alt="Remy Sharp"
                       src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
                     />
                   ))
                 ) : (
                   <Avatar
+                    sx={{ bgcolor: 'var(--s_color)' }}
                     alt="Remy Sharp"
-                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
-                  />
+                    src="/broken-image.jpg"
+                  >
+                    {user.displayName.slice(0, 1)}
+                  </Avatar>
                 )}
               </StyledBadge>
             </IconButton>
           </Tooltip>
         </Box>
+
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -338,8 +255,7 @@ const DashNav = () => {
             <Input
               accept="image/*"
               type="file"
-              onChange={(e) => setPhoto(e.target.files[0])
-              }
+              onChange={(e) => setPhoto(e.target.files[0])}
             ></Input>
             <Button
               sx={{ marginTop: "10px" }}
