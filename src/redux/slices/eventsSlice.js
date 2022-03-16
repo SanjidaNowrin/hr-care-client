@@ -26,6 +26,7 @@ const eventsSlice = createSlice({
       );
     },
   },
+  //fetch data
   extraReducers: (builder) => {
     builder.addCase(fetchAnnouncement.fulfilled, (state, action) => {
       state.services = action.payload;

@@ -55,7 +55,7 @@ function Dashboard(props) {
   const { linkItem, dashLink, dashIcon } = useStyle();
 
   const drawer = (
-    <div style={{ background: "rgb(1 87 138)", color: "white", height: "1000px" }}>
+    <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
       <Typography
         variant="h4"
         component="div"
@@ -63,7 +63,7 @@ function Dashboard(props) {
           flexGrow: 2,
           padding: "11px",
           textAlign: "center",
-          background: "rgb(1 87 138)",
+          background: "var(--p_color)",
           color: "#fff",
           fontWeight: "700",
           borderBottom: "2px solid #fff",
@@ -88,14 +88,19 @@ function Dashboard(props) {
         <Typography variant="h6">Employees</Typography>
         <List className={linkItem}>
 
-          <Link className={dashLink} to="/dashboard/myinfo">
-            <AccountBoxOutlinedIcon className={dashIcon} />
-            My Information
+          <Link className={dashLink} to="/dashboard/employeeDashboard">
+            <CoPresentOutlinedIcon className={dashIcon} />
+            My dashboard
           </Link>
 
           <Link className={dashLink} to="/dashboard/attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
             Attendance
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/myinfo">
+            <AccountBoxOutlinedIcon className={dashIcon} />
+            My Information
           </Link>
 
           <Link className={dashLink} to="/dashboard/announcements">
@@ -174,7 +179,7 @@ function Dashboard(props) {
       <Box sx={{ pl: 2 }}>
         <Typography variant="h6">Performances</Typography>
       </Box>
-    </div>
+    </Box>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -189,7 +194,7 @@ function Dashboard(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar sx={{ background: "rgb(1 87 138)" }}>
+        <Toolbar sx={{ background: "var(--p_color)" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"

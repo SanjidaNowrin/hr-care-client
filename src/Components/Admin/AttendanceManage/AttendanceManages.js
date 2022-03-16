@@ -186,7 +186,7 @@ const AttendanceManages = () => {
                             <Box sx={{ width: "20%" }}>
                                 <Button
                                     sx={{
-                                        background: "#01578A !important",
+                                        background: "var(--p_color) !important",
                                         color: "#fff !important",
                                         width: "100%",
                                     }}

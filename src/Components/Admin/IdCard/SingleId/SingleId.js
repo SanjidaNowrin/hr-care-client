@@ -38,11 +38,12 @@ const SingleId = ({ employeeId }) => {
       borderRadius: "50%",
       position: "relative",
       top: "-53px",
-      height: "110px",
-      width: "110px",
+      height: "110px !important",
+      width: "110px !important",
     },
     imgTop: {
       width: "100%",
+      height: "100%",
       borderRadius: "50%",
       border: "6px solid #fff",
     },
@@ -106,7 +107,7 @@ const SingleId = ({ employeeId }) => {
                   ID NO
                 </Typography>
                 <Typography variant="body2">
-                  {name.slice(0, 1)}#{ID}
+                  {ID}
                 </Typography>
               </Grid>
               <Grid item xs={4}>

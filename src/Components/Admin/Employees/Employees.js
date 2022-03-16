@@ -26,7 +26,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-    
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")

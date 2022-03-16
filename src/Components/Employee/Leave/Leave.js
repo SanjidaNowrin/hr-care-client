@@ -117,7 +117,7 @@ const Leave = () => {
                 <Grid item xs={12} md={6} sm={12}>
                     <Paper sx={{ p: 4, mt: 2, mb: 5 }} elevation={6}>
                         <Typography sx={{ textAlign: "center", margin: "15px" }} variant="h4">
-                            <span style={{ color: " #01578A" }}> Leave</span> Form
+                            <span style={{ color: "var(--p_color)" }}> Leave</span> Form
                         </Typography>
                         <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
 
@@ -278,7 +278,7 @@ const Leave = () => {
                             </Box>
                             <Box sx={{ textAlign: "center", mt: 3 }}>
                                 <Button
-                                    sx={{ background: "#01578A !important", color: "#fff !important", width: "100%" }}
+                                    sx={{ background: "var(--p_color) !important", color: "#fff !important", width: "100%" }}
                                     className="btn_regular"
                                     type="submit"
                                 >

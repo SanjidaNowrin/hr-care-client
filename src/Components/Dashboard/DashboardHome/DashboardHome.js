@@ -25,7 +25,6 @@ import TodayAttendance from './TodayAttendance/TodayAttendance';
 import CalenderChart from './HolidayCalender/CalenderChart';
 import dateFormat from '../../Share/DateFormat/dateFormat';
 
-
 const DashboardHome = () => {
     const [employees, setEmployees] = useState([]);
 
@@ -107,7 +106,7 @@ const DashboardHome = () => {
     const date = new Date();
     const takeDate = date.toString().slice(0, 16);
     return (
-        <Container>
+        <Container >
             <Typography sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
                 Dashboard
             </Typography>
@@ -180,6 +179,9 @@ const DashboardHome = () => {
                     </Grid>
                 </Grid>
             </Box>
+
+
+
 
             {/* Total attendance chart area */}
             <Box sx={{ my: 5 }}>

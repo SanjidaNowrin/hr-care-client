@@ -88,7 +88,7 @@ const TaskAssign = () => {
   }, []);
   //submit form
   const onSubmit = (data, e) => {
-    fetch("http://localhost:5000/taskAssign", {
+    fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({

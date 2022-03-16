@@ -135,8 +135,9 @@ const useFirebase = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                if (data[0]?.result.role === "admin") {
+                if (data[0]?.result?.role === "admin") {
                     setIsAdmin(true);
+                    console.log(data[0]?.result?.role);
                 } else {
                     setIsAdmin(false);
                 }

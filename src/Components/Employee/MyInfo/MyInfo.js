@@ -58,10 +58,9 @@ const MyInfo = () => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees", {
             method: "POST",
             headers: {
-               
                 "content-type": "application/json",
             },
-           
+
             body: JSON.stringify(data),
         })
             .then((response) => response.json())

@@ -105,7 +105,7 @@ const OneLeaveRequest = ({ data }) => {
             fetch("https://ancient-thicket-61342.herokuapp.com/attendance", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({ ID: data?.ID, email: data?.email, date: currentDate, entry: "", vacation: data?.leaveType }),
+                body: JSON.stringify({ ID: data?.ID, email: data?.email, date: currentDate, vacation: data?.leaveType, status: "Leave" }),
             })
 
         }
