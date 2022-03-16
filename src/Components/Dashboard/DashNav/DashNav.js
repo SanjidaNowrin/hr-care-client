@@ -213,7 +213,7 @@ const DashNav = () => {
             {/* ss */}
 
 
-            <IconButton size="large" color="inherit">
+            <IconButton sx={{ background: 'transparent' }} size="large" color="inherit">
               <Badge color="error">
                 <EventIcon onClick={holidayOpen} />
               </Badge>
@@ -255,9 +255,12 @@ const DashNav = () => {
                   ))
                 ) : (
                   <Avatar
+                    sx={{ bgcolor: 'var(--s_color)' }}
                     alt="Remy Sharp"
-                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
-                  />
+                    src="/broken-image.jpg"
+                  >
+                    {user.displayName.slice(0, 1)}
+                  </Avatar>
                 )}
               </StyledBadge>
             </IconButton>

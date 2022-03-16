@@ -7,6 +7,9 @@ body {
   /* background: #F7F9FE !important; */
 }
 
+/* --p_color: hsl(257deg 97% 65%);
+  --s_color: #00D2FC; */
+
 :root {
   --PT_font: 'Poppins', sans-serif;
   --p_color: #01578A;

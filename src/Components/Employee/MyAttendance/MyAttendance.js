@@ -32,219 +32,219 @@ import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 
 const MyAttendance = (props) => {
-  const { user } = useAuth();
-  const [times, setTimes] = useState([]);
-  const [today, setToday] = useState({});
-  const [employee, setEmployee] = useState({});
+    const { user } = useAuth();
+    const [times, setTimes] = useState([]);
+    const [today, setToday] = useState({});
+    const [employee, setEmployee] = useState({});
 
-  let time = new Date().toLocaleString();
-  useEffect(() => {
-    fetch(
-      `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => setTimes(data.result));
-  }, [user.email, times]);
+    let time = new Date().toLocaleString();
+    useEffect(() => {
+        fetch(
+            `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
+        )
+            .then((res) => res.json())
+            .then((data) => setTimes(data.result));
+    }, [user.email, times]);
 
-  const todaydate = dateFormat(time.split(",")[0], "yyyy-MM-dd");
-  useEffect(() => {
-    const foundToday = times.find((time) => time.date === todaydate);
-    setToday(foundToday);
-  }, [times, todaydate]);
-  // console.log(today?.date)
+    const todaydate = dateFormat(time.split(",")[0], "yyyy-MM-dd");
+    useEffect(() => {
+        const foundToday = times.find((time) => time.date === todaydate);
+        setToday(foundToday);
+    }, [times, todaydate]);
+    // console.log(today?.date)
 
-  useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setEmployee(data.result));
-  }, [user.email]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/employees/${user.email}`)
+            .then((res) => res.json())
+            .then((data) => setEmployee(data.result));
+    }, [user.email]);
 
-  //punchin
-  const handlePunchIn = () => {
-    let entryTime = {};
-    entryTime.ID = employee[0]?.ID;
-    entryTime.email = user.email;
-    entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
-    entryTime.entry = time.split(",")[1];
-    entryTime.leave = "";
-    entryTime.status = "Present";
+    //punchin
+    const handlePunchIn = () => {
+        let entryTime = {};
+        entryTime.ID = employee[0]?.ID;
+        entryTime.email = user.email;
+        entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
+        entryTime.entry = time.split(",")[1];
+        entryTime.leave = "";
+        entryTime.status = "Present";
 
-    if (today?.date === entryTime.date) {
-      Swal.fire("You already Punched In");
-    } else {
-      fetch("https://ancient-thicket-61342.herokuapp.com/attendance/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(entryTime),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-            console.log(data);
-          }
-        });
-      Swal.fire("You are Punched IN");
-    }
-  };
-
-  // punchout button
-
-  const handlePunchOut = () => {
-    let leaveTime = {};
-    leaveTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
-    if (today?.date === leaveTime.date) {
-      fetch(
-        `https://ancient-thicket-61342.herokuapp.com/attendance/${today._id}`,
-        {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(leaveTime),
+        if (today?.date === entryTime.date) {
+            Swal.fire("You already Punched In");
+        } else {
+            fetch("https://ancient-thicket-61342.herokuapp.com/attendance/", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(entryTime),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.insertedId) {
+                        console.log(data);
+                    }
+                });
+            Swal.fire("You are Punched IN");
         }
-      )
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-      Swal.fire("You are Punched Out");
-      console.log(leaveTime);
-    } else {
-      Swal.fire("At first Punch IN");
-    }
-  };
-
-  const [findPerson, setFindPerson] = useState(() => {
-    const saved = sessionStorage.getItem("items");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  sessionStorage.setItem("items", JSON.stringify(findPerson));
-  const useStyles = makeStyles((theme) => ({
-    paper: {
-      padding: "6px 16px",
-    },
-    secondaryTail: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    cardStyle: {
-      boxShadow: "2px 15px 15px #F2F2F2 !important",
-    },
-    timeFont: {
-      fontSize: "13px !important",
-      fontWeight: "bold",
-      marginLeft: "3px",
-    },
-    imgStyle: {
-      borderRadius: "50% !important",
-      width: "50% !important",
-      margin: "40px auto 20px",
-    },
-    qrImage: {
-      "&:hover": {
-        transform: "scale(1.3)",
-        marginLeft: "1.5rem !important",
-        margin: "0 auto !important",
-      },
-    },
-  }));
-  const classes = useStyles();
-
-  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-    const backgroundColor =
-      theme.palette.mode === "light"
-        ? theme.palette.grey[100]
-        : theme.palette.grey[800];
-    return {
-      backgroundColor,
-      height: theme.spacing(3),
-      color: theme.palette.text.primary,
-      fontWeight: theme.typography.fontWeightRegular,
-      "&:hover, &:focus": {
-        backgroundColor: emphasize(backgroundColor, 0.06),
-      },
-      "&:active": {
-        boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(backgroundColor, 0.12),
-      },
     };
-  });
-  return (
-    <Container>
-      {/* Breadcrumbs */}
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          sx={{ mt: 2, color: "var(--p_color) !important" }}
-          variant="h4"
-        >
-          Daily Attendance
-        </Typography>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link to="/dashboard">
-            <StyledBreadcrumb
-              to="/dashboard"
-              label="Dashboard"
-              icon={<HomeIcon fontSize="small" />}
-            />
-          </Link>
-          <Link to="/dashboard/attendance">
-            <StyledBreadcrumb component="a" href="#" label="Attendance" />
-          </Link>
-        </Breadcrumbs>
-      </Box>
-      <Box mt={5} sx={{ display: "flex", alignItems: "center" }}>
-        <Typography variant="h6">
-          <span style={{ color: "red" }}>*</span> Scan by QRCode
-        </Typography>
-        <a
-          href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-          download
-        >
-          <img
-            className={classes.qrImage}
-            width="30% !important"
-            src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-            alt="Employee QrCode"
-          />
-        </a>
-      </Box>
-      <Grid
-        container
-        spacing={2}
-        sx={{ display: "flex", alignItems: "center" }}
-      >
-        <Grid
-          item
-          xs={12}
-          md={5}
-          sx={{
-            border: "1px solid #01578A !important",
-            paddingLeft: "1rem",
-            paddingRight: "1rem",
-          }}
-        >
-          <QrReader
-            onResult={(result, error) => {
-              if (!!result) {
-                setFindPerson(result?.text);
-              }
 
-              if (!!error) {
-                console.info(error);
-              }
-            }}
-            style={{ width: "100%", height: "100% !important" }}
-          />
-          {findPerson ? (
-            <h4 style={{ fontWeight: "500", textAlign: "center" }}>
-              <span style={{ color: "green" }}>Verified Successfully!</span>{" "}
-              {user.displayName}
-            </h4>
-          ) : (
-            <h3
-              style={{ color: "red", fontWeight: "500", textAlign: "center" }}
+    // punchout button
+
+    const handlePunchOut = () => {
+        let leaveTime = {};
+        leaveTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
+        if (today?.date === leaveTime.date) {
+            fetch(
+                `https://ancient-thicket-61342.herokuapp.com/attendance/${today._id}`,
+                {
+                    method: "PUT",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(leaveTime),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => console.log(data));
+            Swal.fire("You are Punched Out");
+            console.log(leaveTime);
+        } else {
+            Swal.fire("At first Punch IN");
+        }
+    };
+
+    const [findPerson, setFindPerson] = useState(() => {
+        const saved = sessionStorage.getItem("items");
+        const initialValue = JSON.parse(saved);
+        return initialValue || "";
+    });
+    sessionStorage.setItem("items", JSON.stringify(findPerson));
+    const useStyles = makeStyles((theme) => ({
+        paper: {
+            padding: "6px 16px",
+        },
+        secondaryTail: {
+            backgroundColor: theme.palette.secondary.main,
+        },
+        cardStyle: {
+            boxShadow: "2px 15px 15px #F2F2F2 !important",
+        },
+        timeFont: {
+            fontSize: "13px !important",
+            fontWeight: "bold",
+            marginLeft: "3px",
+        },
+        imgStyle: {
+            borderRadius: "50% !important",
+            width: "50% !important",
+            margin: "40px auto 20px",
+        },
+        qrImage: {
+            "&:hover": {
+                transform: "scale(1.3)",
+                marginLeft: "1.5rem !important",
+                margin: "0 auto !important",
+            },
+        },
+    }));
+    const classes = useStyles();
+
+    const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+        const backgroundColor =
+            theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[800];
+        return {
+            backgroundColor,
+            height: theme.spacing(3),
+            color: theme.palette.text.primary,
+            fontWeight: theme.typography.fontWeightRegular,
+            "&:hover, &:focus": {
+                backgroundColor: emphasize(backgroundColor, 0.06),
+            },
+            "&:active": {
+                boxShadow: theme.shadows[1],
+                backgroundColor: emphasize(backgroundColor, 0.12),
+            },
+        };
+    });
+    return (
+        <Container>
+            {/* Breadcrumbs */}
+            <Box sx={{ mb: 1 }}>
+                <Typography
+                    sx={{ mt: 2, color: "var(--p_color) !important" }}
+                    variant="h4"
+                >
+                    Daily Attendance
+                </Typography>
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link to="/dashboard">
+                        <StyledBreadcrumb
+                            to="/dashboard"
+                            label="Dashboard"
+                            icon={<HomeIcon fontSize="small" />}
+                        />
+                    </Link>
+                    <Link to="/dashboard/attendance">
+                        <StyledBreadcrumb component="a" href="#" label="Attendance" />
+                    </Link>
+                </Breadcrumbs>
+            </Box>
+            <Box mt={5} sx={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="h6">
+                    <span style={{ color: "red" }}>*</span> Scan by QRCode
+                </Typography>
+                <a
+                    href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+                    download
+                >
+                    <img
+                        className={classes.qrImage}
+                        width="30% !important"
+                        src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+                        alt="Employee QrCode"
+                    />
+                </a>
+            </Box>
+            <Grid
+                container
+                spacing={2}
+                sx={{ display: "flex", alignItems: "center" }}
             >
-              Not Verified yet !!
-            </h3>
-          )}
-        </Grid>
-        {/* <Grid item xs={12} md={4}>
+                <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    sx={{
+                        border: "1px solid #01578A !important",
+                        paddingLeft: "1rem",
+                        paddingRight: "1rem",
+                    }}
+                >
+                    <QrReader
+                        onResult={(result, error) => {
+                            if (!!result) {
+                                setFindPerson(result?.text);
+                            }
+
+                            if (!!error) {
+                                console.info(error);
+                            }
+                        }}
+                        style={{ width: "100%", height: "100% !important" }}
+                    />
+                    {findPerson ? (
+                        <h4 style={{ fontWeight: "500", textAlign: "center" }}>
+                            <span style={{ color: "green" }}>Verified Successfully!</span>{" "}
+                            {user.displayName}
+                        </h4>
+                    ) : (
+                        <h3
+                            style={{ color: "red", fontWeight: "500", textAlign: "center" }}
+                        >
+                            Not Verified yet !!
+                        </h3>
+                    )}
+                </Grid>
+                {/* <Grid item xs={12} md={4}>
           <a
             href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
             download
@@ -258,122 +258,122 @@ const MyAttendance = (props) => {
           </a>
         </Grid> */}
 
-        <Grid item xs={12} md={7}>
-          {/* timeline */}
-          <img
-            width="90%"
-            src="https://i.ibb.co/Jz2xWP8/undraw-Authentication-re-svpt.png"
-            alt="undraw-Authentication-re-svpt"
-            border="0"
-          />
-        </Grid>
-      </Grid>
-      {/* trial */}
-      <Grid container spacing={8}>
-        {user?.email == findPerson ? (
-          <Grid item xs={12} md={6}>
-            <Card className={classes.cardStyle}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.imgStyle}
-                  align="center"
-                  component="img"
-                  src={`data:image/jpeg;base64,${employee[0]?.photo}`}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h3"
-                    align="center"
-                  >
-                    {user.displayName}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions
-                style={{ justifyContent: "center", marginBottom: "10px" }}
-              >
-                <Button onClick={handlePunchIn} className="btn_regular">
-                  Punch In
-                </Button>
-                <Button
-                  onClick={handlePunchOut}
-                  size="small"
-                  className="btn_regular"
-                >
-                  Punch Out
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ) : (
-          ""
-        )}
+                <Grid item xs={12} md={7}>
+                    {/* timeline */}
+                    <img
+                        width="90%"
+                        src="https://i.ibb.co/Jz2xWP8/undraw-Authentication-re-svpt.png"
+                        alt="undraw-Authentication-re-svpt"
+                        border="0"
+                    />
+                </Grid>
+            </Grid>
+            {/* trial */}
+            <Grid container spacing={8}>
+                {user?.email == findPerson ? (
+                    <Grid item xs={12} md={6}>
+                        <Card className={classes.cardStyle}>
+                            <CardActionArea>
+                                <CardMedia
+                                    className={classes.imgStyle}
+                                    align="center"
+                                    component="img"
+                                    src={`data:image/jpeg;base64,${employee[0]?.photo}`}
+                                />
+                                <CardContent>
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                        component="h3"
+                                        align="center"
+                                    >
+                                        {user.displayName}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions
+                                style={{ justifyContent: "center", marginBottom: "10px" }}
+                            >
+                                <Button onClick={handlePunchIn} className="btn_regular">
+                                    Punch In
+                                </Button>
+                                <Button
+                                    onClick={handlePunchOut}
+                                    size="small"
+                                    className="btn_regular"
+                                >
+                                    Punch Out
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                ) : (
+                    ""
+                )}
 
-        <Grid item xs={12} md={6}>
-          {/* timeline */}
-          <Typography
-            align="center"
-            mb={8}
-            sx={{ textAlign: "center !important", fontWeight: "400" }}
-            variant="h4"
-          >
-            Todays <span style={{ color: " #01578A" }}>Activities</span>
-          </Typography>
-          <Timeline align="alternate">
-            <TimelineItem>
-              <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                  Punch In at
-                </Typography>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot>
-                  <PauseCircleFilledTwoToneIcon />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                {/* punchIn */}
-                <Paper elevation={3} className={classes.paper}>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <TimerTwoToneIcon />
-                    <Typography className={classes.timeFont}>
-                      {today?.entry}
+                <Grid item xs={12} md={6}>
+                    {/* timeline */}
+                    <Typography
+                        align="center"
+                        mb={8}
+                        sx={{ textAlign: "center !important", fontWeight: "400" }}
+                        variant="h4"
+                    >
+                        Todays <span style={{ color: " #01578A" }}>Activities</span>
                     </Typography>
-                  </Box>
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                  Punch Out at
-                </Typography>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color="primary">
-                  <PlayCircleFilledWhiteTwoToneIcon />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <Paper elevation={3} className={classes.paper}>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <TimerTwoToneIcon />
-                    <Typography className={classes.timeFont}>
-                      {today?.leave}
-                    </Typography>
-                  </Box>
-                </Paper>
-              </TimelineContent>
-            </TimelineItem>
-          </Timeline>
-        </Grid>
-      </Grid>
-    </Container>
-  );
+                    <Timeline align="alternate">
+                        <TimelineItem>
+                            <TimelineOppositeContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    Punch In at
+                                </Typography>
+                            </TimelineOppositeContent>
+                            <TimelineSeparator>
+                                <TimelineDot>
+                                    <PauseCircleFilledTwoToneIcon />
+                                </TimelineDot>
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                {/* punchIn */}
+                                <Paper elevation={3} className={classes.paper}>
+                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                        <TimerTwoToneIcon />
+                                        <Typography className={classes.timeFont}>
+                                            {today?.entry}
+                                        </Typography>
+                                    </Box>
+                                </Paper>
+                            </TimelineContent>
+                        </TimelineItem>
+                        <TimelineItem>
+                            <TimelineOppositeContent>
+                                <Typography variant="body2" color="textSecondary">
+                                    Punch Out at
+                                </Typography>
+                            </TimelineOppositeContent>
+                            <TimelineSeparator>
+                                <TimelineDot color="primary">
+                                    <PlayCircleFilledWhiteTwoToneIcon />
+                                </TimelineDot>
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <Paper elevation={3} className={classes.paper}>
+                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                        <TimerTwoToneIcon />
+                                        <Typography className={classes.timeFont}>
+                                            {today?.leave}
+                                        </Typography>
+                                    </Box>
+                                </Paper>
+                            </TimelineContent>
+                        </TimelineItem>
+                    </Timeline>
+                </Grid>
+            </Grid>
+        </Container>
+    );
 };
 
 export default MyAttendance;
