@@ -34,8 +34,6 @@ const TaskAssign = () => {
   const [task, setTask] = useState([]);
   const [tags, setTags] = useState([]);
 
-  console.log(tags);
-
   // Breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
