@@ -171,44 +171,46 @@ const DashNav = () => {
 
             {/* ss */}
 
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
-                  {notification?.map((data) => (
-                    <Link
-                      to={`/dashboard/announcements`}>
-                      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                        <nav aria-label="main mailbox folders">
-                          <List>
-                            <ListItem disablePadding>
-                              <ListItemButton>
-                                <ListItemIcon>
-                                  <CircleNotificationsIcon style={{ color: 'orange' }} />
-                                </ListItemIcon>
-                                <ListItemText style={{ color: 'black' }} primary={data.title} />
-                              </ListItemButton>
-                            </ListItem>
-                          </List>
-                        </nav>
+            <Tooltip>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
+                    {notification?.map((data) => (
+                      <Link
+                        to={`/dashboard/announcements/${data._id}`}>
+                        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                          <nav aria-label="main mailbox folders">
+                            <List>
+                              <ListItem disablePadding>
+                                <ListItemButton>
+                                  <ListItemIcon>
+                                    <CircleNotificationsIcon style={{ color: 'orange' }} />
+                                  </ListItemIcon>
+                                  <ListItemText style={{ color: 'black' }} primary={data.title} />
+                                </ListItemButton>
+                              </ListItem>
+                            </List>
+                          </nav>
 
-                      </Box>
+                        </Box>
 
-                    </Link>
-                  ))}
-                </React.Fragment>
-              }
-            >
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
+                      </Link>
+                    ))}
+                  </React.Fragment>
+                }
               >
-                <Badge badgeContent={notification.length} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </HtmlTooltip>
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={notification.length} color="error">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              </HtmlTooltip>
+            </Tooltip>
 
             {/* ss */}
 
@@ -255,8 +257,8 @@ const DashNav = () => {
                   ))
                 ) : (
                   <Avatar
-                    alt="Employee Image"
-                    src="https://i.ibb.co/gvzdw1g/images.png"
+                    alt="Remy Sharp"
+                    src="https://i.ibb.co/LkTNZNf/966-9665493-my-profile-icon-blank-profile-image-circle.jpg"
                   />
                 )}
               </StyledBadge>
