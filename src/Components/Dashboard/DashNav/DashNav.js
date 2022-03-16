@@ -6,7 +6,6 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Logout from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { styled } from "@mui/material/styles";
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
@@ -138,8 +137,11 @@ const DashNav = () => {
   }, [photoURL, user.email, employee]);
   //form submit
   const handleSubmit = (e) => {
+    e.preventDefault();
     const formData = new FormData();
+    console.log(photo)
     formData.append("photo", photo);
+    console.log(formData)
     fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
       method: "PUT",
       body: formData,
@@ -152,7 +154,6 @@ const DashNav = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-    e.preventDefault();
     close();
   };
   return (
@@ -171,45 +172,43 @@ const DashNav = () => {
 
             {/* ss */}
 
-            <Tooltip>
-              <HtmlTooltip
-                title={
-                  <React.Fragment>
-                    <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
-                    {notification?.map((data) => (
-                      <Link
-                        to={`/dashboard/announcements/${data._id}`}>
-                        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                          <nav aria-label="main mailbox folders">
-                            <List>
-                              <ListItem disablePadding>
-                                <ListItemButton>
-                                  <ListItemIcon>
-                                    <CircleNotificationsIcon style={{ color: 'orange' }} />
-                                  </ListItemIcon>
-                                  <ListItemText style={{ color: 'black' }} primary={data.title} />
-                                </ListItemButton>
-                              </ListItem>
-                            </List>
-                          </nav>
+            <Tooltip
+              title={
+                <React.Fragment>
+                  <Typography style={{ marginBottom: '5px', fontWeight: 'bold', textAlign: 'center' }} color="inherit">Announcement</Typography>
+                  {notification?.map((data) => (
+                    <Link
+                      to={`/dashboard/announcements/${data._id}`}>
+                      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                        <nav aria-label="main mailbox folders">
+                          <List>
+                            <ListItem disablePadding>
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <CircleNotificationsIcon style={{ color: 'orange' }} />
+                                </ListItemIcon>
+                                <ListItemText style={{ color: 'black' }} primary={data.title} />
+                              </ListItemButton>
+                            </ListItem>
+                          </List>
+                        </nav>
 
-                        </Box>
+                      </Box>
 
-                      </Link>
-                    ))}
-                  </React.Fragment>
-                }
+                    </Link>
+                  ))}
+                </React.Fragment>
+              }
+            >
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
               >
-                <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge badgeContent={notification.length} color="error">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-              </HtmlTooltip>
+                <Badge badgeContent={notification.length} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
             </Tooltip>
 
             {/* ss */}
@@ -331,7 +330,8 @@ const DashNav = () => {
             <Input
               accept="image/*"
               type="file"
-              onChange={(e) => setPhoto(e.target.files[0])}
+              onChange={(e) => setPhoto(e.target.files[0])
+              }
             ></Input>
             <Button
               sx={{ marginTop: "10px" }}
