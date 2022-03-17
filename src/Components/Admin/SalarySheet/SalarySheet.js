@@ -9,9 +9,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import * as XLSX from "xlsx";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 import SalaryData from "./SalaryData/SalaryData";
 
 
@@ -126,7 +123,7 @@ const SalarySheet = () => {
 
   const pdfExportComponent = useRef(null);
   const handleOnclick = () => {
-    pdfExportComponent.current.save("Salary Sheet.pdf");
+    pdfExportComponent.current.save();
 
     Swal.fire("Salary Sheet Downloaded Successfully!");
   };
