@@ -1,5 +1,6 @@
+import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import { Box, Breadcrumbs, Container, Typography } from "@mui/material";
 // Breadcrumbs
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
@@ -10,7 +11,6 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Employee from "./Employee/Employee";
 
@@ -67,38 +67,54 @@ const Employees = () => {
                 </Breadcrumbs>
             </Box>
 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead sx={{ background: "var(--p_color) !important" }}>
-                        <TableRow>
-                            <StyledTableCell sx={{ color: "#fff !important", background: "var(--p_color) !important" }}>
-                                Employee
-                            </StyledTableCell>
+            <Grid sx={{ mb: 4 }} container spacing={{ xs: 1, sm: 0, md: 0 }}>
+                <Grid item xs={12} md={12}>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ width: "100%" }} aria-label="customized table">
+                            <TableHead sx={{ background: "var(--p_color) !important" }}>
+                                <TableRow>
+                                    <StyledTableCell sx={{ color: "#fff !important", background: "var(--p_color) !important" }}>
+                                        Employee
+                                    </StyledTableCell>
 
-                            <StyledTableCell sx={{ color: "#fff !important", background: "var(--p_color) !important" }} align="left">
-                                Phone
-                            </StyledTableCell>
+                                    <StyledTableCell
+                                        sx={{ color: "#fff !important", background: "var(--p_color) !important" }}
+                                        align="left"
+                                    >
+                                        Phone
+                                    </StyledTableCell>
 
-                            <StyledTableCell sx={{ color: "#fff !important", background: "var(--p_color) !important" }} align="center">
-                                Department
-                            </StyledTableCell>
+                                    <StyledTableCell
+                                        sx={{ color: "#fff !important", background: "var(--p_color) !important" }}
+                                        align="center"
+                                    >
+                                        Department
+                                    </StyledTableCell>
 
-                            <StyledTableCell sx={{ color: "#fff !important", background: "var(--p_color) !important" }} align="center">
-                                Designation
-                            </StyledTableCell>
+                                    <StyledTableCell
+                                        sx={{ color: "#fff !important", background: "var(--p_color) !important" }}
+                                        align="center"
+                                    >
+                                        Designation
+                                    </StyledTableCell>
 
-                            <StyledTableCell sx={{ color: "#fff !important", background: "var(--p_color) !important" }} align="right">
-                                Action
-                            </StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {employees.map((item) => (
-                            <Employee key={item._id} item={item}></Employee>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                                    <StyledTableCell
+                                        sx={{ color: "#fff !important", background: "var(--p_color) !important" }}
+                                        align="right"
+                                    >
+                                        Action
+                                    </StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {employees.map((item) => (
+                                    <Employee key={item._id} item={item}></Employee>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
+            </Grid>
         </Container>
     );
 };

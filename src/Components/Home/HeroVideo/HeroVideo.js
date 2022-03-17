@@ -7,13 +7,11 @@ import './HeroVideo.css'
 const HeroVideo = () => {
 
     return (
-        <Container>
 
-            <Box sx={{ mt: 5 }} >
-                <VideoPlayer src={videoSrc} height="450" />
-            </Box>
+        <Box className="video">
+            <video src={videoSrc} height="100%" width="100%" autoPlay muted loop />
+        </Box>
 
-        </Container>
     );
 };
 
