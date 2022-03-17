@@ -93,7 +93,7 @@ const DashboardHome = () => {
   });
   console.log(array);
   const finalPoint = array.sort(function (a, b) {
-    return b.taskPoint - a.taskPoint;
+    return b.taskPercentage - a.taskPercentage;
   });
   console.log(finalPoint);
   const check = finalPoint[0]?.taskPercentage?.toFixed(2);
@@ -272,7 +272,7 @@ const DashboardHome = () => {
 
       {/* //Best Employee  */}
       <Box>
-        <BestEmployee></BestEmployee>
+        <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
       </Box>
 
       {/* Total attendance chart area */}

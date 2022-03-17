@@ -179,7 +179,7 @@ const DashNav = () => {
                   <Avatar
                     sx={{ bgcolor: 'var(--s_color)' }}
                     alt="Employee Photo"
-                    src="https://i.ibb.co/gvzdw1g/images.png  "
+                    src="https://i.ibb.co/gvzdw1g/images.png"
                   >
                     {user.displayName.slice(0, 1)}
                   </Avatar>
