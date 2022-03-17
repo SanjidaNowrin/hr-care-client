@@ -63,6 +63,7 @@ const MyAttendance = (props) => {
   const handlePunchIn = () => {
     let entryTime = {};
     entryTime.ID = employee[0]?.ID;
+    entryTime.name = employee[0]?.name;
     entryTime.email = user.email;
     entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
     entryTime.entry = time.split(",")[1];
