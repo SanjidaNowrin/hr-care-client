@@ -159,7 +159,7 @@ console.log(check)
   return (
     <Container>
       <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
-        ADMIN
+        Admin dashboard
       </Typography>
       <Breadcrumbs aria-label="breadcrumb">
         <Link to="/dashboard">
