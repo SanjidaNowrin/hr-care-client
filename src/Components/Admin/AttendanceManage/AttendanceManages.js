@@ -206,6 +206,7 @@ const AttendanceManages = () => {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>ID</StyledTableCell>
+                            <StyledTableCell align="left">Name</StyledTableCell>
                             <StyledTableCell align="left">Date</StyledTableCell>
                             <StyledTableCell align="center">Entry</StyledTableCell>
                             <StyledTableCell align="center">Leave</StyledTableCell>

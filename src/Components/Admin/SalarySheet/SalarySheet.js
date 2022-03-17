@@ -27,6 +27,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import dateFormat from "../../Share/DateFormat/dateFormat";
+import ExportData from "./ExportData/ExportData";
 
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -83,6 +84,45 @@ const StyledMenu = styled((props) => (
 
 const SalarySheet = () => {
 
+  const [employees, setEmployees] = useState([]);
+  const { register, handleSubmit } = useForm();
+  const [Dates, setDates] = useState([]);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [filterDates, setFilterDates] = useState([]);
+
+
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+      .then((res) => res.json())
+      .then((data) => setEmployees(data.data));
+  }, []);
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/`)
+      .then((res) => res.json())
+      .then((data) => setDates(data.data));
+  }, [])
+  console.log(Dates)
+
+  useEffect(() => {
+    const newFilterDate = Dates.filter(date => date?.date >= startDate && date?.date <= endDate)
+    setFilterDates(newFilterDate)
+  }, [Dates, startDate, endDate])
+  console.log(filterDates)
+
+  const onSubmit = (data, e) => {
+
+    const newStartDate = dateFormat(new Date(data.startDate), 'yyyy-MM-dd');
+    setStartDate(newStartDate)
+    const newEndDate = dateFormat(new Date(data.endDate), 'yyyy-MM-dd');
+    setEndDate(newEndDate)
+
+    toast.success('Salary Process successfully 👌!', {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 4000
+    })
+  };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -110,12 +150,23 @@ const SalarySheet = () => {
   };
 
   //download data in pdf format
+  // employees.map((employee) => (
+  //   <ExportData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></ExportData>
+  // ))
+  // const { basic } = ExportData();
+
+  // const salary = employees.map((employee) => (
+  //   {
+  //     employee, employee.push(basic = ((employee.Gross - 1850) / 1.5).toFixed(0))
+
+  //   }
+  // ))
   const columns = [
     { title: "Name", field: "name" },
     { title: "Designation", field: "designation" },
-    { title: "Acc", field: "Account" },
+    { title: "Account", field: "Account" },
     { title: "Gross", field: "Gross", type: "numeric" },
-    { title: "Basic", field: "basic", type: "currency" },
+    { title: "Basic", field: "Gross", type: "currency" },
   ];
   const downloadPdf = () => {
     const doc = new jsPDF();
@@ -149,44 +200,6 @@ const SalarySheet = () => {
     };
   });
 
-  const [employees, setEmployees] = useState([]);
-  const { register, handleSubmit } = useForm();
-  const [Dates, setDates] = useState([]);
-  const [filterDates, setFilterDates] = useState([]);
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
-
-
-  useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
-      .then((res) => res.json())
-      .then((data) => setEmployees(data.data));
-  }, []);
-  useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/`)
-      .then((res) => res.json())
-      .then((data) => setDates(data.data));
-  }, [])
-  console.log(Dates)
-
-  useEffect(() => {
-    const newFilterDate = Dates.filter(date => date?.date >= startDate && date?.date <= endDate)
-    setFilterDates(newFilterDate)
-  }, [Dates, startDate, endDate])
-  console.log(filterDates)
-
-  const onSubmit = (data, e) => {
-
-    const newStartDate = dateFormat(new Date(data.startDate), 'yyyy-MM-dd');
-    setStartDate(newStartDate)
-    const newEndDate = dateFormat(new Date(data.endDate), 'yyyy-MM-dd');
-    setEndDate(newEndDate)
-
-    toast.success('Salary Process successfully 👌!', {
-      position: toast.POSITION.BOTTOM_CENTER,
-      autoClose: 4000
-    })
-  };
   return (
     <Container>
       {/* Breadcrumbs */}

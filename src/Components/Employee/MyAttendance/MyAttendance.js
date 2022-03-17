@@ -63,6 +63,7 @@ const MyAttendance = (props) => {
   const handlePunchIn = () => {
     let entryTime = {};
     entryTime.ID = employee[0]?.ID;
+    entryTime.name = employee[0]?.name;
     entryTime.email = user.email;
     entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
     entryTime.entry = time.split(",")[1];
@@ -165,6 +166,7 @@ const MyAttendance = (props) => {
       },
     };
   });
+  console.log(findPerson)
   return (
     <Container>
       {/* Breadcrumbs */}
@@ -189,10 +191,17 @@ const MyAttendance = (props) => {
         </Breadcrumbs>
       </Box>
 
+<<<<<<< HEAD
       <Grid container spacing={4}>
         {findPerson ? (
           <Grid container item xs={12} md={6} mt={3}>
             {user?.email == findPerson ? (
+=======
+      <Grid container >
+        <Grid container item xs={12} md={6} mt={3}>
+          {user?.email === findPerson ? (
+            <Grid item xs={12} md={12} mt={3}>
+>>>>>>> 1fa3645bd2745d1231620cb069d0d0bb43bb51b8
               <Card className={classes.cardStyle}>
                 <CardActionArea>
                   <CardMedia
@@ -227,6 +236,7 @@ const MyAttendance = (props) => {
                   </Button>
                 </CardActions>
               </Card>
+<<<<<<< HEAD
             ) : (
               ""
             )}
@@ -237,35 +247,57 @@ const MyAttendance = (props) => {
               <Typography variant="h6">
                 <span style={{ color: "red" }}>*</span> Scan by QRCode
               </Typography>
+=======
+            </Grid>
+          ) : (
+            <Grid item xs={12} md={12} mt={3}>
+              <Box mt={3} mb={2} sx={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="h6">
+                  <span style={{ color: "red" }}>*</span> Scan by QRCode
+                </Typography>
+>>>>>>> 1fa3645bd2745d1231620cb069d0d0bb43bb51b8
 
-              <a
-                href={`data:image/jpeg;base64,${
-                  employee[0]?.qrUrl.split(",")[1]
-                }`}
-                download
-              >
-                <img
-                  className={classes.qrImage}
-                  width="30% !important"
-                  src={`data:image/jpeg;base64,${
-                    employee[0]?.qrUrl.split(",")[1]
-                  }`}
-                  alt="Employee QrCode"
-                />
-              </a>
-            </Box>
-            <Card className={classes.cardStyle}>
-              <CardActionArea>
-                <CardContent>
-                  {findPerson ? (
-                    <h4 style={{ fontWeight: "500", textAlign: "center" }}>
-                      <span
+                <a
+                  href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
+                    }`}
+                  download
+                >
+                  <img
+                    className={classes.qrImage}
+                    width="30% !important"
+                    src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
+                      }`}
+                    alt="Employee QrCode"
+                  />
+                </a>
+              </Box>
+              <Card className={classes.cardStyle}>
+                <CardActionArea>
+                  <CardContent>
+                    {findPerson ? (
+                      <h4 style={{ fontWeight: "500", textAlign: "center" }}>
+                        <span
+                          style={{
+                            color: "green",
+                            marginTop: "0px",
+                            marginBottom: "0px",
+                          }}
+                        >
+                          Verified Successfully!
+                        </span>{" "}
+                        {user.displayName}
+                      </h4>
+                    ) : (
+                      <h3
                         style={{
-                          color: "green",
+                          color: "red",
+                          fontWeight: "500",
+                          textAlign: "center",
                           marginTop: "0px",
                           marginBottom: "0px",
                         }}
                       >
+<<<<<<< HEAD
                         Verified Successfully!
                       </span>
                       {user.displayName}
@@ -278,26 +310,27 @@ const MyAttendance = (props) => {
                         textAlign: "center",
                         marginTop: "0px",
                         marginBottom: "0px",
+=======
+                        Not Verified yet !!
+                      </h3>
+                    )}
+                    <QrReader
+                      onResult={(result, error) => {
+                        if (!!result) {
+                          setFindPerson(result?.text);
+                        }
+                        if (!!error) {
+                          console.info(error);
+                        }
+>>>>>>> 1fa3645bd2745d1231620cb069d0d0bb43bb51b8
                       }}
-                    >
-                      Not Verified yet !!
-                    </h3>
-                  )}
-                  <QrReader
-                    onResult={(result, error) => {
-                      if (!!result) {
-                        setFindPerson(result?.text);
-                      }
-                      if (!!error) {
-                        console.info(error);
-                      }
-                    }}
-                  />
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        )}
+                    />
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          )}
+        </Grid>
 
         <Grid item xs={12} md={6} mt={5}>
           {/* timeline activities */}

@@ -24,7 +24,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const AttendanceManage = ({ attendance }) => {
-    const { ID, entry, leave, date, vacation, holiday } = attendance;
+    const { ID, name, entry, leave, date, vacation, holiday } = attendance;
 
     return (
         <>
@@ -32,11 +32,12 @@ const AttendanceManage = ({ attendance }) => {
                 <StyledTableCell component="th" scope="row">
                     {ID}
                 </StyledTableCell>
+                <StyledTableCell align="left">{name}</StyledTableCell>
                 <StyledTableCell align="left">{date}</StyledTableCell>
                 <StyledTableCell align="center">{entry}</StyledTableCell>
                 <StyledTableCell align="center">{leave}</StyledTableCell>
-                <StyledTableCell align="center">{vacation}</StyledTableCell>
-                <StyledTableCell align="center">{holiday}</StyledTableCell>
+                <StyledTableCell align="right">{vacation}</StyledTableCell>
+                <StyledTableCell align="right">{holiday}</StyledTableCell>
             </StyledTableRow>
         </>
     );
