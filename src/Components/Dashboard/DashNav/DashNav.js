@@ -178,7 +178,7 @@ const DashNav = () => {
                 ) : (
                   <Avatar
                     sx={{ bgcolor: 'var(--s_color)' }}
-                    alt="Employee Photo"
+                    alt="Employee"
                     src="https://i.ibb.co/gvzdw1g/images.png  "
                   >
                     {user.displayName.slice(0, 1)}
