@@ -191,7 +191,7 @@ const MyAttendance = (props) => {
 
       <Grid container spacing={4}>
         {findPerson ? (
-          <Grid container item xs={12} md={6}  mt={3}>
+          <Grid container item xs={12} md={6} mt={3}>
             {user?.email == findPerson ? (
               <Card className={classes.cardStyle}>
                 <CardActionArea>
@@ -233,7 +233,7 @@ const MyAttendance = (props) => {
           </Grid>
         ) : (
           <Grid item xs={12} md={6}>
-            <Box mt={3}  mb={2} sx={{ display: "flex", alignItems: "center" }}>
+            <Box mt={3} mb={2} sx={{ display: "flex", alignItems: "center" }}>
               <Typography variant="h6">
                 <span style={{ color: "red" }}>*</span> Scan by QRCode
               </Typography>
@@ -267,7 +267,7 @@ const MyAttendance = (props) => {
                         }}
                       >
                         Verified Successfully!
-                      </span>{" "}
+                      </span>
                       {user.displayName}
                     </h4>
                   ) : (
