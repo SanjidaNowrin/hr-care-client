@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import CoPresentIcon from "@mui/icons-material/CoPresent";
+import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
+import HomeIcon from "@mui/icons-material/Home";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
-import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
-import Typography from "@mui/material/Typography";
+import { Container } from "@mui/material";
+import Box from "@mui/material/Box";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Chip from "@mui/material/Chip";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import { emphasize, styled } from "@mui/material/styles";
 //Employee table detail
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,17 +17,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
-import { Container } from "@mui/material";
-import { emphasize, styled } from "@mui/material/styles";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Chip from "@mui/material/Chip";
-import HomeIcon from "@mui/icons-material/Home";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import TodayAttendance from "./TodayAttendance/TodayAttendance";
-import CalenderChart from "./HolidayCalender/CalenderChart";
 import dateFormat from "../../Share/DateFormat/dateFormat";
+import BestEmployee from "./BestEmployee";
+import TodayAttendance from "./TodayAttendance/TodayAttendance";
 
 const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);
@@ -46,7 +46,59 @@ const DashboardHome = () => {
       .then((res) => res.json())
       .then((data) => setAttendance(data.data));
   }, []);
-
+  //   admin assign task
+  const currentDate = dateFormat(
+    new Date().toLocaleString().split(",")[0],
+    "yyyy-MM-dd"
+  );
+  const dateString = currentDate.split("-")[1];
+  const [taskAssign, setAssignTask] = useState([]);
+  const [todayTask, setTodayTask] = useState([]);
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
+      .then((res) => res.json())
+      .then((data) => {
+        const filterThisMonthTask = data?.data?.filter(
+          (task) => task.date.split("-")[1] === dateString
+        );
+        const filterTodayTask = data?.data?.filter(
+          (task) => task.date === currentDate
+        );
+        setAssignTask(filterThisMonthTask);
+        setTodayTask(filterTodayTask);
+      });
+  }, []);
+  const array = [];
+  console.log(employees);
+  employees?.map((bestEmp) => {
+    let bestEmployee = {};
+    let totalTask = 0;
+    let totalAssignTask = 0;
+    let taskPercentage = 0;
+    let findEmail = taskAssign?.filter((x) => x.email === bestEmp.email);
+    findEmail.map((calc) => {
+      totalAssignTask += calc.tags.length;
+      totalTask += calc.taskDone.length;
+      if ((totalTask && totalAssignTask) !== 0) {
+        taskPercentage = (totalTask / totalAssignTask) * 100;
+      }
+    });
+    bestEmployee.name = bestEmp.name;
+    bestEmployee.email = bestEmp.email;
+    bestEmployee.photo = bestEmp.photo;
+    bestEmployee.taskPoint = totalTask;
+    bestEmployee.totalAssignTask = totalAssignTask;
+    bestEmployee.taskPercentage = taskPercentage;
+    array.push(bestEmployee);
+  });
+  console.log(array);
+  const finalPoint = array.sort(function (a, b) {
+    return b.taskPoint - a.taskPoint;
+  });
+  console.log(finalPoint);
+  const check = finalPoint[0]?.taskPercentage?.toFixed(2);
+  console.log(check);
+  // best employee end
   // todayPresent
   useEffect(() => {
     const filterData = attendance.filter((item) => item.date === todaydate);
@@ -104,62 +156,10 @@ const DashboardHome = () => {
 
   const date = new Date();
   const takeDate = date.toString().slice(0, 16);
-  //   admin assign task
-  const currentDate = dateFormat(
-    new Date().toLocaleString().split(",")[0],
-    "yyyy-MM-dd"
-  );
-  const dateString = currentDate.split("-")[1];
-  const [taskAssign, setAssignTask] = useState([]);
-  const [todayTask, setTodayTask] = useState([]);
-  useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
-      .then((res) => res.json())
-      .then((data) => {
-        const filterThisMonthTask = data?.data?.filter(
-          (task) => task.date.split("-")[1] === dateString
-        );
-        const filterTodayTask = data?.data?.filter(
-          (task) => task.date === currentDate
-        );
-        setAssignTask(filterThisMonthTask);
-        setTodayTask(filterTodayTask);
-      });
-  }, []);
-  const array = [];
-  console.log(employees);
-  employees?.map((bestEmp) => {
-    let bestEmployee={};
-    let totalTask = 0;
-    let totalAssignTask=0;
-    let taskPercentage=0;
-    let findEmail = taskAssign?.filter((x) => x.email === bestEmp.email);
-    findEmail.map((calc) => {
-      totalAssignTask+=calc.tags.length;
-      totalTask += calc.taskDone.length;
-      if((totalTask && totalAssignTask)!== 0){
-        taskPercentage=((totalTask/totalAssignTask)*100);
-      }
-    });
-    bestEmployee.name=bestEmp.name;
-    bestEmployee.email=bestEmp.email;
-    bestEmployee.photo=bestEmp.photo;
-    bestEmployee.taskPoint=totalTask;
-    bestEmployee.totalAssignTask=totalAssignTask;
-    bestEmployee.taskPercentage=taskPercentage;
-    array.push(bestEmployee);   
-  });
-  console.log(array);
-  const finalPoint=array.sort(function(a, b) {
-    return b.taskPoint - a.taskPoint;
-  });
-  console.log(finalPoint);
-const check=(finalPoint[0]?.taskPercentage)?.toFixed(2);
-console.log(check)
   return (
     <Container>
       <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
-        Admin dashboard
+        Dashboard
       </Typography>
       <Breadcrumbs aria-label="breadcrumb">
         <Link to="/dashboard">
@@ -170,6 +170,7 @@ console.log(check)
           />
         </Link>
       </Breadcrumbs>
+
       <Box sx={{ mt: 3 }}>
         <Grid container spacing={3}>
           <Grid item xs={6} md={3}>
@@ -268,8 +269,12 @@ console.log(check)
           </Grid>
         </Grid>
       </Box>
-      {/* admin task assign start */}
-      {/* admin task assign end */}
+
+      {/* //Best Employee  */}
+      <Box>
+        <BestEmployee></BestEmployee>
+      </Box>
+
       {/* Total attendance chart area */}
       <Box sx={{ my: 5 }}>
         <Box

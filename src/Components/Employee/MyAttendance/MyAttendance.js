@@ -191,17 +191,10 @@ const MyAttendance = (props) => {
         </Breadcrumbs>
       </Box>
 
-<<<<<<< HEAD
-      <Grid container spacing={4}>
-        {findPerson ? (
-          <Grid container item xs={12} md={6} mt={3}>
-            {user?.email == findPerson ? (
-=======
       <Grid container >
         <Grid container item xs={12} md={6} mt={3}>
           {user?.email === findPerson ? (
             <Grid item xs={12} md={12} mt={3}>
->>>>>>> 1fa3645bd2745d1231620cb069d0d0bb43bb51b8
               <Card className={classes.cardStyle}>
                 <CardActionArea>
                   <CardMedia
@@ -236,18 +229,6 @@ const MyAttendance = (props) => {
                   </Button>
                 </CardActions>
               </Card>
-<<<<<<< HEAD
-            ) : (
-              ""
-            )}
-          </Grid>
-        ) : (
-          <Grid item xs={12} md={6}>
-            <Box mt={3} mb={2} sx={{ display: "flex", alignItems: "center" }}>
-              <Typography variant="h6">
-                <span style={{ color: "red" }}>*</span> Scan by QRCode
-              </Typography>
-=======
             </Grid>
           ) : (
             <Grid item xs={12} md={12} mt={3}>
@@ -255,7 +236,6 @@ const MyAttendance = (props) => {
                 <Typography variant="h6">
                   <span style={{ color: "red" }}>*</span> Scan by QRCode
                 </Typography>
->>>>>>> 1fa3645bd2745d1231620cb069d0d0bb43bb51b8
 
                 <a
                   href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
@@ -297,20 +277,6 @@ const MyAttendance = (props) => {
                           marginBottom: "0px",
                         }}
                       >
-<<<<<<< HEAD
-                        Verified Successfully!
-                      </span>
-                      {user.displayName}
-                    </h4>
-                  ) : (
-                    <h3
-                      style={{
-                        color: "red",
-                        fontWeight: "500",
-                        textAlign: "center",
-                        marginTop: "0px",
-                        marginBottom: "0px",
-=======
                         Not Verified yet !!
                       </h3>
                     )}
@@ -322,7 +288,6 @@ const MyAttendance = (props) => {
                         if (!!error) {
                           console.info(error);
                         }
->>>>>>> 1fa3645bd2745d1231620cb069d0d0bb43bb51b8
                       }}
                     />
                   </CardContent>
