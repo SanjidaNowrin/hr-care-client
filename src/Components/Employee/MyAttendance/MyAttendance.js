@@ -54,7 +54,7 @@ const MyAttendance = (props) => {
     // console.log(today?.date)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/employees/${user.email}`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
     }, [user.email]);
@@ -63,6 +63,7 @@ const MyAttendance = (props) => {
     const handlePunchIn = () => {
         let entryTime = {};
         entryTime.ID = employee[0]?.ID;
+        console.log(employee[0]?.ID)
         entryTime.email = user.email;
         entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
         entryTime.entry = time.split(",")[1];

@@ -24,8 +24,12 @@ const MyInfoUpdate = ({ oneEmployee }) => {
         phone,
         nid,
         birth,
+        gendar,
         department,
         designation,
+        bank,
+        account,
+        status,
         lastCompany,
         lastDepartment,
         lastDesignation,
@@ -73,6 +77,21 @@ const MyInfoUpdate = ({ oneEmployee }) => {
         });
     };
 
+    const [onegendar, setGendar] = useState();
+
+    const gendarChange = (event) => {
+        setGendar(event.target.value);
+    };
+    const gendars = [
+        {
+            value: "Male",
+            label: "Male",
+        },
+        {
+            value: "Female",
+            label: "Female",
+        },
+    ];
     const [onedepartment, setDepartment] = useState();
 
     const handleChange = (event) => {
@@ -215,6 +234,26 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                             />
                         </Grid>
 
+                        {/* gendar */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("gendar")}
+                                id="outlined-select-currency"
+                                select
+                                label="Gendar"
+                                defaultValue={gendar ? gendar : onegendar}
+                                onChange={gendarChange}
+                                required
+                                className={inputFiend}
+                            >
+                                {gendars.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+
                         {/* department */}
                         <Grid item xs={2} sm={4} md={4}>
                             <TextField
@@ -236,7 +275,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         </Grid>
 
                         {/* designation */}
-                        <Grid item xs={4} sm={8} md={4}>
+                        <Grid item xs={2} sm={4} md={4}>
                             <TextField
                                 {...register("designation")}
                                 id="outlined-basic"
@@ -244,6 +283,48 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                                 type="text"
                                 variant="outlined"
                                 defaultValue={designation}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* bank */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("bank")}
+                                id="outlined-basic"
+                                label="Bank Name"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={bank}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* Account */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("account")}
+                                id="outlined-basic"
+                                label="Bank Account Number"
+                                type="number"
+                                variant="outlined"
+                                defaultValue={account}
+                                required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        {/* status */}
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("status")}
+                                id="outlined-basic"
+                                label="Status"
+                                type="text"
+                                variant="outlined"
+                                value={status}
                                 required
                                 className={inputFiend}
                             />
