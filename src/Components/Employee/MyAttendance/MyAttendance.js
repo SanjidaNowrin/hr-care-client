@@ -166,6 +166,7 @@ const MyAttendance = (props) => {
       },
     };
   });
+  console.log(findPerson)
   return (
     <Container>
       {/* Breadcrumbs */}
@@ -192,46 +193,42 @@ const MyAttendance = (props) => {
 
       <Grid container >
         <Grid container item xs={12} md={6} mt={3}>
-          {findPerson ? (
+          {user?.email === findPerson ? (
             <Grid item xs={12} md={12} mt={3}>
-              {user?.email === findPerson ? (
-                <Card className={classes.cardStyle}>
-                  <CardActionArea>
-                    <CardMedia
-                      className={classes.imgStyle}
+              <Card className={classes.cardStyle}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.imgStyle}
+                    align="center"
+                    component="img"
+                    src={`data:image/jpeg;base64,${employee[0]?.photo}`}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h3"
                       align="center"
-                      component="img"
-                      src={`data:image/jpeg;base64,${employee[0]?.photo}`}
-                    />
-                    <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h3"
-                        align="center"
-                      >
-                        {user.displayName}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions
-                    style={{ justifyContent: "center", marginBottom: "10px" }}
-                  >
-                    <Button onClick={handlePunchIn} className="btn_regular">
-                      Punch In
-                    </Button>
-                    <Button
-                      onClick={handlePunchOut}
-                      size="small"
-                      className="btn_regular"
                     >
-                      Punch Out
-                    </Button>
-                  </CardActions>
-                </Card>
-              ) : (
-                ""
-              )}
+                      {user.displayName}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions
+                  style={{ justifyContent: "center", marginBottom: "10px" }}
+                >
+                  <Button onClick={handlePunchIn} className="btn_regular">
+                    Punch In
+                  </Button>
+                  <Button
+                    onClick={handlePunchOut}
+                    size="small"
+                    className="btn_regular"
+                  >
+                    Punch Out
+                  </Button>
+                </CardActions>
+              </Card>
             </Grid>
           ) : (
             <Grid item xs={12} md={12} mt={3}>
