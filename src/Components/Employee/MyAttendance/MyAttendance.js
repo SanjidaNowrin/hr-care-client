@@ -173,7 +173,7 @@ const MyAttendance = (props) => {
           sx={{ mt: 2, color: "var(--p_color) !important" }}
           variant="h4"
         >
-          Daily 
+          Daily Attendance
         </Typography>
         <Breadcrumbs aria-label="breadcrumb">
           <Link to="/dashboard">
