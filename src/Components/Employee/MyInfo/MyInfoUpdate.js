@@ -350,7 +350,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         </Grid>
 
                         {/* lastDepartment */}
-                        <Grid item xs={2} sm={4} md={4}>
+                        <Grid item >
                             <TextField
                                 {...register("lastDepartment")}
                                 id="outlined-basic"
