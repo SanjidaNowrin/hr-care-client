@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import HomeIcon from "@mui/icons-material/Home";
 import {
     Box,
     Breadcrumbs,
@@ -11,29 +11,28 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import useAuth from "../../../hooks/useAuth";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-import MyInfoUpdate from "./MyInfoUpdate";
-import SignaturePad from "react-signature-pad-wrapper";
 // Breadcrumbs
 import Chip from "@mui/material/Chip";
 import { emphasize, styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import HomeIcon from "@mui/icons-material/Home";
-
-
 import QRCode from "qrcode";
+import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import SignaturePad from "react-signature-pad-wrapper";
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import MyInfoUpdate from "./MyInfoUpdate";
+
 const getUniqueId = (info) => {
     const first =
         info.department === "Human Resource"
             ? "HR"
             : info.department === "Information Technology"
-                ? "IT"
-                : info.department === "Marketing"
-                    ? "MK"
-                    : "AC";
+            ? "IT"
+            : info.department === "Marketing"
+            ? "MK"
+            : "AC";
     const randomNumber = Math.floor(Math.random() * 100);
     const birthArray = info.birth.split("-");
     const birth = birthArray.join("");
@@ -76,7 +75,6 @@ const MyInfo = () => {
             console.log(error);
         }
     };
-
 
     const onSubmit = async (data) => {
         const response = await QRCode.toDataURL(text);
@@ -148,10 +146,7 @@ const MyInfo = () => {
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-        const backgroundColor =
-            theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[800];
+        const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
         return {
             backgroundColor,
             height: theme.spacing(3),
@@ -169,9 +164,9 @@ const MyInfo = () => {
 
     const useStyle = makeStyles({
         inputFiend: {
-            width: '100% !important'
-        }
-    })
+            width: "100% !important",
+        },
+    });
     const { inputFiend } = useStyle();
 
     return (
@@ -183,11 +178,7 @@ const MyInfo = () => {
                 </Typography>
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link to="/dashboard">
-                        <StyledBreadcrumb
-                            to="/dashboard"
-                            label="Dashboard"
-                            icon={<HomeIcon fontSize="small" />}
-                        />
+                        <StyledBreadcrumb to="/dashboard" label="Dashboard" icon={<HomeIcon fontSize="small" />} />
                     </Link>
                     <Link to="/dashboard/myinfo">
                         <StyledBreadcrumb component="a" href="#" label="My Info" />
@@ -196,17 +187,10 @@ const MyInfo = () => {
             </Box>
 
             {employee[0]?.email ? (
-                employee.map((oneEmployee) => (
-                    <MyInfoUpdate
-                        key={oneEmployee._id}
-                        oneEmployee={oneEmployee}
-                    ></MyInfoUpdate>
-                ))
+                employee.map((oneEmployee) => <MyInfoUpdate key={oneEmployee._id} oneEmployee={oneEmployee}></MyInfoUpdate>)
             ) : (
                 <FormGroup onSubmit={handleSubmit(onSubmit)}>
-                    <Box
-                        component="form"
-                    >
+                    <Box component="form">
                         <Typography sx={{ mb: 3 }} variant="h4">
                             <Divider textAlign="right">Fill Your Information</Divider>
                         </Typography>
@@ -404,7 +388,7 @@ const MyInfo = () => {
 
 
                         {/* Experience */}
-                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: "var(--PT_font)" }}>
                             Experience
                         </Typography>
                         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -446,7 +430,7 @@ const MyInfo = () => {
                         </Grid>
 
                         {/* Education information */}
-                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: "var(--PT_font)" }}>
                             Education
                         </Typography>
                         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -500,7 +484,7 @@ const MyInfo = () => {
                         </Grid>
 
                         {/* Signature */}
-                        <Typography variant="h5" sx={{ mt: 3, fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ mt: 3, fontFamily: "var(--PT_font)" }}>
                             Signature
                         </Typography>
                         <Typography variant="body2">
@@ -509,11 +493,7 @@ const MyInfo = () => {
                         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
                             <Grid item xs={4} sm={4} md={4}>
                                 <Box sx={{ border: "1px solid var(--p_color)" }}>
-                                    <SignaturePad
-                                        {...register("image")}
-                                        ref={sigPad}
-                                        penColor="green"
-                                    />
+                                    <SignaturePad {...register("image")} ref={sigPad} penColor="green" />
 
                                     <Box
                                         sx={{
@@ -537,12 +517,7 @@ const MyInfo = () => {
                             </Grid>
                         </Grid>
 
-                        <Button
-                            className="btn_regular"
-                            variant="outlined"
-                            type="submit"
-                            sx={{ mt: 2, mb: 4 }}
-                        >
+                        <Button className="btn_regular" variant="outlined" type="submit" sx={{ mt: 2, mb: 4 }}>
                             Submit
                         </Button>
                     </Box>
