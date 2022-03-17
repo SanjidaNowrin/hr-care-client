@@ -206,9 +206,6 @@ const EmployeeDashboardHome = () => {
                 <Typography variant="h6" sx={{ color: 'rgba(255, 99, 132, .8)' }}>
                   Absent
                 </Typography>
-
-
-
               </Box>
               <Typography variant="h3" sx={{ textAlign: 'center', color: 'rgba(255, 99, 132, .8)', py: 1 }}>
                 0
