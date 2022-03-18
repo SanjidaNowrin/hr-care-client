@@ -15,7 +15,7 @@ const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const { token } = useAuth();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/user", {
+    fetch("https://ancient-thicket-61342.herokuapp.com/user", {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ const MakeAdmin = () => {
     setUserEmail(event.target.value);
   };
   useEffect(() => {
-    fetch("http://localhost:5000/user")
+    fetch("https://ancient-thicket-61342.herokuapp.com/user")
       .then((res) => res.json())
       .then((data) => setUsers(data.data));
   }, []);
