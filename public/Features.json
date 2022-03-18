@@ -1,9 +1,9 @@
 [
     {
         "id": "01",
-        "title": "Responsive Design",
-        "des": "Completely responsive, fully functional on ipads, iphones, tablets, and other mobile phones.",
-        "img": "https://i.ibb.co/BGcZkGt/responsive.png"
+        "title": "Leave Request",
+        "des": "All leave must be documented by using the Leave Request form. Before requesting paid leave",
+        "img": "https://i.ibb.co/xSGqcsZ/leave.png"
     },
     {
         "id": "02",
@@ -31,6 +31,12 @@
     },
     {
         "id": "06",
+        "title": "Assign Task",
+        "des": "Admin assign a new task On the Assign Task page for every Employee",
+        "img": "https://i.ibb.co/jy21Bjq/to-do-list.png"
+    },
+    {
+        "id": "07",
         "title": "Holidays",
         "des": "Bangladesh has numerous public holidays, including national memorial",
         "img": "https://i.ibb.co/7XRFT2Y/holiday.png"

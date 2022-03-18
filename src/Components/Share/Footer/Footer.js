@@ -90,10 +90,14 @@ const Footer = () => {
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4}>
                             <Box className="single-ooter">
-                                <Typography variant="h4" sx={{ mb: 2, fontWeight: "700", color: "#fff" }}>
-                                    HR Care
-                                </Typography>
-                                <Typography variant="body1">
+                                <Link to="/">
+                                    <img
+                                        src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+                                        alt="hr care"
+                                        style={{ width: '200px' }}
+                                    />
+                                </Link>
+                                <Typography sx={{ mt: 1 }} variant="body1">
                                     This is Human resource management software which is also called Payroll software. Using this software, a
                                     company can manage their employer details, attendance, Leave, holidays, Salary, etc.
                                 </Typography>
