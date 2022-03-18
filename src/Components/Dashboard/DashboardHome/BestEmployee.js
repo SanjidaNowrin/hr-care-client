@@ -5,7 +5,7 @@ import MyCharts from "./MyCharts/MyCharts";
 
 const BestEmployee = () => {
     const [bestEmp, setBestEmp] = useState([]);
-    console.log(bestEmp);
+    // console.log(bestEmp);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
             .then((res) => res.json())
@@ -38,7 +38,7 @@ const BestEmployee = () => {
     const { cardContainer, cardImg, cardBox, cardContent, cardTitle } = useStyle();
     return (
         <Grid container>
-            <Grid item xs={12} sm={12} md={1}></Grid>
+            <Grid item xs={12} sm={12} md={2}></Grid>
             <Grid item xs={12} sm={12} md={4}>
                 {bestEmp?.slice(2, 3).map((data) => (
                     <Box className={cardContainer}>
@@ -65,7 +65,7 @@ const BestEmployee = () => {
             <Grid item xs={12} sm={12} md={6}>
                 <MyCharts></MyCharts>
             </Grid>
-            <Grid item xs={12} sm={12} md={1}></Grid>
+            {/* <Grid item xs={12} sm={12} md={1}></Grid> */}
         </Grid>
     );
 };

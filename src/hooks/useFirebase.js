@@ -118,7 +118,7 @@ const useFirebase = () => {
     //save user to database
     const saveUserInfo = (email, displayName, method) => {
         const user = { name: displayName, email };
-        console.log(user);
+        // console.log(user);
         fetch("https://ancient-thicket-61342.herokuapp.com/user", {
             method: method,
             headers: {
@@ -143,7 +143,7 @@ const useFirebase = () => {
                 }
             });
     }, [user?.email]);
-    console.log(isAdmin);
+    // console.log(isAdmin);
     return {
         user,
         isLoading,
