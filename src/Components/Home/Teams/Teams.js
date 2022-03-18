@@ -18,12 +18,17 @@ const Teams = () => {
         <>
             <Navbar />
             <Box>
+                <Box sx={{ pt: 12, mt: 4, textAlign: "center" }}>
+                    <Typography className="section_title" variant="h4">
+                        About Us
+                    </Typography>
+                </Box>
                 <Container>
                     <TeamAbout></TeamAbout>
                 </Container>
             </Box>
-            <Box sx={{ pt: 4 }}>
-                <Box sx={{ pb: 6, pt: 2, textAlign: "center" }}>
+            <Box sx={{ mt: 8 }}>
+                <Box sx={{ pb: 6, textAlign: "center" }}>
                     <Typography className="section_title" variant="h4">
                         Our Team
                     </Typography>

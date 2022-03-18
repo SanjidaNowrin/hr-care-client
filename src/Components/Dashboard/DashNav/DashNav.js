@@ -10,7 +10,7 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button } from "@mui/material";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Tooltip from '@mui/material/Tooltip';
 
 import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
@@ -171,15 +171,16 @@ const DashNav = () => {
                 {employee[0]?.photo ? (
                   employee.map((employeePhoto) => (
                     <Avatar
-                      alt="Remy Sharp"
+                      key={employeePhoto?.photo}
+                      alt="Employee Photo"
                       src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
                     />
                   ))
                 ) : (
                   <Avatar
                     sx={{ bgcolor: 'var(--s_color)' }}
-                    alt="Remy Sharp"
-                    src="/broken-image.jpg"
+                    alt="Employee Photo"
+                    src="https://i.ibb.co/gvzdw1g/images.png"
                   >
                     {user.displayName.slice(0, 1)}
                   </Avatar>

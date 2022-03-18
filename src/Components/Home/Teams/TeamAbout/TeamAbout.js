@@ -14,13 +14,12 @@ const TeamAbout = () => {
             fontWeight: "400 !important",
             fontFamily: "var(--PT_font) !important",
             color: "var(--pt_color)",
-            width: "90%",
         },
     });
     const { sectionTitle, pText } = useStyle();
 
     return (
-        <Box sx={{ py: 8 }}>
+        <Box sx={{ pt: 8 }}>
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6} sx={{ display: "flex", alignItems: "center", justifyContent: "conter" }}>
                     <Box>
@@ -45,6 +44,10 @@ const TeamAbout = () => {
                     />
                 </Grid>
             </Grid>
+
+            <Box sx={{ mt: 4 }}>
+                <img style={{ width: '100%' }} src="https://i.ibb.co/Svg5G4B/HR-Care.png" alt="dashboard" />
+            </Box>
         </Box>
     );
 };

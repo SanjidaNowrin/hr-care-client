@@ -6,11 +6,9 @@ import './HeroVideo.css'
 const HeroVideo = () => {
 
     return (
-
-        <Box className="video">
+        <Box id="video" className="video">
             <video src={videoSrc} height="100%" width="100%" autoPlay muted loop />
         </Box>
-
     );
 };
 
