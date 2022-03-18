@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import HomeIcon from "@mui/icons-material/Home";
 import {
     Box,
     Breadcrumbs,
@@ -11,20 +11,19 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import useAuth from "../../../hooks/useAuth";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-import MyInfoUpdate from "./MyInfoUpdate";
-import SignaturePad from "react-signature-pad-wrapper";
 // Breadcrumbs
 import Chip from "@mui/material/Chip";
 import { emphasize, styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import HomeIcon from "@mui/icons-material/Home";
-
-
 import QRCode from "qrcode";
+import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import SignaturePad from "react-signature-pad-wrapper";
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import MyInfoUpdate from "./MyInfoUpdate";
+
 const getUniqueId = (info) => {
     const first =
         info.department === "Human Resource"
@@ -77,7 +76,6 @@ const MyInfo = () => {
         }
     };
 
-
     const onSubmit = async (data) => {
         const response = await QRCode.toDataURL(text);
         data.qrUrl = response;
@@ -125,16 +123,30 @@ const MyInfo = () => {
 
     const [department, setDepartment] = useState();
 
-    const handleChange = (event) => {
+    const departmentChange = (event) => {
         setDepartment(event.target.value);
+    };
+
+    const gendars = [
+        {
+            value: "Male",
+            label: "Male",
+        },
+        {
+            value: "Female",
+            label: "Female",
+        },
+    ];
+
+    const [gendar, setGendar] = useState();
+
+    const gendarChange = (event) => {
+        setGendar(event.target.value);
     };
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-        const backgroundColor =
-            theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[800];
+        const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
         return {
             backgroundColor,
             height: theme.spacing(3),
@@ -152,9 +164,9 @@ const MyInfo = () => {
 
     const useStyle = makeStyles({
         inputFiend: {
-            width: '100% !important'
-        }
-    })
+            width: "100% !important",
+        },
+    });
     const { inputFiend } = useStyle();
 
     return (
@@ -166,11 +178,7 @@ const MyInfo = () => {
                 </Typography>
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link to="/dashboard">
-                        <StyledBreadcrumb
-                            to="/dashboard"
-                            label="Dashboard"
-                            icon={<HomeIcon fontSize="small" />}
-                        />
+                        <StyledBreadcrumb to="/dashboard" label="Dashboard" icon={<HomeIcon fontSize="small" />} />
                     </Link>
                     <Link to="/dashboard/myinfo">
                         <StyledBreadcrumb component="a" href="#" label="My Info" />
@@ -179,17 +187,10 @@ const MyInfo = () => {
             </Box>
 
             {employee[0]?.email ? (
-                employee.map((oneEmployee) => (
-                    <MyInfoUpdate
-                        key={oneEmployee._id}
-                        oneEmployee={oneEmployee}
-                    ></MyInfoUpdate>
-                ))
+                employee.map((oneEmployee) => <MyInfoUpdate key={oneEmployee._id} oneEmployee={oneEmployee}></MyInfoUpdate>)
             ) : (
                 <FormGroup onSubmit={handleSubmit(onSubmit)}>
-                    <Box
-                        component="form"
-                    >
+                    <Box component="form">
                         <Typography sx={{ mb: 3 }} variant="h4">
                             <Divider textAlign="right">Fill Your Information</Divider>
                         </Typography>
@@ -290,6 +291,26 @@ const MyInfo = () => {
                                 />
                             </Grid>
 
+                            {/* Gendar */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("gendar")}
+                                    id="outlined-select-currency"
+                                    select
+                                    label="Gendar"
+                                    value={gendar}
+                                    onChange={gendarChange}
+                                    required
+                                    className={inputFiend}
+                                >
+                                    {gendars.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            </Grid>
+
                             {/* department */}
                             <Grid item xs={2} sm={4} md={4}>
                                 <TextField
@@ -298,7 +319,7 @@ const MyInfo = () => {
                                     select
                                     label="Department"
                                     value={department}
-                                    onChange={handleChange}
+                                    onChange={departmentChange}
                                     required
                                     className={inputFiend}
                                 >
@@ -311,7 +332,7 @@ const MyInfo = () => {
                             </Grid>
 
                             {/* designation */}
-                            <Grid item xs={4} sm={8} md={4}>
+                            <Grid item xs={2} sm={4} md={4}>
                                 <TextField
                                     {...register("designation")}
                                     id="outlined-basic"
@@ -322,10 +343,64 @@ const MyInfo = () => {
                                     className={inputFiend}
                                 />
                             </Grid>
+
+                            {/* bank */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("bank")}
+                                    id="outlined-basic"
+                                    label="Bank Name"
+                                    type="text"
+                                    variant="outlined"
+                                    required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* Account */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("account")}
+                                    id="outlined-basic"
+                                    label="Bank Account Number"
+                                    type="number"
+                                    variant="outlined"
+                                    required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* blood */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("blood")}
+                                    id="outlined-basic"
+                                    label="Blood Group"
+                                    type="text"
+                                    variant="outlined"
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* status */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("status")}
+                                    id="outlined-basic"
+                                    label="Status"
+                                    type="text"
+                                    variant="outlined"
+                                    value="Panding"
+                                    required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
                         </Grid>
 
+
                         {/* Experience */}
-                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: "var(--PT_font)" }}>
                             Experience
                         </Typography>
                         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -367,7 +442,7 @@ const MyInfo = () => {
                         </Grid>
 
                         {/* Education information */}
-                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: "var(--PT_font)" }}>
                             Education
                         </Typography>
                         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -421,7 +496,7 @@ const MyInfo = () => {
                         </Grid>
 
                         {/* Signature */}
-                        <Typography variant="h5" sx={{ mt: 3, fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ mt: 3, fontFamily: "var(--PT_font)" }}>
                             Signature
                         </Typography>
                         <Typography variant="body2">
@@ -430,11 +505,7 @@ const MyInfo = () => {
                         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
                             <Grid item xs={4} sm={4} md={4}>
                                 <Box sx={{ border: "1px solid var(--p_color)" }}>
-                                    <SignaturePad
-                                        {...register("image")}
-                                        ref={sigPad}
-                                        penColor="green"
-                                    />
+                                    <SignaturePad {...register("image")} ref={sigPad} penColor="green" />
 
                                     <Box
                                         sx={{
@@ -458,12 +529,7 @@ const MyInfo = () => {
                             </Grid>
                         </Grid>
 
-                        <Button
-                            className="btn_regular"
-                            variant="outlined"
-                            type="submit"
-                            sx={{ mt: 2, mb: 4 }}
-                        >
+                        <Button className="btn_regular" variant="outlined" type="submit" sx={{ mt: 2, mb: 4 }}>
                             Submit
                         </Button>
                     </Box>

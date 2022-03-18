@@ -26,7 +26,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const Employees = () => {
-
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
@@ -72,37 +71,37 @@ const Employees = () => {
                 <Grid item xs={12} md={12}>
                     <TableContainer component={Paper} >
                         <Table sx={{ width: '100%' }} aria-label="customized table">
-                            <TableHead sx={{ background: 'var(--p_color) !important' }}>
+                            <TableHead sx={{ background: 'var(--t_color) !important' }}>
                                 <TableRow>
                                     <StyledTableCell
-                                        sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                        sx={{ background: 'var(--t_color) !important' }}
                                     >
                                         Employee
                                     </StyledTableCell>
 
                                     <StyledTableCell
-                                        sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                        sx={{ background: 'var(--t_color) !important' }}
                                         align="left"
                                     >
                                         Phone
                                     </StyledTableCell>
 
                                     <StyledTableCell
-                                        sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                        sx={{ background: 'var(--t_color) !important' }}
                                         align="center"
                                     >
                                         Department
                                     </StyledTableCell>
 
                                     <StyledTableCell
-                                        sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                        sx={{ background: 'var(--t_color) !important' }}
                                         align="center"
                                     >
                                         Designation
                                     </StyledTableCell>
 
                                     <StyledTableCell
-                                        sx={{ color: '#fff !important', background: 'var(--p_color) !important' }}
+                                        sx={{ background: 'var(--t_color) !important' }}
                                         align="right"
                                     >
                                         Action

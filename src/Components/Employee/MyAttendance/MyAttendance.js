@@ -63,6 +63,7 @@ const MyAttendance = (props) => {
   const handlePunchIn = () => {
     let entryTime = {};
     entryTime.ID = employee[0]?.ID;
+    entryTime.name = employee[0]?.name;
     entryTime.email = user.email;
     entryTime.date = dateFormat(time.split(",")[0], "yyyy-MM-dd");
     entryTime.entry = time.split(",")[1];
@@ -165,6 +166,7 @@ const MyAttendance = (props) => {
       },
     };
   });
+  console.log(findPerson)
   return (
     <Container>
       {/* Breadcrumbs */}
@@ -188,138 +190,117 @@ const MyAttendance = (props) => {
           </Link>
         </Breadcrumbs>
       </Box>
-      <Box mt={5} sx={{ display: "flex", alignItems: "center" }}>
-        <Typography variant="h6">
-          <span style={{ color: "red" }}>*</span> Scan by QRCode
-        </Typography>
 
-        {employee[0]?.qrUrl &&
-          <a
-            href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-            download
-          >
-            <img
-              className={classes.qrImage}
-              width="30% !important"
-              src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-              alt="Employee QrCode"
-            />
-          </a>
-        }
-
-      </Box>
-      <Grid
-        container
-        spacing={2}
-        sx={{ display: "flex", alignItems: "center" }}
-      >
-        <Grid
-          item
-          xs={12}
-          md={5}
-          sx={{
-            border: "1px solid #01578A !important",
-            paddingLeft: "1rem",
-            paddingRight: "1rem",
-          }}
-        >
-          <QrReader
-            onResult={(result, error) => {
-              if (!!result) {
-                setFindPerson(result?.text);
-              }
-
-              if (!!error) {
-                console.info(error);
-              }
-            }}
-            style={{ width: "100%", height: "100% !important" }}
-          />
-          {findPerson ? (
-            <h4 style={{ fontWeight: "500", textAlign: "center" }}>
-              <span style={{ color: "green" }}>Verified Successfully!</span>{" "}
-              {user.displayName}
-            </h4>
+      <Grid container >
+        <Grid container item xs={12} md={6} mt={3}>
+          {user?.email === findPerson ? (
+            <Grid item xs={12} md={12} mt={3}>
+              <Card className={classes.cardStyle}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.imgStyle}
+                    align="center"
+                    component="img"
+                    src={`data:image/jpeg;base64,${employee[0]?.photo}`}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h3"
+                      align="center"
+                    >
+                      {user.displayName}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions
+                  style={{ justifyContent: "center", marginBottom: "10px" }}
+                >
+                  <Button onClick={handlePunchIn} className="btn_regular">
+                    Punch In
+                  </Button>
+                  <Button
+                    onClick={handlePunchOut}
+                    size="small"
+                    className="btn_regular"
+                  >
+                    Punch Out
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
           ) : (
-            <h3
-              style={{ color: "red", fontWeight: "500", textAlign: "center" }}
-            >
-              Not Verified yet !!
-            </h3>
+            <Grid item xs={12} md={12} mt={1}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="h6">
+                  <span style={{ color: "red" }}>*</span> Scan by QRCode
+                </Typography>
+
+                <a
+                  href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
+                    }`}
+                  download
+                >
+                  <img
+                    className={classes.qrImage}
+                    width="30% !important"
+                    src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
+                      }`}
+                    alt="Employee QrCode"
+                  />
+                </a>
+              </Box>
+              <Card className={classes.cardStyle}>
+                <CardActionArea>
+                  <CardContent>
+                    {findPerson ? (
+                      <h4 style={{ fontWeight: "500", textAlign: "center" }}>
+                        <span
+                          style={{
+                            color: "green",
+                            marginTop: "0px",
+                            marginBottom: "0px",
+                          }}
+                        >
+                          Verified Successfully!
+                        </span>{" "}
+                        {user.displayName}
+                      </h4>
+                    ) : (
+                      <h3
+                        style={{
+                          color: "red",
+                          fontWeight: "500",
+                          textAlign: "center",
+                          marginTop: "0px",
+                          marginBottom: "0px",
+                        }}
+                      >
+                        Not Verified yet !!
+                      </h3>
+                    )}
+                    <QrReader
+                      onResult={(result, error) => {
+                        if (!!result) {
+                          setFindPerson(result?.text);
+                        }
+                        if (!!error) {
+                          console.info(error);
+                        }
+                      }}
+                    />
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
           )}
         </Grid>
-        {/* <Grid item xs={12} md={4}>
-          <a
-            href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-            download
-          >
-            <img
-              className={classes.qrImage}
-              width="30% !important"
-              src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
-              alt="Employee QrCode"
-            />
-          </a>
-        </Grid> */}
 
-        <Grid item xs={12} md={7}>
-          {/* timeline */}
-          <img
-            width="90%"
-            src="https://i.ibb.co/Jz2xWP8/undraw-Authentication-re-svpt.png"
-            alt="undraw-Authentication-re-svpt"
-            border="0"
-          />
-        </Grid>
-      </Grid>
-      {/* trial */}
-      <Grid container spacing={8}>
-        {user?.email == findPerson ? (
-          <Grid item xs={12} md={6}>
-            <Card className={classes.cardStyle}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.imgStyle}
-                  align="center"
-                  component="img"
-                  src={`data:image/jpeg;base64,${employee[0]?.photo}`}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h3"
-                    align="center"
-                  >
-                    {user.displayName}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions
-                style={{ justifyContent: "center", marginBottom: "10px" }}
-              >
-                <Button onClick={handlePunchIn} className="btn_regular">
-                  Punch In
-                </Button>
-                <Button
-                  onClick={handlePunchOut}
-                  size="small"
-                  className="btn_regular"
-                >
-                  Punch Out
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ) : (
-          ""
-        )}
-
-        <Grid item xs={12} md={6}>
-          {/* timeline */}
+        <Grid item xs={12} md={6} mt={5}>
+          {/* timeline activities */}
           <Typography
             align="center"
-            mb={8}
             sx={{ textAlign: "center !important", fontWeight: "400" }}
             variant="h4"
           >
@@ -376,6 +357,7 @@ const MyAttendance = (props) => {
           </Timeline>
         </Grid>
       </Grid>
+      {/* trial */}
     </Container>
   );
 };

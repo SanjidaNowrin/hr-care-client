@@ -25,7 +25,7 @@ import * as React from "react";
 import { Link, Outlet } from "react-router-dom";
 import DashNav from "../DashNav/DashNav";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 function Dashboard(props) {
   const { window } = props;
@@ -43,37 +43,37 @@ function Dashboard(props) {
       display: "flex",
       alignItems: "center",
       color: "#fff",
-      padding: "5px 0",
+      padding: "8px 0",
+      fontWeight: '400 !important',
+      fontFamily: 'var(--PT_font) !important',
+      fontSize: '15px !important'
     },
     dashIcon: {
       marginTop: "-1px !important",
       marginRight: "8px",
       color: "#fff",
     },
+    drawerTitle: {
+      fontWeight: '400 !important',
+      fontFamily: 'var(--PT_font) !important'
+    }
   });
 
-  const { linkItem, dashLink, dashIcon } = useStyle();
+  const { linkItem, dashLink, dashIcon, drawerTitle } = useStyle();
 
   const drawer = (
     <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{
-          flexGrow: 2,
-          padding: "11px",
-          textAlign: "center",
-          background: "var(--p_color)",
-          color: "#fff",
-          fontWeight: "700",
-          borderBottom: "2px solid #fff",
-          marginBottom: "20px",
-        }}
-      >
-        <Link style={{ color: "white" }} to="/home"> HR CARE</Link>
-      </Typography>
+      <Box sx={{ px: 2 }}>
+        <Link to="/home">
+          <img
+            src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+            alt="hr care"
+            style={{ width: '100%' }}
+          />
+        </Link>
+      </Box>
       <Box sx={{ pl: 2 }}>
-        <Typography variant="h6">Main</Typography>
+        <Typography className={drawerTitle} variant="h6">Main</Typography>
         <List className={linkItem}>
           <Link className={dashLink} to="/dashboard">
             <DashboardOutlinedIcon className={dashIcon} />
@@ -85,12 +85,12 @@ function Dashboard(props) {
 
       <Box sx={{ pl: 2 }}>
         {/* Employees */}
-        <Typography variant="h6">Employees</Typography>
+        <Typography className={drawerTitle} variant="h6">Employees</Typography>
         <List className={linkItem}>
 
           <Link className={dashLink} to="/dashboard/employeeDashboard">
             <CoPresentOutlinedIcon className={dashIcon} />
-            My dashboard
+            My Dashboard
           </Link>
 
           <Link className={dashLink} to="/dashboard/attendance">
@@ -122,7 +122,7 @@ function Dashboard(props) {
 
       {/* HRM */}
       <Box sx={{ pl: 2 }}>
-        <Typography variant="h6">HRM</Typography>
+        <Typography className={drawerTitle} variant="h6">HRM</Typography>
         <List className={linkItem}>
           <Link className={dashLink} to="/dashboard/all_employees">
             <AccountBoxOutlinedIcon className={dashIcon} />
@@ -177,7 +177,7 @@ function Dashboard(props) {
       <Divider />
       {/* Performances */}
       <Box sx={{ pl: 2 }}>
-        <Typography variant="h6">Performances</Typography>
+        <Typography className={drawerTitle} variant="h6">Performances</Typography>
       </Box>
     </Box>
   );
@@ -192,6 +192,7 @@ function Dashboard(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          boxShadow: '0px 7px 45px rgb(0, 0,0, .3) !important'
         }}
       >
         <Toolbar sx={{ background: "var(--p_color)" }}>
@@ -239,7 +240,7 @@ function Dashboard(props) {
       <Box component="main" sx={{ flexGrow: 1, mt: 8, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Outlet />
       </Box>
-    </Box>
+    </Box >
   );
 }
 

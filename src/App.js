@@ -33,7 +33,7 @@ function App() {
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/teams" element={<Teams />} />
+            <Route path="/about" element={<Teams />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
