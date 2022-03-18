@@ -25,12 +25,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 const SalaryData = (props) => {
-  const { ID, name, designation, department, gross } = props.employee;
+  const { ID, name, designation, department, gross, bank, account } = props.employee;
 
   const basic = ((gross - 1850) / 1.5).toFixed(0);
   const payment = ((gross / 30) * props.date.length).toFixed(0);
 
-  console.log(props.date);
+  const dates = props.date;
+  console.log(dates);
+  const Present = dates.filter((date) => date?.status === "Present");
+  const holidays = dates.filter((date) => date?.status === "Holiday");
+  const Leaves = dates.filter((date) => date?.status === "Leave");
 
   return (
     <>
@@ -38,28 +42,23 @@ const SalaryData = (props) => {
       <StyledTableRow>
 
         <StyledTableCell component="th" scope="row">
-          {ID}
-        </StyledTableCell>
-        <StyledTableCell component="th" scope="row">
-          {name}
+          {name} <br /> {ID}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">
-          {designation}
-        </StyledTableCell>
-        <StyledTableCell component="th" scope="row">
-          {department}
+          {designation} <br />{department}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">
-          {basic}
-        </StyledTableCell>
-        <StyledTableCell component="th" scope="row">
-          {gross}
+          {basic} <br />{gross}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">
-          {props.date.length}
+          <span style={{ textAlign: "center !important" }}>{dates?.length}</span> <br />{Present?.length} / {holidays?.length} / {Leaves?.length}
+        </StyledTableCell>
+
+        <StyledTableCell component="th" scope="row">
+          {bank} <br />{account}
         </StyledTableCell>
 
         <StyledTableCell align="right" component="th" scope="row">

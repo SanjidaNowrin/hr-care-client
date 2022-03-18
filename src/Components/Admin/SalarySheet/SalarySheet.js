@@ -170,84 +170,83 @@ const SalarySheet = () => {
         </Breadcrumbs>
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          my: 5,
-        }}
-      >
-
-        {/* searchbar */}
-        <Box>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
-              <Box sx={{ width: "35%" }}>
-                <label>
-                  Start Date <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  sx={{ width: "100%" }}
-                  {...register("startDate")}
-                  id="outlined-basic"
-                  type="date"
-                  variant="outlined"
-                />
-              </Box>
-              <Box sx={{ width: "35%" }}>
-                <label>
-                  End Day <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  sx={{ width: "100%" }}
-                  {...register("endDate")}
-                  id="outlined-basic"
-                  type="date"
-                  variant="outlined"
-                />
-              </Box>
-              <Box sx={{ width: "20%" }}>
-                <Button
-                  sx={{
-                    background: "var(--p_color) !important",
-                    color: "#fff !important",
-                    width: "100%",
-                  }}
-                  className="btn_regular"
-                  type="Search"
-                >
-                  Search
-                </Button>
-              </Box>
-            </Box>
-          </form>
-        </Box>
-
-        {/*dropdown */}
-        <Button
-          className="btn_regular"
-          onClick={() => handleOnclick()}
-          variant="contained"
-          sx={{ padding: "6px 50px 5px !important" }}
-        >
-          Download PDF
-        </Button>
-      </Box>
-
       <PDFExport ref={pdfExportComponent}>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            my: 5,
+          }}
+        >
+
+          {/* searchbar */}
+          <Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+                <Box sx={{ width: "35%" }}>
+                  <label>
+                    Start Date <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    {...register("startDate")}
+                    id="outlined-basic"
+                    type="date"
+                    variant="outlined"
+                  />
+                </Box>
+                <Box sx={{ width: "35%" }}>
+                  <label>
+                    End Day <span style={{ color: "red" }}>*</span>
+                  </label>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    {...register("endDate")}
+                    id="outlined-basic"
+                    type="date"
+                    variant="outlined"
+                  />
+                </Box>
+                <Box sx={{ width: "20%" }}>
+                  <Button
+                    sx={{
+                      background: "var(--p_color) !important",
+                      color: "#fff !important",
+                      width: "100%",
+                    }}
+                    className="btn_regular"
+                    type="Search"
+                  >
+                    Search
+                  </Button>
+                </Box>
+              </Box>
+            </form>
+          </Box>
+
+          {/*Download */}
+          <Button
+            className="btn_regular"
+            onClick={() => handleOnclick()}
+            variant="contained"
+            sx={{ padding: "6px 50px 5px !important" }}
+          >
+            Download Salary Sheet
+          </Button>
+        </Box>
+        <Typography> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
-                <StyledTableCell>ID</StyledTableCell>
-                <StyledTableCell>Name </StyledTableCell>
-                <StyledTableCell align="left">Designation </StyledTableCell>
-                <StyledTableCell align="left">Department</StyledTableCell>
-                <StyledTableCell align="left">Basic </StyledTableCell>
-                <StyledTableCell align="left"> Gross</StyledTableCell>
-                <StyledTableCell align="left">Pay Day</StyledTableCell>
-                <StyledTableCell align="right">Salary</StyledTableCell>
+                <StyledTableCell>Name <hr /> ID</StyledTableCell>
+                <StyledTableCell align="left">Designation <hr />Department</StyledTableCell>
+                <StyledTableCell align="left">Basic <hr />Gross </StyledTableCell>
+                <StyledTableCell align="left">Pay Day <hr />P / H / L</StyledTableCell>
+                <StyledTableCell align="left">Bank <hr /> Account</StyledTableCell>
+                <StyledTableCell align="right">Payable <br /> Amount</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>

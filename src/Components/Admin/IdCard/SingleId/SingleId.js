@@ -131,7 +131,7 @@ const SingleId = ({ employeeId }) => {
                 <Typography className={textBold} variant="body2">
                   Joined Date
                 </Typography>
-                <Typography variant="body2">{birth}</Typography>
+                <Typography variant="body2">{DOJ}</Typography>
               </Grid>
             </Grid>
 
@@ -140,7 +140,7 @@ const SingleId = ({ employeeId }) => {
                 <Typography className={textBold} variant="body2">
                   D.O.B
                 </Typography>
-                <Typography variant="body2">{DOJ}</Typography>
+                <Typography variant="body2">{birth}</Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography className={textBold} variant="body2">
