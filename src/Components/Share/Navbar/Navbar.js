@@ -88,7 +88,7 @@ const Navbar = () => {
     mobileNavItem: {
       transition: "all .3s !important",
       "&:hover": {
-        boxShadow: "0px 8px 15px rgba(248, 80, 80, .5) !important",
+        boxShadow: "0px 8px 15px rgba(0, 0, 0, .2) !important",
       },
     },
   });
@@ -291,7 +291,7 @@ const Navbar = () => {
             <>
               <React.Fragment>
                 <Drawer open={state} anchor="right" onClose={() => setState(false)}>
-                  <Box sx={{ background: "#009EFA" }}>
+                  <Box sx={{ background: "var(--p_color)" }}>
                     <Link className={navItem} to="/">
                       <Typography variant="h5" sx={{ textAlign: "center", my: 2 }}>
                         HR CARE

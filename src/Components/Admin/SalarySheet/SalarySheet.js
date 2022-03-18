@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Breadcrumbs, Button, Container, TextField, Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -10,14 +9,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import * as XLSX from "xlsx";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 import SalaryData from "./SalaryData/SalaryData";
-import Tooltip from "@mui/material/Tooltip";
-import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
-import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
-import DownloadForOfflineRoundedIcon from "@mui/icons-material/DownloadForOfflineRounded";
+
 
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
@@ -27,6 +20,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import dateFormat from "../../Share/DateFormat/dateFormat";
+import Swal from "sweetalert2";
+import { PDFExport } from "@progress/kendo-react-pdf";
 
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -83,78 +78,12 @@ const StyledMenu = styled((props) => (
 
 const SalarySheet = () => {
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  //download data in excel format
-  const downloadExcel = () => {
-    const newData = employees.map((row) => {
-      delete row.tableData;
-      return row;
-    });
-    const workSheet = XLSX.utils.json_to_sheet(newData);
-    const workBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workBook, workSheet, "employees");
-    //Buffer
-    let buf = XLSX.write(workBook, { bookType: "xlsx", type: "buffer" });
-    //Binary string
-    XLSX.write(workBook, { bookType: "xlsx", type: "binary" });
-    //Download
-    XLSX.writeFile(workBook, "EmployeesData.xlsx");
-  };
-
-  //download data in pdf format
-  const columns = [
-    { title: "Name", field: "name" },
-    { title: "Designation", field: "designation" },
-    { title: "Acc", field: "Account" },
-    { title: "Gross", field: "Gross", type: "numeric" },
-    { title: "Basic", field: "basic", type: "currency" },
-  ];
-  const downloadPdf = () => {
-    const doc = new jsPDF();
-    doc.text("Employee Salary Details", 20, 10);
-    doc.autoTable({
-      theme: "striped",
-      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
-      body: employees,
-    });
-    doc.save("Employee Salary.pdf");
-  };
-
-  // Breadcrumbs
-  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-    const backgroundColor =
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[100]
-        : theme.palette.grey[800];
-    return {
-      backgroundColor,
-      height: theme.spacing(3),
-      color: theme.palette.text.primary,
-      fontWeight: theme.typography.fontWeightRegular,
-      '&:hover, &:focus': {
-        backgroundColor: emphasize(backgroundColor, 0.06),
-      },
-      '&:active': {
-        boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(backgroundColor, 0.12),
-      },
-    };
-  });
-
   const [employees, setEmployees] = useState([]);
   const { register, handleSubmit } = useForm();
   const [Dates, setDates] = useState([]);
-  const [filterDates, setFilterDates] = useState([]);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+  const [filterDates, setFilterDates] = useState([]);
 
 
   useEffect(() => {
@@ -187,6 +116,40 @@ const SalarySheet = () => {
       autoClose: 4000
     })
   };
+
+
+
+  //download salary in pdf format
+
+  const pdfExportComponent = useRef(null);
+  const handleOnclick = () => {
+    pdfExportComponent.current.save();
+
+    Swal.fire("Salary Sheet Downloaded Successfully!");
+  };
+
+  // Breadcrumbs
+  const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+    const backgroundColor =
+      theme.palette.mode === 'light'
+        ? theme.palette.grey[100]
+        : theme.palette.grey[800];
+    return {
+      backgroundColor,
+      height: theme.spacing(3),
+      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightRegular,
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(backgroundColor, 0.06),
+      },
+      '&:active': {
+        boxShadow: theme.shadows[1],
+        backgroundColor: emphasize(backgroundColor, 0.12),
+      },
+    };
+  });
+
+
   return (
     <Container>
       {/* Breadcrumbs */}
@@ -260,71 +223,41 @@ const SalarySheet = () => {
             </Box>
           </form>
         </Box>
+
         {/*dropdown */}
         <Button
-          style={{ marginLeft: "10px" }}
           className="btn_regular"
-          onClick={handleClick}
+          onClick={() => handleOnclick()}
+          variant="contained"
+          sx={{ padding: "6px 50px 5px !important" }}
         >
-          <DownloadForOfflineRoundedIcon
-            id="demo-customized-button"
-            aria-controls={open ? "demo-customized-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            variant="contained"
-            disableElevation
-            sx={{ cursor: "pointer", marginRight: "5px" }}
-          />
-          Download
+          Download PDF
         </Button>
-        <StyledMenu
-          id="demo-customized-menu"
-          MenuListProps={{
-            "aria-labelledby": "demo-customized-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose} disableRipple>
-            <Tooltip title="Download in excel format">
-              <Button sx={{ color: "black" }} onClick={() => downloadExcel()}>
-                <ArticleRoundedIcon sx={{ cursor: "pointer" }} />
-                Excel
-              </Button>
-            </Tooltip>
-          </MenuItem>
-          <MenuItem onClick={handleClose} disableRipple>
-            <Tooltip title="Download in pdf format">
-              <Button sx={{ color: "black" }} onClick={() => downloadPdf()}>
-                <PictureAsPdfRoundedIcon sx={{ cursor: "pointer" }} />
-                PDF
-              </Button>
-            </Tooltip>
-          </MenuItem>
-        </StyledMenu>
       </Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
-              <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell>Name </StyledTableCell>
-              <StyledTableCell align="left">Designation </StyledTableCell>
-              <StyledTableCell align="left">Department</StyledTableCell>
-              <StyledTableCell align="left">Basic </StyledTableCell>
-              <StyledTableCell align="left"> Gross</StyledTableCell>
-              <StyledTableCell align="left">Pay Day</StyledTableCell>
-              <StyledTableCell align="right">Salary</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {employees.map((employee) => (
-              <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+      <PDFExport ref={pdfExportComponent}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
+                <StyledTableCell>ID</StyledTableCell>
+                <StyledTableCell>Name </StyledTableCell>
+                <StyledTableCell align="left">Designation </StyledTableCell>
+                <StyledTableCell align="left">Department</StyledTableCell>
+                <StyledTableCell align="left">Basic </StyledTableCell>
+                <StyledTableCell align="left"> Gross</StyledTableCell>
+                <StyledTableCell align="left">Pay Day</StyledTableCell>
+                <StyledTableCell align="right">Salary</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {employees.map((employee) => (
+                <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </PDFExport>
     </Container>
   );
 };

@@ -2,7 +2,7 @@ import { Breadcrumbs, Container, Grid, Paper, Typography, useTheme } from "@mui/
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import Announcement from "./Announcement/Announcement";
 
@@ -12,6 +12,7 @@ import { emphasize, styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 
 const Announcements = () => {
+    const { Id } = useParams();
     const theme = useTheme();
     const useStyle = makeStyles({
         announceBox: {
@@ -79,9 +80,8 @@ const Announcements = () => {
     });
     const { announceBox, activeAnnounceBox, announceTop, announceTitle, dateStyle, announceP } = useStyle();
 
-    const [isActive, setActive] = useState('6213be7d1b7ceeb243b9178a');
+    const [isActive, setActive] = useState(Id);
     const handleClick = (id) => {
-        console.log(id)
         setActive(id);
     };
 
@@ -90,7 +90,7 @@ const Announcements = () => {
         fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
             .then((res) => res.json())
             .then((data) => setData(data.data.reverse()));
-    }, []);
+    }, [Id]);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {

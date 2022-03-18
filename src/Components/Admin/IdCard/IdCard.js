@@ -8,7 +8,6 @@ import { emphasize, styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./IdCard.css";
 import SingleId from "./SingleId/SingleId";
 
 const IdCard = () => {

@@ -1,6 +1,5 @@
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
-import VideoPlayer from "react-video-js-player"
 import videoSrc from "../../../assets/video/hrcare.mp4"
 import './HeroVideo.css'
 

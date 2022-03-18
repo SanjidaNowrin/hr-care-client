@@ -25,10 +25,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 const SalaryData = (props) => {
-  const { ID, name, designation, department, Gross } = props.employee;
+  const { ID, name, designation, department, gross } = props.employee;
 
-  const basic = ((Gross - 1850) / 1.5).toFixed(0);
-  const payment = ((Gross / 30) * props.date.length).toFixed(0);
+  const basic = ((gross - 1850) / 1.5).toFixed(0);
+  const payment = ((gross / 30) * props.date.length).toFixed(0);
 
   console.log(props.date);
 
@@ -55,7 +55,7 @@ const SalaryData = (props) => {
           {basic}
         </StyledTableCell>
         <StyledTableCell component="th" scope="row">
-          {Gross}
+          {gross}
         </StyledTableCell>
 
         <StyledTableCell component="th" scope="row">

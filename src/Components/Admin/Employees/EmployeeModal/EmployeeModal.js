@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { makeStyles } from "@mui/styles";
@@ -8,7 +8,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { Divider, FormGroup, Grid } from "@mui/material";
+import { Divider, FormGroup, Grid, MenuItem } from "@mui/material";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const style = {
@@ -30,9 +30,11 @@ const EmployeeModal = ({ item }) => {
   const {
     _id,
     ID,
+    status,
     DOJ,
-    Gross,
-    Account,
+    gross,
+    bank,
+    account,
     name,
     father,
     mother,
@@ -40,6 +42,8 @@ const EmployeeModal = ({ item }) => {
     phone,
     nid,
     birth,
+    blood,
+    gendar,
     department,
     designation,
     lastCompany,
@@ -94,6 +98,28 @@ const EmployeeModal = ({ item }) => {
     }
   })
   const { inputFiend, title, deleteBox } = useStyle();
+
+
+
+  const [onestatus, setStatus] = useState();
+
+  const statusChange = (event) => {
+    setStatus(event.target.value);
+  };
+  const statusarrey = [
+    {
+      value: "Panding",
+      label: "Panding",
+    },
+    {
+      value: "Active",
+      label: "Active",
+    },
+    {
+      value: "Inactive",
+      label: "Inactive",
+    },
+  ];
   return (
     <>
       <Button onClick={handleOpen}>Edit</Button>
@@ -132,6 +158,27 @@ const EmployeeModal = ({ item }) => {
                   />
                 </Grid>
 
+
+                {/* status */}
+                <Grid item xs={2} sm={4} md={6}>
+                  <TextField
+                    {...register("status")}
+                    id="outlined-select-currency"
+                    select
+                    label="Status"
+                    defaultValue={status ? status : onestatus}
+                    onChange={statusChange}
+                    required
+                    className={inputFiend}
+                  >
+                    {statusarrey.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+
                 {/* DOJ */}
                 <Grid item xs={2} sm={4} md={6}>
                   <TextField
@@ -152,12 +199,26 @@ const EmployeeModal = ({ item }) => {
                 {/* Gross */}
                 <Grid item xs={2} sm={4} md={6}>
                   <TextField
-                    {...register("Gross")}
+                    {...register("gross")}
                     id="outlined-basic"
                     label="Gross Salary"
                     type="number"
                     variant="outlined"
-                    defaultValue={Gross}
+                    defaultValue={gross}
+                    required
+                    className={inputFiend}
+                  />
+                </Grid>
+
+                {/* bank */}
+                <Grid item xs={2} sm={4} md={6}>
+                  <TextField
+                    {...register("bank")}
+                    id="outlined-basic"
+                    label="Bank Name"
+                    type="text"
+                    variant="outlined"
+                    defaultValue={bank}
                     required
                     className={inputFiend}
                   />
@@ -166,12 +227,12 @@ const EmployeeModal = ({ item }) => {
                 {/* Account */}
                 <Grid item xs={2} sm={4} md={6}>
                   <TextField
-                    {...register("Account")}
+                    {...register("account")}
                     id="outlined-basic"
                     label="Bank Account Number"
                     type="number"
                     variant="outlined"
-                    defaultValue={Account}
+                    defaultValue={account}
                     required
                     className={inputFiend}
                   />
@@ -283,6 +344,20 @@ const EmployeeModal = ({ item }) => {
                   />
                 </Grid>
 
+                {/* gendar */}
+                <Grid item xs={2} sm={4} md={6}>
+                  <TextField
+                    {...register("gendar")}
+                    id="outlined-basic"
+                    label="Gendar"
+                    defaultValue={gendar}
+                    type="text"
+                    variant="outlined"
+                    required
+                    className={inputFiend}
+                  />
+                </Grid>
+
                 {/* designation */}
                 <Grid item xs={2} sm={4} md={6}>
                   <TextField
@@ -298,13 +373,24 @@ const EmployeeModal = ({ item }) => {
                 </Grid>
 
                 {/* department */}
-                <Grid item xs={4} sm={8} md={12}>
+                <Grid item xs={2} sm={4} md={6}>
                   <TextField
                     {...register("department")}
                     id="outlined-basic"
                     label="Department"
                     defaultValue={department}
                     required
+                    className={inputFiend}
+                  />
+                </Grid>
+
+                {/* blood */}
+                <Grid item xs={2} sm={4} md={6}>
+                  <TextField
+                    {...register("blood")}
+                    id="outlined-basic"
+                    label="Blood Group"
+                    defaultValue={blood}
                     className={inputFiend}
                   />
                 </Grid>

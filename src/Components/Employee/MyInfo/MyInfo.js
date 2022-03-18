@@ -29,10 +29,10 @@ const getUniqueId = (info) => {
         info.department === "Human Resource"
             ? "HR"
             : info.department === "Information Technology"
-            ? "IT"
-            : info.department === "Marketing"
-            ? "MK"
-            : "AC";
+                ? "IT"
+                : info.department === "Marketing"
+                    ? "MK"
+                    : "AC";
     const randomNumber = Math.floor(Math.random() * 100);
     const birthArray = info.birth.split("-");
     const birth = birthArray.join("");
@@ -123,8 +123,25 @@ const MyInfo = () => {
 
     const [department, setDepartment] = useState();
 
-    const handleChange = (event) => {
+    const departmentChange = (event) => {
         setDepartment(event.target.value);
+    };
+
+    const gendars = [
+        {
+            value: "Male",
+            label: "Male",
+        },
+        {
+            value: "Female",
+            label: "Female",
+        },
+    ];
+
+    const [gendar, setGendar] = useState();
+
+    const gendarChange = (event) => {
+        setGendar(event.target.value);
     };
 
     // Breadcrumbs
@@ -274,6 +291,26 @@ const MyInfo = () => {
                                 />
                             </Grid>
 
+                            {/* Gendar */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("gendar")}
+                                    id="outlined-select-currency"
+                                    select
+                                    label="Gendar"
+                                    value={gendar}
+                                    onChange={gendarChange}
+                                    required
+                                    className={inputFiend}
+                                >
+                                    {gendars.map((option) => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            </Grid>
+
                             {/* department */}
                             <Grid item xs={2} sm={4} md={4}>
                                 <TextField
@@ -282,7 +319,7 @@ const MyInfo = () => {
                                     select
                                     label="Department"
                                     value={department}
-                                    onChange={handleChange}
+                                    onChange={departmentChange}
                                     required
                                     className={inputFiend}
                                 >
@@ -295,7 +332,7 @@ const MyInfo = () => {
                             </Grid>
 
                             {/* designation */}
-                            <Grid item xs={4} sm={8} md={4}>
+                            <Grid item xs={2} sm={4} md={4}>
                                 <TextField
                                     {...register("designation")}
                                     id="outlined-basic"
@@ -306,7 +343,61 @@ const MyInfo = () => {
                                     className={inputFiend}
                                 />
                             </Grid>
+
+                            {/* bank */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("bank")}
+                                    id="outlined-basic"
+                                    label="Bank Name"
+                                    type="text"
+                                    variant="outlined"
+                                    required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* Account */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("account")}
+                                    id="outlined-basic"
+                                    label="Bank Account Number"
+                                    type="number"
+                                    variant="outlined"
+                                    required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* blood */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("blood")}
+                                    id="outlined-basic"
+                                    label="Blood Group"
+                                    type="text"
+                                    variant="outlined"
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* status */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("status")}
+                                    id="outlined-basic"
+                                    label="Status"
+                                    type="text"
+                                    variant="outlined"
+                                    value="Panding"
+                                    required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
                         </Grid>
+
 
                         {/* Experience */}
                         <Typography variant="h5" sx={{ mt: 3, mb: 1, fontFamily: "var(--PT_font)" }}>
