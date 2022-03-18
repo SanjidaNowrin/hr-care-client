@@ -242,10 +242,10 @@ const SalarySheet = () => {
             <TableHead>
               <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
                 <StyledTableCell>Name <hr /> ID</StyledTableCell>
-                <StyledTableCell align="left">Designation <hr />Department</StyledTableCell>
-                <StyledTableCell align="left">Basic <hr />Gross </StyledTableCell>
-                <StyledTableCell align="left">Pay Day <hr />P / H / L</StyledTableCell>
-                <StyledTableCell align="left">Bank <hr /> Account</StyledTableCell>
+                <StyledTableCell align="center">Designation <hr />Department</StyledTableCell>
+                <StyledTableCell align="center">Basic <hr />Gross </StyledTableCell>
+                <StyledTableCell align="center">Pay Day <hr />P / H / L</StyledTableCell>
+                <StyledTableCell align="center">Bank <hr /> Account</StyledTableCell>
                 <StyledTableCell align="right">Payable <br /> Amount</StyledTableCell>
               </TableRow>
             </TableHead>

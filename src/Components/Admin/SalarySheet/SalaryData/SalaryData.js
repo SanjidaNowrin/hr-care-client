@@ -45,19 +45,19 @@ const SalaryData = (props) => {
           {name} <br /> {ID}
         </StyledTableCell>
 
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell align="center" component="th" scope="row">
           {designation} <br />{department}
         </StyledTableCell>
 
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell align="center" component="th" scope="row">
           {basic} <br />{gross}
         </StyledTableCell>
 
-        <StyledTableCell component="th" scope="row">
-          <span style={{ textAlign: "center !important" }}>{dates?.length}</span> <br />{Present?.length} / {holidays?.length} / {Leaves?.length}
+        <StyledTableCell align="center" component="th" scope="row">
+          {dates?.length} <br />{Present?.length} / {holidays?.length} / {Leaves?.length}
         </StyledTableCell>
 
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell align="center" component="th" scope="row">
           {bank} <br />{account}
         </StyledTableCell>
 
