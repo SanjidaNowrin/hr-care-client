@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import React from 'react';
 import Attendance from './Attendance/Attendance';
 import EmployeeIdCard from './EmployeeIdCard/EmployeeIdCard';
-import LeaveRequest from './LeaveRequest/LeaveRequest';
+import SalaryFeatures from './SalaryFeatures/SalaryFeatures';
 
 const MainFeatures = () => {
     const useStyle = makeStyles({
@@ -44,8 +44,8 @@ const MainFeatures = () => {
             </Box>
 
             <Attendance></Attendance>
-            <LeaveRequest></LeaveRequest>
             <EmployeeIdCard></EmployeeIdCard>
+            <SalaryFeatures></SalaryFeatures>
         </Container>
     );
 };
