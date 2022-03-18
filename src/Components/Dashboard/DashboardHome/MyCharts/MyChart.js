@@ -43,7 +43,7 @@ const MyChart = ({ dataTwo, male, female }) => {
                     </Box>
                 </Box>
             </Box>
-            <Box sx={{ alignItems: "center", justifyContent: "center", display: "flex", marginTop: "-60px", marginLeft: "-12px" }}>
+            <Box sx={{ alignItems: "center", justifyContent: "center", display: "flex", marginTop: "-60px", marginLeft: "-10px" }}>
                 <Box>
                     <Box sx={{ backgroundColor: "#00C49F", color: "#00C49F", height: "10px", width: "60px" }}></Box>
                     <Typography sx={{ fw: "bold", color: " #00C49F" }}>Male: {male}%</Typography>
