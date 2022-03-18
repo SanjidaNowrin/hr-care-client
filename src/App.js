@@ -50,7 +50,7 @@ function App() {
               <Route path={"/dashboard/employeeDashboard"} element={<EmployeeDashboardHome />} />
               <Route path={"/dashboard"} element={<DashboardHome />} />
 
-              <Route
+              {/* <Route
                 path={"/dashboard/attendance"}
                 element={<MyAttendance />}
               />
@@ -82,7 +82,7 @@ function App() {
               <Route path={"/dashboard/add_course"} element={<AddCourse />} />
               <Route path={"/dashboard/salary_sheet"} element={<SalarySheet />} />
               <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
-              <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} />
+              <Route path={"/dashboard/salaryInfo"} element={<SalaryInfo />} /> */}
             </Route>
           </Routes>
         </Router>
