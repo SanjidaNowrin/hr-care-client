@@ -42,7 +42,7 @@ const MakeAdmin = () => {
     setUserEmail(event.target.value);
   };
   useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/user")
+    fetch("https://ancient-thicket-61342.herokuapp.com/user/admin")
       .then((res) => res.json())
       .then((data) => setUsers(data.data));
   }, []);
