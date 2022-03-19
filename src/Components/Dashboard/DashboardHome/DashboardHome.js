@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import BestEmployee from "./BestEmployee";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
+import Request from "./Request/Request"
 
 const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);

@@ -13,7 +13,9 @@ const SingleId = ({ employeeId }) => {
   const {
     ID,
     name,
-    profile,
+    DOJ,
+    birth,
+    blood,
     department,
     designation,
     phone,
@@ -129,7 +131,7 @@ const SingleId = ({ employeeId }) => {
                 <Typography className={textBold} variant="body2">
                   Joined Date
                 </Typography>
-                <Typography variant="body2">22/06/2021</Typography>
+                <Typography variant="body2">{DOJ}</Typography>
               </Grid>
             </Grid>
 
@@ -138,7 +140,7 @@ const SingleId = ({ employeeId }) => {
                 <Typography className={textBold} variant="body2">
                   D.O.B
                 </Typography>
-                <Typography variant="body2">22/4/2021</Typography>
+                <Typography variant="body2">{birth}</Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography className={textBold} variant="body2">
@@ -150,7 +152,7 @@ const SingleId = ({ employeeId }) => {
                 <Typography className={textBold} variant="body2">
                   Blood Group
                 </Typography>
-                <Typography variant="body2">B+</Typography>
+                <Typography variant="body2">{blood}</Typography>
               </Grid>
             </Grid>
           </Box>

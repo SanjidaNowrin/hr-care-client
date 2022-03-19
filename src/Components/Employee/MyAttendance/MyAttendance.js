@@ -231,8 +231,8 @@ const MyAttendance = (props) => {
               </Card>
             </Grid>
           ) : (
-            <Grid item xs={12} md={12} mt={3}>
-              <Box mt={3} mb={2} sx={{ display: "flex", alignItems: "center" }}>
+            <Grid item xs={12} md={12} mt={1}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Typography variant="h6">
                   <span style={{ color: "red" }}>*</span> Scan by QRCode
                 </Typography>

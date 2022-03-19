@@ -42,6 +42,7 @@ const EmployeeModal = ({ item }) => {
     phone,
     nid,
     birth,
+    blood,
     gendar,
     department,
     designation,
@@ -372,13 +373,24 @@ const EmployeeModal = ({ item }) => {
                 </Grid>
 
                 {/* department */}
-                <Grid item xs={4} sm={8} md={12}>
+                <Grid item xs={2} sm={4} md={6}>
                   <TextField
                     {...register("department")}
                     id="outlined-basic"
                     label="Department"
                     defaultValue={department}
                     required
+                    className={inputFiend}
+                  />
+                </Grid>
+
+                {/* blood */}
+                <Grid item xs={2} sm={4} md={6}>
+                  <TextField
+                    {...register("blood")}
+                    id="outlined-basic"
+                    label="Blood Group"
+                    defaultValue={blood}
                     className={inputFiend}
                   />
                 </Grid>

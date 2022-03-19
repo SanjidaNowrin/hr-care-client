@@ -25,6 +25,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
         nid,
         birth,
         gendar,
+        blood,
         department,
         designation,
         bank,
@@ -312,6 +313,18 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                                 variant="outlined"
                                 defaultValue={account}
                                 required
+                                className={inputFiend}
+                            />
+                        </Grid>
+
+                        <Grid item xs={2} sm={4} md={4}>
+                            <TextField
+                                {...register("blood")}
+                                id="outlined-basic"
+                                label="Blood Group"
+                                type="text"
+                                variant="outlined"
+                                defaultValue={blood}
                                 className={inputFiend}
                             />
                         </Grid>

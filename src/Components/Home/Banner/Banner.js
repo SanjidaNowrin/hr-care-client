@@ -38,42 +38,61 @@ const Banner = () => {
         bannerTitle: {
             marginBottom: '20px !important',
             fontWeight: '600 !important',
-            color: 'var(--p_color)'
+            color: '#000',
+            fontFamily: 'var(--PT_font) !important',
         }
     })
 
     const { verticalCenter, bannerTitle } = useStyle();
 
     return (
-        <Box sx={{ my: 8 }}>
+        <Box sx={{
+            height: '100vh', display: "flex",
+            alignItems: "center", justifyContent: 'center',
+            mt: { xs: 12, sm: 12, md: 8 }, pt: { xs: 6, sm: 12, md: 0 }, mb: { xs: 12, sm: 12, md: 0 }
+        }}>
             <Container>
                 <Swiper
-                    loop={true} autoplay={{ delay: 4000, disableOnInteraction: false }} navigation={true} className="mySwiper">
+                    loop={true}
+                    navigation={true}
+                    autoplay={{ delay: 6000, disableOnInteraction: false }}
+                    className="mySwiper"
+                >
                     {
                         banner.map(item =>
-                            <SwiperSlide key={item.id}>
-                                <Grid container spacing={8}>
+                            <SwiperSlide key={item.title}>
+                                <Grid container spacing={3}>
                                     <Grid item xs={12} md={6} className={verticalCenter}>
-                                        <Box>
+                                        <Box sx={{ mt: { sm: 12, md: 0 }, pt: { sm: 4, md: 0 } }}>
                                             <Typography variant="h3" className={bannerTitle}>
-                                                {item.name}
-                                            </Typography>
-                                            <Typography variant="h5" style={{ color: '#845EC2', fontWeight: '400' }}>
                                                 {item.title}
                                             </Typography>
                                             <Typography variant="body1" sx={{ mt: 1, color: 'var(--pt_color)', fontFamily: 'var(--PT_font)' }}>
                                                 {item.description}
                                             </Typography>
 
-                                            <Link to="/dashboard">
-                                                <Button className="btn_regular" sx={{ mt: 3 }}>
-                                                    Let's Start
-                                                </Button>
-                                            </Link>
+                                            <Box>
+                                                <Link to="/dashboard">
+                                                    <Button className="btn_regular" sx={{ mt: 3, borderRadius: '5px !important', background: '#2C73D2 !important' }}>
+                                                        Let's Start
+                                                    </Button>
+                                                </Link>
+                                                <a href="#video">
+                                                    <Button className="btn_regular" sx={{ mt: 3, ml: 2, background: 'transparent !important', color: '#000 !important', border: '1px solid #2C73D2 !important' }}>
+                                                        Watch Video
+                                                    </Button>
+                                                </a>
+                                            </Box>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={12} md={6}>
-                                        <Box>
+                                    <Grid item xs={12} md={6}
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "conter",
+                                        }}
+                                    >
+                                        <Box sx={{ width: "100%" }}>
                                             <img
                                                 src={item.img}
                                                 alt="banner"
