@@ -90,10 +90,14 @@ const Footer = () => {
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4}>
                             <Box className="single-ooter">
-                                <Typography variant="h4" sx={{ mb: 2, fontWeight: "700", color: "#fff" }}>
-                                    HR Care
-                                </Typography>
-                                <Typography variant="body1">
+                                <Link to="/">
+                                    <img
+                                        src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+                                        alt="hr care"
+                                        style={{ width: '200px' }}
+                                    />
+                                </Link>
+                                <Typography sx={{ mt: 1 }} variant="body1">
                                     This is Human resource management software which is also called Payroll software. Using this software, a
                                     company can manage their employer details, attendance, Leave, holidays, Salary, etc.
                                 </Typography>
@@ -162,11 +166,8 @@ const Footer = () => {
                                     Arrive at our Location
                                 </Typography>
                                 {/* using google maps  */}
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.2637669988117!2d90.4073473142542!3d23.737971695169474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8f4c4ce997f%3A0x94d6ee997ccd5010!2sHR%20Bhaban%2C%2026%2F1%2C%20Kakrail%20Road%2C%20Dhaka-1000%2C%20Bangladesh%2C%20Bir%20Uttam%20Samsul%20Alam%20Rd%2C%20Dhaka%201000!5e0!3m2!1sen!2sbd!4v1647339371577!5m2!1sen!2sbd"
-                                    width="100%"
-                                    height="100%"
-                                ></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.263766998823!2d90.40734731445563!3d23.737971695169072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8f4c4ce997f%3A0x94d6ee997ccd5010!2sHR%20Bhaban%2C%2026%2F1%2C%20Kakrail%20Road%2C%20Dhaka-1000%2C%20Bangladesh%2C%20Bir%20Uttam%20Samsul%20Alam%20Rd%2C%20Dhaka%201000!5e0!3m2!1sen!2sbd!4v1647607330621!5m2!1sen!2sbd" width="100%" height="100%" allowfullscreen="" loading="lazy"></iframe>
+
                             </Box>
                         </Grid>
                     </Grid>

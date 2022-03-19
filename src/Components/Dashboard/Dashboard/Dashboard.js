@@ -63,27 +63,26 @@ function Dashboard(props) {
 
   const drawer = (
     <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Typography
-        variant="h4"
-        component="div"
-        sx={{
-          flexGrow: 2,
-          padding: "11px",
-          textAlign: "center",
-          background: "var(--p_color)",
-          color: "#fff",
-          fontWeight: "700",
-          marginBottom: "20px",
-        }}
-      >
-        <Link style={{ color: "white" }} to="/home"> HR CARE</Link>
-      </Typography>
+      <Box sx={{ px: 2 }}>
+        <Link to="/home">
+          <img
+            src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+            alt="hr care"
+            style={{ width: '100%' }}
+          />
+        </Link>
+      </Box>
       <Box sx={{ pl: 2 }}>
         <Typography className={drawerTitle} variant="h6">Main</Typography>
         <List className={linkItem}>
           <Link className={dashLink} to="/dashboard">
             <DashboardOutlinedIcon className={dashIcon} />
             Dashboard
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/employeeDashboard">
+            <DashboardOutlinedIcon className={dashIcon} />
+            My Dashboard
           </Link>
         </List>
       </Box>
@@ -93,11 +92,6 @@ function Dashboard(props) {
         {/* Employees */}
         <Typography className={drawerTitle} variant="h6">Employees</Typography>
         <List className={linkItem}>
-
-          <Link className={dashLink} to="/dashboard/employeeDashboard">
-            <CoPresentOutlinedIcon className={dashIcon} />
-            My Dashboard
-          </Link>
 
           <Link className={dashLink} to="/dashboard/attendance">
             <CoPresentOutlinedIcon className={dashIcon} />

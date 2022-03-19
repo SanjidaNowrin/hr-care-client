@@ -1,20 +1,17 @@
 [
     {
-        "name": " HR Care",
+        "title": "Employee Management Software That Gives You Control",
+        "description": "Employee management software is a gift of modern technology. Being an HR professional isn't an easy job. Keeping track of everything, managing things, and checking if everyone is getting paid could be mismanaged sometimes.",
+        "img": "https://i.ibb.co/ryQxpwj/banner-3.jpg"
+    },
+    {
+        "title": "The Best HR and Payroll Management Software",
+        "description": "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
+        "img": "https://i.ibb.co/pRSPv6q/banner-2.jpg"
+    },
+    {
         "title": "Human Resource Management Admin Template",
         "description": "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
-        "img": "https://i.ibb.co/1q179X9/output-onlinepngtools-1.png"
-    },
-    {
-        "name": "Our Design",
-        "title": "Our Goal Is Employee Satisfication",
-        "description": "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
-        "img": "https://i.ibb.co/XjzvjsN/output-onlinepngtools-2.png"
-    },
-    {
-        "name": "Dashboard System",
-        "title": "Our Main Focuse Is Dashboard",
-        "description": "HR Software is system for company to maintain a database of theiremployers performance. Using this software, a company can manage their employer details, attendance, Leave, holidays, Salary, etc.",
-        "img": "https://i.ibb.co/52VcGBf/banner.png"
+        "img": "https://i.ibb.co/MpSgpwy/banner-1.jpg"
     }
 ]
