@@ -45,9 +45,6 @@ const TeamAbout = () => {
                 </Grid>
             </Grid>
 
-            <Box sx={{ mt: 4 }}>
-                <img style={{ width: '100%' }} src="https://i.ibb.co/Svg5G4B/HR-Care.png" alt="dashboard" />
-            </Box>
         </Box>
     );
 };
