@@ -25,6 +25,7 @@ import dateFormat from "../../Share/DateFormat/dateFormat";
 import BestEmployee from "./BestEmployee";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
 import Request from "./Request/Request"
+import MyCharts from "./MyCharts/MyCharts";
 
 const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);
@@ -271,10 +272,18 @@ const DashboardHome = () => {
         </Grid>
       </Box>
 
-      {/* //Best Employee  */}
-      <Box>
+      {/* //Best Employee Charts And Request */}
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
         <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
-      </Box>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4}>
+                <MyCharts></MyCharts>
+            </Grid>
+            <Grid item xs={12} sm={12} md={4}>
+                <Request></Request>
+            </Grid>
+      </Grid>
 
       {/* Total attendance chart area */}
       <Box sx={{ my: 5 }}>
