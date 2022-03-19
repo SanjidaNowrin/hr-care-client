@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import BestEmployee from "./BestEmployee";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
+import Request from "./Request/Request"
 
 const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);
@@ -241,31 +242,40 @@ const DashboardHome = () => {
                 {absent}
               </Typography>
             </Box>
-          </Grid>
+            {/* <Grid container spacing={2}>
+                <Grid item xs={6}>
+                <BestEmployee></BestEmployee>
+                </Grid>
+                <Grid item xs={6}>
+                <Request></Request>
+                </Grid>
+            </Grid> */}
+            {/* // Requeset area start*/}
 
-          <Grid item xs={6} md={3}>
-            <Box
-              className={dashTopBox}
-              sx={{ border: "1px solid #18025B !important" }}
-            >
+            <Grid item xs={6} md={3}>
               <Box
-                className={dashTopText}
-                sx={{ background: "#18025B !important" }}
+                className={dashTopBox}
+                sx={{ border: "1px solid #18025B !important" }}
               >
-                <Typography variant="h6" sx={{ color: "#fff" }}>
-                  On Leave
+                <Box
+                  className={dashTopText}
+                  sx={{ background: "#18025B !important" }}
+                >
+                  <Typography variant="h6" sx={{ color: "#fff" }}>
+                    On Leave
+                  </Typography>
+                  <DirectionsWalkIcon
+                    style={{ fontSize: "3rem", color: "#fff" }}
+                  ></DirectionsWalkIcon>
+                </Box>
+                <Typography
+                  variant="h3"
+                  sx={{ textAlign: "center", color: "#18025B", py: 1 }}
+                >
+                  {leave.length}
                 </Typography>
-                <DirectionsWalkIcon
-                  style={{ fontSize: "3rem", color: "#fff" }}
-                ></DirectionsWalkIcon>
               </Box>
-              <Typography
-                variant="h3"
-                sx={{ textAlign: "center", color: "#18025B", py: 1 }}
-              >
-                {leave.length}
-              </Typography>
-            </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Box>

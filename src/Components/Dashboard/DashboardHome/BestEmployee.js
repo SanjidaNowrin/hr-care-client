@@ -2,8 +2,11 @@ import { Box, Card, CardContent, CardMedia, Grid, Typography } from "@mui/materi
 import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
 import MyCharts from "./MyCharts/MyCharts";
+import Request from "./Request/Request";
+
 const BestEmployee = (props) => {
     const { check, finalPoint } = props;
+
     const [bestEmp, setBestEmp] = useState([]);
     console.log(bestEmp);
     useEffect(() => {
@@ -38,7 +41,6 @@ const BestEmployee = (props) => {
     const { cardContainer, cardImg, cardBox, cardContent, cardTitle } = useStyle();
     return (
         <Grid container>
-            <Grid item xs={12} sm={12} md={1}></Grid>
             <Grid item xs={12} sm={12} md={4}>
                 {bestEmp?.slice(2, 3).map((data) => (
                     <Box className={cardContainer}>
@@ -69,10 +71,12 @@ const BestEmployee = (props) => {
                 ))}
             </Grid>
 
-            <Grid item xs={12} sm={12} md={6}>
+            <Grid item xs={12} sm={12} md={4}>
                 <MyCharts></MyCharts>
             </Grid>
-            <Grid item xs={12} sm={12} md={1}></Grid>
+            <Grid item xs={12} sm={12} md={4}>
+                <Request></Request>
+            </Grid>
         </Grid>
     );
 };
