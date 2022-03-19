@@ -25,6 +25,7 @@ import Teams from './Components/Home/Teams/Teams';
 import AuthProvider from "./contexts/AuthProvider";
 import TaskAssign from './Components/Admin/TaskAssign/TaskAssign';
 import EnrollCourse from "./Components/Employee/Courses/EnrollCourse/EnrollCourse";
+import AdminRoute from "./Components/Routes/AdminRoute/AdminRoute";
 
 function App() {
   return (
@@ -67,7 +68,7 @@ function App() {
               <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
-              <Route path={"/dashboard/all_employees"} element={<Employees />} />
+              <Route path={"/dashboard/all_employees"} element={<AdminRoute><Employees /></AdminRoute>} />
               <Route path={"/dashboard/id_card"} element={<IdCard />} />
               <Route path={"/dashboard/manage_attendance"} element={<AttendanceManages />} />
               <Route path={"/dashboard/leaveRequests"} element={<LeaveRequests />} />
