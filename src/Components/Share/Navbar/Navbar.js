@@ -7,7 +7,6 @@ import {
     Divider,
     IconButton,
     Toolbar,
-    Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";

@@ -139,7 +139,7 @@ function Dashboard(props) {
 
           <Link className={dashLink} to="/dashboard/manage_attendance">
             <CoPresentOutlinedIcon className={dashIcon} />
-            Attendance
+            Manage Attendance
           </Link>
 
           <Link className={dashLink} to="/dashboard/LeaveRequests">
