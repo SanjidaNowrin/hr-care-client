@@ -192,9 +192,9 @@ const MyAttendance = (props) => {
       </Box>
 
       <Grid container >
-        <Grid container item xs={12} md={6} mt={3}>
+        <Grid container item xs={12} md={6}>
           {user?.email === findPerson ? (
-            <Grid item xs={12} md={12} mt={3}>
+            <Grid item xs={12} md={12}>
               <Card className={classes.cardStyle}>
                 <CardActionArea>
                   <CardMedia
@@ -251,7 +251,7 @@ const MyAttendance = (props) => {
                   />
                 </a>
               </Box>
-              <Card className={classes.cardStyle}>
+              <Card className={classes.cardStyle} height='200px'>
                 <CardActionArea>
                   <CardContent>
                     {findPerson ? (
