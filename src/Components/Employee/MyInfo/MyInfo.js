@@ -29,10 +29,10 @@ const getUniqueId = (info) => {
         info.department === "Human Resource"
             ? "HR"
             : info.department === "Information Technology"
-            ? "IT"
-            : info.department === "Marketing"
-            ? "MK"
-            : "AC";
+                ? "IT"
+                : info.department === "Marketing"
+                    ? "MK"
+                    : "AC";
     const randomNumber = Math.floor(Math.random() * 100);
     const birthArray = info.birth.split("-");
     const birth = birthArray.join("");
@@ -366,6 +366,18 @@ const MyInfo = () => {
                                     type="number"
                                     variant="outlined"
                                     required
+                                    className={inputFiend}
+                                />
+                            </Grid>
+
+                            {/* blood */}
+                            <Grid item xs={2} sm={4} md={4}>
+                                <TextField
+                                    {...register("blood")}
+                                    id="outlined-basic"
+                                    label="Blood Group"
+                                    type="text"
+                                    variant="outlined"
                                     className={inputFiend}
                                 />
                             </Grid>
