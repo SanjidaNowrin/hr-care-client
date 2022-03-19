@@ -242,40 +242,31 @@ const DashboardHome = () => {
                 {absent}
               </Typography>
             </Box>
-            {/* <Grid container spacing={2}>
-                <Grid item xs={6}>
-                <BestEmployee></BestEmployee>
-                </Grid>
-                <Grid item xs={6}>
-                <Request></Request>
-                </Grid>
-            </Grid> */}
-            {/* // Requeset area start*/}
+          </Grid>
 
-            <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={3}>
+            <Box
+              className={dashTopBox}
+              sx={{ border: "1px solid #18025B !important" }}
+            >
               <Box
-                className={dashTopBox}
-                sx={{ border: "1px solid #18025B !important" }}
+                className={dashTopText}
+                sx={{ background: "#18025B !important" }}
               >
-                <Box
-                  className={dashTopText}
-                  sx={{ background: "#18025B !important" }}
-                >
-                  <Typography variant="h6" sx={{ color: "#fff" }}>
-                    On Leave
-                  </Typography>
-                  <DirectionsWalkIcon
-                    style={{ fontSize: "3rem", color: "#fff" }}
-                  ></DirectionsWalkIcon>
-                </Box>
-                <Typography
-                  variant="h3"
-                  sx={{ textAlign: "center", color: "#18025B", py: 1 }}
-                >
-                  {leave.length}
+                <Typography variant="h6" sx={{ color: "#fff" }}>
+                  On Leave
                 </Typography>
+                <DirectionsWalkIcon
+                  style={{ fontSize: "3rem", color: "#fff" }}
+                ></DirectionsWalkIcon>
               </Box>
-            </Grid>
+              <Typography
+                variant="h3"
+                sx={{ textAlign: "center", color: "#18025B", py: 1 }}
+              >
+                {leave.length}
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>
