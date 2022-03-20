@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Breadcrumbs,
@@ -168,7 +168,7 @@ const TaskAssign = () => {
                 >
                   <span style={{ color: " #01578A" }}> Assign </span> Task
                 </Typography>
-                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" alt="icon" />{" "}
+                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" alt="icon" />
               </Box>
               <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                 <Box sx={{ width: "100%" }}>
