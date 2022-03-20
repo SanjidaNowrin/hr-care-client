@@ -9,6 +9,7 @@ const BestEmployee = (props) => {
 
     const [bestEmp, setBestEmp] = useState([]);
     console.log(bestEmp);
+    console.log(bestEmp?.slice(2, 3));
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
             .then((res) => res.json())
