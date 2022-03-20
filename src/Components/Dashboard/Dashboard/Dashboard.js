@@ -65,7 +65,7 @@ function Dashboard(props) {
 
   const drawer = (
     <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Box sx={{ px: 2 }}>
+      <Box sx={{ px: 2, mt: 2 }}>
         <Link to="/home">
           <img
             src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"

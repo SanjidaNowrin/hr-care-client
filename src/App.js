@@ -40,19 +40,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            <Route
-              exact
-              path={`/dashboard`}
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
+            <Route exact path={`/dashboard`} element={<PrivateRoute><Dashboard /></PrivateRoute>}
             >
               <Route path={"/dashboard"} element={<EmployeeDashboardHome />} />
-              <Route path={"/dashboard/admin"} element={<DashboardHome />} />
-
-
               <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
               <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
               <Route path={"/dashboard/announcements"} element={<Announcements />} />
@@ -61,7 +51,7 @@ function App() {
               <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
-
+              <Route path={"/dashboard/admin"} element={<AdminRoute><DashboardHome /></AdminRoute>} />
               <Route path={"/dashboard/all_employees"} element={<AdminRoute><Employees /></AdminRoute>} />
               <Route path={"/dashboard/id_card"} element={<AdminRoute><IdCard /> </AdminRoute>} />
               <Route path={"/dashboard/manage_attendance"} element={<AdminRoute><AttendanceManages /></AdminRoute>} />
