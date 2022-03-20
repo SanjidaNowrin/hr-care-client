@@ -24,10 +24,12 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import { Link, Outlet } from "react-router-dom";
 import DashNav from "../DashNav/DashNav";
+import useAuth from "../../../hooks/useAuth";
 
 const drawerWidth = 260;
 
 function Dashboard(props) {
+  const { isAdmin } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -72,26 +74,16 @@ function Dashboard(props) {
           />
         </Link>
       </Box>
-      <Box sx={{ pl: 2 }}>
-        <Typography className={drawerTitle} variant="h6">Main</Typography>
-        <List className={linkItem}>
-          <Link className={dashLink} to="/dashboard">
-            <DashboardOutlinedIcon className={dashIcon} />
-            Dashboard
-          </Link>
-
-          <Link className={dashLink} to="/dashboard/employeeDashboard">
-            <DashboardOutlinedIcon className={dashIcon} />
-            My Dashboard
-          </Link>
-        </List>
-      </Box>
-      <Divider />
 
       <Box sx={{ pl: 2 }}>
         {/* Employees */}
         <Typography className={drawerTitle} variant="h6">Employees</Typography>
         <List className={linkItem}>
+
+          <Link className={dashLink} to="/dashboard">
+            <DashboardOutlinedIcon className={dashIcon} />
+            My Dashboard
+          </Link>
 
           <Link className={dashLink} to="/dashboard/myinfo">
             <AccountBoxOutlinedIcon className={dashIcon} />
@@ -121,64 +113,72 @@ function Dashboard(props) {
       <Divider />
 
       {/* HRM */}
-      <Box sx={{ pl: 2 }}>
-        <Typography className={drawerTitle} variant="h6">HRM</Typography>
-        <List className={linkItem}>
-          <Link className={dashLink} to="/dashboard/all_employees">
-            <AccountBoxOutlinedIcon className={dashIcon} />
-            All Employees
-          </Link>
-          <Link className={dashLink} to="/dashboard/task_assign">
-            <AddTaskIcon className={dashIcon} />
-            Task Assign
-          </Link>
-          <Link className={dashLink} to="/dashboard/id_card">
-            <BadgeOutlinedIcon className={dashIcon} />
-            ID Card
-          </Link>
+      {
+        isAdmin && (
 
-          <Link className={dashLink} to="/dashboard/manage_attendance">
-            <CoPresentOutlinedIcon className={dashIcon} />
-            Attendance
-          </Link>
+          <Box sx={{ pl: 2 }}>
+            <Typography className={drawerTitle} variant="h6">HRM</Typography>
+            <List className={linkItem}>
 
-          <Link className={dashLink} to="/dashboard/LeaveRequests">
-            <ExitToAppOutlinedIcon className={dashIcon} />
-            Leave Requests
-          </Link>
+              <Link className={dashLink} to="/dashboard/admin">
+                <DashboardOutlinedIcon className={dashIcon} />
+                Admin Dashboard
+              </Link>
 
-          <Link className={dashLink} to="/dashboard/holiday">
-            <HolidayVillageOutlinedIcon className={dashIcon} />
-            Holiday
-          </Link>
+              <Link className={dashLink} to="/dashboard/all_employees">
+                <AccountBoxOutlinedIcon className={dashIcon} />
+                All Employees
+              </Link>
 
-          <Link className={dashLink} to="/dashboard/add_announcement">
-            <CampaignIcon className={dashIcon} />
-            Add Announcement
-          </Link>
+              <Link className={dashLink} to="/dashboard/id_card">
+                <BadgeOutlinedIcon className={dashIcon} />
+                ID Card
+              </Link>
 
-          <Link className={dashLink} to="/dashboard/add_course">
-            <GolfCourseOutlinedIcon className={dashIcon} />
-            Add Course
-          </Link>
+              <Link className={dashLink} to="/dashboard/manage_attendance">
+                <CoPresentOutlinedIcon className={dashIcon} />
+                All Attendance
+              </Link>
 
-          <Link className={dashLink} to="/dashboard/salary_sheet">
-            <ListAltIcon className={dashIcon} />
-            Salary Sheet
-          </Link>
+              <Link className={dashLink} to="/dashboard/LeaveRequests">
+                <ExitToAppOutlinedIcon className={dashIcon} />
+                Leave Requests
+              </Link>
 
-          <Link className={dashLink} to="/dashboard/make_admin">
-            <AdminPanelSettingsIcon className={dashIcon} />
-            Make Admin
-          </Link>
-        </List>
-      </Box>
+              <Link className={dashLink} to="/dashboard/holiday">
+                <HolidayVillageOutlinedIcon className={dashIcon} />
+                Holiday
+              </Link>
 
-      <Divider />
-      {/* Performances */}
-      <Box sx={{ pl: 2 }}>
-        <Typography className={drawerTitle} variant="h6">Performances</Typography>
-      </Box>
+              <Link className={dashLink} to="/dashboard/add_announcement">
+                <CampaignIcon className={dashIcon} />
+                Add Announcement
+              </Link>
+
+              <Link className={dashLink} to="/dashboard/add_course">
+                <GolfCourseOutlinedIcon className={dashIcon} />
+                Add Course
+              </Link>
+
+              <Link className={dashLink} to="/dashboard/task_assign">
+                <AddTaskIcon className={dashIcon} />
+                Task Assign
+              </Link>
+
+              <Link className={dashLink} to="/dashboard/salary_sheet">
+                <ListAltIcon className={dashIcon} />
+                Salary Sheet
+              </Link>
+
+              <Link className={dashLink} to="/dashboard/make_admin">
+                <AdminPanelSettingsIcon className={dashIcon} />
+                Make Admin
+              </Link>
+            </List>
+          </Box>
+        )}
+
+
     </Box>
   );
 

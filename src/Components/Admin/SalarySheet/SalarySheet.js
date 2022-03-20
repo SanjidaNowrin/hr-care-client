@@ -234,37 +234,38 @@ const SalarySheet = () => {
           Download Salary Sheet
         </Button>
       </Box>
-      <hr />
-      <PDFExport ref={pdfExportComponent}>
-        <Box sx={{ textAlign: 'center' }}>
-          <img
-            src="https://i.ibb.co/MkzYpxC/hr-care-logo.png"
-            alt="hr care"
-            style={{ width: '20%' }}
-          />
-          <Typography > Salary Sheet From {startDate} to {endDate}</Typography>
-        </Box>
-        <Typography> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
-        <TableContainer component={Paper}>
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
-                <StyledTableCell>Name <hr /> ID</StyledTableCell>
-                <StyledTableCell align="center">Designation <hr />Department</StyledTableCell>
-                <StyledTableCell align="center">Basic <hr />Gross </StyledTableCell>
-                <StyledTableCell align="center">Pay Day <hr />P / H / L</StyledTableCell>
-                <StyledTableCell align="center">Bank <hr /> Account</StyledTableCell>
-                <StyledTableCell align="right">Payable <br /> Amount</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {employees.map((employee) => (
-                <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </PDFExport>
+      <Box sx={{ border: '1px solid #ddd' }}>
+        <PDFExport ref={pdfExportComponent}>
+          <Box sx={{ textAlign: 'center' }}>
+            <img
+              src="https://i.ibb.co/MkzYpxC/hr-care-logo.png"
+              alt="hr care"
+              style={{ width: '20%' }}
+            />
+            <Typography > Salary Sheet From {startDate} to {endDate}</Typography>
+          </Box>
+          <Typography> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
+          <TableContainer component={Paper}>
+            <Table aria-label="customized table">
+              <TableHead>
+                <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
+                  <StyledTableCell>Name <hr /> ID</StyledTableCell>
+                  <StyledTableCell align="center">Designation <hr />Department</StyledTableCell>
+                  <StyledTableCell align="center">Basic <hr />Gross </StyledTableCell>
+                  <StyledTableCell align="center">Pay Day <hr />P / H / L</StyledTableCell>
+                  <StyledTableCell align="center">Bank <hr /> Account</StyledTableCell>
+                  <StyledTableCell align="right">Payable <br /> Amount</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {employees.map((employee) => (
+                  <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </PDFExport>
+      </Box>
     </Container >
   );
 };
