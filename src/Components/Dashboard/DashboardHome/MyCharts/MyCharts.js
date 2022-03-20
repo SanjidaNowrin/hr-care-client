@@ -45,9 +45,9 @@ const MyCharts = () => {
     }
 
     return (
-        <div>
+        <>
             <MyChart dataTwo={chartData} male={malePersentage.toFixed(2)} female={femalePersentage.toFixed(2)}></MyChart>
-        </div>
+        </>
     );
 };
 
