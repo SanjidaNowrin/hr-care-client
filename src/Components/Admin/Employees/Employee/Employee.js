@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { _id, name, email, phone, department, designation } = item;
+    const { photo, name, email, department, designation, status } = item;
 
     return (
         <>
@@ -41,16 +41,18 @@ const Employee = ({ item }) => {
                         sx={{ padding: "0 !important" }}
                         avatar={
                             <Avatar sx={{ background: "var(--p_color) !important" }} aria-label="recipe">
-                                {name.slice(0, 1)}
+                                {
+                                    name.slice(0, 1)
+                                }
                             </Avatar>
                         }
                         title={name}
                         subheader={email}
                     />
                 </TableCell>
-                <StyledTableCell align="left">{phone}</StyledTableCell>
                 <StyledTableCell align="center">{department}</StyledTableCell>
                 <StyledTableCell align="center">{designation}</StyledTableCell>
+                <StyledTableCell align="center">{status}</StyledTableCell>
                 <StyledTableCell align="right">
                     <EmployeeModal item={item} />
                 </StyledTableCell>

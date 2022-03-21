@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import BestEmployee from "./BestEmployee";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
+import MyCharts from "./MyCharts/MyCharts"
 import Request from "./Request/Request"
 
 const DashboardHome = () => {
@@ -116,6 +117,14 @@ const DashboardHome = () => {
   const present = todayPresent.length;
   const absent = (totalEmployee - present) | 0;
 
+  function leftPad(number) {
+    var output = number + '';
+    while (output.length < 2) {
+      output = '0' + output;
+    }
+    return output;
+  }
+
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
       theme.palette.mode === "light"
@@ -189,7 +198,7 @@ const DashboardHome = () => {
                 variant="h3"
                 sx={{ textAlign: "center", color: "#00D2FC", py: 1 }}
               >
-                {employees.length}
+                {leftPad(employees.length)}
               </Typography>
             </Box>
           </Grid>
@@ -214,7 +223,7 @@ const DashboardHome = () => {
                 variant="h3"
                 sx={{ textAlign: "center", color: "#845EC2", py: 1 }}
               >
-                {present}
+                {leftPad(present)}
               </Typography>
             </Box>
           </Grid>
@@ -239,7 +248,7 @@ const DashboardHome = () => {
                 variant="h3"
                 sx={{ textAlign: "center", color: "#fb3e6a", py: 1 }}
               >
-                {absent}
+                {leftPad(absent)}
               </Typography>
             </Box>
           </Grid>
@@ -264,7 +273,7 @@ const DashboardHome = () => {
                 variant="h3"
                 sx={{ textAlign: "center", color: "#18025B", py: 1 }}
               >
-                {leave.length}
+                {leftPad(leave.length)}
               </Typography>
             </Box>
           </Grid>
@@ -272,11 +281,24 @@ const DashboardHome = () => {
       </Box>
 
       {/* //Best Employee  */}
-      <Box>
-        <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
+      <Box sx={{ mt: 7 }}>
+        <Grid container spacing={5}>
+          <Grid item xs={12} md={4}>
+            <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
+          </Grid>
+
+          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <MyCharts></MyCharts>
+          </Grid>
+
+          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Request></Request>
+          </Grid>
+        </Grid>
+
       </Box>
 
-      {/* Total attendance chart area */}
+      {/* Total attendance area */}
       <Box sx={{ my: 5 }}>
         <Box
           sx={{
@@ -317,7 +339,6 @@ const DashboardHome = () => {
           </Grid>
         </Grid>
       </Box>
-      {/* <CalenderChart/> */}
     </Container>
   );
 };

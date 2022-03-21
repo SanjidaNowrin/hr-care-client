@@ -122,7 +122,7 @@ const EmployeeModal = ({ item }) => {
   ];
   return (
     <>
-      <Button onClick={handleOpen}>Edit</Button>
+      <Button onClick={handleOpen} sx={{ border: '1px solid #ccc' }}>Edit</Button>
       <Modal
         keepMounted
         open={open}

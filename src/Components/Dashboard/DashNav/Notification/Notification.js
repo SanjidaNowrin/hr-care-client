@@ -82,7 +82,7 @@ const Notification = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
 
-                <Box sx={{ height: '430px', overflowY: 'scroll' }}>
+                <Box sx={{ height: '420px', overflowY: 'scroll' }}>
                     <Typography variant='h5' sx={{ textAlign: 'center', mb: 1, color: 'var(--p_color)', fontFamily: 'var(--PT_font)' }}>
                         Notifications
                     </Typography>
@@ -112,7 +112,14 @@ const Notification = () => {
                             </Link>
                         )
                     }
+
                 </Box>
+                <Divider />
+                <Link to='/dashboard/announcements'>
+                    <Typography variant='h6' sx={{ textAlign: 'center', margin: '3px 0 0', color: '#555', fontFamily: 'var(--PT_font)', fontWeight: '400' }}>
+                        All Notifications
+                    </Typography>
+                </Link>
             </Menu>
         </>
     );

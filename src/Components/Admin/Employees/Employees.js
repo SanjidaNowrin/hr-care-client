@@ -79,12 +79,6 @@ console.log(employees);
                                         Employee
                                     </StyledTableCell>
 
-                                    <StyledTableCell
-                                        sx={{ background: 'var(--t_color) !important' }}
-                                        align="left"
-                                    >
-                                        Phone
-                                    </StyledTableCell>
 
                                     <StyledTableCell
                                         sx={{ background: 'var(--t_color) !important' }}
@@ -98,6 +92,13 @@ console.log(employees);
                                         align="center"
                                     >
                                         Designation
+                                    </StyledTableCell>
+
+                                    <StyledTableCell
+                                        sx={{ background: 'var(--t_color) !important' }}
+                                        align="center"
+                                    >
+                                        Status
                                     </StyledTableCell>
 
                                     <StyledTableCell
