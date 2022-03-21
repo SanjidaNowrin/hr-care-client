@@ -40,7 +40,6 @@ import Button from '@mui/material/Button';
 
 const EmployeeDashboardHome = () => {
   const { user } = useAuth();
-  console.log(user);
   const [attendance, setAttendance] = useState([]);
   const [holiday, setHoliday] = useState([]);
   const [leave, setLeave] = useState([]);
@@ -50,8 +49,6 @@ const EmployeeDashboardHome = () => {
   const [thisMonthTask, setThisMonthTask] = React.useState([]);
 
   const [taskUpdate, setTaskUpdate] = useState(false);
-  console.log(taskUpdate, thisMonthTask);
-  console.log(checked);
   // fetch attendence
 
   const currentDate = dateFormat(
@@ -59,7 +56,7 @@ const EmployeeDashboardHome = () => {
     "yyyy-MM-dd"
   );
   const dateString = currentDate.split("-")[1];
-  console.log(dateString, currentDate, holiday, attendance);
+
   useEffect(() => {
     fetch(
       `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
@@ -77,7 +74,6 @@ const EmployeeDashboardHome = () => {
         setLeave(filteredLeave);
         setAttendance(filteredData);
         setHoliday(filteredHoliday);
-        console.log(data.result, filteredData, filteredHoliday);
       });
   }, [dateString, user?.email]);
 
@@ -93,11 +89,9 @@ const EmployeeDashboardHome = () => {
         const filterTask = data?.data?.filter(
           (task) => task.email === user.email && task.date === currentDate
         );
-        console.log(filterTask);
         setToDo(filterTask);
         setChecked(filterTask[0]?.taskDone);
         setThisMonthTask(filterThisMonthTask);
-        console.log(filterThisMonthTask);
       });
   }, [taskUpdate, user.email, currentDate, checked, dateString]);
 

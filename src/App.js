@@ -68,7 +68,7 @@ function App() {
               <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
-              <Route path={"/dashboard/all_employees"} element={<AdminRoute><Employees /></AdminRoute>} />
+              <Route path={"/dashboard/all_employees"} element={<Employees />} />
               <Route path={"/dashboard/id_card"} element={<IdCard />} />
               <Route path={"/dashboard/manage_attendance"} element={<AttendanceManages />} />
               <Route path={"/dashboard/leaveRequests"} element={<LeaveRequests />} />

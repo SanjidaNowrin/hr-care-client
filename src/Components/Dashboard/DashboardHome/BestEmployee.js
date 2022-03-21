@@ -4,9 +4,7 @@ import Divider from '@mui/material/Divider';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import React, { useEffect, useState } from "react";
 
-const BestEmployee = (props) => {
-    const { check, finalPoint } = props;
-
+const BestEmployee = ({ check, finalPoint }) => {
     const [bestEmp, setBestEmp] = useState([]);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
@@ -91,7 +89,7 @@ const BestEmployee = (props) => {
     return (
         <>
             {bestEmp?.slice(2, 3).map((data) => (
-                <Box className={cardContainer}>
+                <Box key={data._id} className={cardContainer}>
                     <Card className={cardBox}>
                         <Box className={awardBox}>
                             <Typography sx={{ fontFamily: 'var(--PT_font)' }} variant="h5">
