@@ -30,9 +30,9 @@ const Employees = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then((res) => res.json())
-            .then((data) => setEmployees(data.data));
+            .then((data) => setEmployees(data.result));
     }, [employees]);
-
+console.log(employees);
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];

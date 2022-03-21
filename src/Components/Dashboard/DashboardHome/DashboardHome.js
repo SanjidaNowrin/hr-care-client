@@ -30,7 +30,7 @@ const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees/all")
       .then((res) => res.json())
       .then((data) => setEmployees(data.data));
   }, []);
