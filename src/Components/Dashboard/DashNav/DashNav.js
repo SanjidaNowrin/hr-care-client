@@ -16,9 +16,9 @@ import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import EventIcon from "@mui/icons-material/Event";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
-import HolidayCalendar from "./../../Employee/HolidayCalender/HolidayCalender";
+import HolidayCalendar from "./HolidayCalender/HolidayCalender";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Notification from "../Notification/Notification";
+import Notification from "./Notification/Notification";
 const style = {
   position: "absolute",
   top: "50%",

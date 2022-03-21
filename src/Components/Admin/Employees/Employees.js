@@ -32,7 +32,7 @@ const Employees = () => {
             .then((res) => res.json())
             .then((data) => setEmployees(data.data.reverse()));
     }, [employees]);
-
+    console.log(employees)
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];

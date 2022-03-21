@@ -243,7 +243,7 @@ const TaskAssign = () => {
                   }}
                   htmlFor="title"
                 >
-                  Today Meeting Start <span style={{ color: "red" }}>*</span>
+                  Today Meeting Time <span style={{ color: "red" }}>*</span>
                 </label>
                 <TextField
                   sx={{ width: "100%" }}
@@ -251,23 +251,6 @@ const TaskAssign = () => {
                   id="startTime"
                   type="time"
                   {...register("startTime", { required: true })}
-                />
-                <label
-                  style={{
-                    display: "block",
-                    marginBottom: "4px",
-                    marginTop: "0.7rem",
-                  }}
-                  htmlFor="title"
-                >
-                  Today Meeting End <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  sx={{ width: "100%" }}
-                  variant="outlined"
-                  id="endTime"
-                  type="time"
-                  {...register("endTime", { required: true })}
                 />
 
                 <Box sx={{ textAlign: "center", mt: 3 }}>
