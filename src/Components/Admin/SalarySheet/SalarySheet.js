@@ -89,7 +89,7 @@ const SalarySheet = () => {
   useEffect(() => {
     fetch("https://ancient-thicket-61342.herokuapp.com/employees")
       .then((res) => res.json())
-      .then((data) => setEmployees(data.data));
+      .then((data) => setEmployees(data.result));
   }, []);
   useEffect(() => {
     fetch(`https://ancient-thicket-61342.herokuapp.com/attendance/`)

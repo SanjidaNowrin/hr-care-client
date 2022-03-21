@@ -21,9 +21,9 @@ import Home from "./Components/Home/Home/Home";
 import Login from "./Components/Login/Login/Login";
 import Register from "./Components/Login/Register/Register";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
-import Teams from './Components/Home/Teams/Teams';
+import Teams from "./Components/Home/Teams/Teams";
 import AuthProvider from "./contexts/AuthProvider";
-import TaskAssign from './Components/Admin/TaskAssign/TaskAssign';
+import TaskAssign from "./Components/Admin/TaskAssign/TaskAssign";
 import EnrollCourse from "./Components/Employee/Courses/EnrollCourse/EnrollCourse";
 import AdminRoute from "./Components/Routes/AdminRoute/AdminRoute";
 import Nopage from "./Components/Share/Nopage/Nopage";
@@ -48,7 +48,10 @@ function App() {
               <Route path={"/dashboard/announcements"} element={<Announcements />} />
               <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
               <Route path={"/dashboard/course"} element={<Courses />} />
-              <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
+              <Route
+                path={"/dashboard/enroll/:id"}
+                element={<EnrollCourse />}
+              />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
               <Route path={"/dashboard/admin"} element={<AdminRoute><DashboardHome /></AdminRoute>} />

@@ -65,7 +65,7 @@ function Dashboard(props) {
 
   const drawer = (
     <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Box sx={{ px: 2, mt: 2 }}>
+      <Box sx={{ px: 2, mt: 1 }}>
         <Link to="/home">
           <img
             src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
@@ -75,7 +75,7 @@ function Dashboard(props) {
         </Link>
       </Box>
 
-      <Box sx={{ pl: 2 }}>
+      <Box sx={{ pl: 2, mt: 1 }}>
         {/* Employees */}
         <Typography className={drawerTitle} variant="h6">Employees</Typography>
         <List className={linkItem}>

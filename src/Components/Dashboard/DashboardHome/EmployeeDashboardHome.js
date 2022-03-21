@@ -46,7 +46,7 @@ const EmployeeDashboardHome = () => {
   const [holiday, setHoliday] = useState([]);
   const [leave, setLeave] = useState([]);
   const [present, setPresent] = useState([]);
-
+  console.log("leave", leave)
   const [toDo, setToDo] = useState([]);
   const [checked, setChecked] = React.useState([]);
   const [thisMonthTask, setThisMonthTask] = React.useState([]);
