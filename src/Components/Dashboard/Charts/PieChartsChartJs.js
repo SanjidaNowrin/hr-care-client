@@ -10,7 +10,7 @@ ChartJS.register(
 
 const PieChartsChartJs = ({ attendance, dateString, holiday, leave }) => {
 
-    const w = attendance.length
+    const w = attendance
     const h = holiday.length
     const l = leave.length;
     const p = (w - (h + l))
@@ -21,20 +21,25 @@ const PieChartsChartJs = ({ attendance, dateString, holiday, leave }) => {
             label: '# of Votes',
             data: [p, l, h],
             backgroundColor: [
-                'rgba(75, 192, 192, .7)',
+                'rgba(255, 205, 86, .5)',
+                'rgba(255, 99, 132, .5)',
+                'rgba(75, 192, 192, .5)',
 
-                'rgba(255, 205, 86, .7)',
 
-                'rgba(255, 99, 132, .7)',
+
+
+
 
 
             ],
             borderColor: [
-
-                'rgba(75, 192, 192, .7)',
                 'rgba(255, 205, 86, .7)',
-
                 'rgba(255, 99, 132, .7)',
+                'rgba(75, 192, 192, .7)',
+
+
+
+
 
 
             ],
