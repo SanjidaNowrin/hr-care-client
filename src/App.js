@@ -23,10 +23,10 @@ import Home from "./Components/Home/Home/Home";
 import Teams from "./Components/Home/Teams/Teams";
 import Login from "./Components/Login/Login/Login";
 import Register from "./Components/Login/Register/Register";
-import AdminRoute from "./Components/Routes/AdminRoute/AdminRoute";
 import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
-import Nopage from "./Components/Share/Nopage/Nopage";
 import AuthProvider from "./contexts/AuthProvider";
+import AdminRoute from "./Components/Routes/AdminRoute/AdminRoute";
+import Nopage from "./Components/Share/Nopage/Nopage";
 
 function App() {
     return (

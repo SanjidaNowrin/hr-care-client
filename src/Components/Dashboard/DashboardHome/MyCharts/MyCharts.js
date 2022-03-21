@@ -9,7 +9,7 @@ const MyCharts = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then((res) => res.json())
-            .then((data) => setChart(data.data));
+            .then((data) => setChart(data.result));
     }, []);
 
     //filter employee male

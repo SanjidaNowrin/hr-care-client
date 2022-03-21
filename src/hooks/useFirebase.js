@@ -30,7 +30,7 @@ const useFirebase = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // setUser(user);
+        setUser(user);
         // save user to the database
         saveUserInfo(user?.email, user.displayName, "PUT");
         const destination = location?.state?.from || "/home";

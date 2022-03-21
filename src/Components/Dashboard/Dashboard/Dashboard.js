@@ -63,24 +63,22 @@ function Dashboard(props) {
 
     const { linkItem, dashLink, dashIcon, drawerTitle } = useStyle();
 
-    const drawer = (
-        <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-            <Box sx={{ px: 2, mt: 2 }}>
-                <Link to="/home">
-                    <img src="https://i.ibb.co/7KZFxyc/hr-care-logo.png" alt="hr care" style={{ width: "100%" }} />
-                </Link>
-            </Box>
+  const drawer = (
+    <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
+      <Box sx={{ px: 2, mt: 1 }}>
+        <Link to="/home">
+          <img
+            src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+            alt="hr care"
+            style={{ width: '100%' }}
+          />
+        </Link>
+      </Box>
 
-            <Box sx={{ pl: 2 }}>
-                {/* Employees */}
-                <Typography className={drawerTitle} variant="h6">
-                    Employees
-                </Typography>
-                <List className={linkItem}>
-                    <Link className={dashLink} to="/dashboard">
-                        <DashboardOutlinedIcon className={dashIcon} />
-                        My Dashboard
-                    </Link>
+      <Box sx={{ pl: 2, mt: 1 }}>
+        {/* Employees */}
+        <Typography className={drawerTitle} variant="h6">Employees</Typography>
+        <List className={linkItem}>
 
                     <Link className={dashLink} to="/dashboard/myinfo">
                         <AccountBoxOutlinedIcon className={dashIcon} />

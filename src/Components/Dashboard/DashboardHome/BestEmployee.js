@@ -5,7 +5,7 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import React, { useEffect, useState } from "react";
 
 const BestEmployee = (props) => {
-    const { check, finalPoint } = props;
+  const { check, finalPoint } = props;
 
     const [bestEmp, setBestEmp] = useState([]);
     useEffect(() => {
