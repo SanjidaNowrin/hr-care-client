@@ -37,6 +37,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import fun from '../../../assets/images/fun2.png';
+import LeaveCalender from "./LeaveCalender/LeaveCalender";
 
 
 const EmployeeDashboardHome = () => {
@@ -46,7 +47,10 @@ const EmployeeDashboardHome = () => {
   const [holiday, setHoliday] = useState([]);
   const [leave, setLeave] = useState([]);
   const [present, setPresent] = useState([]);
-  console.log("leave", leave)
+  const [sickLeave, setSickLeave] = useState([]);
+  const [casualLeave, setCasualLeave] = useState([]);
+
+  console.log("leave", leave, sickLeave, casualLeave)
   const [toDo, setToDo] = useState([]);
   const [checked, setChecked] = React.useState([]);
   const [thisMonthTask, setThisMonthTask] = React.useState([]);
@@ -81,10 +85,14 @@ const EmployeeDashboardHome = () => {
         );
         const filteredLeave = data?.result?.filter((y) => y.status === "Leave");
         const filteredPresent = data?.result?.filter((y) => y.status === "Present");
+        const filteredSickLeave = data?.result?.filter((y) => y.vacation === "Sick Leave");
+        const filteredCasualLeave = data?.result?.filter((y) => y.vacation === "Casual Leave");
         setLeave(filteredLeave);
         setAttendance(filteredData);
         setHoliday(filteredHoliday);
         setPresent(filteredPresent)
+        setSickLeave(filteredSickLeave)
+        setCasualLeave(filteredCasualLeave)
         console.log(data.result, filteredData, filteredHoliday);
       });
   }, [dateString, user?.email]);
@@ -327,10 +335,10 @@ const EmployeeDashboardHome = () => {
           <Grid item xs={12} md={4}>
             <Box sx={{ height: '300px', width: '350px', margin: '30px 0', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
               <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
-                Attendance
+                Leave
               </Typography>
 
-              <PieChartsChartJs holiday={holiday} leave={leave} attendance={lastDay} dateString={dateString}></PieChartsChartJs>
+              <PieChartsChartJs casualLeave={casualLeave} sickLeave={sickLeave} ></PieChartsChartJs>
             </Box>
           </Grid>
           <Grid item xs={12} md={8}>
@@ -348,7 +356,7 @@ const EmployeeDashboardHome = () => {
 
       {/* ASSIGN Task */}
       <Box sx={{}}>
-        <Grid container spacing={5}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
             <List dense sx={{ height: '350px', width: '100%', margin: '30px 0', border: '.5px solid #b6b7b7', bgcolor: 'background.paper' }}>
               <Box sx={{
@@ -399,8 +407,16 @@ const EmployeeDashboardHome = () => {
           {/* task summary */}
           <Grid item xs={12} md={4}>
 
-            <Card sx={{ height: '350px', width: '100%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7', overflowY: 'scroll' }}>
-              <CalenderChar />
+            <Card sx={{ height: '350px', width: '100%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
+              <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, .8)', margin: '10px ', textAlign: 'center' }}>
+                Leave Dates
+              </Typography>
+              <Box sx={{
+                display: "flex",
+                width: '100%',
+                justifyContent: "center",
+              }}>
+                <LeaveCalender sx={{ width: '100%', boxShadow: '0', margin: '0 auto' }} leave={leave} /></Box>
               {/* <CardContent>
                 <Box sx={{
                   display: "flex",

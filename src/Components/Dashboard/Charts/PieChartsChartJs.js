@@ -8,22 +8,27 @@ ChartJS.register(
 )
 
 
-const PieChartsChartJs = ({ attendance, dateString, holiday, leave }) => {
+const PieChartsChartJs = ({ sickLeave, casualLeave }) => {
 
-    const w = attendance
-    const h = holiday.length
-    const l = leave.length;
-    const p = (w - (h + l))
-
+    // const w = attendance
+    // const h = holiday.length
+    // const l = leave.length;
+    // const p = (w - (h + l))
+    const s = sickLeave.length
+    const c = casualLeave.length
+    const rs = 14 - s;
+    const rc = 10 - c
+    console.log(sickLeave, casualLeave, s, c, rc, rs)
     const data = {
 
         datasets: [{
             label: '# of Votes',
-            data: [p, l, h],
+            data: [rs, rc, s, c],
             backgroundColor: [
                 'rgba(255, 205, 86, .5)',
                 'rgba(255, 99, 132, .5)',
                 'rgba(75, 192, 192, .5)',
+                'rgba(255, 159, 64, .5)'
 
 
 
@@ -36,6 +41,7 @@ const PieChartsChartJs = ({ attendance, dateString, holiday, leave }) => {
                 'rgba(255, 205, 86, .7)',
                 'rgba(255, 99, 132, .7)',
                 'rgba(75, 192, 192, .7)',
+                'rgba(255, 159, 64, .7)'
 
 
 
@@ -45,7 +51,7 @@ const PieChartsChartJs = ({ attendance, dateString, holiday, leave }) => {
             ],
             borderWidth: 1
         }],
-        labels: ['Present', 'Absent', 'Holiday'],
+        labels: ['Remaining Sick', 'Remaining Casual', 'Sick', 'Casual'],
     }
     const options = {
         maintainAspectRatio: false,
