@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Breadcrumbs,
@@ -82,7 +82,7 @@ const TaskAssign = () => {
   useEffect(() => {
     fetch("https://ancient-thicket-61342.herokuapp.com/employees")
       .then((res) => res.json())
-      .then((data) => setEmployees(data.data));
+      .then((data) => setEmployees(data.result));
   }, []);
   //submit form
   const onSubmit = (data, e) => {
@@ -168,7 +168,7 @@ const TaskAssign = () => {
                 >
                   <span style={{ color: " #01578A" }}> Assign </span> Task
                 </Typography>
-                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" alt="icon" />{" "}
+                <img src="https://img.icons8.com/ios-filled/50/000000/batch-assign.png" alt="icon" />
               </Box>
               <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                 <Box sx={{ width: "100%" }}>
@@ -243,7 +243,7 @@ const TaskAssign = () => {
                   }}
                   htmlFor="title"
                 >
-                  Today Meeting Start <span style={{ color: "red" }}>*</span>
+                  Today Meeting Time <span style={{ color: "red" }}>*</span>
                 </label>
                 <TextField
                   sx={{ width: "100%" }}
@@ -251,23 +251,6 @@ const TaskAssign = () => {
                   id="startTime"
                   type="time"
                   {...register("startTime", { required: true })}
-                />
-                <label
-                  style={{
-                    display: "block",
-                    marginBottom: "4px",
-                    marginTop: "0.7rem",
-                  }}
-                  htmlFor="title"
-                >
-                  Today Meeting End <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  sx={{ width: "100%" }}
-                  variant="outlined"
-                  id="endTime"
-                  type="time"
-                  {...register("endTime", { required: true })}
                 />
 
                 <Box sx={{ textAlign: "center", mt: 3 }}>

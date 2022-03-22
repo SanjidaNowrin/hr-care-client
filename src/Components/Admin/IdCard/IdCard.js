@@ -16,7 +16,7 @@ const IdCard = () => {
     const [filterData, setFilterData] = useState([]);
 
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees/all")
             .then((res) => res.json())
             .then((data) => setemployeeId(data.data));
     }, []);

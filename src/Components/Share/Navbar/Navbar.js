@@ -7,7 +7,6 @@ import {
     Divider,
     IconButton,
     Toolbar,
-    Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
@@ -289,11 +288,7 @@ const Navbar = (props) => {
                                         transformOrigin={{ horizontal: "right", vertical: "top" }}
                                         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                                     >
-                                        <MenuItem>
-                                            <Avatar />
-                                            My Profile
-                                        </MenuItem>
-                                        <Divider />
+
                                         <MenuItem>
                                             <ListItemIcon>
                                                 <Logout fontSize="small" />

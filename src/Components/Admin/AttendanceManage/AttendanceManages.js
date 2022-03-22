@@ -43,7 +43,6 @@ const AttendanceManages = () => {
     const [endDate, setEndDate] = useState();
     const [filterData, setFilterData] = useState([]);
 
-
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
             .then((res) => res.json())
@@ -51,22 +50,21 @@ const AttendanceManages = () => {
     }, []);
 
     useEffect(() => {
-        const newFilterDate = attendances.filter(date => date?.date >= startDate && date?.date <= endDate)
-        setFilterDates(newFilterDate)
-    }, [attendances, startDate, endDate])
-    console.log(filterDates)
+        const newFilterDate = attendances.filter((date) => date?.date >= startDate && date?.date <= endDate);
+        setFilterDates(newFilterDate);
+    }, [attendances, startDate, endDate]);
+    console.log(filterDates);
 
     const onSubmit = (data, e) => {
+        const newStartDate = dateFormat(new Date(data.startDate), "yyyy-MM-dd");
+        setStartDate(newStartDate);
+        const newEndDate = dateFormat(new Date(data.endDate), "yyyy-MM-dd");
+        setEndDate(newEndDate);
 
-        const newStartDate = dateFormat(new Date(data.startDate), 'yyyy-MM-dd');
-        setStartDate(newStartDate)
-        const newEndDate = dateFormat(new Date(data.endDate), 'yyyy-MM-dd');
-        setEndDate(newEndDate)
-
-        toast.success('Filtering Attendance', {
+        toast.success("Filtering Attendance", {
             position: toast.POSITION.BOTTOM_CENTER,
-            autoClose: 4000
-        })
+            autoClose: 4000,
+        });
     };
     const handleOnBlur = (e) => {
         const number = e.target.value;
@@ -91,7 +89,6 @@ const AttendanceManages = () => {
             }
         }
     }, [inputValue, attendances, filterDates]);
-
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -128,18 +125,17 @@ const AttendanceManages = () => {
             </Box>
 
             {/* search box */}
-            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 5, }}>
+            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 5 }}>
                 <Box
                     sx={{
                         textAlign: "center",
                         width: "40%",
-                        margin: "0 auto",
                         position: "relative",
                     }}
                     className="id_search"
                 >
-                    <label>
-                        Search by ID
+                    <label style={{ display: "block" }}>
+                        <span style={{ display: "flex", alignItems: "start" }}>Search by Id</span>
                     </label>
                     <TextField
                         placeholder="Search ID Card According to ID Number"
@@ -160,8 +156,8 @@ const AttendanceManages = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
                             <Box sx={{ width: "35%" }}>
-                                <label>
-                                    Start Date
+                                <label style={{ display: "block" }}>
+                                    <span style={{ display: "flex", alignItems: "start" }}>Start Date</span>
                                 </label>
                                 <TextField
                                     sx={{ width: "100%" }}
@@ -172,8 +168,8 @@ const AttendanceManages = () => {
                                 />
                             </Box>
                             <Box sx={{ width: "35%" }}>
-                                <label>
-                                    End Day
+                                <label style={{ display: "block" }}>
+                                    <span style={{ display: "flex", alignItems: "start" }}>End Date</span>
                                 </label>
                                 <TextField
                                     sx={{ width: "100%" }}
@@ -183,7 +179,7 @@ const AttendanceManages = () => {
                                     variant="outlined"
                                 />
                             </Box>
-                            <Box sx={{ width: "20%" }}>
+                            <Box sx={{ width: "20%", mt: 3 }}>
                                 <Button
                                     sx={{
                                         background: "var(--p_color) !important",

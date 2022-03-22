@@ -30,9 +30,9 @@ const Employees = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then((res) => res.json())
-            .then((data) => setEmployees(data.data));
+            .then((data) => setEmployees(data.result));
     }, [employees]);
-
+console.log(employees);
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
@@ -79,12 +79,6 @@ const Employees = () => {
                                         Employee
                                     </StyledTableCell>
 
-                                    <StyledTableCell
-                                        sx={{ background: 'var(--t_color) !important' }}
-                                        align="left"
-                                    >
-                                        Phone
-                                    </StyledTableCell>
 
                                     <StyledTableCell
                                         sx={{ background: 'var(--t_color) !important' }}
@@ -98,6 +92,13 @@ const Employees = () => {
                                         align="center"
                                     >
                                         Designation
+                                    </StyledTableCell>
+
+                                    <StyledTableCell
+                                        sx={{ background: 'var(--t_color) !important' }}
+                                        align="center"
+                                    >
+                                        Status
                                     </StyledTableCell>
 
                                     <StyledTableCell
