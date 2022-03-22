@@ -42,17 +42,17 @@ const BarChartJs = ({hrGross,accGross,marketingGross,itGross}) => {
             label: 'Salary',
             data: dataTwo.map(data=>data.salary),
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
+                'rgba(251, 62, 106, .7)',
+                'rgba(24, 2, 91, 0.7)',
+                'rgba(0, 210, 252, 0.7)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
+                'rgba(251, 62, 106, 1)',
+                'rgba(24, 2, 91, 1)',
+                'rgba(0, 210, 252, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
