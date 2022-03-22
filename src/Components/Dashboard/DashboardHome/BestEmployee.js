@@ -39,7 +39,7 @@ const BestEmployee = (props) => {
             position: 'absolute',
             zIndex: '2',
             top: '74px',
-            right: '-4px'
+            right: '-1px'
         },
         cardBox: {
             height: '350px',

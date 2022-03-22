@@ -24,16 +24,23 @@ import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import BestEmployee from "./BestEmployee";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
-import MyCharts from "./MyCharts/MyCharts"
-import Request from "./Request/Request"
-
+import MyCharts from "./MyCharts/MyCharts";
+import Request from "./Request/Request";
+import SalaryChart from "./SalaryChart/SalaryChart";
+import LineCharts from "../Charts/LineCharts";
 const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);
+  const [employeesBox, setEmployeesBox] = useState([]);
 
   useEffect(() => {
     fetch("https://ancient-thicket-61342.herokuapp.com/employees/all")
       .then((res) => res.json())
       .then((data) => setEmployees(data.data));
+  }, []);
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+      .then((res) => res.json())
+      .then((data) => setEmployeesBox(data.result));
   }, []);
 
   const [attendance, setAttendance] = useState([]);
@@ -101,6 +108,65 @@ const DashboardHome = () => {
   const check = finalPoint[0]?.taskPercentage?.toFixed(2);
   console.log(check);
   // best employee end
+  // salary chart start
+  const [it, setIt] = useState([]);
+  const [marketing, setMarketing] = useState([]);
+  const [acc, setAcc] = useState([]);
+  const [hr, setHr] = useState([]);
+  useEffect(() => {
+    fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+      .then((res) => res.json())
+      .then((data) => {
+        const filterEmployee = data?.result?.filter(
+          (e) => e.status === "Active"
+        );
+        const filterIT = filterEmployee?.filter(
+          (dept) => dept.department === "Information Technology"
+        );
+        setIt(filterIT);
+        const filterMarketing = filterEmployee?.filter(
+          (dept) => dept.department === "Marketing"
+        );
+        setMarketing(filterMarketing);
+        const filterAccounting = filterEmployee?.filter(
+          (dept) => dept.department === "Accounting"
+        );
+        setAcc(filterAccounting);
+        const filterHR = filterEmployee.filter(
+          (dept) => dept.department === "Human Resource"
+        );
+        setHr(filterHR);
+      });
+  }, []);
+  console.log(acc);
+  // it calculation
+  let itGross = 0;
+  it.map((calc) => {
+    let itCalc = calc.gross;
+    console.log(itCalc);
+    itGross += itCalc;
+  });
+  console.log(itGross);
+  // marketing calculation
+  let marketingGross = 0;
+  marketing.map((calc) => {
+    let marketingCalc = calc.gross;
+    marketingGross += marketingCalc;
+  });
+  console.log(marketingGross);
+  // accounting calculation
+  let accGross = 0;
+  acc.map((calc) => {
+    let accCalc = calc.gross;
+    accGross += accCalc;
+  });
+  //hr calculation
+  let hrGross = 0;
+  hr.map((calc) => {
+    let hrCalc = calc.gross;
+    hrGross += hrCalc;
+  });
+  // salary chart end
   // todayPresent
   useEffect(() => {
     const filterData = attendance.filter((item) => item.date === todaydate);
@@ -113,14 +179,14 @@ const DashboardHome = () => {
     setLeave(filterData);
   }, [todayPresent]);
 
-  const totalEmployee = employees.length;
+  const totalEmployee = employeesBox.length;
   const present = todayPresent.length;
   const absent = (totalEmployee - present) | 0;
 
   function leftPad(number) {
-    var output = number + '';
+    var output = number + "";
     while (output.length < 2) {
-      output = '0' + output;
+      output = "0" + output;
     }
     return output;
   }
@@ -198,7 +264,7 @@ const DashboardHome = () => {
                 variant="h3"
                 sx={{ textAlign: "center", color: "#00D2FC", py: 1 }}
               >
-                {leftPad(employees.length)}
+                {leftPad(employeesBox.length)}
               </Typography>
             </Box>
           </Grid>
@@ -281,23 +347,46 @@ const DashboardHome = () => {
       </Box>
 
       {/* //Best Employee  */}
-      <Box sx={{ mt: 7 }}>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
-            <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
-          </Grid>
-
-          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <MyCharts></MyCharts>
-          </Grid>
-
-          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Request></Request>
-          </Grid>
+      <Grid container spacing={3} mt={8}>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Salary Allocation
+          </Typography>
+          {/* <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee> */}
+          <SalaryChart
+            itGross={itGross}
+            hrGross={hrGross}
+            marketingGross={marketingGross}
+            accGross={accGross}
+          />
         </Grid>
 
-      </Box>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Employee Structure
+          </Typography>
+          <MyCharts></MyCharts>
+        </Grid>
+      </Grid>
 
+      {/* end */}
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}>
+          <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={8}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Request></Request>
+        </Grid>
+      </Grid>
       {/* Total attendance area */}
       <Box sx={{ my: 5 }}>
         <Box
