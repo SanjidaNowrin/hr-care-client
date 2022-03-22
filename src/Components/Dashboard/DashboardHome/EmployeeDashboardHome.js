@@ -42,7 +42,6 @@ import LeaveCalender from "./LeaveCalender/LeaveCalender";
 
 const EmployeeDashboardHome = () => {
   const { user } = useAuth();
-  console.log(user);
   const [attendance, setAttendance] = useState([]);
   const [holiday, setHoliday] = useState([]);
   const [leave, setLeave] = useState([]);
@@ -56,8 +55,6 @@ const EmployeeDashboardHome = () => {
   const [thisMonthTask, setThisMonthTask] = React.useState([]);
 
   const [taskUpdate, setTaskUpdate] = useState(false);
-  console.log(taskUpdate, thisMonthTask);
-  console.log(checked);
   // fetch attendence
 
   const currentDate = dateFormat(
@@ -109,11 +106,9 @@ const EmployeeDashboardHome = () => {
         const filterTask = data?.data?.filter(
           (task) => task.email === user.email && task.date === currentDate
         );
-        console.log(filterTask);
         setToDo(filterTask);
         setChecked(filterTask[0]?.taskDone);
         setThisMonthTask(filterThisMonthTask);
-        console.log(filterThisMonthTask);
       });
   }, [taskUpdate, user.email, currentDate, checked, dateString]);
   // task summary

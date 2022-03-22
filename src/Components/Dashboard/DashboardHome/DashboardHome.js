@@ -48,6 +48,7 @@ const DashboardHome = () => {
       .then((res) => res.json())
       .then((data) => setAttendance(data.data));
   }, []);
+
   //   admin assign task
   const currentDate = dateFormat(
     new Date().toLocaleString().split(",")[0],
@@ -71,7 +72,7 @@ const DashboardHome = () => {
       });
   }, []);
   const array = [];
-  console.log(employees);
+
   employees?.map((bestEmp) => {
     let bestEmployee = {};
     let totalTask = 0;
@@ -93,15 +94,13 @@ const DashboardHome = () => {
     bestEmployee.taskPercentage = taskPercentage;
     array.push(bestEmployee);
   });
-  console.log(array);
+
   const finalPoint = array.sort(function (a, b) {
     return b.taskPercentage - a.taskPercentage;
   });
-  console.log(finalPoint);
+
   const check = finalPoint[0]?.taskPercentage?.toFixed(2);
-  console.log(check);
-  // best employee end
-  // todayPresent
+
   useEffect(() => {
     const filterData = attendance.filter((item) => item.date === todaydate);
     setTodayPresent(filterData);
@@ -109,7 +108,7 @@ const DashboardHome = () => {
 
   // on leave
   useEffect(() => {
-    const filterData = todayPresent.filter((item) => item.leave !== "");
+    const filterData = todayPresent.filter((item) => item.status === "Leave");
     setLeave(filterData);
   }, [todayPresent]);
 
@@ -280,7 +279,7 @@ const DashboardHome = () => {
         </Grid>
       </Box>
 
-      {/* //Best Employee  */}
+      {/* //dash middle  */}
       <Box sx={{ mt: 7 }}>
         <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
@@ -292,7 +291,7 @@ const DashboardHome = () => {
           </Grid>
 
           <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Request></Request>
+            <Request employees={employees}></Request>
           </Grid>
         </Grid>
 
