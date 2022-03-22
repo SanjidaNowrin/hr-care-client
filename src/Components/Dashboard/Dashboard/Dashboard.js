@@ -191,13 +191,13 @@ function Dashboard(props) {
           boxShadow: '0px 7px 45px rgb(0, 0,0, .3) !important'
         }}
       >
-        <Toolbar sx={{ background: "var(--p_color)" }}>
+        <Toolbar sx={{ background: "#fff" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: "none" }, color: 'var(--p_color)' }}
           >
             <MenuIcon />
           </IconButton>

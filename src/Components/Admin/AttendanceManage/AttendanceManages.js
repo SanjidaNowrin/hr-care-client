@@ -10,6 +10,7 @@ import {
     TableRow,
     TextField,
     Typography,
+    Grid,
 } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
@@ -53,7 +54,6 @@ const AttendanceManages = () => {
         const newFilterDate = attendances.filter((date) => date?.date >= startDate && date?.date <= endDate);
         setFilterDates(newFilterDate);
     }, [attendances, startDate, endDate]);
-    console.log(filterDates);
 
     const onSubmit = (data, e) => {
         const newStartDate = dateFormat(new Date(data.startDate), "yyyy-MM-dd");
@@ -125,80 +125,67 @@ const AttendanceManages = () => {
             </Box>
 
             {/* search box */}
-            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 5 }}>
-                <Box
-                    sx={{
-                        textAlign: "center",
-                        width: "40%",
-                        position: "relative",
-                    }}
-                    className="id_search"
-                >
-                    <label style={{ display: "block" }}>
-                        <span style={{ display: "flex", alignItems: "start" }}>Search by Id</span>
-                    </label>
-                    <TextField
-                        placeholder="Search ID Card According to ID Number"
-                        variant="outlined"
-                        onChange={handleOnBlur}
-                        sx={{ width: "100%" }}
-                    />
-                </Box>
-                <Box
-                    sx={{
-                        textAlign: "center",
-                        width: "50%",
-                        margin: "0 auto",
-                        position: "relative",
-                    }}
-                    className="id_search"
-                >
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
-                            <Box sx={{ width: "35%" }}>
-                                <label style={{ display: "block" }}>
-                                    <span style={{ display: "flex", alignItems: "start" }}>Start Date</span>
-                                </label>
-                                <TextField
-                                    sx={{ width: "100%" }}
-                                    {...register("startDate")}
-                                    id="outlined-basic"
-                                    type="date"
-                                    variant="outlined"
-                                />
-                            </Box>
-                            <Box sx={{ width: "35%" }}>
-                                <label style={{ display: "block" }}>
-                                    <span style={{ display: "flex", alignItems: "start" }}>End Date</span>
-                                </label>
-                                <TextField
-                                    sx={{ width: "100%" }}
-                                    {...register("endDate")}
-                                    id="outlined-basic"
-                                    type="date"
-                                    variant="outlined"
-                                />
-                            </Box>
-                            <Box sx={{ width: "20%", mt: 3 }}>
-                                <Button
-                                    sx={{
-                                        background: "var(--p_color) !important",
-                                        color: "#fff !important",
-                                        width: "100%",
-                                    }}
-                                    className="btn_regular"
-                                    type="Search"
-                                >
-                                    Search
-                                </Button>
-                            </Box>
-                        </Box>
-                    </form>
-                </Box>
-            </Box>
+            <Grid container spacing={2} sx={{ mb: 3, mt: 6 }}>
+                <Grid item xs={12} md={5}>
+                    <Box>
+                        <TextField
+                            placeholder="Search ID Card According to ID Number"
+                            variant="outlined"
+                            label="Search ID Card According to ID Number"
+                            focused
+                            onChange={handleOnBlur}
+                            sx={{ width: "100%" }}
+                        />
+                    </Box>
+                </Grid>
 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <Grid item xs={12} md={7}>
+                    <Box>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        sx={{ width: "100%" }}
+                                        {...register("startDate")}
+                                        id="outlined-basic"
+                                        type="date"
+                                        variant="outlined"
+                                        label="Start Date"
+                                        focused
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <TextField
+                                        sx={{ width: "100%" }}
+                                        {...register("endDate")}
+                                        id="outlined-basic"
+                                        type="date"
+                                        variant="outlined"
+                                        label="End Date"
+                                        focused
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <Button
+                                        sx={{
+                                            background: "var(--p_color) !important",
+                                            color: "#fff !important",
+                                            width: "100%",
+                                        }}
+                                        className="btn_regular"
+                                        type="Search"
+                                    >
+                                        Search
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </Box>
+                </Grid>
+            </Grid>
+
+            <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto', mb: 4 }} component={Paper}>
+                <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>ID</StyledTableCell>

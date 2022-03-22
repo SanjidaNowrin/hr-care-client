@@ -9,16 +9,18 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Tooltip from '@mui/material/Tooltip';
 
 import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import EventIcon from "@mui/icons-material/Event";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
-import HolidayCalendar from "./../../Employee/HolidayCalender/HolidayCalender";
+import HolidayCalendar from "./HolidayCalender/HolidayCalender";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Notification from "../Notification/Notification";
+import Notification from "./Notification/Notification";
+import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/material";
 const style = {
   position: "absolute",
   top: "50%",
@@ -119,9 +121,24 @@ const DashNav = () => {
     close();
   };
 
+  const theme = useTheme();
+  const useStyle = makeStyles({
+    lineBr: {
+      display: 'none',
+      [theme.breakpoints.down("md")]: {
+        display: "block !important",
+      },
+    }
+  })
+
+  const { lineBr } = useStyle();
+
   return (
     <>
       <React.Fragment>
+        <Typography sx={{ color: 'var(--p_color)' }} variant='h5'>
+          Welcome, <br className={lineBr} /> {user.displayName}
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -130,14 +147,14 @@ const DashNav = () => {
             marginLeft: "auto",
           }}
         >
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: "flex" }}>
             {/* Notification */}
             <Notification></Notification>
 
             {/* calender */}
             <IconButton sx={{ background: 'transparent' }} size="large" color="inherit">
               <Badge color="error">
-                <EventIcon onClick={holidayOpen} />
+                <EventIcon sx={{ color: 'var(--p_color)' }} onClick={holidayOpen} />
               </Badge>
             </IconButton>
           </Box>

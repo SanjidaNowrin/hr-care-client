@@ -30,9 +30,9 @@ const useFirebase = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // setUser(user);
+        setUser(user);
         // save user to the database
-        saveUserInfo(user.email, user.displayName, "PUT");
+        saveUserInfo(user?.email, user.displayName, "PUT");
         const destination = location?.state?.from || "/home";
         navigate(destination);
       })
@@ -152,14 +152,13 @@ const useFirebase = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data[0]?.result?.role === "admin") {
+        if (data?.result[0]?.role === "admin") {
           setIsAdmin(true);
-          console.log(data[0]?.result?.role);
         } else {
           setIsAdmin(false);
         }
       });
-  }, [user?.email]);
+  }, [user]);
   console.log(isAdmin);
   return {
     token,

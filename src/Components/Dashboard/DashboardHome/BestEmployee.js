@@ -4,7 +4,9 @@ import Divider from '@mui/material/Divider';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import React, { useEffect, useState } from "react";
 
-const BestEmployee = ({ check, finalPoint }) => {
+const BestEmployee = (props) => {
+    const { check, finalPoint } = props;
+
     const [bestEmp, setBestEmp] = useState([]);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")

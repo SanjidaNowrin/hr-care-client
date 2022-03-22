@@ -288,11 +288,7 @@ const Navbar = (props) => {
                                         transformOrigin={{ horizontal: "right", vertical: "top" }}
                                         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                                     >
-                                        <MenuItem>
-                                            <Avatar />
-                                            My Profile
-                                        </MenuItem>
-                                        <Divider />
+
                                         <MenuItem>
                                             <ListItemIcon>
                                                 <Logout fontSize="small" />
