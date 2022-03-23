@@ -221,7 +221,7 @@ const MyAttendance = (props) => {
       <Grid container>
         <Grid container item xs={12} md={6}>
           {user?.email === findPerson ? (
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={12} mt={3}>
               <Card className={classes.cardStyle}>
                 <CardActionArea>
                   <CardMedia
