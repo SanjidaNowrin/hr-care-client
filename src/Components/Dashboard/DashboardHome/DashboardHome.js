@@ -78,6 +78,7 @@ const DashboardHome = () => {
         setTodayTask(filterTodayTask);
       });
   }, []);
+  console.log(todayTask);
   const array = [];
   console.log(employees);
   employees?.map((bestEmp) => {
@@ -109,6 +110,21 @@ const DashboardHome = () => {
   const check = finalPoint[0]?.taskPercentage?.toFixed(2);
   console.log(check);
   // best employee end
+  // today Assigned task start
+  let todayAssignTask = 0;
+  let todayDoneTask = 0;
+  let todayTaskPercentage = 0;
+  todayTask.map(singleTask=>{
+    todayAssignTask+=singleTask.tags.length;
+    console.log(todayAssignTask);
+    todayDoneTask+=singleTask.taskDone.length;
+    console.log(todayDoneTask);
+    if ((todayAssignTask && todayDoneTask) !== 0) {
+      todayTaskPercentage = ( todayDoneTask/ todayAssignTask) * 100;
+      console.log(todayTaskPercentage)
+    }
+  })
+  // today Assigned task end
   // salary chart start
   const [it, setIt] = useState([]);
   const [marketing, setMarketing] = useState([]);
@@ -384,10 +400,10 @@ const DashboardHome = () => {
         <Grid item xs={12} md={4}>
           <Box sx={{ border: "1px solid black" }}>
             <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
-              Today Total Assigned Task
+              Today Assigned Task
             </Typography>
             <Box sx={{textAlign:"center"}}>
-            <TodayAssignedTask/>
+            <TodayAssignedTask todayTaskPercentage={todayTaskPercentage}/>
             </Box>
           </Box>
         </Grid>

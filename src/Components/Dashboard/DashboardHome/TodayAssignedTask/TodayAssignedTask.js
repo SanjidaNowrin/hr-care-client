@@ -35,7 +35,7 @@ CircularProgressWithLabel.propTypes = {
     value: PropTypes.number.isRequired,
   };
   
-  export default function CircularStatic() {
+  export default function CircularStatic(props) {
     const [progress, setProgress] = React.useState(10);
   
     React.useEffect(() => {
@@ -47,5 +47,5 @@ CircularProgressWithLabel.propTypes = {
       };
     }, []);
   
-    return <CircularProgressWithLabel sx={{width:"100px !important",height:"100px !important",color:"#01578A !important", textAlign:"center"}} value={80} />;
+    return <CircularProgressWithLabel sx={{width:"100px !important",height:"100px !important",color:"#01578A !important", textAlign:"center"}} value={props.todayTaskPercentage} />;
   }
