@@ -361,11 +361,17 @@ const DashboardHome = () => {
           />
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={3}>
           <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
             Employee Structure
           </Typography>
           <MyCharts></MyCharts>
+        </Grid>
+        <Grid item xs={12} md={3} >
+            <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Pending Status
+          </Typography>
+        <Request></Request>
         </Grid>
       </Grid>
 
@@ -378,18 +384,11 @@ const DashboardHome = () => {
           item
           xs={12}
           md={8}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          
         >
-          <Request></Request>
-        </Grid>
-      </Grid>
-      {/* Total attendance area */}
-      <Box sx={{ my: 5 }}>
-        <Box
+        {/* Table on employee details */}
+     
+          <Box
           sx={{
             background: "var(--t_color)",
             py: 2,
@@ -401,10 +400,6 @@ const DashboardHome = () => {
           <Typography variant="h5">Today Attendance</Typography>
           <Typography variant="h5">{takeDate}</Typography>
         </Box>
-
-        {/* Table on employee details */}
-        <Grid container spacing={0}>
-          <Grid item xs={12} md={12}>
             <TableContainer sx={{ overflowX: "scroll" }} component={Paper}>
               <Table aria-label="simple table">
                 <TableHead>
@@ -425,9 +420,10 @@ const DashboardHome = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-          </Grid>
         </Grid>
-      </Box>
+      </Grid>
+      {/* Total attendance area */}
+      
     </Container>
   );
 };

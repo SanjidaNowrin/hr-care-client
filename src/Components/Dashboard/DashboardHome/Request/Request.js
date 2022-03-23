@@ -51,9 +51,6 @@ const Request = () => {
 
     return (
         <Box className={reqContainer}>
-            <Typography variant="h5" sx={{ my: 1, textAlign: 'center' }}>
-                Pending Status
-            </Typography>
             <Box className={reqBox}>
                 <Box className={reqText}>
                     <Box>

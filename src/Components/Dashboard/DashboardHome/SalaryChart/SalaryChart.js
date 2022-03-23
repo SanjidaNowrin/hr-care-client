@@ -45,9 +45,6 @@ const BarChartJs = ({hrGross,accGross,marketingGross,itGross}) => {
                 'rgba(251, 62, 106, .7)',
                 'rgba(24, 2, 91, 0.7)',
                 'rgba(0, 210, 252, 0.7)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(251, 62, 106, 1)',
