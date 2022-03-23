@@ -56,7 +56,6 @@ const DashboardHome = () => {
       .then((res) => res.json())
       .then((data) => setAttendance(data.data));
   }, []);
-
   //   admin assign task
   const currentDate = dateFormat(
     new Date().toLocaleString().split(",")[0],
@@ -81,7 +80,7 @@ const DashboardHome = () => {
   }, []);
   console.log(todayTask);
   const array = [];
-
+  console.log(employees);
   employees?.map((bestEmp) => {
     let bestEmployee = {};
     let totalTask = 0;
@@ -103,11 +102,11 @@ const DashboardHome = () => {
     bestEmployee.taskPercentage = taskPercentage;
     array.push(bestEmployee);
   });
-
+  console.log(array);
   const finalPoint = array.sort(function (a, b) {
     return b.taskPercentage - a.taskPercentage;
   });
-
+  console.log(finalPoint);
   const check = finalPoint[0]?.taskPercentage?.toFixed(2);
   console.log(check);
   // best employee end
@@ -115,16 +114,16 @@ const DashboardHome = () => {
   let todayAssignTask = 0;
   let todayDoneTask = 0;
   let todayTaskPercentage = 0;
-  todayTask.map(singleTask => {
+  todayTask.map((singleTask) => {
     todayAssignTask += singleTask.tags.length;
     console.log(todayAssignTask);
     todayDoneTask += singleTask.taskDone.length;
     console.log(todayDoneTask);
     if ((todayAssignTask && todayDoneTask) !== 0) {
       todayTaskPercentage = (todayDoneTask / todayAssignTask) * 100;
-      console.log(todayTaskPercentage)
+      console.log(todayTaskPercentage);
     }
-  })
+  });
   // today Assigned task end
   // salary chart start
   const [it, setIt] = useState([]);
@@ -193,7 +192,7 @@ const DashboardHome = () => {
 
   // on leave
   useEffect(() => {
-    const filterData = todayPresent.filter((item) => item.status === "Leave");
+    const filterData = todayPresent.filter((item) => item.leave !== "");
     setLeave(filterData);
   }, [todayPresent]);
 
@@ -383,12 +382,6 @@ const DashboardHome = () => {
       </Grid>
       {/* end */}
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
-            Pending Status
-          </Typography>
-          <Request employees={employees}></Request>
-        </Grid>
         {/* Table on employee details */}
         <Grid item xs={12} md={4}>
           <Box sx={{ border: "1px solid black" }}>
@@ -399,12 +392,32 @@ const DashboardHome = () => {
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Pending Status
+          </Typography>
+          <Request employees={employees}></Request>
+        </Grid>
+        <Grid item xs={12} md={4}>
           <Box sx={{ border: "1px solid black" }}>
             <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
-              Today Assigned Task
+              Today Tasks
             </Typography>
-            <Box sx={{ textAlign: "center" }}>
+            <Box sx={{ width: "60%", height: "60%", margin: "0 auto" }}>
               <TodayAssignedTask todayTaskPercentage={todayTaskPercentage} />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+                Today Assigned Task : {todayAssignTask}
+              </Typography>{" "}
+              <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+                Today Done Task : {todayDoneTask}
+              </Typography>
             </Box>
           </Box>
         </Grid>
