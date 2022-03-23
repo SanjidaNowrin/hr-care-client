@@ -23,6 +23,9 @@ import { toast } from "react-toastify";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import AttendanceManage from "./AttendanceManage";
 
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#A3D2ED",
@@ -43,11 +46,30 @@ const AttendanceManages = () => {
     const [endDate, setEndDate] = useState();
     const [filterData, setFilterData] = useState([]);
 
+    //pagination
+    const dataPerPage = 10;
+    const [page, setPage] = React.useState(0);
+    const [count, setCount] = useState(0)
+    const handleChange = (event, value) => {
+        setPage(value - 1);
+    }
+    console.log(page, count, attendances)
+
+    // const attendanceLength = attendances.count;
+    // console.log(attendanceLength);
+    const buttonNumber = Math.ceil(count / 10);
+    console.log(buttonNumber)
+
+    //pagination end
+
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/attendance")
+        fetch(`https://ancient-thicket-61342.herokuapp.com/attendance?page=${page}&&size=${dataPerPage}`)
             .then((res) => res.json())
-            .then((data) => setAttendances(data.data.reverse()));
-    }, []);
+            .then((data) => {
+                setCount(data.count)
+                setAttendances(data.data)
+            });
+    }, [page]);
 
     useEffect(() => {
         const newFilterDate = attendances.filter((date) => date?.date >= startDate && date?.date <= endDate);
@@ -107,6 +129,8 @@ const AttendanceManages = () => {
             },
         };
     });
+
+
     return (
         <Container>
             {/* Breadcrumbs */}
@@ -197,7 +221,7 @@ const AttendanceManages = () => {
                 </Box>
             </Box>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{ marginBottom: '40px' }}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
@@ -217,6 +241,11 @@ const AttendanceManages = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <div style={{ width: '30%', margin: '0 auto' }}>
+                <Stack spacing={2}>
+                    <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
+                </Stack>
+            </div>
         </Container>
     );
 };

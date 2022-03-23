@@ -9,6 +9,9 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import OneLeaveRequest from "./OneLeaveRequest/OneLeaveRequest";
+//pagination
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const LeaveRequests = () => {
     const theme = useTheme();
@@ -96,20 +99,29 @@ const LeaveRequests = () => {
         setActive(id);
     };
 
-    const [data, setData] = useState([]);
     //pagination
-    const [page, setPage] = useState(0);
-    const [pageCount, setPageCount] = useState(0);
+    const dataPerPage = 5;
+    const [page, setPage] = React.useState(0);
+    const [count, setCount] = useState(0)
+    const handleChange = (event, value) => {
+        setPage(value - 1);
+    }
+    console.log(page, count)
+
+    const buttonNumber = Math.ceil(count / 10);
+    console.log(buttonNumber)
+
+    //pagination end
+
+    const [data, setData] = useState([]);
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/leave")
+        fetch(`https://ancient-thicket-61342.herokuapp.com/leave?page=${page}&&size=${dataPerPage}`)
             .then((res) => res.json())
             .then((data) => {
                 setData(data.data.reverse());
-                const count = data.data.count;
-                const pageNumber = Math.ceil(count / 10);
-                setPageCount(pageNumber);
+                setCount(dataPerPage);
             });
-    }, [data]);
+    }, [page]);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -192,6 +204,11 @@ const LeaveRequests = () => {
                     </Grid>
                 </Grid>
             </Box>
+            <div style={{ width: '30%', margin: '0 auto' }}>
+                <Stack spacing={2}>
+                    <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
+                </Stack>
+            </div>
         </Container>
     );
 };
