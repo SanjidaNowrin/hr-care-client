@@ -1,88 +1,99 @@
-import React, { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import CameraswitchIcon from '@mui/icons-material/Cameraswitch';
-import useAuth from '../../../../hooks/useAuth'
+import React, { useEffect, useState } from "react";
+import SystemUpdateAltOutlinedIcon from "@mui/icons-material/SystemUpdateAltOutlined";
+import OpenInFullOutlinedIcon from "@mui/icons-material/OpenInFullOutlined";
+import { Box, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
 
-const Request = () => {
-    const { user } = useAuth();
-    const [tasksDone, SetTaskDone] = useState([]);
-    // const [workinProgress, setworkinProgress] = useState([])
+const Request = ({ employees }) => {
+    const [leave, setLeave] = useState([]);
     useEffect(() => {
-        fetch(`https://ancient-thicket-61342.herokuapp.com/taskAssign`)
-            .then(res => res.json())
-            .then(data => SetTaskDone(data.data))
+        fetch(`https://ancient-thicket-61342.herokuapp.com/leave`)
+            .then((res) => res.json())
+            .then((data) => setLeave(data.data));
     }, []);
-    //total work
-    const totalWork = tasksDone.map(taskId => taskId.tags.length);
-    const workResult = totalWork.concat();
-    console.log(workResult)
 
-    //array number sum
-    let totalWorkSum = 0;
+    const [employeePending, setEmployeePending] = useState([]);
+    const [leavePending, setLeavePending] = useState([]);
+    useEffect(() => {
+        const filterData = employees?.filter((data) => data.status === "Pending");
+        setEmployeePending(filterData);
+    }, [employees]);
+    useEffect(() => {
+        const filterData = leave.filter((data) => data.status === "pending");
+        setLeavePending(filterData);
+    }, [leave]);
 
-    for (let i = 0; i < workResult.length; i++) {
-        totalWorkSum += workResult[i];
+    function leftPad(number) {
+        var output = number + "";
+        while (output.length < 2) {
+            output = "0" + output;
+        }
+        return output;
     }
-    console.log(totalWorkSum);
 
-    //total work done
-    const totalWorkinProgress = tasksDone.map(taskComplete => taskComplete.taskDone.length);
-    const workdoneResult = totalWorkinProgress.concat();
-    console.log(workdoneResult);
-
-    //array work done number sum
-    let doneWorkSum = 0;
-
-    for (let i = 0; i < workdoneResult.length; i++) {
-        doneWorkSum += workdoneResult[i];
-    }
-    console.log(doneWorkSum);
-
-    //total work on fild
-    const totalOnfild = totalWorkSum - doneWorkSum;
-    console.log(totalOnfild);
-
-    //persentage of workin Prcess
-    const persentageWorkProgress = (100 * totalOnfild) / totalWorkSum;
-    const persentWorkProcess = persentageWorkProgress.toFixed();
-    //persentage Of Work Done
-    const persentageOfWorkDone =(100 * doneWorkSum) / totalWorkSum;
-   const persentWorkDone = persentageOfWorkDone.toFixed();
-
+    const useStyle = makeStyles({
+        reqContainer: {
+            background: "transparent",
+        },
+        reqBox: {
+            background: "#fff",
+            border: "1px solid #448aff",
+        },
+        reqText: {
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "12px 20px",
+            background: "#fff",
+            color: "#448aff",
+        },
+        reqAction: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            background: "#448aff",
+            padding: "10px",
+            color: "#fff",
+        },
+    });
+    const { reqContainer, reqBox, reqText, reqAction } = useStyle();
 
     return (
-        <div style={{ padding: "10px", boxShadow: "1px 4px 8px 0px", marginTop: '60px', background: "#c3e4f7" }}>
-            <h3 style={{ textAlign: "center" }}>Request</h3>
-            <div className="paper-request">
-                <Grid container spacing={2}>
-                    <Grid item xs={2}>
-                        <div className="icon">
-                            <h4><CameraswitchIcon></CameraswitchIcon></h4>
-                            <h4><AddTaskIcon></AddTaskIcon></h4>
-                            <h4><CameraswitchIcon></CameraswitchIcon></h4>
-                            <h4><AddTaskIcon></AddTaskIcon></h4>
-                        </div>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <div className="item">
-                            <h4>Employee Work in Progress</h4>
-                            <h4>Employee Work Done</h4>
-                            <h4>Employee Total Holiday</h4>
-                            <h4>Employee Total Leave</h4>
-                        </div>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <div className="count">
-                            <h4>{persentWorkProcess}%</h4>
-                            <h4>{persentWorkDone}%</h4>
-                            <h4>80%</h4>
-                            <h4 style={{ marginTop: '5px' }}>20%</h4>
-                        </div>
-                    </Grid>
-                </Grid>
-            </div>
-        </div>
+        <Box className={reqContainer}>
+            <Box className={reqBox}>
+                <Box className={reqText}>
+                    <Box>
+                        <Typography variant="h4">
+                            {leftPad(employeePending.length)}
+                        </Typography>
+                        <Typography variant="h5">Pending Employees</Typography>
+                    </Box>
+                    <SystemUpdateAltOutlinedIcon fontSize="large" />
+                </Box>
+                <Link to="/dashboard/all_employees">
+                    <Box className={reqAction}>
+                        <Typography variant="h6">Check Now</Typography>
+                        <OpenInFullOutlinedIcon />
+                    </Box>
+                </Link>
+            </Box>
+
+            <Box sx={{ mt: 2, border: "1px solid #11c15b" }} className={reqBox}>
+                <Box sx={{ color: "#11c15b" }} className={reqText}>
+                    <Box>
+                        <Typography variant="h4">{leftPad(leavePending.length)}</Typography>
+                        <Typography variant="h5">Pending Leave</Typography>
+                    </Box>
+                    <SystemUpdateAltOutlinedIcon fontSize="large" />
+                </Box>
+                <Link to="/dashboard/LeaveRequests">
+                    <Box sx={{ background: "#11c15b" }} className={reqAction}>
+                        <Typography variant="h6">Check Now</Typography>
+                        <OpenInFullOutlinedIcon />
+                    </Box>
+                </Link>
+            </Box>
+        </Box>
     );
 };
 

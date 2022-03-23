@@ -34,9 +34,9 @@ const getUniqueId = (info) => {
                     ? "MK"
                     : "AC";
     const randomNumber = Math.floor(Math.random() * 100);
-    const birthArray = info.birth.split("-");
-    const birth = birthArray.join("");
-    const uniqueId = first + "-" + birth + randomNumber;
+    // const birthArray = info.birth.split("-");
+    // const birth = birthArray.join("");
+    const uniqueId = first + "-" + 1100 + randomNumber;
     return uniqueId;
 };
 const MyInfo = () => {
@@ -49,7 +49,7 @@ const MyInfo = () => {
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
     }, [user.email]);
-
+    console.log(employee)
     const [image, setImage] = useState(null);
     //signature
     let sigPad = useRef({});
@@ -204,7 +204,7 @@ const MyInfo = () => {
                                     label="Name"
                                     type="text"
                                     variant="outlined"
-                                    value={user?.displayName}
+                                    defaultValue={user?.displayName}
                                     required
                                     className={inputFiend}
                                 />
@@ -390,7 +390,7 @@ const MyInfo = () => {
                                     label="Status"
                                     type="text"
                                     variant="outlined"
-                                    value="Panding"
+                                    value="Pending"
                                     required
                                     className={inputFiend}
                                 />

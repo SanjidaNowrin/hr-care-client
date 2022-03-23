@@ -3,8 +3,6 @@ import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -25,7 +23,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 const SalaryData = (props) => {
-  const { ID, name, designation, department, gross, bank, account } = props.employee;
+  const { ID, name, designation, department, gross, bank, account } =
+    props.employee;
 
   const basic = ((gross - 1850) / 1.5).toFixed(0);
   const payment = ((gross / 30) * props.date.length).toFixed(0);
@@ -38,35 +37,35 @@ const SalaryData = (props) => {
 
   return (
     <>
-
       <StyledTableRow>
-
         <StyledTableCell component="th" scope="row">
           {name} <br /> {ID}
         </StyledTableCell>
 
         <StyledTableCell align="center" component="th" scope="row">
-          {designation} <br />{department}
+          {designation} <br />
+          {department}
         </StyledTableCell>
 
         <StyledTableCell align="center" component="th" scope="row">
-          {basic} <br />{gross}
+          {basic} <br />
+          {gross}
         </StyledTableCell>
 
         <StyledTableCell align="center" component="th" scope="row">
-          {dates?.length} <br />{Present?.length} / {holidays?.length} / {Leaves?.length}
+          {dates?.length} <br />
+          {Present?.length} / {holidays?.length} / {Leaves?.length}
         </StyledTableCell>
 
         <StyledTableCell align="center" component="th" scope="row">
-          {bank} <br />{account}
+          {bank} <br />
+          {account}
         </StyledTableCell>
 
         <StyledTableCell align="right" component="th" scope="row">
           {payment}
         </StyledTableCell>
-
       </StyledTableRow>
-
     </>
   );
 };

@@ -4,31 +4,17 @@ import { Cell, Pie, PieChart } from "recharts";
 
 const COLORS = ["#FF8042", "#00C49F"];
 const MyChart = ({ dataTwo, male, female }) => {
-    console.log(dataTwo);
 
     return (
         <Box>
             <Box>
-                <Box sx={{ alignItems: "top", justifyContent: "center", display: "flex" }}>
-                    <Box>
-                        <Typography
-                            variant="h6"
-                            sx={{
-                                fs: "bold",
-                                color: "#01578a",
-                                marginBottom: "-75px",
-                                marginTop: "50px",
-                                textAlign: "center",
-                                marginRight: "50px",
-                            }}
-                        >
-                            Employee Structure
-                        </Typography>
-                        <PieChart width={300} height={400}>
+                <Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                        <PieChart width={250} height={250}>
                             <Pie
                                 data={dataTwo}
                                 cx={120}
-                                cy={200}
+                                cy={120}
                                 innerRadius={85}
                                 outerRadius={120}
                                 fill="#8884d8"
@@ -43,25 +29,25 @@ const MyChart = ({ dataTwo, male, female }) => {
                     </Box>
                 </Box>
             </Box>
-            <Box sx={{ alignItems: "center", justifyContent: "center", display: "flex", marginTop: "-60px", marginLeft: "-10px" }}>
-                <Box>
-                    <Box sx={{ backgroundColor: "#00C49F", color: "#00C49F", height: "10px", width: "60px" }}></Box>
-                    <Typography sx={{ fw: "bold", color: " #00C49F" }}>Male: {male}%</Typography>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', mt: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Box sx={{ backgroundColor: "#00C49F", color: "#00C49F", height: "25px", width: "25px" }}></Box>
+                    <Typography variant="body1" sx={{ fs: "bold", color: "#00C49F", marginTop: '2px', ml: 1 }}>Male: {male}%</Typography>
                 </Box>
-                <Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Box
                         sx={{
                             backgroundColor: "#FF8042",
                             color: "#FF8042",
-                            height: "10px",
-                            width: "60px",
-                            marginLeft: "10px",
+                            height: "25px",
+                            width: "25px",
                         }}
                     ></Box>
-                    <Typography sx={{ fs: "bold", color: "#FF8042", marginLeft: "10px" }}>Female: {female}%</Typography>
+                    <Typography variant="body1" sx={{ fs: "bold", color: "#FF8042", marginTop: '2px', ml: 1 }}>Female: {female}%</Typography>
                 </Box>
             </Box>
-        </Box>
+        </Box >
     );
 };
 

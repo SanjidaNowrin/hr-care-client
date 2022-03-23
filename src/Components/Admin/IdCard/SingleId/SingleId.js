@@ -82,7 +82,11 @@ const SingleId = ({ employeeId }) => {
               }}
               variant="h4"
             >
-              HR Care
+              <img
+                src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+                alt="hr care"
+                style={{ width: '45%' }}
+              />
             </Typography>
           </Box>
 
