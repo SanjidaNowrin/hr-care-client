@@ -20,24 +20,15 @@ const LineChartsChartJs = ({ thisMonthTask }) => {
         datasets: [{
             label: 'Performance of this month',
             data: thisMonthTask?.map(x => x?.taskDone?.length),
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-
-            ],
-            borderColor: [
-
-                'rgba(255, 99, 132, 1)',
-
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-
-            ],
+            backgroundColor: 'rgba(255, 99, 132, .6)',
+            borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
-            fill: -1
-        }]
+            tension: 0.3,
+            fill: 1,
+
+        }
+
+        ]
     }
     const options = {
         maintainAspectRatio: false,
