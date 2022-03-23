@@ -1,7 +1,7 @@
 import { Breadcrumbs, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -13,6 +13,14 @@ import { Link } from "react-router-dom";
 
 const AddAnnouncement = () => {
     const [announceData, setAnnounceData] = useState({});
+    const [employees, setEmployees] = useState([]);
+
+
+    useEffect(() => {
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+            .then((res) => res.json())
+            .then((data) => setEmployees(data.result));
+    }, []);
 
     const handleOnChange = (e) => {
         const field = e.target.title;
@@ -25,8 +33,18 @@ const AddAnnouncement = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = (data) => {
+
         console.log(data);
-        axios.post("https://ancient-thicket-61342.herokuapp.com/announcement", data);
+
+        employees.map((user) => (
+
+            fetch("https://ancient-thicket-61342.herokuapp.com/announcement", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ ID: user?.ID, email: user?.email, title: data?.title, date: data?.date, text: data?.text, status: "unread" }),
+            })
+        ))
+
         reset();
         Swal.fire({
             position: "middle",

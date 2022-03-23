@@ -15,7 +15,7 @@ const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const { token } = useAuth();
   const onSubmit = (data) => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/user/admin", {
+    fetch("http://localhost:5000/user/admin", {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,

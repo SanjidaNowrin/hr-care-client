@@ -10,8 +10,10 @@ import Announcement from "./Announcement/Announcement";
 import Chip from '@mui/material/Chip';
 import { emphasize, styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
+import useAuth from "../../../hooks/useAuth";
 
 const Announcements = () => {
+    const { user } = useAuth()
     const { Id } = useParams();
     const theme = useTheme();
     const useStyle = makeStyles({
@@ -81,16 +83,28 @@ const Announcements = () => {
     const { announceBox, activeAnnounceBox, announceTop, announceTitle, dateStyle, announceP } = useStyle();
 
     const [isActive, setActive] = useState(Id);
-    const handleClick = (id) => {
-        setActive(id);
+    const handleClick = (data) => {
+        data.status = "read";
+        fetch(`https://ancient-thicket-61342.herokuapp.com/announcement/${data?._id}`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+        setActive(data?._id);
+        console.log(data);
+
     };
 
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
+        fetch(`https://ancient-thicket-61342.herokuapp.com/announcement/${user?.email}`)
             .then((res) => res.json())
             .then((data) => setData(data.data.reverse()));
-    }, [Id]);
+    }, [user]);
+    console.log(user?.email)
+
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -139,7 +153,7 @@ const Announcements = () => {
                             <Link
                                 to={`/dashboard/announcements/${data._id}`}>
                                 <Paper
-                                    onClick={() => handleClick(data._id)}
+                                    onClick={() => handleClick(data)}
                                     className={data._id === isActive ? activeAnnounceBox : announceBox}
                                     key={data._id}
                                 >
