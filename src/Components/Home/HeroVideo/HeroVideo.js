@@ -21,7 +21,7 @@ const Accordion = styled((props) => <MuiAccordion disableGutters elevation={0} s
 const AccordionSummary = styled((props) => (
     <MuiAccordionSummary expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem", color: "white" }} />} {...props} />
 ))(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "#3497d1" ? "#3497d1" : "#3497d1",
+    backgroundColor: theme.palette.mode === "#1C5BA0" ? "#1C5BA0" : "#1C5BA0",
     flexDirection: "row-reverse",
     "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
         transform: "rotate(90deg)",
@@ -58,7 +58,7 @@ export default function CustomizedAccordions() {
                                 <Typography sx={{ color: "white" }}>What is HRM?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography sx={{ color: "#3497d1" }}>
+                                <Typography sx={{ color: "black" }}>
                                     Human resource management (HRM) is the practice of recruiting, hiring, deploying and managing an
                                     organization's employees. HRM is often referred to simply as human resources (HR). A company or
                                     organization's HR department is usually responsible for creating, policies workers and the relationship
@@ -71,7 +71,7 @@ export default function CustomizedAccordions() {
                                 <Typography sx={{ color: "white" }}>Where HRM is used?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography sx={{ color: "#3497d1" }}>
+                                <Typography sx={{ color: "black" }}>
                                     HRM is employee management with an emphasis on those employees as assets of the business. In this
                                     context, employees are sometimes referred to as human capital. As with other business assets, the goal
                                     is to make effective use of employees, reducing risk and maximizing return on investment (ROI).
@@ -83,7 +83,7 @@ export default function CustomizedAccordions() {
                                 <Typography sx={{ color: "white" }}>Who uses HRM?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography sx={{ color: "#3497d1" }}>
+                                <Typography sx={{ color: "black" }}>
                                     HRM approach is needed to bring proper understanding among workers and management. The workers are
                                     trained and developed to meet their individual and organisational objectives. The workers are made to
                                     understand that various managerial actions will assist them in achieving their aspirations and
@@ -96,7 +96,7 @@ export default function CustomizedAccordions() {
                                 <Typography sx={{ color: "white" }}>What are the benefits of using HRM?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography sx={{ color: "#3497d1" }}>
+                                <Typography sx={{ color: "black" }}>
                                     It’s important not to underestimate the impact of HR on your business. While you might think that you
                                     can handle things internally, outsourcing your HR offers a multitude of benefits. Partnering with an HRM
                                     expert can help you secure top talent, create a stronger onboarding process, improve employee retention.

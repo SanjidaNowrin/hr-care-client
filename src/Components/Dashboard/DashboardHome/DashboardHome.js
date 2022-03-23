@@ -24,9 +24,11 @@ import { Link } from "react-router-dom";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import BestEmployee from "./BestEmployee";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
-import MyCharts from "./MyCharts/MyCharts"
-import Request from "./Request/Request"
-
+import MyCharts from "./MyCharts/MyCharts";
+import Request from "./Request/Request";
+import SalaryChart from "./SalaryChart/SalaryChart";
+import LineCharts from "../Charts/LineCharts";
+import TodayAssignedTask from "./TodayAssignedTask/TodayAssignedTask";
 const DashboardHome = () => {
   const [employees, setEmployees] = useState([]);
 
@@ -279,29 +281,56 @@ const DashboardHome = () => {
         </Grid>
       </Box>
 
-      {/* //dash middle  */}
-      <Box sx={{ mt: 7 }}>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
-            <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
-          </Grid>
-
-          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <MyCharts></MyCharts>
-          </Grid>
-
-          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Request employees={employees}></Request>
-          </Grid>
+      {/* //Best Employee  */}
+      <Grid container spacing={3} mt={8}>
+        <Grid item xs={12} md={4}>
+          <BestEmployee finalPoint={finalPoint} check={check}></BestEmployee>
         </Grid>
-
-      </Box>
-
+        <Grid item xs={12} md={8}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Salary Allocation
+          </Typography>
+          <SalaryChart
+            itGross={itGross}
+            hrGross={hrGross}
+            marketingGross={marketingGross}
+            accGross={accGross}
+          />
+        </Grid>
+      </Grid>
+      {/* end */}
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Pending Status
+          </Typography>
+          <Request employees={employees}></Request>
+        </Grid>
+        {/* Table on employee details */}
+        <Grid item xs={12} md={4}>
+          <Box sx={{ border: "1px solid black" }}>
+            <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+              Employee Structure
+            </Typography>
+            <MyCharts></MyCharts>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Box sx={{ border: "1px solid black" }}>
+            <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+              Today Total Assigned Task
+            </Typography>
+            <Box sx={{ textAlign: "center" }}>
+              <TodayAssignedTask />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
       {/* Total attendance area */}
-      <Box sx={{ my: 5 }}>
+      <Grid item xs={12} md={12} mt={2}>
         <Box
           sx={{
-            background: "var(--t_color)",
+            background: "",
             py: 2,
             px: 2,
             display: "flex",
@@ -311,33 +340,24 @@ const DashboardHome = () => {
           <Typography variant="h5">Today Attendance</Typography>
           <Typography variant="h5">{takeDate}</Typography>
         </Box>
-
-        {/* Table on employee details */}
-        <Grid container spacing={0}>
-          <Grid item xs={12} md={12}>
-            <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper}>
-              <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Employee</TableCell>
-                    <TableCell align="center">Department</TableCell>
-                    <TableCell align="center">In Time</TableCell>
-                    <TableCell align="right">Out Time</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {todayPresent.map((item) => (
-                    <TodayAttendance
-                      key={item._id}
-                      item={item}
-                    ></TodayAttendance>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-        </Grid>
-      </Box>
+        <TableContainer sx={{ overflowX: "scroll" }} component={Paper}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Employee</TableCell>
+                <TableCell align="center">Department</TableCell>
+                <TableCell align="center">In Time</TableCell>
+                <TableCell align="right">Out Time</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {todayPresent.map((item) => (
+                <TodayAttendance key={item._id} item={item}></TodayAttendance>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
     </Container>
   );
 };

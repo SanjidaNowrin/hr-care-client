@@ -119,7 +119,6 @@ const useFirebase = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 2500);
-
     });
     return () => unsubscribed;
   }, [auth]);

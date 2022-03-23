@@ -390,7 +390,7 @@ const MyInfo = () => {
                                     label="Status"
                                     type="text"
                                     variant="outlined"
-                                    value="pending"
+                                    value="Pending"
                                     required
                                     className={inputFiend}
                                 />
