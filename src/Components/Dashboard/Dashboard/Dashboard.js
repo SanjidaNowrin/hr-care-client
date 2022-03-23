@@ -75,12 +75,12 @@ function Dashboard(props) {
             <Box sx={{ pl: 2 }}>
                 <Typography className={drawerTitle} variant="h6">Main</Typography>
                 <List className={linkItem}>
-                    <Link className={dashLink} to="/dashboard">
+                    <Link className={dashLink} to="/dashboard/admin">
                         <DashboardOutlinedIcon className={dashIcon} />
                         Dashboard
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/employeeDashboard">
+                    <Link className={dashLink} to="/dashboard/">
                         <DashboardOutlinedIcon className={dashIcon} />
                         My Dashboard
                     </Link>
