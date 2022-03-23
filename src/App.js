@@ -54,7 +54,7 @@ function App() {
               />
               <Route path={"/dashboard/leave"} element={<Leave />} />
 
-              <Route path={"/dashboard"} element={<DashboardHome />} />
+              <Route path={"/dashboard"} element={<AdminRoute><DashboardHome /></AdminRoute>} />
               <Route path={"/dashboard/all_employees"} element={<AdminRoute><Employees /></AdminRoute>} />
               <Route path={"/dashboard/id_card"} element={<AdminRoute><IdCard /> </AdminRoute>} />
               <Route path={"/dashboard/manage_attendance"} element={<AdminRoute><AttendanceManages /></AdminRoute>} />

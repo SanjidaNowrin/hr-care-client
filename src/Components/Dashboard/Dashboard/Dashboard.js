@@ -63,12 +63,12 @@ function Dashboard(props) {
 
   const drawer = (
     <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Box sx={{ px: 2, mt: 1 }}>
+      <Box sx={{ px: 2, mt: 1, mb: 1, textAlign: 'center' }}>
         <Link to="/home">
           <img
             src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
             alt="hr care"
-            style={{ width: '100%' }}
+            style={{ width: '80%' }}
           />
         </Link>
       </Box>
