@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user, isAdmin, isLoading } = useAuth();
-    let location = useLocation();
+    const location = useLocation();
     if (isLoading) return <span className="visually-hidden">Loading...</span>;
     if (user.email && isAdmin) {
         return children;
