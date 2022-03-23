@@ -59,9 +59,11 @@ const MyAttendance = (props) => {
       .then((data) => setEmployee(data.result));
   }, [user.email]);
   //qrCode fetch
-  const [qrCode,setQrCode]=useState([])
+  const [qrCode, setQrCode] = useState([]);
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/withoutImage/${user.email}`)
+    fetch(
+      `https://ancient-thicket-61342.herokuapp.com/employees/withoutImage/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setQrCode(data.result));
   }, [user.email]);
@@ -209,7 +211,7 @@ const MyAttendance = (props) => {
           >
             <img
               className={classes.qrImage}
-              style={{ border: "2px solid #01578A"}}
+              style={{ border: "2px solid #01578A" }}
               width="90% !important"
               src={`data:image/jpeg;base64,${qrCode[0]?.qrUrl.split(",")[1]}`}
               alt="Employee QrCode"
@@ -224,12 +226,19 @@ const MyAttendance = (props) => {
             <Grid item xs={12} md={12} mt={3}>
               <Card className={classes.cardStyle}>
                 <CardActionArea>
-                  <CardMedia
-                    className={classes.imgStyle}
-                    align="center"
-                    component="img"
-                    src={`data:image/jpeg;base64,${employee[0]?.photo}`}
-                  />
+                  {employee[0]?.photo ? (
+                    <CardMedia
+                      className={classes.imgStyle}
+                      align="center"
+                      component="img"
+                      src={`data:image/jpeg;base64,${employee[0]?.photo}`}
+                    />
+                  ) : (
+                    <CardMedia
+                      className={classes.imgStyle}
+                      image="https://i.ibb.co/gvzdw1g/images.png"
+                    />
+                  )}
                   <CardContent>
                     <Typography
                       gutterBottom
