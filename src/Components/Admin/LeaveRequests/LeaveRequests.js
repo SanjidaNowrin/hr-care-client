@@ -9,6 +9,9 @@ import Chip from '@mui/material/Chip';
 import { emphasize, styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import OneLeaveRequest from "./OneLeaveRequest/OneLeaveRequest";
+//pagination
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const LeaveRequests = () => {
     const theme = useTheme();
@@ -84,12 +87,29 @@ const LeaveRequests = () => {
         setActive(id);
     };
 
+    //pagination
+    const dataPerPage = 5;
+    const [page, setPage] = React.useState(0);
+    const [count, setCount] = useState(0)
+    const handleChange = (event, value) => {
+        setPage(value - 1);
+    }
+    console.log(page, count)
+
+    const buttonNumber = Math.ceil(count / 10);
+    console.log(buttonNumber)
+
+    //pagination end
+
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/leave")
+        fetch(`https://ancient-thicket-61342.herokuapp.com/leave?page=${page}&&size=${dataPerPage}`)
             .then((res) => res.json())
-            .then((data) => setData(data.data.reverse()));
-    }, [data]);
+            .then((data) => {
+                setCount(data.count)
+                setData(data.data)
+            });
+    }, [page]);
 
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -165,6 +185,11 @@ const LeaveRequests = () => {
                     </Grid>
                 </Grid>
             </Box>
+            <div style={{ width: '30%', margin: '0 auto' }}>
+                <Stack spacing={2}>
+                    <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
+                </Stack>
+            </div>
         </Container>
     );
 };
