@@ -12,6 +12,8 @@ const MyCharts = () => {
             .then((data) => setChart(data.result));
     }, []);
 
+    console.log(chart)
+
     //filter employee male
     useEffect(() => {
         const filterMale = chart.filter((data) => data.gendar === "Male");

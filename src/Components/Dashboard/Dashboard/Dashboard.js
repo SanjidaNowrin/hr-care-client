@@ -1,8 +1,8 @@
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-import AddTaskIcon from "@mui/icons-material/AddTask";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import CoPresentOutlinedIcon from "@mui/icons-material/CoPresentOutlined";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
@@ -23,13 +23,11 @@ import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
 import * as React from "react";
 import { Link, Outlet } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import DashNav from "../DashNav/DashNav";
 
 const drawerWidth = 260;
 
 function Dashboard(props) {
-    const { isAdmin } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -46,9 +44,9 @@ function Dashboard(props) {
             alignItems: "center",
             color: "#fff",
             padding: "8px 0",
-            fontWeight: "400 !important",
-            fontFamily: "var(--PT_font) !important",
-            fontSize: "15px !important",
+            fontWeight: '400 !important',
+            fontFamily: 'var(--PT_font) !important',
+            fontSize: '15px !important'
         },
         dashIcon: {
             marginTop: "-1px !important",
@@ -56,29 +54,44 @@ function Dashboard(props) {
             color: "#fff",
         },
         drawerTitle: {
-            fontWeight: "400 !important",
-            fontFamily: "var(--PT_font) !important",
-        },
+            fontWeight: '400 !important',
+            fontFamily: 'var(--PT_font) !important'
+        }
     });
 
     const { linkItem, dashLink, dashIcon, drawerTitle } = useStyle();
 
-  const drawer = (
-    <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Box sx={{ px: 2, mt: 1 }}>
-        <Link to="/home">
-          <img
-            src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
-            alt="hr care"
-            style={{ width: '100%' }}
-          />
-        </Link>
-      </Box>
+    const drawer = (
+        <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
+            <Box sx={{ px: 2, mt: 1, mb: 1, textAlign: 'center' }}>
+                <Link to="/home">
+                    <img
+                        src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+                        alt="hr care"
+                        style={{ width: '80%' }}
+                    />
+                </Link>
+            </Box>
+            <Box sx={{ pl: 2 }}>
+                <Typography className={drawerTitle} variant="h6">Main</Typography>
+                <List className={linkItem}>
+                    <Link className={dashLink} to="/dashboard/admin">
+                        <DashboardOutlinedIcon className={dashIcon} />
+                        Dashboard
+                    </Link>
 
-      <Box sx={{ pl: 2, mt: 1 }}>
-        {/* Employees */}
-        <Typography className={drawerTitle} variant="h6">Employees</Typography>
-        <List className={linkItem}>
+                    <Link className={dashLink} to="/dashboard/">
+                        <DashboardOutlinedIcon className={dashIcon} />
+                        My Dashboard
+                    </Link>
+                </List>
+            </Box>
+            <Divider />
+
+            <Box sx={{ pl: 2 }}>
+                {/* Employees */}
+                <Typography className={drawerTitle} variant="h6">Employees</Typography>
+                <List className={linkItem}>
 
                     <Link className={dashLink} to="/dashboard/myinfo">
                         <AccountBoxOutlinedIcon className={dashIcon} />
@@ -108,24 +121,17 @@ function Dashboard(props) {
             <Divider />
 
             {/* HRM */}
-            {
-        isAdmin && (
-
             <Box sx={{ pl: 2 }}>
-                <Typography className={drawerTitle} variant="h6">
-                    HRM
-                </Typography>
+                <Typography className={drawerTitle} variant="h6">HRM</Typography>
                 <List className={linkItem}>
-                    <Link className={dashLink} to="/dashboard/admin">
-                        <DashboardOutlinedIcon className={dashIcon} />
-                        Admin Dashboard
-                    </Link>
-
                     <Link className={dashLink} to="/dashboard/all_employees">
                         <AccountBoxOutlinedIcon className={dashIcon} />
                         All Employees
                     </Link>
-
+                    <Link className={dashLink} to="/dashboard/task_assign">
+                        <AddTaskIcon className={dashIcon} />
+                        Task Assign
+                    </Link>
                     <Link className={dashLink} to="/dashboard/id_card">
                         <BadgeOutlinedIcon className={dashIcon} />
                         ID Card
@@ -133,7 +139,7 @@ function Dashboard(props) {
 
                     <Link className={dashLink} to="/dashboard/manage_attendance">
                         <CoPresentOutlinedIcon className={dashIcon} />
-                        All Attendance
+                        Manage Attendance
                     </Link>
 
                     <Link className={dashLink} to="/dashboard/LeaveRequests">
@@ -156,11 +162,6 @@ function Dashboard(props) {
                         Add Course
                     </Link>
 
-                    <Link className={dashLink} to="/dashboard/task_assign">
-                        <AddTaskIcon className={dashIcon} />
-                        Task Assign
-                    </Link>
-
                     <Link className={dashLink} to="/dashboard/salary_sheet">
                         <ListAltIcon className={dashIcon} />
                         Salary Sheet
@@ -172,7 +173,8 @@ function Dashboard(props) {
                     </Link>
                 </List>
             </Box>
-             )} 
+
+            <Divider sx={{ pb: 1 }} />
         </Box>
     );
 
@@ -186,16 +188,16 @@ function Dashboard(props) {
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
                     ml: { sm: `${drawerWidth}px` },
-                    boxShadow: "0px 7px 45px rgb(0, 0,0, .3) !important",
+                    boxShadow: '0px 7px 45px rgb(0, 0,0, .3) !important'
                 }}
             >
-                <Toolbar sx={{ background: "var(--p_color)" }}>
+                <Toolbar sx={{ background: "#fff" }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: "none" } }}
+                        sx={{ mr: 2, display: { sm: "none" }, color: 'var(--p_color)' }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -234,7 +236,7 @@ function Dashboard(props) {
             <Box component="main" sx={{ flexGrow: 1, mt: 8, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
                 <Outlet />
             </Box>
-        </Box>
+        </Box >
     );
 }
 

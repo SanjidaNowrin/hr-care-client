@@ -10,7 +10,7 @@ const Announcement = ({ data }) => {
     useEffect(() => {
         const filterData = data.filter((item) => item._id === Id);
         setNewData(filterData);
-    }, [Id]);
+    }, [Id, data]);
 
     return (
         <>

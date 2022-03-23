@@ -6,8 +6,8 @@ import Grid from "@mui/material/Grid";
 import TrendingDownIcon from "@material-ui/icons/TrendingDown";
 import TodayIcon from "@material-ui/icons/Today";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
-import TaskIcon from '@mui/icons-material/Task';
-import GroupsIcon from '@mui/icons-material/Groups';
+import TaskIcon from "@mui/icons-material/Task";
+import GroupsIcon from "@mui/icons-material/Groups";
 import { makeStyles } from "@mui/styles";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
@@ -22,7 +22,6 @@ import LineChartsChartJs from "../Charts/LineChartsChartJs";
 import PieChartsChartJs from "../Charts/PieChartsChartJs";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import useAuth from "../../../hooks/useAuth";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -31,16 +30,13 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
 import Avatar from "@mui/material/Avatar";
 
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
 
 const EmployeeDashboardHome = () => {
   const { user } = useAuth();
-  console.log(user);
   const [attendance, setAttendance] = useState([]);
   const [holiday, setHoliday] = useState([]);
   const [leave, setLeave] = useState([]);
@@ -50,8 +46,6 @@ const EmployeeDashboardHome = () => {
   const [thisMonthTask, setThisMonthTask] = React.useState([]);
 
   const [taskUpdate, setTaskUpdate] = useState(false);
-  console.log(taskUpdate, thisMonthTask);
-  console.log(checked);
   // fetch attendence
 
   const currentDate = dateFormat(
@@ -59,7 +53,7 @@ const EmployeeDashboardHome = () => {
     "yyyy-MM-dd"
   );
   const dateString = currentDate.split("-")[1];
-  console.log(dateString, currentDate, holiday, attendance);
+
   useEffect(() => {
     fetch(
       `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
@@ -77,7 +71,6 @@ const EmployeeDashboardHome = () => {
         setLeave(filteredLeave);
         setAttendance(filteredData);
         setHoliday(filteredHoliday);
-        console.log(data.result, filteredData, filteredHoliday);
       });
   }, [dateString, user?.email]);
 
@@ -93,11 +86,9 @@ const EmployeeDashboardHome = () => {
         const filterTask = data?.data?.filter(
           (task) => task.email === user.email && task.date === currentDate
         );
-        console.log(filterTask);
         setToDo(filterTask);
         setChecked(filterTask[0]?.taskDone);
         setThisMonthTask(filterThisMonthTask);
-        console.log(filterThisMonthTask);
       });
   }, [taskUpdate, user.email, currentDate, checked, dateString]);
 
@@ -123,7 +114,7 @@ const EmployeeDashboardHome = () => {
 
   const useStyle = makeStyles({
     dashTopBox: {
-      border: '.5px solid #b6b7b7',
+      border: ".5px solid #b6b7b7",
       borderRadius: "10px",
       overflow: "hidden",
       width: "100%",
@@ -188,7 +179,10 @@ const EmployeeDashboardHome = () => {
       <Box sx={{ mt: 3 }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>
-            <Box sx={{ background: "rgba(75, 192, 192, .8)" }} className={dashTopBox}>
+            <Box
+              sx={{ background: "rgba(75, 192, 192, .8)" }}
+              className={dashTopBox}
+            >
               <Box className={dashTopText}>
                 <Typography
                   variant="h6"
@@ -213,12 +207,12 @@ const EmployeeDashboardHome = () => {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Box className={dashTopBox} sx={{ background: 'rgba(255, 206, 86, .8)' }}>
+            <Box
+              className={dashTopBox}
+              sx={{ background: "rgba(255, 206, 86, .8)" }}
+            >
               <Box className={dashTopText} sx={{}}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black" }}
-                >
+                <Typography variant="h6" sx={{ color: "black" }}>
                   Present
                 </Typography>
               </Box>
@@ -237,12 +231,12 @@ const EmployeeDashboardHome = () => {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Box className={dashTopBox} sx={{ background: 'rgba(255, 99, 132, .8)' }}>
+            <Box
+              className={dashTopBox}
+              sx={{ background: "rgba(255, 99, 132, .8)" }}
+            >
               <Box className={dashTopText} sx={{}}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black" }}
-                >
+                <Typography variant="h6" sx={{ color: "black" }}>
                   Absent
                 </Typography>
               </Box>
@@ -261,12 +255,12 @@ const EmployeeDashboardHome = () => {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Box className={dashTopBox} sx={{ background: 'rgba(54, 162, 235, .8)' }}>
+            <Box
+              className={dashTopBox}
+              sx={{ background: "rgba(54, 162, 235, .8)" }}
+            >
               <Box className={dashTopText} sx={{}}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black" }}
-                >
+                <Typography variant="h6" sx={{ color: "black" }}>
                   Holiday
                 </Typography>
               </Box>
@@ -294,12 +288,7 @@ const EmployeeDashboardHome = () => {
 
       {/* charts */}
 
-      <Box
-        sx={{
-
-
-        }}
-      >
+      <Box sx={{}}>
         <Grid container spacing={3}>
           {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
                     <BarChartJs></BarChartJs>
@@ -308,41 +297,81 @@ const EmployeeDashboardHome = () => {
                     <DoughnutChartJs attendance={attendance} dateString={dateString}></DoughnutChartJs>
                 </Box> */}
           <Grid item xs={12} md={3}>
-            <Box sx={{ height: '300px', width: '300px', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
-              <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
+            <Box
+              sx={{
+                height: "300px",
+                width: "300px",
+                margin: "30px",
+                background: "white",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                border: ".5px solid #b6b7b7",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ color: "rgba(255, 159, 64, 1)", margin: "0 auto" }}
+              >
                 Attendance
               </Typography>
 
-              <PieChartsChartJs holiday={holiday} leave={leave} attendance={attendance} dateString={dateString}></PieChartsChartJs>
+              <PieChartsChartJs
+                holiday={holiday}
+                leave={leave}
+                attendance={attendance}
+                dateString={dateString}
+              ></PieChartsChartJs>
             </Box>
           </Grid>
           <Grid item xs={12} md={9}>
-
-            <Box sx={{ height: '300px', width: '90%', margin: '30px', background: 'white', border: '1px solid #b6b7b7' }}>
-              <LineChartsChartJs thisMonthTask={thisMonthTask}></LineChartsChartJs>
+            <Box
+              sx={{
+                height: "300px",
+                width: "90%",
+                margin: "30px",
+                background: "white",
+                border: "1px solid #b6b7b7",
+              }}
+            >
+              <LineChartsChartJs
+                thisMonthTask={thisMonthTask}
+              ></LineChartsChartJs>
             </Box>
-
-
-
           </Grid>
         </Grid>
       </Box>
-
 
       {/* ASSIGN Task */}
       <Box sx={{}}>
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
-            <List dense sx={{ height: '300px', width: '80%', margin: '30px', border: '.5px solid #b6b7b7', bgcolor: 'background.paper' }}>
-              <Box sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}>
-                <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, .8)', margin: '20px ' }}>
+            <List
+              dense
+              sx={{
+                height: "300px",
+                width: "80%",
+                margin: "30px",
+                border: ".5px solid #b6b7b7",
+                bgcolor: "background.paper",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{ color: "rgba(75, 192, 192, .8)", margin: "20px " }}
+                >
                   Assign Task
                 </Typography>
-                <TaskIcon sx={{ color: 'rgba(75, 192, 192, .8)', margin: '20px ' }}></TaskIcon>
+                <TaskIcon
+                  sx={{ color: "rgba(75, 192, 192, .8)", margin: "20px " }}
+                ></TaskIcon>
               </Box>
 
               {toDo[0]?.tags?.map((value) => {
@@ -355,13 +384,12 @@ const EmployeeDashboardHome = () => {
                         edge="end"
                         onChange={handleToggle(value)}
                         checked={toDo[0]?.taskDone.indexOf(value) !== -1}
-                        inputProps={{ 'aria-labelledby': labelId }}
+                        inputProps={{ "aria-labelledby": labelId }}
                       />
                     }
                     disablePadding
                   >
                     <ListItemButton>
-
                       <ListItemText id={value._id} primary={value} />
                     </ListItemButton>
                   </ListItem>
@@ -370,53 +398,62 @@ const EmployeeDashboardHome = () => {
             </List>
           </Grid>
           <Grid item xs={12} md={6}>
-
-            <Box sx={{ height: '300px', width: '80%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
-              <Box sx={{
+            <Box
+              sx={{
+                height: "300px",
+                width: "80%",
+                margin: "30px",
+                background: "white",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}>
-                <Typography variant="h6" sx={{
-                  color: 'rgba(75, 192, 192, .8) ', margin: '20px '
-                }}>
+                flexDirection: "column",
+                justifyContent: "center",
+                border: ".5px solid #b6b7b7",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "rgba(75, 192, 192, .8) ",
+                    margin: "20px ",
+                  }}
+                >
                   Meeting
                 </Typography>
-                <GroupsIcon sx={{ color: 'rgba(75, 192, 192, .8) ', margin: '20px ' }}></GroupsIcon>
+                <GroupsIcon
+                  sx={{ color: "rgba(75, 192, 192, .8) ", margin: "20px " }}
+                ></GroupsIcon>
               </Box>
               <Card sx={{}}>
                 <CardContent>
-
                   <Typography variant="h5" component="div">
                     Meeting Today
                   </Typography>
 
-                  <Typography variant="body2">
-
-                    {toDo[0]?.endTime}PM
-                  </Typography>
+                  <Typography variant="body2">{toDo[0]?.endTime}PM</Typography>
                 </CardContent>
-
               </Card>
 
               <Card sx={{}}>
                 <CardContent>
-
                   <Typography variant="h5" component="div">
                     Meeting Tomorrow
                   </Typography>
 
                   <Typography variant="body2">
                     {toDo[0]?.startTime}AM
-
                   </Typography>
                 </CardContent>
-
               </Card>
             </Box>
           </Grid>
         </Grid>
-
       </Box>
       {/* meeting time  */}
 
@@ -434,7 +471,7 @@ const EmployeeDashboardHome = () => {
                 </Box>
 
             </Box> */}
-    </Container >
+    </Container>
   );
 };
 
