@@ -390,7 +390,7 @@ const MyInfo = () => {
                                     label="Status"
                                     type="text"
                                     variant="outlined"
-                                    value="Panding"
+                                    value="Pending"
                                     required
                                     className={inputFiend}
                                 />

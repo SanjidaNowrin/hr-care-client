@@ -58,8 +58,8 @@ const useFirebase = () => {
           displayName: name,
           photoURL: photo,
         })
-          .then(() => { })
-          .catch((error) => { });
+          .then(() => {})
+          .catch((error) => {});
         const destanition = location?.state?.from || "/";
         navigate(destanition);
       })
@@ -101,7 +101,9 @@ const useFirebase = () => {
       } else {
         setUser({});
       }
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2500);
     });
     return () => unsubscribed;
   }, [auth]);

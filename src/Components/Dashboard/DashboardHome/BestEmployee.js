@@ -26,7 +26,7 @@ const BestEmployee = (props) => {
     cardContainer: {
       borderRadius: "5px",
       background: "#fff",
-      border: "1px solid #b3b0b0",
+      // border: "1px solid #b3b0b0",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
