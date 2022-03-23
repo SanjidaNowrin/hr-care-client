@@ -22,21 +22,6 @@ const BestEmployee = (props) => {
     return output;
   }
 
-<<<<<<< HEAD
-    const { cardContainer, cardImg, cardBox, cardContent, cardTitle } = useStyle();
-    return (
-        <>
-                {bestEmp?.slice(2, 3).map((data) => (
-                    <Box className={cardContainer}>
-                        <Card className={cardBox}>
-                            {finalPoint[0]?.photo ? (
-                                <CardMedia className={cardImg} image={`data:image/jpeg;base64,${finalPoint[0]?.photo}`} />
-                            ) : (
-                                <CardMedia className={cardImg} image="https://i.ibb.co/gvzdw1g/images.png" />
-                            )}
-                            {/* // image="https://media.istockphoto.com/vectors/gold-trophy-with-the-name-plate-of-the-winner-of-the-competition-vector-id1168757141?k=20&m=1168757141&s=612x612&w=0&h=_jia0PPMGux63K2gqp-o0OzRcHbd6bvjVQJ70rz3nF8="
-              /> */}
-=======
   const useStyle = makeStyles({
     cardContainer: {
       borderRadius: "5px",
@@ -123,7 +108,6 @@ const BestEmployee = (props) => {
               <Typography sx={{ fontFamily: "var(--PT_font)" }} variant="body1">
                 Last month
               </Typography>
->>>>>>> d206ca76cee0231d98f50cfe70f3081b6afaf8b2
 
               <img
                 style={{
@@ -148,21 +132,6 @@ const BestEmployee = (props) => {
               />
             )}
 
-<<<<<<< HEAD
-                                <Typography variant="body1" sx={{ fontWeight: "600" }} color="text.secondary">
-                                    {finalPoint[0]?.name}
-                                </Typography>
-                                <Typography variant="body1" sx={{ fontWeight: "600", paddingBottom: "25px" }} color="text.secondary">
-                                    {check}
-                                    {finalPoint[0] ? "%" : ""}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Box>
-                ))}
-        </>
-    );
-=======
             <CardContent className={cardContent}>
               <Typography variant="h5" className={cardTitle}>
                 {finalPoint[0]?.name}
@@ -202,7 +171,6 @@ const BestEmployee = (props) => {
       ))}
     </>
   );
->>>>>>> d206ca76cee0231d98f50cfe70f3081b6afaf8b2
 };
 
 export default BestEmployee;
