@@ -108,8 +108,8 @@ const EmployeeModal = ({ item }) => {
   };
   const statusarrey = [
     {
-      value: "pending",
-      label: "pending",
+      value: "Pending",
+      label: "Pending",
     },
     {
       value: "Active",
