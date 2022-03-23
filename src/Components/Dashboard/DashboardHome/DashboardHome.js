@@ -114,16 +114,16 @@ const DashboardHome = () => {
   let todayAssignTask = 0;
   let todayDoneTask = 0;
   let todayTaskPercentage = 0;
-  todayTask.map(singleTask=>{
-    todayAssignTask+=singleTask.tags.length;
+  todayTask.map((singleTask) => {
+    todayAssignTask += singleTask.tags.length;
     console.log(todayAssignTask);
-    todayDoneTask+=singleTask.taskDone.length;
+    todayDoneTask += singleTask.taskDone.length;
     console.log(todayDoneTask);
     if ((todayAssignTask && todayDoneTask) !== 0) {
-      todayTaskPercentage = ( todayDoneTask/ todayAssignTask) * 100;
-      console.log(todayTaskPercentage)
+      todayTaskPercentage = (todayDoneTask / todayAssignTask) * 100;
+      console.log(todayTaskPercentage);
     }
-  })
+  });
   // today Assigned task end
   // salary chart start
   const [it, setIt] = useState([]);
@@ -382,12 +382,6 @@ const DashboardHome = () => {
       </Grid>
       {/* end */}
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
-            Pending Status
-          </Typography>
-          <Request employees={employees}></Request>
-        </Grid>
         {/* Table on employee details */}
         <Grid item xs={12} md={4}>
           <Box sx={{ border: "1px solid black" }}>
@@ -398,12 +392,32 @@ const DashboardHome = () => {
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
+          <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+            Pending Status
+          </Typography>
+          <Request employees={employees}></Request>
+        </Grid>
+        <Grid item xs={12} md={4}>
           <Box sx={{ border: "1px solid black" }}>
             <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
-              Today Assigned Task
+              Today Tasks
             </Typography>
-            <Box sx={{textAlign:"center"}}>
-            <TodayAssignedTask todayTaskPercentage={todayTaskPercentage}/>
+            <Box sx={{ width: "60%", height: "60%", margin: "0 auto" }}>
+              <TodayAssignedTask todayTaskPercentage={todayTaskPercentage} />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+                Today Assigned Task : {todayAssignTask}
+              </Typography>{" "}
+              <Typography variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+                Today Done Task : {todayDoneTask}
+              </Typography>
             </Box>
           </Box>
         </Grid>
