@@ -63,22 +63,22 @@ function Dashboard(props) {
 
     const { linkItem, dashLink, dashIcon, drawerTitle } = useStyle();
 
-  const drawer = (
-    <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
-      <Box sx={{ px: 2, mt: 1 }}>
-        <Link to="/home">
-          <img
-            src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
-            alt="hr care"
-            style={{ width: '100%' }}
-          />
-        </Link>
-      </Box>
+    const drawer = (
+        <Box style={{ background: "var(--p_color)", color: "white", height: "1000px" }}>
+            <Box sx={{ px: 2, mt: 1 }}>
+                <Link to="/home">
+                    <img
+                        src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
+                        alt="hr care"
+                        style={{ width: '100%' }}
+                    />
+                </Link>
+            </Box>
 
-      <Box sx={{ pl: 2, mt: 1 }}>
-        {/* Employees */}
-        <Typography className={drawerTitle} variant="h6">Employees</Typography>
-        <List className={linkItem}>
+            <Box sx={{ pl: 2, mt: 1 }}>
+                {/* Employees */}
+                <Typography className={drawerTitle} variant="h6">Employees</Typography>
+                <List className={linkItem}>
 
                     <Link className={dashLink} to="/dashboard/myinfo">
                         <AccountBoxOutlinedIcon className={dashIcon} />
@@ -109,70 +109,70 @@ function Dashboard(props) {
 
             {/* HRM */}
             {
-        isAdmin && (
+                isAdmin && (
 
-            <Box sx={{ pl: 2 }}>
-                <Typography className={drawerTitle} variant="h6">
-                    HRM
-                </Typography>
-                <List className={linkItem}>
-                    <Link className={dashLink} to="/dashboard/admin">
-                        <DashboardOutlinedIcon className={dashIcon} />
-                        Admin Dashboard
-                    </Link>
+                    <Box sx={{ pl: 2 }}>
+                        <Typography className={drawerTitle} variant="h6">
+                            HRM
+                        </Typography>
+                        <List className={linkItem}>
+                            <Link className={dashLink} to="/dashboard/admin">
+                                <DashboardOutlinedIcon className={dashIcon} />
+                                Admin Dashboard
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/all_employees">
-                        <AccountBoxOutlinedIcon className={dashIcon} />
-                        All Employees
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/all_employees">
+                                <AccountBoxOutlinedIcon className={dashIcon} />
+                                All Employees
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/id_card">
-                        <BadgeOutlinedIcon className={dashIcon} />
-                        ID Card
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/id_card">
+                                <BadgeOutlinedIcon className={dashIcon} />
+                                ID Card
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/manage_attendance">
-                        <CoPresentOutlinedIcon className={dashIcon} />
-                        All Attendance
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/manage_attendance">
+                                <CoPresentOutlinedIcon className={dashIcon} />
+                                All Attendance
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/LeaveRequests">
-                        <ExitToAppOutlinedIcon className={dashIcon} />
-                        Leave Requests
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/LeaveRequests">
+                                <ExitToAppOutlinedIcon className={dashIcon} />
+                                Leave Requests
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/holiday">
-                        <HolidayVillageOutlinedIcon className={dashIcon} />
-                        Holiday
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/holiday">
+                                <HolidayVillageOutlinedIcon className={dashIcon} />
+                                Holiday
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/add_announcement">
-                        <CampaignIcon className={dashIcon} />
-                        Add Announcement
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/add_announcement">
+                                <CampaignIcon className={dashIcon} />
+                                Add Announcement
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/add_course">
-                        <GolfCourseOutlinedIcon className={dashIcon} />
-                        Add Course
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/add_course">
+                                <GolfCourseOutlinedIcon className={dashIcon} />
+                                Add Course
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/task_assign">
-                        <AddTaskIcon className={dashIcon} />
-                        Task Assign
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/task_assign">
+                                <AddTaskIcon className={dashIcon} />
+                                Task Assign
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/salary_sheet">
-                        <ListAltIcon className={dashIcon} />
-                        Salary Sheet
-                    </Link>
+                            <Link className={dashLink} to="/dashboard/salary_sheet">
+                                <ListAltIcon className={dashIcon} />
+                                Salary Sheet
+                            </Link>
 
-                    <Link className={dashLink} to="/dashboard/make_admin">
-                        <AdminPanelSettingsIcon className={dashIcon} />
-                        Make Admin
-                    </Link>
-                </List>
-            </Box>
-             )} 
+                            <Link className={dashLink} to="/dashboard/make_admin">
+                                <AdminPanelSettingsIcon className={dashIcon} />
+                                Make Admin
+                            </Link>
+                        </List>
+                    </Box>
+                )}
         </Box>
     );
 

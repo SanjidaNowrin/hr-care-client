@@ -40,20 +40,20 @@ const Request = ({ employees }) => {
         },
         reqBox: {
             background: '#fff',
-            border: '1px solid #448aff'
+            border: '1px solid #00D2FC'
         },
         reqText: {
             display: 'flex',
             justifyContent: 'space-between',
             padding: '12px 20px',
             background: '#fff',
-            color: '#448aff',
+            color: '#00D2FC',
         },
         reqAction: {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: '#448aff',
+            background: '#00D2FC',
             padding: '10px',
             color: '#fff'
         }
@@ -62,9 +62,6 @@ const Request = ({ employees }) => {
 
     return (
         <Box className={reqContainer}>
-            <Typography variant="h5" sx={{ my: 1, textAlign: 'center' }}>
-                Pending Status
-            </Typography>
             <Box className={reqBox}>
                 <Box className={reqText}>
                     <Box>
@@ -87,8 +84,8 @@ const Request = ({ employees }) => {
                 </Link>
             </Box>
 
-            <Box sx={{ mt: 2, border: '1px solid #11c15b' }} className={reqBox}>
-                <Box sx={{ color: '#11c15b' }} className={reqText}>
+            <Box sx={{ mt: 2, border: '1px solid #00C49F' }} className={reqBox}>
+                <Box sx={{ color: '#00C49F' }} className={reqText}>
                     <Box>
                         <Typography variant='h4'>
                             {leftPad(leavePending.length)}
@@ -100,7 +97,7 @@ const Request = ({ employees }) => {
                     <SystemUpdateAltOutlinedIcon fontSize='large' />
                 </Box>
                 <Link to="/dashboard/LeaveRequests">
-                    <Box sx={{ background: '#11c15b' }} className={reqAction}>
+                    <Box sx={{ background: '#00C49F' }} className={reqAction}>
                         <Typography variant='h6'>
                             Check Now
                         </Typography>

@@ -58,6 +58,15 @@ const MyAttendance = (props) => {
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [user.email]);
+  //qrCode fetch
+  const [qrCode, setQrCode] = useState([]);
+  useEffect(() => {
+    fetch(
+      `https://ancient-thicket-61342.herokuapp.com/employees/withoutImage/${user.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => setQrCode(data.result));
+  }, [user.email]);
 
   //punchin
   const handlePunchIn = () => {
@@ -139,9 +148,7 @@ const MyAttendance = (props) => {
     },
     qrImage: {
       "&:hover": {
-        transform: "scale(1.3)",
-        marginLeft: "1.5rem !important",
-        margin: "0 auto !important",
+        transform: "scale(1.2)",
       },
     },
   }));
@@ -166,43 +173,72 @@ const MyAttendance = (props) => {
       },
     };
   });
-  console.log(findPerson)
+  console.log(findPerson);
   return (
     <Container>
       {/* Breadcrumbs */}
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          sx={{ mt: 2, color: "var(--p_color) !important" }}
-          variant="h4"
-        >
-          Daily Attendance
-        </Typography>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link to="/dashboard">
-            <StyledBreadcrumb
-              to="/dashboard"
-              label="Dashboard"
-              icon={<HomeIcon fontSize="small" />}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box sx={{ mb: 1 }}>
+          <Typography
+            sx={{ mt: 1, color: "var(--p_color) !important" }}
+            variant="h4"
+          >
+            Daily Attendance
+          </Typography>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link to="/dashboard">
+              <StyledBreadcrumb
+                to="/dashboard"
+                label="Dashboard"
+                icon={<HomeIcon fontSize="small" />}
+              />
+            </Link>
+            <Link to="/dashboard/attendance">
+              <StyledBreadcrumb component="a" href="#" label="Attendance" />
+            </Link>
+          </Breadcrumbs>
+        </Box>
+        <Box mt={3}>
+          <a
+            href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
+            download
+          >
+            <img
+              className={classes.qrImage}
+              style={{ border: "2px solid #01578A" }}
+              width="90% !important"
+              src={`data:image/jpeg;base64,${qrCode[0]?.qrUrl.split(",")[1]}`}
+              alt="Employee QrCode"
             />
-          </Link>
-          <Link to="/dashboard/attendance">
-            <StyledBreadcrumb component="a" href="#" label="Attendance" />
-          </Link>
-        </Breadcrumbs>
+          </a>
+        </Box>
       </Box>
 
-      <Grid container >
+      <Grid container>
         <Grid container item xs={12} md={6}>
           {user?.email === findPerson ? (
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={12} mt={3}>
               <Card className={classes.cardStyle}>
                 <CardActionArea>
-                  <CardMedia
-                    className={classes.imgStyle}
-                    align="center"
-                    component="img"
-                    src={`data:image/jpeg;base64,${employee[0]?.photo}`}
-                  />
+                  {employee[0]?.photo ? (
+                    <CardMedia
+                      className={classes.imgStyle}
+                      align="center"
+                      component="img"
+                      src={`data:image/jpeg;base64,${employee[0]?.photo}`}
+                    />
+                  ) : (
+                    <CardMedia
+                      className={classes.imgStyle}
+                      image="https://i.ibb.co/gvzdw1g/images.png"
+                    />
+                  )}
                   <CardContent>
                     <Typography
                       gutterBottom
@@ -231,27 +267,13 @@ const MyAttendance = (props) => {
               </Card>
             </Grid>
           ) : (
-            <Grid item xs={12} md={12} mt={1}>
+            <Grid item xs={12} md={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Typography variant="h6">
                   <span style={{ color: "red" }}>*</span> Scan by QRCode
                 </Typography>
-
-                <a
-                  href={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
-                    }`}
-                  download
-                >
-                  <img
-                    className={classes.qrImage}
-                    width="30% !important"
-                    src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]
-                      }`}
-                    alt="Employee QrCode"
-                  />
-                </a>
               </Box>
-              <Card className={classes.cardStyle} height='200px'>
+              <Card className={classes.cardStyle} height="200px">
                 <CardActionArea>
                   <CardContent>
                     {findPerson ? (
