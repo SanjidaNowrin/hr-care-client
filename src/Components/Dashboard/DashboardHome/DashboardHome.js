@@ -315,8 +315,8 @@ const DashboardHome = () => {
         {/* Table on employee details */}
         <Grid container spacing={0}>
           <Grid item xs={12} md={12}>
-            <TableContainer sx={{ overflowX: "scroll" }} component={Paper}>
-              <Table aria-label="simple table">
+            <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper}>
+              <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Employee</TableCell>

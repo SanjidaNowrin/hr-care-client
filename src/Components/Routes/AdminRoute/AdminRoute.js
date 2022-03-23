@@ -7,7 +7,7 @@ const AdminRoute = ({ children, ...rest }) => {
   const { user, isAdmin, isLoading } = useAuth();
   let location = useLocation();
   if (isLoading) {
-    return <span className="visually-hidden"><Loaders/></span>;
+    return <span className="visually-hidden"><Loaders /></span>;
   }
   if (user.email && isAdmin) {
     return children;

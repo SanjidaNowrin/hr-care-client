@@ -215,8 +215,8 @@ const Holidays = () => {
                 </Button>
             </Box>
 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper}>
+                <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>Holidays</StyledTableCell>

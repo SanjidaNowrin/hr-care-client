@@ -4,7 +4,9 @@ import Divider from "@mui/material/Divider";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import React, { useEffect, useState } from "react";
 
-const BestEmployee = ({ check, finalPoint }) => {
+const BestEmployee = (props) => {
+  const { check, finalPoint } = props;
+
   const [bestEmp, setBestEmp] = useState([]);
   useEffect(() => {
     fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
@@ -23,79 +25,87 @@ const BestEmployee = ({ check, finalPoint }) => {
   const useStyle = makeStyles({
     cardContainer: {
       borderRadius: "5px",
-      background: '#fff',
-      border: '1px solid #b3b0b0',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '15px 0'
+      background: "#fff",
+      border: "1px solid #b3b0b0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "15px 0",
     },
     cardImg: {
       height: "120px",
       width: "120px",
       borderRadius: "50%",
-      position: 'absolute',
-      zIndex: '2',
-      top: '74px',
-      right: '-4px'
+      position: "absolute",
+      zIndex: "2",
+      top: "74px",
+      right: "-1px",
     },
     cardBox: {
-      height: '350px',
-      width: '270px',
-      background: 'transparent',
+      height: "350px",
+      width: "270px",
+      background: "transparent",
       boxShadow: "1px 10px 30px #b6b7b7 !important",
-      position: 'relative',
-      '&::after': {
+      position: "relative",
+      "&::after": {
         content: '""',
-        position: 'absolute',
-        top: '-50px',
-        left: '-50px',
-        height: '60%',
-        width: '350px',
-        background: 'var(--p_color)',
-        transform: 'rotate(-19deg)',
-        zIndex: '1'
-      }
+        position: "absolute",
+        top: "-50px",
+        left: "-50px",
+        height: "60%",
+        width: "350px",
+        background: "var(--p_color)",
+        transform: "rotate(-19deg)",
+        zIndex: "1",
+      },
     },
     awardBox: {
-      position: 'absolute',
-      left: '10px',
-      zIndex: '3',
-      color: '#fff',
-      fontFamily: 'var(--PT_font) !important'
+      position: "absolute",
+      left: "10px",
+      zIndex: "3",
+      color: "#fff",
+      fontFamily: "var(--PT_font) !important",
     },
     cardContent: {
-      position: 'absolute',
-      bottom: '75px'
+      position: "absolute",
+      bottom: "75px",
     },
     cardTitle: {
       fontWeight: "600 !important",
       color: "#000",
     },
     awardBottom: {
-      position: 'absolute',
-      bottom: '0',
-      width: '100%',
-      color: '#555',
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      textAlign: 'center',
-      borderTop: '1px solid #b3b0b0',
-      padding: '5px 0'
-    }
+      position: "absolute",
+      bottom: "0",
+      width: "100%",
+      color: "#555",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+      textAlign: "center",
+      borderTop: "1px solid #b3b0b0",
+      padding: "5px 0",
+    },
   });
-  const { cardContainer, cardImg, cardBox, awardBox, cardContent, cardTitle, awardBottom } = useStyle();
+  const {
+    cardContainer,
+    cardImg,
+    cardBox,
+    awardBox,
+    cardContent,
+    cardTitle,
+    awardBottom,
+  } = useStyle();
   return (
     <>
       {bestEmp?.slice(2, 3).map((data) => (
-        <Box key={data._id} className={cardContainer}>
+        <Box className={cardContainer}>
           <Card className={cardBox}>
             <Box className={awardBox}>
-              <Typography sx={{ fontFamily: 'var(--PT_font)' }} variant="h5">
+              <Typography sx={{ fontFamily: "var(--PT_font)" }} variant="h5">
                 Best Employee
               </Typography>
-              <Typography sx={{ fontFamily: 'var(--PT_font)' }} variant="body1">
+              <Typography sx={{ fontFamily: "var(--PT_font)" }} variant="body1">
                 Last month
               </Typography>
 

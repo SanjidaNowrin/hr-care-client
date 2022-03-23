@@ -44,7 +44,7 @@ export default function CustomizedAccordions() {
     };
 
     return (
-        <Box>
+        <Box id="video">
             <Container>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={7}>
