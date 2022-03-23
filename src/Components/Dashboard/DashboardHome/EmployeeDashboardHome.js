@@ -22,25 +22,34 @@ import LineChartsChartJs from "../Charts/LineChartsChartJs";
 import PieChartsChartJs from "../Charts/PieChartsChartJs";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import useAuth from "../../../hooks/useAuth";
+import CalenderChar from "../DashboardHome/HolidayCalender/CalenderChart";
+
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
-import Avatar from "@mui/material/Avatar";
 
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import fun from '../../../assets/images/fun2.png';
+import LeaveCalender from "./LeaveCalender/LeaveCalender";
+
 
 const EmployeeDashboardHome = () => {
   const { user } = useAuth();
   const [attendance, setAttendance] = useState([]);
   const [holiday, setHoliday] = useState([]);
   const [leave, setLeave] = useState([]);
+  const [present, setPresent] = useState([]);
+  const [sickLeave, setSickLeave] = useState([]);
+  const [casualLeave, setCasualLeave] = useState([]);
 
+  console.log("leave", leave, sickLeave, casualLeave)
   const [toDo, setToDo] = useState([]);
   const [checked, setChecked] = React.useState([]);
   const [thisMonthTask, setThisMonthTask] = React.useState([]);
@@ -52,8 +61,12 @@ const EmployeeDashboardHome = () => {
     new Date().toLocaleString().split(",")[0],
     "yyyy-MM-dd"
   );
-  const dateString = currentDate.split("-")[1];
 
+  const dateString = currentDate.split("-")[1];
+  const lastDay = parseInt(currentDate.split("-")[2]);
+  console.log(lastDay, typeof (lastDay))
+
+  console.log(dateString, currentDate, holiday, attendance);
   useEffect(() => {
     fetch(
       `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
@@ -68,9 +81,16 @@ const EmployeeDashboardHome = () => {
           (y) => y.status === "Holiday"
         );
         const filteredLeave = data?.result?.filter((y) => y.status === "Leave");
+        const filteredPresent = data?.result?.filter((y) => y.status === "Present");
+        const filteredSickLeave = data?.result?.filter((y) => y.vacation === "Sick Leave");
+        const filteredCasualLeave = data?.result?.filter((y) => y.vacation === "Casual Leave");
         setLeave(filteredLeave);
         setAttendance(filteredData);
         setHoliday(filteredHoliday);
+        setPresent(filteredPresent)
+        setSickLeave(filteredSickLeave)
+        setCasualLeave(filteredCasualLeave)
+        console.log(data.result, filteredData, filteredHoliday);
       });
   }, [dateString, user?.email]);
 
@@ -91,6 +111,15 @@ const EmployeeDashboardHome = () => {
         setThisMonthTask(filterThisMonthTask);
       });
   }, [taskUpdate, user.email, currentDate, checked, dateString]);
+  // task summary
+
+  let totalTask = 0;
+  let doneTask = 0;
+  thisMonthTask.map(task => {
+    totalTask += task?.tags?.length
+    doneTask += task?.taskDone?.length
+  })
+  console.log(totalTask, doneTask)
 
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
@@ -113,8 +142,8 @@ const EmployeeDashboardHome = () => {
   });
 
   const useStyle = makeStyles({
-    dashTopBox: {
-      border: ".5px solid #b6b7b7",
+    dashBox: {
+      border: '.5px solid #b6b7b7',
       borderRadius: "10px",
       overflow: "hidden",
       width: "100%",
@@ -122,7 +151,7 @@ const EmployeeDashboardHome = () => {
       background: "white",
       // boxShadow: '1px 10px 10px #b6b7b7'
     },
-    dashTopText: {
+    dashText: {
       padding: "13px 10px",
       display: "flex",
       alignItems: "center",
@@ -131,7 +160,7 @@ const EmployeeDashboardHome = () => {
     },
   });
 
-  const { dashTopText, dashTopBox } = useStyle();
+  const { dashText, dashBox } = useStyle();
 
   // Assign task
 
@@ -179,11 +208,8 @@ const EmployeeDashboardHome = () => {
       <Box sx={{ mt: 3 }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>
-            <Box
-              sx={{ background: "rgba(75, 192, 192, .8)" }}
-              className={dashTopBox}
-            >
-              <Box className={dashTopText}>
+            <Box sx={{ background: "rgba(54, 162, 235, .6)" }} className={dashBox}>
+              <Box className={dashText}>
                 <Typography
                   variant="h6"
                   sx={{ color: "black", textAlign: "center" }}
@@ -201,18 +227,18 @@ const EmployeeDashboardHome = () => {
                   py: 1,
                 }}
               >
-                {attendance.length}
+                {lastDay - holiday.length}
               </Typography>
             </Box>
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Box
-              className={dashTopBox}
-              sx={{ background: "rgba(255, 206, 86, .8)" }}
-            >
-              <Box className={dashTopText} sx={{}}>
-                <Typography variant="h6" sx={{ color: "black" }}>
+            <Box className={dashBox} sx={{ background: 'rgba(75, 192, 192, .6)' }}>
+              <Box className={dashText} sx={{}}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "black" }}
+                >
                   Present
                 </Typography>
               </Box>
@@ -224,19 +250,19 @@ const EmployeeDashboardHome = () => {
                   py: 1,
                 }}
               >
-                {attendance.length - holiday.length - leave.length}
+                {present.length}
               </Typography>
               {/* <TrendingUpIcon></TrendingUpIcon> */}
             </Box>
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Box
-              className={dashTopBox}
-              sx={{ background: "rgba(255, 99, 132, .8)" }}
-            >
-              <Box className={dashTopText} sx={{}}>
-                <Typography variant="h6" sx={{ color: "black" }}>
+            <Box className={dashBox} sx={{ background: 'rgba(255, 99, 132, .6)' }}>
+              <Box className={dashText} sx={{}}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "black" }}
+                >
                   Absent
                 </Typography>
               </Box>
@@ -248,19 +274,19 @@ const EmployeeDashboardHome = () => {
                   py: 1,
                 }}
               >
-                0
+                {lastDay - present.length - holiday.length - leave.length}
               </Typography>
               {/* <TrendingDownIcon></TrendingDownIcon> */}
             </Box>
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Box
-              className={dashTopBox}
-              sx={{ background: "rgba(54, 162, 235, .8)" }}
-            >
-              <Box className={dashTopText} sx={{}}>
-                <Typography variant="h6" sx={{ color: "black" }}>
+            <Box className={dashBox} sx={{ background: ' rgba(255, 206, 86, .6)' }}>
+              <Box className={dashText} sx={{}}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "black" }}
+                >
                   Holiday
                 </Typography>
               </Box>
@@ -296,47 +322,19 @@ const EmployeeDashboardHome = () => {
           {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
                     <DoughnutChartJs attendance={attendance} dateString={dateString}></DoughnutChartJs>
                 </Box> */}
-          <Grid item xs={12} md={3}>
-            <Box
-              sx={{
-                height: "300px",
-                width: "300px",
-                margin: "30px",
-                background: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                border: ".5px solid #b6b7b7",
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{ color: "rgba(255, 159, 64, 1)", margin: "0 auto" }}
-              >
-                Attendance
+          <Grid item xs={12} md={4}>
+            <Box sx={{ height: '300px', width: '350px', margin: '30px 0', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
+              <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
+                Leave
               </Typography>
 
-              <PieChartsChartJs
-                holiday={holiday}
-                leave={leave}
-                attendance={attendance}
-                dateString={dateString}
-              ></PieChartsChartJs>
+              <PieChartsChartJs casualLeave={casualLeave} sickLeave={sickLeave} ></PieChartsChartJs>
             </Box>
           </Grid>
-          <Grid item xs={12} md={9}>
-            <Box
-              sx={{
-                height: "300px",
-                width: "90%",
-                margin: "30px",
-                background: "white",
-                border: "1px solid #b6b7b7",
-              }}
-            >
-              <LineChartsChartJs
-                thisMonthTask={thisMonthTask}
-              ></LineChartsChartJs>
+          <Grid item xs={12} md={8}>
+
+            <Box sx={{ height: '300px', width: '100%', margin: '30px 0', marginLeft: '10px', background: 'white', border: '1px solid #b6b7b7' }}>
+              <LineChartsChartJs thisMonthTask={thisMonthTask}></LineChartsChartJs>
             </Box>
           </Grid>
         </Grid>
@@ -344,37 +342,21 @@ const EmployeeDashboardHome = () => {
 
       {/* ASSIGN Task */}
       <Box sx={{}}>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={6}>
-            <List
-              dense
-              sx={{
-                height: "300px",
-                width: "80%",
-                margin: "30px",
-                border: ".5px solid #b6b7b7",
-                bgcolor: "background.paper",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ color: "rgba(75, 192, 192, .8)", margin: "20px " }}
-                >
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <List dense sx={{ height: '350px', width: '100%', margin: '30px 0', border: '.5px solid #b6b7b7', bgcolor: 'background.paper' }}>
+              <Box sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}>
+                <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, .8)', margin: '20px ' }}>
                   Assign Task
                 </Typography>
-                <TaskIcon
-                  sx={{ color: "rgba(75, 192, 192, .8)", margin: "20px " }}
-                ></TaskIcon>
+                <TaskIcon sx={{ color: 'rgba(75, 192, 192, .8)', margin: '20px ', fontSize: '40px' }}></TaskIcon>
               </Box>
 
-              {toDo[0]?.tags?.map((value) => {
+              {toDo[0]?.tags ? <>{toDo[0]?.tags?.map((value) => {
                 const labelId = `checkbox-list-secondary-label-${value}`;
                 return (
                   <ListItem
@@ -394,64 +376,113 @@ const EmployeeDashboardHome = () => {
                     </ListItemButton>
                   </ListItem>
                 );
-              })}
+              })}</>
+                : <Box sx={{ height: '100%', width: '100%' }}>
+                  <Typography variant="h5">
+
+                    No Task Assign Yet
+                  </Typography>
+                  <Box sx={{ height: '80%', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={fun} height='220px' width='220px' alt="" />
+                  </Box>
+
+                </Box>}
             </List>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                height: "300px",
-                width: "80%",
-                margin: "30px",
-                background: "white",
+          {/* task summary */}
+          <Grid item xs={12} md={4}>
+
+            <Card sx={{ height: '350px', width: '100%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
+              <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, .8)', margin: '10px ', textAlign: 'center' }}>
+                Leave Dates
+              </Typography>
+              <Box sx={{
                 display: "flex",
-                flexDirection: "column",
+                width: '100%',
                 justifyContent: "center",
-                border: ".5px solid #b6b7b7",
-              }}
-            >
-              <Box
-                sx={{
+              }}>
+                <LeaveCalender sx={{ width: '100%', boxShadow: '0', margin: '0 auto' }} leave={leave} /></Box>
+              {/* <CardContent>
+                <Box sx={{
                   display: "flex",
-                  alignItems: "center",
+
                   justifyContent: "space-between",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "rgba(75, 192, 192, .8) ",
-                    margin: "20px ",
-                  }}
-                >
-                  Meeting
+                }}>
+                  <Typography variant="h6" sx={{
+                    color: 'rgba(75, 192, 192, .8) '
+                  }}>
+                    Task Summary
+                  </Typography>
+                  <GroupsIcon sx={{ color: 'rgba(75, 192, 192, .8) ', fontSize: '40px' }}></GroupsIcon>
+                </Box>
+                <Typography variant="h5" component="div">
+                  Task Assign
                 </Typography>
-                <GroupsIcon
-                  sx={{ color: "rgba(75, 192, 192, .8) ", margin: "20px " }}
-                ></GroupsIcon>
-              </Box>
-              <Card sx={{}}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    Meeting Today
-                  </Typography>
+                {totalTask?.length}
+                <Typography variant="body2">
 
-                  <Typography variant="body2">{toDo[0]?.endTime}PM</Typography>
-                </CardContent>
-              </Card>
+                </Typography>
+                <Typography variant="h5" component="div">
+                  Task Done
+                </Typography>
+                {doneTask?.length}
+                <Typography variant="body2">
 
-              <Card sx={{}}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    Meeting Tomorrow
+                </Typography>
+              </CardContent> */}
+
+            </Card>
+
+          </Grid>
+
+
+
+          {/* meeting card */}
+          <Grid item xs={12} md={4}>
+
+
+
+            <Card sx={{ height: '350px', width: '100%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
+              <CardContent sx={{ height: '100%' }}>
+                <Box sx={{
+                  display: "flex",
+
+                  justifyContent: "space-between",
+                }}>
+                  <Typography variant="h6" sx={{
+                    color: 'rgba(75, 192, 192, .8) ', margin: '10px '
+                  }}>
+                    Meeting
                   </Typography>
+                  <GroupsIcon sx={{ color: 'rgba(75, 192, 192, .8) ', margin: '20px ', fontSize: '40px' }}></GroupsIcon>
+                </Box>
+                {toDo[0]?.startTime ? <> <Typography variant="h5" component="div">
+                  Meeting Today
+                </Typography>
 
                   <Typography variant="body2">
+
                     {toDo[0]?.startTime}AM
                   </Typography>
-                </CardContent>
-              </Card>
-            </Box>
+
+                </> :
+                  <Box sx={{ height: '100%', width: '100%' }}>
+                    <Typography variant="h5">
+
+                      No Meeting Schedule Yet
+                    </Typography>
+                    <Box sx={{ height: '80%', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                      <img src={fun} height='220px' width='220px' alt="" />
+                    </Box>
+
+                  </Box>}
+              </CardContent>
+
+
+            </Card>
+
+
+
           </Grid>
         </Grid>
       </Box>

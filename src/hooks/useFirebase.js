@@ -58,8 +58,8 @@ const useFirebase = () => {
           displayName: name,
           photoURL: photo,
         })
-          .then(() => {})
-          .catch((error) => {});
+          .then(() => { })
+          .catch((error) => { });
         const destanition = location?.state?.from || "/";
         navigate(destanition);
       })
@@ -90,6 +90,20 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  //makeadmin
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        if (data?.result[0]?.role === "admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      });
+  }, [user?.email]);
   // Observer user state
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -100,6 +114,7 @@ const useFirebase = () => {
         });
       } else {
         setUser({});
+
       }
       setTimeout(() => {
         setIsLoading(false);
@@ -135,19 +150,7 @@ const useFirebase = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-  //makeadmin
-  useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data?.result[0]?.role === "admin") {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
-      });
-  }, [user]);
+
   console.log(isAdmin);
   return {
     token,
