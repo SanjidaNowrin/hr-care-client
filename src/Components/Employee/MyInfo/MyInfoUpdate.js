@@ -130,7 +130,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                 <Box
                     component="form"
                 >
-                    <Typography sx={{ mb: 3 }} variant="h4">
+                    <Typography sx={{ mb: 3, fontSize: { xs: '1.6rem', sm: '2rem', md: '2.2rem' } }} variant="h4">
                         <Divider textAlign="right">Update Your Information</Divider>
                     </Typography>
 
@@ -363,7 +363,7 @@ const MyInfoUpdate = ({ oneEmployee }) => {
                         </Grid>
 
                         {/* lastDepartment */}
-                        <Grid item >
+                        <Grid item xs={4} sm={8} md={4}>
                             <TextField
                                 {...register("lastDepartment")}
                                 id="outlined-basic"

@@ -242,7 +242,7 @@ const SalarySheet = () => {
                             />
                             <Typography > Salary Sheet From {startDate} to {endDate}</Typography>
                         </Box>
-                        <Typography> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
+                        <Typography sx={{ color: 'var(--pt_color)' }} variant="body2"> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
                         <TableContainer component={Paper}>
                             <Table aria-label="customized table">
                                 <TableHead>
