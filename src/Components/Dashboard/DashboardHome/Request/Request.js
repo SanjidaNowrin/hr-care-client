@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
 import SystemUpdateAltOutlinedIcon from '@mui/icons-material/SystemUpdateAltOutlined';
 import OpenInFullOutlinedIcon from '@mui/icons-material/OpenInFullOutlined';
 import { Box, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 
-const Request = () => {
-    const [tasksDone, SetTaskDone] = useState([]);
-    // const [workinProgress, setworkinProgress] = useState([])
+const Request = ({ employees }) => {
+    const [leave, setLeave] = useState([]);
     useEffect(() => {
-        fetch(`https://ancient-thicket-61342.herokuapp.com/taskAssign`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/leave`)
             .then(res => res.json())
-            .then(data => SetTaskDone(data.data))
+            .then(data => setLeave(data.data))
     }, []);
+
+    const [employeePending, setEmployeePending] = useState([]);
+    const [leavePending, setLeavePending] = useState([]);
+    useEffect(() => {
+        const filterData = employees.filter(data => data.status === "pending");
+        setEmployeePending(filterData)
+    }, [employees])
+
+    useEffect(() => {
+        const filterData = leave.filter(data => data.status === "pending");
+        setLeavePending(filterData)
+    }, [leave])
+
 
     function leftPad(number) {
         var output = number + '';
@@ -58,7 +69,7 @@ const Request = () => {
                 <Box className={reqText}>
                     <Box>
                         <Typography variant='h4'>
-                            {leftPad(4)}
+                            {leftPad(employeePending.length)}
                         </Typography>
                         <Typography variant='h5'>
                             Pending Employees
@@ -66,7 +77,7 @@ const Request = () => {
                     </Box>
                     <SystemUpdateAltOutlinedIcon fontSize='large' />
                 </Box>
-                <Link to="/dashboard/LeaveRequests">
+                <Link to="/dashboard/all_employees">
                     <Box className={reqAction}>
                         <Typography variant='h6'>
                             Check Now
@@ -80,7 +91,7 @@ const Request = () => {
                 <Box sx={{ color: '#11c15b' }} className={reqText}>
                     <Box>
                         <Typography variant='h4'>
-                            05
+                            {leftPad(leavePending.length)}
                         </Typography>
                         <Typography variant='h5'>
                             Pending Leave

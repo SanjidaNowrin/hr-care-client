@@ -49,7 +49,7 @@ const MyInfo = () => {
             .then((res) => res.json())
             .then((data) => setEmployee(data.result));
     }, [user.email]);
-
+    console.log(employee)
     const [image, setImage] = useState(null);
     //signature
     let sigPad = useRef({});
@@ -390,7 +390,7 @@ const MyInfo = () => {
                                     label="Status"
                                     type="text"
                                     variant="outlined"
-                                    value="Panding"
+                                    value="pending"
                                     required
                                     className={inputFiend}
                                 />
