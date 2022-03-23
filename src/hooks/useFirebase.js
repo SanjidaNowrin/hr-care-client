@@ -90,6 +90,20 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  //makeadmin
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        if (data?.result[0]?.role === "admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      });
+  }, [user?.email]);
   // Observer user state
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -100,8 +114,12 @@ const useFirebase = () => {
         });
       } else {
         setUser({});
+
       }
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2500);
+
     });
     return () => unsubscribed;
   }, [auth]);
@@ -133,19 +151,7 @@ const useFirebase = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-  //makeadmin
-  useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data?.result[0]?.role === "admin") {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
-      });
-  }, [user]);
+
   console.log(isAdmin);
   return {
     token,

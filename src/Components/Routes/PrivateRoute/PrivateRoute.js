@@ -8,7 +8,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   if (isLoading)
     return (
       <span className="visually-hidden">
-        <Loaders/>
+        <Loaders />
       </span>
     );
   if (user.email) {

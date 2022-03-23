@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import TrendingDownIcon from "@material-ui/icons/TrendingDown";
-import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import TaskIcon from "@mui/icons-material/Task";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { makeStyles } from "@mui/styles";
