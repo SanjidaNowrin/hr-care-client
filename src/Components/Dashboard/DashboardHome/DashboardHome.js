@@ -448,13 +448,13 @@ const DashboardHome = () => {
             {/* Total attendance area */}
             <Grid item xs={12} md={12} mt={2}>
                 <Box sx={{
-                    background: "#00D2FC",
+                    background: "#C0C0C0",
                     mt: 6,
                     py: 2,
                     px: 2,
                     display: "flex",
                     justifyContent: "space-between",
-                    color: '#fff'
+                    color: '#000'
                 }} >
                     <Typography variant="h5">Today Attendance</Typography>
                     <Typography variant="h5">{takeDate}</Typography>
