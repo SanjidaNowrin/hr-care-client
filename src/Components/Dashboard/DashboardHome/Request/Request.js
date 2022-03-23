@@ -16,7 +16,7 @@ const Request = ({ employees }) => {
     const [employeePending, setEmployeePending] = useState([]);
     const [leavePending, setLeavePending] = useState([]);
     useEffect(() => {
-        const filterData = employees.filter(data => data.status === "Panding");
+        const filterData = employees.filter(data => data.status === "pending");
         setEmployeePending(filterData)
     }, [employees])
 
