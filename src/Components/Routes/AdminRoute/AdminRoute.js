@@ -4,9 +4,10 @@ import useAuth from "../../../hooks/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user, isAdmin, isLoading } = useAuth();
+    console.log(isAdmin, isLoading)
     let location = useLocation();
-    if (isLoading) return <span className="visually-hidden">Loading...</span>;
-    if (user.email && isAdmin) {
+    if (isLoading) { return <h1 >Loading...</h1> };
+    if (user?.email && isAdmin) {
         return children;
     }
     return <Navigate to="/login" state={{ from: location }}></Navigate>;
