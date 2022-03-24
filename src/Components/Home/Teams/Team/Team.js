@@ -1,17 +1,15 @@
 import {
-  Button,
   Card,
   CardContent,
   CardMedia,
   Grid,
-  Paper,
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import LanguageIcon from '@mui/icons-material/Language';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Team = ({ team }) => {
@@ -58,10 +56,9 @@ const Team = ({ team }) => {
     useStyle();
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Box className={cardContainer}>
+      <Box className={cardContainer} data-aos="zoom-in-down">
         <Card className={cardBox}>
           <CardMedia className={cardImg} image={image} />
-
           <CardContent className={cardContent}>
             <Typography variant="h5" className={cardTitle}>
               {name}
@@ -79,17 +76,26 @@ const Team = ({ team }) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
-                my: 2
+                my: 2,
               }}
             >
               <a target="_blank" rel="noreferrer" href={linkedIn}>
-                <LinkedInIcon fontSize="large" sx={{ color: "var(--p_color) !important" }} />
+                <LinkedInIcon
+                  fontSize="large"
+                  sx={{ color: "var(--p_color) !important" }}
+                />
               </a>
               <a target="_blank" rel="noreferrer" href={github}>
-                <GitHubIcon fontSize="large" sx={{ color: "var(--p_color) !important" }} />
+                <GitHubIcon
+                  fontSize="large"
+                  sx={{ color: "var(--p_color) !important" }}
+                />
               </a>
               <a target="_blank" rel="noreferrer" href={portfolio}>
-                <LanguageIcon fontSize="large" sx={{ color: "var(--p_color) !important" }} />
+                <AccountCircleIcon
+                  fontSize="large"
+                  sx={{ color: "var(--p_color) !important" }}
+                />
               </a>
             </Box>
           </CardContent>
