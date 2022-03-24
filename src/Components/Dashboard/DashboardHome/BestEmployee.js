@@ -1,7 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Divider from "@mui/material/Divider";
-import FactCheckIcon from "@mui/icons-material/FactCheck";
 import React, { useEffect, useState } from "react";
 
 const BestEmployee = (props) => {

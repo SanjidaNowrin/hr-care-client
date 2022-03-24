@@ -326,7 +326,7 @@ const EmployeeDashboardHome = () => {
                 variant="h6"
                 sx={{ color: "rgba(255, 159, 64, 1)", margin: "0 auto" }}
               >
-                Attendance
+                Leave Structure
               </Typography>
 
               <PieChartsChartJs casualLeave={casualLeave} sickLeave={sickLeave} ></PieChartsChartJs>
