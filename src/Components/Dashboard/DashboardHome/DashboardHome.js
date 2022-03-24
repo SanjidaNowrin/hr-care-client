@@ -27,7 +27,6 @@ import TodayAttendance from "./TodayAttendance/TodayAttendance";
 import MyCharts from "./MyCharts/MyCharts";
 import Request from "./Request/Request";
 import SalaryChart from "./SalaryChart/SalaryChart";
-import LineCharts from "../Charts/LineCharts";
 import TodayAssignedTask from "./TodayAssignedTask/TodayAssignedTask";
 const DashboardHome = () => {
     const [employees, setEmployees] = useState([]);
@@ -78,9 +77,7 @@ const DashboardHome = () => {
                 setTodayTask(filterTodayTask);
             });
     }, []);
-    console.log(todayTask);
     const array = [];
-    console.log(employees);
     employees?.map((bestEmp) => {
         let bestEmployee = {};
         let totalTask = 0;
@@ -102,23 +99,16 @@ const DashboardHome = () => {
         bestEmployee.taskPercentage = taskPercentage;
         array.push(bestEmployee);
     });
-    console.log(array);
     const finalPoint = array.sort(function (a, b) {
         return b.taskPercentage - a.taskPercentage;
     });
-    console.log(finalPoint);
     const check = finalPoint[0]?.taskPercentage?.toFixed(2);
-    console.log(check);
-    // best employee end
-    // today Assigned task start
     let todayAssignTask = 0;
     let todayDoneTask = 0;
     let todayTaskPercentage = 0;
     todayTask.map((singleTask) => {
         todayAssignTask += singleTask.tags.length;
-        console.log(todayAssignTask);
         todayDoneTask += singleTask.taskDone.length;
-        console.log(todayDoneTask);
         if ((todayAssignTask && todayDoneTask) !== 0) {
             todayTaskPercentage = (todayDoneTask / todayAssignTask) * 100;
             console.log(todayTaskPercentage);
@@ -155,7 +145,6 @@ const DashboardHome = () => {
                 setHr(filterHR);
             });
     }, []);
-    console.log(acc);
     // it calculation
     let itGross = 0;
     it.map((calc) => {
@@ -163,14 +152,14 @@ const DashboardHome = () => {
         console.log(itCalc);
         itGross += itCalc;
     });
-    console.log(itGross);
+
     // marketing calculation
     let marketingGross = 0;
     marketing.map((calc) => {
         let marketingCalc = calc.gross;
         marketingGross += marketingCalc;
     });
-    console.log(marketingGross);
+
     // accounting calculation
     let accGross = 0;
     acc.map((calc) => {
@@ -376,7 +365,7 @@ const DashboardHome = () => {
 
                 {/* Salary Allocation */}
                 <Grid item xs={12} md={9}>
-                    <Box className={salaryChart}>
+                    <Box sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto', }} className={salaryChart}>
                         <Typography variant="h5" sx={{ mb: 3, textAlign: "center", fontFamily: 'var(--PT_font)' }}>
                             Salary Allocation
                         </Typography>
@@ -411,7 +400,7 @@ const DashboardHome = () => {
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <Paper elevation={8} sx={{ pt: 2 }}>
-                        <Typography variant="h5" sx={{ marginBottom: "30px", textAlign: "center", fontFamily: 'var(--PT_font)' }}>
+                        <Typography variant="h5" sx={{ marginBottom: "32px", textAlign: "center", fontFamily: 'var(--PT_font)' }}>
                             Today's Task
                         </Typography>
 
