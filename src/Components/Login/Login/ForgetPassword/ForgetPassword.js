@@ -1,14 +1,13 @@
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "./../../../hooks/useAuth";
-import Footer from "./../../Share/Footer/Footer";
-import Navbar from "./../../Share/Navbar/Navbar";
-import "./Login.css";
+import useAuth from "../../../../hooks/useAuth";
+import Footer from "../../../Share/Footer/Footer";
+import Navbar from "../../../Share/Navbar/Navbar";
 
-const Login = () => {
-    const { googleSignIn, passwordLoginUser, } = useAuth();
+const ForgetPassword = () => {
+    const { passwordLoginUser, resetPassword } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -23,14 +22,17 @@ const Login = () => {
     };
 
     const handleOnSubmit = (e) => {
+        if (loginData.password !== loginData.password2) {
+            alert("Password did not Match");
+            return;
+        }
         e.preventDefault();
         passwordLoginUser(loginData.email, loginData.password, location, navigate);
     };
-    const handleGoogleSignIn = () => {
-        googleSignIn(location, navigate);
+    const forgetPassword = () => {
+        resetPassword(loginData.email);
+        alert("code send to your email");
     };
-
-
 
     const useStyle = makeStyles({
         loginContiner: {
@@ -56,20 +58,7 @@ const Login = () => {
             justifyContent: "space-between",
             marginTop: "10px",
         },
-        newEmployer: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-        },
-        hrStyle: {
-            display: "inline-block",
-            background: "#f1f1f1",
-            height: "1px",
-            width: "100px",
-        },
-        forgotLink: {
-            textDecoration: "underline !important",
-        },
+
         loginImg: {
             display: "flex",
             justifyContent: "center",
@@ -78,29 +67,29 @@ const Login = () => {
         },
     });
 
-    const { loginImg, loginContiner, loginBox, inputField, formAction, newEmployer, hrStyle, forgotLink } = useStyle();
+    const { loginImg, loginContiner, loginBox, inputField, formAction } = useStyle();
 
     return (
         <>
             <Navbar></Navbar>
             <Container>
-                <Box sx={{ marginTop: "100px", marginBottom: "60px" }}>
+                <Box sx={{ marginTop: "100px", marginBottom: "70px" }}>
                     <Grid container spacing={2}>
                         <Grid sx={{ display: "flex" }} item xs={12} sm={12} md={6}>
                             <Box className={loginImg} sx={{ display: { xs: "none", sm: "block", md: "block" } }}>
                                 <img
                                     style={{ width: "100%" }}
-                                    src="https://img.freepik.com/free-vector/account-log-page_41910-263.jpg"
+                                    src="https://png.pngtree.com/png-vector/20191113/ourmid/pngtree-lock-password-password-lock-secure-password-blue-icon-on-abst-png-image_1985473.jpg"
                                     alt=""
                                 />
                             </Box>
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={5}>
-                            <Box className={loginContiner} data-testid="loginComponent">
+                            <Box sx={{ mt: 5 }} className={loginContiner} data-testid="loginComponent">
                                 <Box className={loginBox}>
-                                    <Box className="input_title">
-                                        <h1>Login</h1>
+                                    <Box>
+                                        <h1>Reset Password</h1>
                                     </Box>
                                     <form onSubmit={handleOnSubmit}>
                                         <Box>
@@ -113,41 +102,15 @@ const Login = () => {
                                                 onBlur={handleOnBlur}
                                             />
                                         </Box>
-                                        <Box>
-                                            <TextField
-                                                className={inputField}
-                                                label="Password"
-                                                variant="standard"
-                                                name="password"
-                                                type="password"
-                                                onBlur={handleOnBlur}
-                                            />
-                                        </Box>
+
                                         <Box className={formAction}>
-                                            <Link to="/forget" className={forgotLink}>
-                                                Forgot your password?
+                                            <Link to="/login">
+                                                <Button className="btn_regular" onClick={forgetPassword}>
+                                                    Submit
+                                                </Button>
                                             </Link>
-                                            <Button className="btn_regular" type="submit">
-                                                Sign In
-                                            </Button>
                                         </Box>
                                     </form>
-                                    <Box className="login_bottom">
-                                        <Box className={newEmployer}>
-                                            <hr className={hrStyle} />
-                                            <p>New Employer?</p>
-                                            <hr className={hrStyle} />
-                                        </Box>
-                                        <Link to="/register">
-                                            <Button className="btn_regular">Creact An Account</Button>
-                                        </Link>
-                                        <Typography variant="body1" sx={{ textAlign: "center" }}>
-                                            Or
-                                        </Typography>
-                                        <Button className="btn_regular" onClick={handleGoogleSignIn}>
-                                            Sign In With Google
-                                        </Button>
-                                    </Box>
                                 </Box>
                             </Box>
                         </Grid>
@@ -160,4 +123,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ForgetPassword;

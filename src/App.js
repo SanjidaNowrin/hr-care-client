@@ -20,12 +20,13 @@ import MyAttendance from "./Components/Employee/MyAttendance/MyAttendance";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
 import Home from "./Components/Home/Home/Home";
 import Teams from "./Components/Home/Teams/Teams";
+import ForgetPassword from "./Components/Login/Login/ForgetPassword/ForgetPassword";
 import Login from "./Components/Login/Login/Login";
 import Register from "./Components/Login/Register/Register";
-import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
-import AuthProvider from "./contexts/AuthProvider";
 import AdminRoute from "./Components/Routes/AdminRoute/AdminRoute";
+import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Nopage from "./Components/Share/Nopage/Nopage";
+import AuthProvider from "./contexts/AuthProvider";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forget" element={<ForgetPassword />} />
 
             <Route
               exact
