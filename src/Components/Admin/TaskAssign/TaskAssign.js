@@ -270,9 +270,10 @@ const TaskAssign = () => {
               </form>
             </Paper>
           </Grid>
+
           <Grid item xs={12} md={8} sm={0} sx={{ marginTop: "1rem" }}>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper}>
+              <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>Employee</StyledTableCell>
