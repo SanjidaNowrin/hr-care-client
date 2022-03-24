@@ -5,7 +5,6 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
-  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -91,12 +90,6 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   };
-
-  // forget passsword
-  const resetPassword = (email) => {
-    sendPasswordResetEmail(auth, email).then((result) => { });
-  };
-  // user token verify
   const tokenStringify = {
     type: "service_account",
     project_id: "hr-care-6befb",
@@ -112,6 +105,20 @@ const useFirebase = () => {
       "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-l2azm%40hr-care-6befb.iam.gserviceaccount.com",
   };
 
+  //makeadmin
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        if (data?.result[0]?.role === "admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      });
+  }, [user?.email]);
   // Observer user state
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -119,12 +126,14 @@ const useFirebase = () => {
         setUser(user);
         getIdToken(user).then((idToken) => {
           setToken(idToken);
-          localStorage.setItem("firebase", JSON.stringify(tokenStringify));
         });
       } else {
         setUser({});
+
       }
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2500);
     });
     return () => unsubscribed;
   }, [auth]);
@@ -156,19 +165,7 @@ const useFirebase = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-  //makeadmin
-  useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/user/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data?.result[0]?.role === "admin") {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
-      });
-  }, [user?.email]);
+
   console.log(isAdmin);
   return {
     token,
@@ -176,7 +173,6 @@ const useFirebase = () => {
     isLoading,
     error,
     isAdmin,
-    resetPassword,
     googleSignIn,
     logOut,
     passwordLoginUser,

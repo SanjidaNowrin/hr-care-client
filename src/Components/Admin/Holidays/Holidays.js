@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#C0C0C0",
+        backgroundColor: "#a3d2ed",
         color: theme.palette.common.black,
         fontSize: 24,
     },
@@ -219,16 +219,16 @@ const Holidays = () => {
                 <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell align="center">Holidays</StyledTableCell>
+                            <StyledTableCell>Holidays</StyledTableCell>
                             <StyledTableCell align="center">Start Date</StyledTableCell>
                             <StyledTableCell align="center">End Date</StyledTableCell>
-                            <StyledTableCell align="center">Action</StyledTableCell>
+                            <StyledTableCell align="right">Action</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {holidays.map((item) => (
                             <StyledTableRow>
-                                <StyledTableCell align="center" component="th" scope="row">
+                                <StyledTableCell component="th" scope="row">
                                     {item.title}
                                 </StyledTableCell>
                                 <StyledTableCell align="center">
@@ -237,9 +237,9 @@ const Holidays = () => {
                                 <StyledTableCell align="center">
                                     {item.endDate}
                                 </StyledTableCell>
-                                <StyledTableCell align="center">
+                                <StyledTableCell align="right">
                                     <Tooltip title="Delete">
-                                        <DeleteOutlineOutlinedIcon sx={{ cursor: "pointer", color:"#FF0000",textAlign:"center" }}
+                                        <DeleteOutlineOutlinedIcon sx={{ cursor: "pointer", color: "red" }}
                                             onClick={() => handleDelete(item)}
                                         />
                                     </Tooltip>
