@@ -1,9 +1,14 @@
-# Getting Started with Create React App
+# HR Care
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live site of [HR Care](https://hrcare.netlify.app/).
 
-## Available Scripts
+<ul>
+<li>Authentication with JWT</li>
+<li>Daily attendance system</li>
+<li>Employee Signature add option</li>
+<li>Live request management</li>
+<li>Automatic ID card generation and download option</li>
+<li>Regular Task assign</li>
+<li>Employee performance analysis</li>
 
-In the project directory, you can run:
-
-`npm start`
+</ul>
