@@ -45,7 +45,7 @@ const SalaryFeatures = () => {
   const { topText, sectionTitle, pText, featureCard } = useStyle();
   return (
     <Box sx={{ py: 8 }}>
-      <Grid container spacing={4} style={{ overflowX: "hidden" }}>
+      <Grid container spacing={4}>
         <Grid
           item
           xs={12}
@@ -56,7 +56,7 @@ const SalaryFeatures = () => {
             justifyContent: "conter",
           }}
         >
-          <Box data-aos="zoom-in-right">
+          <Box>
             <Typography className={topText} variant="h6">
               Employees Salary Sheet
             </Typography>
@@ -142,7 +142,7 @@ const SalaryFeatures = () => {
             justifyContent: "center",
           }}
         >
-          <Box data-aos="zoom-in-left">
+          <Box>
             <img
               style={{ width: "100%" }}
               src="https://i.ibb.co/FgnJgDY/hrsalary-copy.png"
