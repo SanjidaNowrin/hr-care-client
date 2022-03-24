@@ -12,8 +12,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import required modules
-import SwiperCore, { Navigation, Autoplay } from "swiper";
-SwiperCore.use([Navigation, Autoplay]);
+import SwiperCore, { Navigation, Autoplay, Pagination } from "swiper";
+SwiperCore.use([Navigation, Autoplay, Pagination]);
 
 const Banner = () => {
   const [banner, setBanner] = useState([]);
@@ -58,7 +58,8 @@ const Banner = () => {
         <Swiper
           loop={true}
           navigation={true}
-          autoplay={{ delay: 6000, disableOnInteraction: false }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
           className="mySwiper"
         >
           {banner.map((item) => (

@@ -7,20 +7,13 @@ ChartJS.register(
     ArcElement
 )
 
-
 const PieChartsChartJs = ({ sickLeave, casualLeave }) => {
-
-    // const w = attendance
-    // const h = holiday.length
-    // const l = leave.length;
-    // const p = (w - (h + l))
     const s = sickLeave.length
     const c = casualLeave.length
     const rs = 14 - s;
     const rc = 10 - c
     console.log(sickLeave, casualLeave, s, c, rc, rs)
     const data = {
-
         datasets: [{
             label: '# of Votes',
             data: [rs, rc, s, c],
@@ -29,25 +22,12 @@ const PieChartsChartJs = ({ sickLeave, casualLeave }) => {
                 'rgba(255, 99, 132, .5)',
                 'rgba(75, 192, 192, .5)',
                 'rgba(255, 159, 64, .5)'
-
-
-
-
-
-
-
             ],
             borderColor: [
                 'rgba(255, 205, 86, .7)',
                 'rgba(255, 99, 132, .7)',
                 'rgba(75, 192, 192, .7)',
                 'rgba(255, 159, 64, .7)'
-
-
-
-
-
-
             ],
             borderWidth: 1
         }],
@@ -73,20 +53,12 @@ const PieChartsChartJs = ({ sickLeave, casualLeave }) => {
         },
         length: {
             labels: {
-                fontSize: '10px'
+                fontSize: '10px',
             }
         }
     }
     return (
-
-        <Pie
-            data={data}
-            height='250px'
-            options={options}
-        >
-
-        </Pie>
-
+        <Pie data={data} height='250px' style={{ margin: 'auto' }} options={options}></Pie>
     );
 };
 
