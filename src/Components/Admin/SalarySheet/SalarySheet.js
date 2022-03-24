@@ -259,7 +259,7 @@ const SalarySheet = () => {
                 alt="hr care"
                 style={{ width: "20%" }}
               />
-              {/* <Typography > Salary Sheet From {startDate} to {endDate}</Typography> */}
+              <Typography >{startDate} to {endDate}</Typography>
             </Box>
             <Typography variant="body2">
               {" "}
