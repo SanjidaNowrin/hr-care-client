@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SystemUpdateAltOutlinedIcon from "@mui/icons-material/SystemUpdateAltOutlined";
 import OpenInFullOutlinedIcon from "@mui/icons-material/OpenInFullOutlined";
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 
@@ -38,20 +38,20 @@ const Request = ({ employees }) => {
         },
         reqBox: {
             background: "#fff",
-            border: "1px solid #448aff",
+            border: "1px solid #845EC2",
         },
         reqText: {
             display: "flex",
             justifyContent: "space-between",
             padding: "12px 20px",
             background: "#fff",
-            color: "#448aff",
+            color: "#845EC2",
         },
         reqAction: {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            background: "#448aff",
+            background: "#845EC2",
             padding: "10px",
             color: "#fff",
         },
@@ -60,7 +60,7 @@ const Request = ({ employees }) => {
 
     return (
         <Box className={reqContainer}>
-            <Box className={reqBox}>
+            <Paper elevation={8} className={reqBox}>
                 <Box className={reqText}>
                     <Box>
                         <Typography variant="h4">
@@ -76,10 +76,10 @@ const Request = ({ employees }) => {
                         <OpenInFullOutlinedIcon />
                     </Box>
                 </Link>
-            </Box>
+            </Paper>
 
-            <Box sx={{ mt: 2, border: "1px solid #11c15b" }} className={reqBox}>
-                <Box sx={{ color: "#11c15b" }} className={reqText}>
+            <Paper elevation={8} sx={{ mt: 3, border: "1px solid #009EFA" }} className={reqBox}>
+                <Box sx={{ color: "#009EFA" }} className={reqText}>
                     <Box>
                         <Typography variant="h4">{leftPad(leavePending.length)}</Typography>
                         <Typography variant="h5">Pending Leave</Typography>
@@ -87,12 +87,12 @@ const Request = ({ employees }) => {
                     <SystemUpdateAltOutlinedIcon fontSize="large" />
                 </Box>
                 <Link to="/dashboard/LeaveRequests">
-                    <Box sx={{ background: "#11c15b" }} className={reqAction}>
+                    <Box sx={{ background: "#009EFA" }} className={reqAction}>
                         <Typography variant="h6">Check Now</Typography>
                         <OpenInFullOutlinedIcon />
                     </Box>
                 </Link>
-            </Box>
+            </Paper>
         </Box>
     );
 };

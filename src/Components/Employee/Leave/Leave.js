@@ -116,7 +116,7 @@ const Leave = () => {
 
                 <Grid item xs={12} md={6} sm={12}>
                     <Paper sx={{ p: 4, mt: 2, mb: 5 }} elevation={6}>
-                        <Typography sx={{ textAlign: "center", margin: "15px" }} variant="h4">
+                        <Typography sx={{ textAlign: "center", margin: "15px", fontFamily: 'var(--PT_font)' }} variant="h4">
                             <span style={{ color: "var(--p_color)" }}> Leave</span> Form
                         </Typography>
                         <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>

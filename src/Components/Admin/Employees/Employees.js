@@ -30,8 +30,8 @@ const Employees = () => {
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then((res) => res.json())
-            .then((data) => setEmployees(data.result));
-    }, []);
+            .then((data) => setEmployees(data.result.reverse()));
+    }, [employees]);
     console.log(employees);
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -69,8 +69,8 @@ const Employees = () => {
 
             <Grid sx={{ mb: 4 }} container spacing={{ xs: 1, sm: 0, md: 0 }}>
                 <Grid item xs={12} md={12}>
-                    <TableContainer component={Paper} >
-                        <Table sx={{ width: '100%' }} aria-label="customized table">
+                    <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper} >
+                        <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                             <TableHead sx={{ background: 'var(--t_color) !important' }}>
                                 <TableRow>
                                     <StyledTableCell

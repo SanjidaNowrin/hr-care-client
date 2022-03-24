@@ -162,14 +162,14 @@ const LeaveRequests = () => {
                     <Grid item xs={12} md={6}>
                         {data?.map((data) => (
                             <Box>
-                                <Typography sx={{ color: "gray" }} variant="h6">
+                                <Typography sx={{ color: "gray" }}>
                                     {data?.department}
                                 </Typography>
                                 <Box className={data._id === isActive ? activeAnnounceBox : announceBox}>
                                     <Box sx={{ padding: "10px" }}>
                                         <Box className={announceTop}>
-                                            <Typography variant="h6">
-                                                {data?.tripStart} To {data?.tripEnd}
+                                            <Typography sx={{ color: "gray" }}>
+                                                Date: {data?.tripStart} to {data?.tripEnd}
                                             </Typography>
                                             <Box
                                                 variant="body2"
@@ -179,7 +179,7 @@ const LeaveRequests = () => {
                                             </Box>
                                         </Box>
                                         <Box>
-                                            <Typography sx={{ color: "gray" }} variant="h5">
+                                            <Typography variant="h5">
                                                 {data.name}
                                             </Typography>
                                         </Box>

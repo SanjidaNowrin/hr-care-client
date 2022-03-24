@@ -300,13 +300,6 @@ const EmployeeDashboardHome = () => {
               >
                 {holiday.length}
               </Typography>
-              {/*  <Box sx={{ height: '300px', width: '300px', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
-                                    Attendance
-                                </Typography>
-
-                                <PieChartsChartJs holiday={holiday} leave={leave} attendance={attendance} dateString={dateString}></PieChartsChartJs>
-                            </Box>*/}
             </Box>
           </Grid>
         </Grid>
@@ -316,16 +309,24 @@ const EmployeeDashboardHome = () => {
 
       <Box sx={{}}>
         <Grid container spacing={3}>
-          {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
-                    <BarChartJs></BarChartJs>
-                </Box> */}
-          {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
-                    <DoughnutChartJs attendance={attendance} dateString={dateString}></DoughnutChartJs>
-                </Box> */}
-          <Grid item xs={12} md={4}>
-            <Box sx={{ height: '300px', width: '350px', margin: '30px 0', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
-              <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
-                Leave
+          <Grid item xs={12} md={3}>
+            <Box
+              sx={{
+                height: "300px",
+                width: "300px",
+                margin: "30px",
+                background: "white",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                border: ".5px solid #b6b7b7",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ color: "rgba(255, 159, 64, 1)", margin: "0 auto" }}
+              >
+                Attendance
               </Typography>
 
               <PieChartsChartJs casualLeave={casualLeave} sickLeave={sickLeave} ></PieChartsChartJs>
