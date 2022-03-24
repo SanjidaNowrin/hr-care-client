@@ -81,7 +81,7 @@ const AddAnnouncement = () => {
             <Box sx={{ mb: 2 }}>
                 <Typography
                     sx={{ mt: 2, color: 'var(--p_color)' }} variant="h4">
-                    Add New Announcement
+                    Announcement
                 </Typography>
                 <Breadcrumbs aria-label="breadcrumb">
                     <Link to="/dashboard">
@@ -105,7 +105,7 @@ const AddAnnouncement = () => {
                 <Grid item xs={12} md={6}>
                     <Paper sx={{ p: 4, mt: 5, width: '100%' }} elevation={6}>
                         <Typography sx={{ textAlign: "center", margin: "15px 0", fontFamily: 'var(--PT_font)' }} variant="h4">
-                            Add<span style={{ color: 'var(--p_color)' }}> Announcement</span>
+                            Add New <span style={{ color: 'var(--p_color)' }}>Announcement</span>
                         </Typography>
                         <form sx={{ mb: 5, mt: 5 }} onSubmit={handleSubmit(onSubmit)}>
                             <Box>

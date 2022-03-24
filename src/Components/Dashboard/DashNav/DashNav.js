@@ -136,8 +136,8 @@ const DashNav = () => {
   return (
     <>
       <React.Fragment>
-        <Typography sx={{ color: 'var(--p_color)' }} variant='h5'>
-          Welcome, <br className={lineBr} /> {user.displayName}
+        <Typography sx={{ color: "black" }} variant='h5'>
+          Welcome! <br className={lineBr} /> {user.displayName}
         </Typography>
         <Box
           sx={{

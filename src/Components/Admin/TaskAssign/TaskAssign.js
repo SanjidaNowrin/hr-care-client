@@ -57,7 +57,7 @@ const TaskAssign = () => {
   //   table
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#a3d2ed",
+      backgroundColor: "#C0C0C0",
       color: theme.palette.common.black,
       fontSize: 24,
     },
@@ -299,7 +299,7 @@ const TaskAssign = () => {
                       <StyledTableCell align="center">
                         <Tooltip title="Delete">
                           <DeleteOutlineOutlinedIcon
-                            sx={{ cursor: "pointer" }}
+                            sx={{ cursor: "pointer",color:"#FF0000" }}
                             onClick={() => handleDelete(item)}
                           />
                         </Tooltip>

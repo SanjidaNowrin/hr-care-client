@@ -29,7 +29,7 @@ import Stack from '@mui/material/Stack';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#A3D2ED",
+        backgroundColor: "#C0C0C0",
         color: theme.palette.common.black,
         fontSize: 24,
     },
