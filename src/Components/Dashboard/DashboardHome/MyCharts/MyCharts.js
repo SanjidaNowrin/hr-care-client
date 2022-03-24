@@ -5,22 +5,24 @@ const MyCharts = () => {
     const [chart, setChart] = useState([]);
     const [male, setMale] = useState("");
     const [female, setFemale] = useState("");
-
+    console.log(chart);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then((res) => res.json())
             .then((data) => setChart(data.result));
     }, []);
 
+    console.log(chart)
+
     //filter employee male
     useEffect(() => {
-        const filterMale = chart.filter((data) => data.gendar === "Male");
+        const filterMale = chart?.filter((data) => data.gendar === "Male");
         setMale(filterMale);
     }, [chart]);
 
     //filter employee female
     useEffect(() => {
-        const filterFeMale = chart.filter((data) => data.gendar === "Female");
+        const filterFeMale = chart?.filter((data) => data.gendar === "Female");
         setFemale(filterFeMale);
     }, [chart]);
 
@@ -33,7 +35,8 @@ const MyCharts = () => {
     chartData.push(femaleNumber);
     chartData.push(maleNumber);
 
-    const totalEmployee = chart.length;
+    const totalEmployee = chart?.length;
+    console.log(totalEmployee);
 
     //make employee persentage
     let femalePersentage = 0;

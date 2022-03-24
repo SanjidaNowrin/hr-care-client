@@ -4,7 +4,7 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -27,25 +27,20 @@ const Footer = () => {
         },
         socialIcon: {
             display: "flex",
-            marginTop: "20px",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "auto",
         },
         iconItem: {
             background: "transparent",
             border: "1px solid #fff",
             borderRadius: "50%",
-            height: "40px",
-            width: "40px",
+            height: "50px",
+            width: "50px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            margin: "0 5px",
             transition: "all .3s ease-in-out !important",
-            "&:hover": {
-                background: "#fff",
-                "& $icon": {
-                    color: "#01578A",
-                },
-            },
         },
         icon: {
             color: "#fff",
@@ -54,6 +49,7 @@ const Footer = () => {
         unorderList: {
             padding: "0",
             listStyle: "none",
+            textAlign: "left",
         },
         footerLink: {
             display: "flex",
@@ -81,45 +77,47 @@ const Footer = () => {
             color: "white",
             boxShadow: "0 0 30px 15px #0000004f",
         },
+        featureCard: {
+            textAlign: "center",
+            padding: "10px 0",
+            boxShadow: "0px 7px 20px rgb(0, 0, 0, .2) !important",
+            color: "#000 !important",
+            transition: "all .3s !important",
+            cursor: "pointer",
+            "&:hover": {
+                background: "#c3e4f7 !important",
+                boxShadow: "0px 7px 45px rgb(0, 0,0, .3) !important",
+                "& $iconItem": {
+                    background: "#fff !important",
+                    "& $icon": {
+                        color: "#01578A",
+                        transform: "scale(1.2)",
+                        transition: "all .3s ease-in-out !important",
+                    },
+                },
+            },
+        },
     });
-    const { footer, socialIcon, iconItem, icon, footerLink, unorderList, copyRight } = useStyle();
+    const { featureCard, footer, socialIcon, iconItem, icon, footerLink, unorderList, copyRight } = useStyle();
     return (
         <Box className={footer}>
             <Container>
                 <Box>
                     <Grid container spacing={4}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={5}>
                             <Box className="single-ooter">
                                 <Link to="/">
-                                    <img
-                                        src="https://i.ibb.co/7KZFxyc/hr-care-logo.png"
-                                        alt="hr care"
-                                        style={{ width: '200px' }}
-                                    />
+                                    <img src="https://i.ibb.co/7KZFxyc/hr-care-logo.png" alt="hr care" style={{ width: "200px" }} />
                                 </Link>
                                 <Typography sx={{ mt: 1 }} variant="body1">
-                                    This is Human resource management software which is also called Payroll software. Using this software, a
-                                    company can manage their employer details, attendance, Leave, holidays, Salary, etc.
+                                    This is Human resource management software which is also called software.HRM is often referred to simply
+                                    as human resources. Using this software, a company can manage their employer details.A company is only
+                                    as good as its employees, making HRM a crucial part of maintaining or improving the health of the
+                                    business Leave, holidays, Salary, etc.
                                 </Typography>
-                                <Box className={socialIcon}>
-                                    <a className={iconItem} href="#">
-                                        <FacebookOutlinedIcon className={icon} fontSize="small" />
-                                    </a>
-                                    <a className={iconItem} href="#">
-                                        <TwitterIcon className={icon} fontSize="small" />
-                                    </a>
-                                    <a className={iconItem} href="#">
-                                        <GitHubIcon className={icon} fontSize="small" />
-                                    </a>
-                                    <a className={iconItem} href="#">
-                                        <LinkedInIcon className={icon} fontSize="small" />
-                                    </a>
-                                </Box>
                             </Box>
                         </Grid>
-
-                        <Grid item xs={12} md={1}></Grid>
-
+                        {/* Quicks links section  */}
                         <Grid item xs={12} md={3}>
                             <Box>
                                 <Typography variant="h5" sx={{ mb: 2, fontWeight: "700", color: "#fff" }}>
@@ -128,8 +126,14 @@ const Footer = () => {
                                 <Box>
                                     <ul className={unorderList}>
                                         <li>
-                                            <Link className={footerLink} to="/dashboard/myinfo">
-                                                <ArrowRightIcon fontSize="large" /> My Information
+                                            <Link className={footerLink} to="/dashboard/leave">
+                                                <ArrowRightIcon fontSize="large" /> Leave
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className={footerLink} to="/dashboard/course">
+                                                <ArrowRightIcon fontSize="large" />
+                                                Course
                                             </Link>
                                         </li>
                                         <li>
@@ -143,14 +147,8 @@ const Footer = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link className={footerLink} to="/dashboard/course">
-                                                <ArrowRightIcon fontSize="large" />
-                                                Course
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link className={footerLink} to="/dashboard/leave">
-                                                <ArrowRightIcon fontSize="large" /> Leave
+                                            <Link className={footerLink} to="/dashboard/myinfo">
+                                                <ArrowRightIcon fontSize="large" /> My Information
                                             </Link>
                                         </li>
                                     </ul>
@@ -158,16 +156,54 @@ const Footer = () => {
                             </Box>
                         </Grid>
 
-                        {/* <Grid item xs={12} md={1}></Grid> */}
-
+                        {/* Follow us section  */}
                         <Grid item xs={12} md={4}>
-                            <Box>
-                                <Typography variant="h5" sx={{ mb: 2, fontWeight: "700", color: "#fff" }}>
-                                    Arrive at our Location
-                                </Typography>
-                                {/* using google maps  */}
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.263766998823!2d90.40734731445563!3d23.737971695169072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8f4c4ce997f%3A0x94d6ee997ccd5010!2sHR%20Bhaban%2C%2026%2F1%2C%20Kakrail%20Road%2C%20Dhaka-1000%2C%20Bangladesh%2C%20Bir%20Uttam%20Samsul%20Alam%20Rd%2C%20Dhaka%201000!5e0!3m2!1sen!2sbd!4v1647607330621!5m2!1sen!2sbd" width="100%" height="100%" allowfullscreen="" loading="lazy"></iframe>
+                            <Typography variant="h5" sx={{ mb: 2, fontWeight: "700", color: "#fff" }}>
+                                Follow us
+                            </Typography>
 
+                            <Box sx={{ mr: { md: 6 } }}>
+                                <Grid container spacing={{ xs: 2, sm: 3, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                    <Grid item xs={12} sm={12} md={6}>
+                                        <Paper sx={{ backgroundColor: "#006AFF" }} className={featureCard}>
+                                            <Box className={socialIcon}>
+                                                <a target="_blank" className={iconItem} href="https://web.facebook.com/" rel="noreferrer">
+                                                    <FacebookOutlinedIcon className={icon} fontSize="small" />
+                                                </a>
+                                            </Box>
+                                        </Paper>
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={12} md={6}>
+                                        <Paper sx={{ backgroundColor: "#1DA1F2" }} className={featureCard}>
+                                            <Box className={socialIcon}>
+                                                <a target="_blank" className={iconItem} href="https://twitter.com/" rel="noreferrer">
+                                                    <TwitterIcon className={icon} fontSize="small" />
+                                                </a>
+                                            </Box>
+                                        </Paper>
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={12} md={6}>
+                                        <Paper sx={{ backgroundColor: "#171515" }} className={featureCard}>
+                                            <Box className={socialIcon}>
+                                                <a target="_blank" className={iconItem} href="https://github.com/" rel="noreferrer">
+                                                    <GitHubIcon className={icon} fontSize="small" />
+                                                </a>
+                                            </Box>
+                                        </Paper>
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={12} md={6}>
+                                        <Paper sx={{ backgroundColor: "#0e76a8" }} className={featureCard}>
+                                            <Box className={socialIcon}>
+                                                <a target="_blank" className={iconItem} href="https://www.linkedin.com/" rel="noreferrer">
+                                                    <LinkedInIcon className={icon} fontSize="small" />
+                                                </a>
+                                            </Box>
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
                             </Box>
                         </Grid>
                     </Grid>

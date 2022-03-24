@@ -111,17 +111,12 @@
         "ID": "IT-110060",
         "name": "Md Mahedi Hassan",
         "email": "mmahedi49@gmail.com",
-        "date": "2022-03-13",
+        "date": "2022-03-18",
         "entry": " 11:18:22 AM",
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-2000112360",
-        "name": "Md Mahedi Hassan",
-        "email": "mmahedi49@gmail.com",
-=======
         "ID": "IT-110061",
         "name": "Nurul Islam Tanvir",
         "email": "ni163034@gmail.com",
@@ -206,128 +201,48 @@
         "ID": "IT-110061",
         "name": "Nurul Islam Tanvir",
         "email": "ni163034@gmail.com",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "date": "2022-03-14",
         "entry": " 11:18:22 AM",
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-2000112360",
-        "name": "Md Mahedi Hassan",
-        "email": "mmahedi49@gmail.com",
-=======
         "ID": "IT-110061",
         "name": "Nurul Islam Tanvir",
         "email": "ni163034@gmail.com",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "date": "2022-03-15",
         "entry": " 11:18:22 AM",
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-2000112360",
-        "name": "Md Mahedi Hassan",
-        "email": "mmahedi49@gmail.com",
-=======
         "ID": "IT-110061",
         "name": "Nurul Islam Tanvir",
         "email": "ni163034@gmail.com",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "date": "2022-03-16",
         "entry": " 11:18:22 AM",
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-2000112360",
-        "name": "Md Mahedi Hassan",
-        "email": "mmahedi49@gmail.com",
-        "date": "2022-03-17",
-=======
         "ID": "IT-110061",
         "name": "Nurul Islam Tanvir",
         "email": "ni163034@gmail.com",
         "date": "2022-03-18",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "entry": " 11:18:22 AM",
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-202203221",
-        "name": "Nurul Islam Tanvir",
-        "email": "ni163034@gmail.com",
-        "date": "2022-03-13",
-        "entry": " 11:10:00 AM",
-        "leave": " 10:07:04 PM",
-        "status": "Present"
-    },
-    {
-        "ID": "IT-202203221",
-        "name": "Nurul Islam Tanvir",
-        "email": "ni163034@gmail.com",
-        "date": "2022-03-14",
-        "entry": " 11:10:00 AM",
-        "leave": " 10:07:04 PM",
-        "status": "Present"
-    },
-    {
-        "ID": "IT-202203221",
-        "name": "Nurul Islam Tanvir",
-        "email": "ni163034@gmail.com",
-        "date": "2022-03-15",
-        "entry": " 11:10:00 AM",
-        "leave": " 10:07:04 PM",
-        "status": "Present"
-    },
-    {
-        "ID": "IT-202203221",
-        "name": "Nurul Islam Tanvir",
-        "email": "ni163034@gmail.com",
-        "date": "2022-03-16",
-        "entry": " 11:10:00 AM",
-        "leave": " 10:07:04 PM",
-        "status": "Present"
-    },
-    {
-        "ID": "IT-202203221",
-        "name": "Nurul Islam Tanvir",
-        "email": "ni163034@gmail.com",
-        "date": "2022-03-17",
-        "entry": " 11:10:00 AM",
-        "leave": " 10:07:04 PM",
-        "status": "Present"
-    },
-    {
-        "ID": "IT-202203257",
-        "name": "Sanjida Islam Nowrin",
-        "email": "nowrin.cse18@gmail.com",
-        "date": "2022-03-13",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110062",
         "name": "Sanjida Islam Nowrin",
         "email": "nowrin.cse18@gmail.com",
         "date": "2022-03-01",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-202203257",
-        "name": "Sanjida Islam Nowrin",
-        "email": "nowrin.cse18@gmail.com",
-        "date": "2022-03-14",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110062",
         "name": "Sanjida Islam Nowrin",
         "email": "nowrin.cse18@gmail.com",
@@ -405,86 +320,46 @@
         "email": "nowrin.cse18@gmail.com",
         "date": "2022-03-14",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-202203257",
-        "name": "Sanjida Islam Nowrin",
-        "email": "nowrin.cse18@gmail.com",
-        "date": "2022-03-15",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110062",
         "name": "Sanjida Islam Nowrin",
         "email": "nowrin.cse18@gmail.com",
         "date": "2022-03-15",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-202203257",
-        "name": "Sanjida Islam Nowrin",
-        "email": "nowrin.cse18@gmail.com",
-        "date": "2022-03-16",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110062",
         "name": "Sanjida Islam Nowrin",
         "email": "nowrin.cse18@gmail.com",
         "date": "2022-03-16",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-202203257",
-        "name": "Sanjida Islam Nowrin",
-        "email": "nowrin.cse18@gmail.com",
-        "date": "2022-03-17",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110062",
         "name": "Sanjida Islam Nowrin",
         "email": "nowrin.cse18@gmail.com",
         "date": "2022-03-18",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "MK-2022031086",
-        "name": "Forid islam",
-        "email": "foridislam991@gmail.com",
-        "date": "2022-03-13",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "MK-110063",
         "name": "Forid islam",
         "email": "foridislam991@gmail.com",
         "date": "2022-03-01",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "MK-2022031086",
-        "name": "Forid islam",
-        "email": "foridislam991@gmail.com",
-        "date": "2022-03-14",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "MK-110063",
         "name": "Forid islam",
         "email": "foridislam991@gmail.com",
@@ -562,86 +437,46 @@
         "email": "foridislam991@gmail.com",
         "date": "2022-03-14",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "MK-2022031086",
-        "name": "Forid islam",
-        "email": "foridislam991@gmail.com",
-        "date": "2022-03-15",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "MK-110063",
         "name": "Forid islam",
         "email": "foridislam991@gmail.com",
         "date": "2022-03-15",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "MK-2022031086",
-        "name": "Forid islam",
-        "email": "foridislam991@gmail.com",
-        "date": "2022-03-16",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "MK-110063",
         "name": "Forid islam",
         "email": "foridislam991@gmail.com",
         "date": "2022-03-16",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "MK-2022031086",
-        "name": "Forid islam",
-        "email": "foridislam991@gmail.com",
-        "date": "2022-03-17",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "MK-110063",
         "name": "Forid islam",
         "email": "foridislam991@gmail.com",
         "date": "2022-03-18",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "HR-2022022726",
-        "name": "Md kawsar Ali",
-        "email": "mdkawsarali346@gmail.com",
-        "date": "2022-03-13",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "HR-110064",
         "name": "Md kawsar Ali",
         "email": "mdkawsarali346@gmail.com",
         "date": "2022-03-01",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "HR-2022022726",
-        "name": "Md kawsar Ali",
-        "email": "mdkawsarali346@gmail.com",
-        "date": "2022-03-14",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "HR-110064",
         "name": "Md kawsar Ali",
         "email": "mdkawsarali346@gmail.com",
@@ -719,86 +554,46 @@
         "email": "mdkawsarali346@gmail.com",
         "date": "2022-03-14",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "HR-2022022726",
-        "name": "Md kawsar Ali",
-        "email": "mdkawsarali346@gmail.com",
-        "date": "2022-03-15",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "HR-110064",
         "name": "Md kawsar Ali",
         "email": "mdkawsarali346@gmail.com",
         "date": "2022-03-15",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "HR-2022022726",
-        "name": "Md kawsar Ali",
-        "email": "mdkawsarali346@gmail.com",
-        "date": "2022-03-16",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "HR-110064",
         "name": "Md kawsar Ali",
         "email": "mdkawsarali346@gmail.com",
         "date": "2022-03-16",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "HR-2022022726",
-        "name": "Md kawsar Ali",
-        "email": "mdkawsarali346@gmail.com",
-        "date": "2022-03-17",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "HR-110064",
         "name": "Md kawsar Ali",
         "email": "mdkawsarali346@gmail.com",
         "date": "2022-03-18",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-199907099",
-        "name": "Asraful Islam",
-        "email": "aisowrav11@gmail.com",
-        "date": "2022-03-13",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110065",
         "name": "Asraful Islam",
         "email": "aisowrav11@gmail.com",
         "date": "2022-03-01",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-199907099",
-        "name": "Asraful Islam",
-        "email": "aisowrav11@gmail.com",
-        "date": "2022-03-14",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110065",
         "name": "Asraful Islam",
         "email": "aisowrav11@gmail.com",
@@ -876,58 +671,33 @@
         "email": "aisowrav11@gmail.com",
         "date": "2022-03-14",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-199907099",
-        "name": "Asraful Islam",
-        "email": "aisowrav11@gmail.com",
-        "date": "2022-03-15",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110065",
         "name": "Asraful Islam",
         "email": "aisowrav11@gmail.com",
         "date": "2022-03-15",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-199907099",
-        "name": "Asraful Islam",
-        "email": "aisowrav11@gmail.com",
-        "date": "2022-03-16",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110065",
         "name": "Asraful Islam",
         "email": "aisowrav11@gmail.com",
         "date": "2022-03-16",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     },
     {
-<<<<<<< HEAD
-        "ID": "IT-199907099",
-        "name": "Asraful Islam",
-        "email": "aisowrav11@gmail.com",
-        "date": "2022-03-17",
-        "entry": " 11:10:00 AM",
-=======
         "ID": "IT-110065",
         "name": "Asraful Islam",
         "email": "aisowrav11@gmail.com",
         "date": "2022-03-18",
         "entry": " 11:18:22 AM",
->>>>>>> 87fd3514b2e10870b51b25a55245cbd9c52626bc
         "leave": " 10:07:04 PM",
         "status": "Present"
     }

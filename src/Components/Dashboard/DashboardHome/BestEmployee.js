@@ -1,7 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Divider from "@mui/material/Divider";
-import FactCheckIcon from "@mui/icons-material/FactCheck";
 import React, { useEffect, useState } from "react";
 
 const BestEmployee = (props) => {
@@ -26,11 +25,9 @@ const BestEmployee = (props) => {
     cardContainer: {
       borderRadius: "5px",
       background: "#fff",
-      // border: "1px solid #b3b0b0",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "15px 0",
     },
     cardImg: {
       height: "120px",
@@ -45,7 +42,7 @@ const BestEmployee = (props) => {
       height: "350px",
       width: "270px",
       background: "transparent",
-      boxShadow: "1px 10px 30px #b6b7b7 !important",
+      boxShadow: "1px 10px 15px #b6b7b7 !important",
       position: "relative",
       "&::after": {
         content: '""',
@@ -102,7 +99,7 @@ const BestEmployee = (props) => {
         <Box className={cardContainer}>
           <Card className={cardBox}>
             <Box className={awardBox}>
-              <Typography sx={{ fontFamily: "var(--PT_font)" }} variant="h5">
+              <Typography sx={{ fontFamily: "var(--PT_font)", mt: 1 }} variant="h5">
                 Best Employee
               </Typography>
               <Typography sx={{ fontFamily: "var(--PT_font)" }} variant="body1">
