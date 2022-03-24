@@ -8,8 +8,8 @@ import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { Link } from "react-router-dom";
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LanguageIcon from '@mui/icons-material/Language';
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LanguageIcon from "@mui/icons-material/Language";
 const Footer = () => {
   const useStyle = makeStyles({
     footer: {
@@ -81,7 +81,7 @@ const Footer = () => {
     featureCard: {
       transition: "all .3s !important",
       cursor: "pointer",
-      paddingRight:"1.5rem",
+      paddingRight: "1.5rem",
       "&:hover": {
         "& $iconItem": {
           background: "#fff !important",
@@ -183,112 +183,70 @@ const Footer = () => {
               </Typography>
 
               <Box sx={{ mr: { md: 6 } }}>
-                <Grid
-                  container
-                //   spacing={{ xs: 2, sm: 3, md: 2 }}
-                //   columns={{ xs: 4, sm: 8, md: 12 }}
-                >
-                  {/* <Grid item xs={12} sm={12} md={6}> */}
-                    {/* <Paper
-                      sx={{ backgroundColor: "#006AFF" }}
-                      className={featureCard}
-                    > */}
-                    <Box className={socialIcon}  className={featureCard}>
-                      <a
-                        target="_blank"
-                        className={iconItem}
-                        href="https://web.facebook.com/"
-                        rel="noreferrer"
-                      >
-                        <FacebookOutlinedIcon
-                          className={icon}
-                          fontSize="small"
-                        />
-                      </a>
-                    </Box>
-                    {/* </Paper> */}
-                  {/* </Grid> */}
-
-                  {/* <Grid item xs={12} sm={12} md={6}> */}
-                    {/* <Paper
-                      sx={{ backgroundColor: "#1DA1F2" }}
-                      className={featureCard}
-                    > */}
-                    <Box className={socialIcon} className={featureCard}>
-                      <a
-                        target="_blank"
-                        className={iconItem}
-                        href="https://twitter.com/"
-                        rel="noreferrer"
-                      >
-                        <TwitterIcon className={icon} fontSize="small" />
-                      </a>
-                    </Box>
-                    {/* </Paper> */}
-                  {/* </Grid> */}
-
-                  {/* <Grid item xs={12} sm={12} md={6}> */}
-                    {/* <Paper
-                      sx={{ backgroundColor: "#171515" }}
-                      className={featureCard}
-                    > */}
-                    <Box className={socialIcon} className={featureCard}>
-                      <a
-                        target="_blank"
-                        className={iconItem}
-                        href="https://github.com/"
-                        rel="noreferrer"
-                      >
-                        <GitHubIcon className={icon} fontSize="small" />
-                      </a>
-                    </Box>
-                    {/* </Paper> */}
-                  {/* </Grid> */}
-
-                  {/* <Grid item xs={12} sm={12} md={6}> */}
-                    {/* <Paper
-                      sx={{ backgroundColor: "#0e76a8" }}
-                      className={featureCard}
-                    > */}
-                   
-                    {/* </Paper> */}
-                  </Grid>
+                <Grid container>
+                  <Box className={socialIcon} className={featureCard}>
+                    <a
+                      target="_blank"
+                      className={iconItem}
+                      href="https://web.facebook.com/"
+                      rel="noreferrer"
+                    >
+                      <FacebookOutlinedIcon className={icon} fontSize="small" />
+                    </a>
+                  </Box>
+                  <Box className={socialIcon} className={featureCard}>
+                    <a
+                      target="_blank"
+                      className={iconItem}
+                      href="https://twitter.com/"
+                      rel="noreferrer"
+                    >
+                      <TwitterIcon className={icon} fontSize="small" />
+                    </a>
+                  </Box>
+                  <Box className={socialIcon} className={featureCard}>
+                    <a
+                      target="_blank"
+                      className={iconItem}
+                      href="https://github.com/"
+                      rel="noreferrer"
+                    >
+                      <GitHubIcon className={icon} fontSize="small" />
+                    </a>
+                  </Box>
+                </Grid>
                 {/* </Grid> */}
-                <Grid
-                  container mt={3}
-                //   spacing={{ xs: 2, sm: 3, md: 2 }}
-                //   columns={{ xs: 4, sm: 8, md: 12 }}
-                >
-                 <Box className={socialIcon} className={featureCard}>
-                      <a
-                        target="_blank"
-                        className={iconItem}
-                        href="https://www.linkedin.com/"
-                        rel="noreferrer"
-                      >
-                        <LinkedInIcon className={icon} fontSize="small" />
-                      </a>
-                    </Box>
-                    <Box className={socialIcon} className={featureCard}>
-                      <a
-                        target="_blank"
-                        className={iconItem}
-                        href="https://hrcare.netlify.app/"
-                        rel="noreferrer"
-                      >
-                        <LanguageIcon className={icon} fontSize="small" />
-                      </a>
-                    </Box>
-                    <Box className={socialIcon} className={featureCard}>
-                      <a
-                        target="_blank"
-                        className={iconItem}
-                        href="https://www.instagram.com/?hl=en"
-                        rel="noreferrer"
-                      >
-                        <InstagramIcon className={icon} fontSize="small" />
-                      </a>
-                    </Box>
+                <Grid container mt={3}>
+                  <Box className={socialIcon} className={featureCard}>
+                    <a
+                      target="_blank"
+                      className={iconItem}
+                      href="https://www.linkedin.com/"
+                      rel="noreferrer"
+                    >
+                      <LinkedInIcon className={icon} fontSize="small" />
+                    </a>
+                  </Box>
+                  <Box className={socialIcon} className={featureCard}>
+                    <a
+                      target="_blank"
+                      className={iconItem}
+                      href="https://hrcare.netlify.app/"
+                      rel="noreferrer"
+                    >
+                      <LanguageIcon className={icon} fontSize="small" />
+                    </a>
+                  </Box>
+                  <Box className={socialIcon} className={featureCard}>
+                    <a
+                      target="_blank"
+                      className={iconItem}
+                      href="https://www.instagram.com/?hl=en"
+                      rel="noreferrer"
+                    >
+                      <InstagramIcon className={icon} fontSize="small" />
+                    </a>
+                  </Box>
                 </Grid>
               </Box>
             </Grid>

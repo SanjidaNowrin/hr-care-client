@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#a3d2ed",
+        backgroundColor: "#A3D2ED",
         color: theme.palette.common.black,
         fontSize: 24,
     },

@@ -57,7 +57,7 @@ const EmployeeIdCard = () => {
             justifyContent: "conter",
           }}
         >
-          <Box data-aos="fade-right">
+          <Box data-aos="zoom-in-right">
             <img
               style={{ width: "100%" }}
               src="https://i.ibb.co/DM8xDNR/id-card.jpg"
@@ -76,7 +76,7 @@ const EmployeeIdCard = () => {
             justifyContent: "conter",
           }}
         >
-          <Box data-aos="fade-left">
+          <Box data-aos="zoom-in-left">
             <Typography className={topText} variant="h6">
               Employee ID Card
             </Typography>

@@ -16,7 +16,7 @@ import Employee from "./Employee/Employee";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#C0C0C0 !important",
+        backgroundColor: "#A3D2ED !important",
         color: theme.palette.common.black,
         fontSize: 24,
     },

@@ -56,7 +56,7 @@ const SalaryFeatures = () => {
             justifyContent: "conter",
           }}
         >
-          <Box data-aos="fade-right">
+          <Box data-aos="zoom-in-right">
             <Typography className={topText} variant="h6">
               Employees Salary Sheet
             </Typography>
@@ -142,7 +142,7 @@ const SalaryFeatures = () => {
             justifyContent: "center",
           }}
         >
-          <Box data-aos="fade-left">
+          <Box data-aos="zoom-in-left">
             <img
               style={{ width: "100%" }}
               src="https://i.ibb.co/FgnJgDY/hrsalary-copy.png"

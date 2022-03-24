@@ -10,8 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import SalaryData from "./SalaryData/SalaryData";
-
-
+import DateRangeIcon from "@mui/icons-material/DateRange";
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
 import { emphasize } from '@mui/material/styles';
@@ -27,7 +26,7 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#a3d2ed",
+    backgroundColor: "#A3D2ED",
     color: theme.palette.common.black,
     fontSize: 24,
   },
@@ -204,7 +203,7 @@ const SalarySheet = () => {
                     sx={{
                       background: "var(--p_color) !important",
                       color: "#fff !important",
-                      width: "100%",
+                      width: "50%",
                     }}
                     className="btn_regular"
                     type="Search"
@@ -240,9 +239,27 @@ const SalarySheet = () => {
                 alt="hr care"
                 style={{ width: '20%' }}
               />
-              <Typography > Salary Sheet From {startDate} to {endDate}</Typography>
+              <Typography sx={{ fontSize: "1rem", mb: 0.5 }}>
+                {filterDates[0] ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <DateRangeIcon sx={{ marginRight: "0.1rem" }} /> {startDate}{" "}
+                    to {endDate}
+                  </Box>
+                ) : (
+                  ""
+                )}
+              </Typography>
             </Box>
-            <Typography sx={{ color: 'var(--pt_color)' }} variant="body2"> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
+            <Typography variant="body2" sx={{ mb: 0.5 }}>
+              <span style={{ color: "red !important" }}>* </span>Note: P =
+              Present Days, H = Holidays, L = Leave Days
+            </Typography>
             <TableContainer component={Paper}>
               <Table aria-label="customized table">
                 <TableHead>

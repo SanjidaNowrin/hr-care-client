@@ -63,7 +63,7 @@ export default function CustomizedAccordions() {
             <Accordion
               expanded={expanded === "panel1"}
               onChange={handleChange("panel1")}
-              data-aos="fade-left"
+              data-aos="zoom-in-left"
             >
               <AccordionSummary
                 aria-controls="panel1d-content"
@@ -83,7 +83,7 @@ export default function CustomizedAccordions() {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              data-aos="fade-left"
+              data-aos="zoom-in-left"
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
             >
@@ -106,7 +106,7 @@ export default function CustomizedAccordions() {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              data-aos="fade-left"
+             data-aos="zoom-in-left"
               expanded={expanded === "panel3"}
               onChange={handleChange("panel3")}
             >
@@ -128,7 +128,7 @@ export default function CustomizedAccordions() {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              data-aos="fade-left"
+              data-aos="zoom-in-left"
               expanded={expanded === "panel4"}
               onChange={handleChange("panel4")}
             >
