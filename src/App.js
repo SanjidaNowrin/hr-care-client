@@ -66,15 +66,6 @@ function App() {
                 </AdminRoute>
               }
             >
-              <Route path={"/dashboard"} element={<EmployeeDashboardHome />} />
-              <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
-              <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
-              <Route path={"/dashboard/announcements"} element={<Announcements />} />
-              <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
-              <Route path={"/dashboard/course"} element={<Courses />} />
-              <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
-              <Route path={"/dashboard/leave"} element={<Leave />} />
-
               <Route path={"/dashboard/admin"} element={<DashboardHome />} />
               <Route path={"/dashboard/all_employees"} element={<Employees />} />
               <Route path={"/dashboard/id_card"} element={<IdCard />} />

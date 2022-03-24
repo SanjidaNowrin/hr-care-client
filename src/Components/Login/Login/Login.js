@@ -8,7 +8,7 @@ import Footer from "./../../Share/Footer/Footer"
 import "./Login.css";
 
 const Login = () => {
-    const { googleSignIn, passwordLoginUser } = useAuth();
+    const { googleSignIn, passwordLoginUser, resetPassword } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -28,6 +28,11 @@ const Login = () => {
     };
     const handleGoogleSignIn = () => {
         googleSignIn(location, navigate);
+    };
+
+    const forgotPassword = () => {
+        resetPassword(loginData.email);
+        alert("code is send to your email");
     };
 
     const useStyle = makeStyles({
@@ -82,9 +87,8 @@ const Login = () => {
         <>
             <Navbar></Navbar>
             <Container>
-                <Box sx={{ marginTop: "100px", marginBottom: "70px" }}>
+                <Box sx={{ marginTop: "60px", marginBottom: "60px" }}>
                     <Grid container spacing={2}>
-
                         <Grid sx={{ display: "flex" }} item xs={12} sm={12} md={6}>
                             <Box className={loginImg} sx={{ display: { xs: "none", sm: "block", md: "block" } }}>
                                 <img
@@ -123,7 +127,7 @@ const Login = () => {
                                             />
                                         </Box>
                                         <Box className={formAction}>
-                                            <a className={forgotLink} href="#">
+                                            <a onClick={forgotPassword} className={forgotLink} href="#">
                                                 Forgot your password?
                                             </a>
                                             <Button className="btn_regular" type="submit">
