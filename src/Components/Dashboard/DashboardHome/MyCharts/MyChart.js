@@ -10,9 +10,6 @@ const MyChart = ({ dataTwo, male, female }) => {
             <Box>
                 <Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-                        <Typography variant="h5" sx={{ mb: 3 }}>
-                            Employee Structure
-                        </Typography>
                         <PieChart width={250} height={250}>
                             <Pie
                                 data={dataTwo}
@@ -33,10 +30,10 @@ const MyChart = ({ dataTwo, male, female }) => {
                 </Box>
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 3 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', mt: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Box sx={{ backgroundColor: "#00C49F", color: "#00C49F", height: "25px", width: "25px" }}></Box>
-                    <Typography variant="body1" sx={{ fs: "bold", color: "#FF8042", marginTop: '2px', ml: 1 }}>Male: {male}%</Typography>
+                    <Typography variant="body1" sx={{ fs: "bold", color: "#00C49F", marginTop: '2px', ml: 1 }}>Male: {male}%</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Box

@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 // export {StyledTableCell};
 const Employee = ({ item }) => {
-    const { photo, name, email, department, designation, status } = item;
+    const { name, email, department, designation, status } = item;
 
     return (
         <>

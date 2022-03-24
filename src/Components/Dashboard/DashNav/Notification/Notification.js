@@ -10,8 +10,10 @@ import Tooltip from '@mui/material/Tooltip';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from "@mui/material/Badge";
 import { Link } from 'react-router-dom';
+import useAuth from '../../../../hooks/useAuth';
 
 const Notification = () => {
+    const { user } = useAuth()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -22,12 +24,19 @@ const Notification = () => {
     };
 
     //notification
-    const [massage, setMassage] = React.useState([]);
+    const [massages, setMassages] = React.useState([]);
+    const [unread, setUnread] = React.useState([]);
     React.useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/announcement")
+        fetch(`https://ancient-thicket-61342.herokuapp.com/announcement/${user?.email}`)
             .then((res) => res.json())
-            .then((data) => setMassage(data.data.reverse()));
-    }, [massage]);
+            .then((data) => setMassages(data.data.reverse()));
+    }, [massages, user]);
+
+    React.useEffect(() => {
+        const filterUnread = massages.filter((massage) => massage?.status === 'unread');
+        setUnread(filterUnread)
+    }, [massages]);
+
 
     return (
         <>
@@ -40,8 +49,8 @@ const Notification = () => {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                 >
-                    <Badge badgeContent={massage.length} color="error">
-                        <NotificationsIcon sx={{ color: '#fff' }} />
+                    <Badge badgeContent={unread.length} color="error">
+                        <NotificationsIcon sx={{ color: 'var(--p_color)' }} />
                     </Badge>
                 </IconButton>
             </Tooltip>
@@ -88,7 +97,7 @@ const Notification = () => {
                     </Typography>
                     <Divider />
                     {
-                        massage.map(item =>
+                        massages.map(item =>
                             <Link
                                 key={item._id}
                                 to={`/dashboard/announcements/${item._id}`}

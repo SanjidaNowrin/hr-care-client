@@ -68,7 +68,6 @@ const SingleId = ({ employeeId }) => {
 
   const { cardBox, cardTop, imgBox, imgTop, textBold, signatureImg } =
     useStyle();
-
   return (
     <Grid item xs={12} sm={12} md={4}>
       <PDFExport ref={pdfExportComponent}>

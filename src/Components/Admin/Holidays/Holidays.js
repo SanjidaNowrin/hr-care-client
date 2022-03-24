@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#a3d2ed",
+        backgroundColor: "#A3D2ED",
         color: theme.palette.common.black,
         fontSize: 24,
     },
@@ -215,8 +215,8 @@ const Holidays = () => {
                 </Button>
             </Box>
 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper}>
+                <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>Holidays</StyledTableCell>
@@ -239,7 +239,7 @@ const Holidays = () => {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
                                     <Tooltip title="Delete">
-                                        <DeleteOutlineOutlinedIcon sx={{ cursor: "pointer" }}
+                                        <DeleteOutlineOutlinedIcon sx={{ cursor: "pointer", color: "red" }}
                                             onClick={() => handleDelete(item)}
                                         />
                                     </Tooltip>
