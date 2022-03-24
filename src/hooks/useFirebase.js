@@ -5,6 +5,7 @@ import {
     GoogleAuthProvider,
     onAuthStateChanged,
     sendEmailVerification,
+    sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
@@ -90,6 +91,12 @@ const useFirebase = () => {
             })
             .finally(() => setIsLoading(false));
     };
+
+    // forget passsword
+    const resetPassword = (email) => {
+        sendPasswordResetEmail(auth, email).then((result) => {});
+    };
+    // user token verify
     const tokenStringify = {
         type: "service_account",
         project_id: "hr-care-6befb",
@@ -169,6 +176,7 @@ const useFirebase = () => {
         isLoading,
         error,
         isAdmin,
+        resetPassword,
         googleSignIn,
         logOut,
         passwordLoginUser,
