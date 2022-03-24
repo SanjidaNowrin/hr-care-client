@@ -29,7 +29,7 @@ import Stack from '@mui/material/Stack';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#C0C0C0",
+        backgroundColor: "#A3D2ED",
         color: theme.palette.common.black,
         fontSize: 24,
     },
@@ -228,7 +228,7 @@ const AttendanceManages = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <div style={{ width: '40%', margin: '0 auto' }}>
+            <div style={{ width: '40%', margin: '0 auto',marginBottom:"1rem"}}>
                 <Stack spacing={2}>
                     <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
                 </Stack>

@@ -10,8 +10,7 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import useAuth from "./../../../hooks/useAuth";
 import { Button, Typography } from "@mui/material";
-import Tooltip from '@mui/material/Tooltip';
-
+import Tooltip from "@mui/material/Tooltip";
 import { Input } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import EventIcon from "@mui/icons-material/Event";
@@ -105,10 +104,13 @@ const DashNav = () => {
   const handleSubmit = (e) => {
     const formData = new FormData();
     formData.append("photo", photo);
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`, {
-      method: "PUT",
-      body: formData,
-    })
+    fetch(
+      `https://ancient-thicket-61342.herokuapp.com/employees/profile/${user.email}`,
+      {
+        method: "PUT",
+        body: formData,
+      }
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
@@ -124,19 +126,19 @@ const DashNav = () => {
   const theme = useTheme();
   const useStyle = makeStyles({
     lineBr: {
-      display: 'none',
+      display: "none",
       [theme.breakpoints.down("md")]: {
         display: "block !important",
       },
-    }
-  })
+    },
+  });
 
   const { lineBr } = useStyle();
 
   return (
     <>
       <React.Fragment>
-        <Typography sx={{ color: "black" }} variant='h5'>
+        <Typography sx={{ color: "black" }} variant="h5">
           Welcome! <br className={lineBr} /> {user.displayName}
         </Typography>
         <Box
@@ -152,9 +154,16 @@ const DashNav = () => {
             <Notification></Notification>
 
             {/* calender */}
-            <IconButton sx={{ background: 'transparent' }} size="large" color="inherit">
+            <IconButton
+              sx={{ background: "transparent" }}
+              size="large"
+              color="inherit"
+            >
               <Badge color="error">
-                <EventIcon sx={{ color: 'var(--p_color)' }} onClick={holidayOpen} />
+                <EventIcon
+                  sx={{ color: "var(--p_color)" }}
+                  onClick={holidayOpen}
+                />
               </Badge>
             </IconButton>
           </Box>
@@ -195,7 +204,7 @@ const DashNav = () => {
                   ))
                 ) : (
                   <Avatar
-                    sx={{ bgcolor: 'var(--s_color)' }}
+                    sx={{ bgcolor: "var(--s_color)" }}
                     alt="Employee Photo"
                     src="https://i.ibb.co/gvzdw1g/images.png"
                   >
