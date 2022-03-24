@@ -46,7 +46,7 @@ const Attendance = () => {
 
   return (
     <Box sx={{ py: 8 }}>
-      <Grid container spacing={4} style={{ overflowX: "hidden" }}>
+      <Grid container spacing={4}>
         <Grid
           item
           xs={12}
@@ -57,7 +57,7 @@ const Attendance = () => {
             justifyContent: "conter",
           }}
         >
-          <Box data-aos="zoom-in-right">
+          <Box>
             <Typography className={topText} variant="h6">
               Daily Attendance
             </Typography>
@@ -143,7 +143,7 @@ const Attendance = () => {
             justifyContent: "center",
           }}
         >
-          <Box data-aos="zoom-in-left">
+          <Box>
             <img
               style={{ width: "100%" }}
               src="https://i.ibb.co/ccR2QNM/hrattendance.png"

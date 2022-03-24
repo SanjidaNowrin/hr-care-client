@@ -59,11 +59,10 @@ export default function CustomizedAccordions() {
               <video src={videoSrc} width="100%" autoPlay muted loop />
             </Box>
           </Grid>
-          <Grid item xs={12} sm={12} md={5}  style={{ overflowX: "hidden" }}>
+          <Grid item xs={12} sm={12} md={5}>
             <Accordion
               expanded={expanded === "panel1"}
               onChange={handleChange("panel1")}
-              data-aos="zoom-in-left"
             >
               <AccordionSummary
                 aria-controls="panel1d-content"
@@ -83,7 +82,6 @@ export default function CustomizedAccordions() {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              data-aos="zoom-in-left"
               expanded={expanded === "panel2"}
               onChange={handleChange("panel2")}
             >
@@ -106,7 +104,6 @@ export default function CustomizedAccordions() {
               </AccordionDetails>
             </Accordion>
             <Accordion
-             data-aos="zoom-in-left"
               expanded={expanded === "panel3"}
               onChange={handleChange("panel3")}
             >
@@ -128,7 +125,6 @@ export default function CustomizedAccordions() {
               </AccordionDetails>
             </Accordion>
             <Accordion
-              data-aos="zoom-in-left"
               expanded={expanded === "panel4"}
               onChange={handleChange("panel4")}
             >
