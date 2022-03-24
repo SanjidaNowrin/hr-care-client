@@ -16,13 +16,13 @@ const MyCharts = () => {
 
     //filter employee male
     useEffect(() => {
-        const filterMale = chart.filter((data) => data.gendar === "Male");
+        const filterMale = chart?.filter((data) => data.gendar === "Male");
         setMale(filterMale);
     }, [chart]);
 
     //filter employee female
     useEffect(() => {
-        const filterFeMale = chart.filter((data) => data.gendar === "Female");
+        const filterFeMale = chart?.filter((data) => data.gendar === "Female");
         setFemale(filterFeMale);
     }, [chart]);
 
