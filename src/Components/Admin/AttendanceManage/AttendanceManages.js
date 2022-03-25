@@ -45,31 +45,39 @@ const AttendanceManages = () => {
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [filterData, setFilterData] = useState([]);
+    const [finalData, setFinalData] = useState([])
 
     //pagination
     const dataPerPage = 10;
-    const [page, setPage] = React.useState(0);
+    const [page, setPage] = React.useState(1);
     const [count, setCount] = useState(0)
     const handleChange = (event, value) => {
-        setPage(value - 1);
+        setPage(value);
     }
     console.log(page, count, attendances)
 
     // const attendanceLength = attendances.count;
     // console.log(attendanceLength);
-    const buttonNumber = Math.ceil(count / 10);
-    console.log(buttonNumber)
 
     //pagination end
-
+    const [search, setSearch] = useState([])
+    // useEffect(() => {
+    //     fetch(`https://ancient-thicket-61342.herokuapp.com/attendance?page=${page}&&size=${dataPerPage}`)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setCount(data.count)
+    //             setAttendances(data.data)
+    //         });
+    // }, [page]);
     useEffect(() => {
-        fetch(`https://ancient-thicket-61342.herokuapp.com/attendance?page=${page}&&size=${dataPerPage}`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/attendance`)
             .then((res) => res.json())
             .then((data) => {
-                setCount(data.count)
+                setFilterData(data.data)
                 setAttendances(data.data)
             });
-    }, [page]);
+    }, []);
+    // console.log(search)
 
     useEffect(() => {
         const newFilterDate = attendances.filter((date) => date?.date >= startDate && date?.date <= endDate);
@@ -111,7 +119,7 @@ const AttendanceManages = () => {
             }
         }
     }, [inputValue, attendances, filterDates]);
-
+    console.log(filterData)
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
@@ -129,6 +137,33 @@ const AttendanceManages = () => {
             },
         };
     });
+    //frontend pagination
+    useEffect(() => {
+        const indexOfLastPage = page * 10;
+        const indexOfFirstPage = indexOfLastPage - 10;
+        const currentData = filterData.slice(indexOfFirstPage, indexOfLastPage);
+        const dataNumber = filterData.length;
+        setCount(dataNumber);
+        setFinalData(currentData);
+        console.log(currentData);
+
+        // if (page > 0) {
+
+        // } else if (page === 0) {
+        //     const currentData = filterData.slice(0, 10);
+        //     const dataNumber = filterData.length;
+        //     setCount(dataNumber);
+        //     setFinalData(currentData)
+        //     console.log(currentData)
+        // }
+
+        // console.log(indexOfLastPage, indexOfFirstPage, currentData)
+
+    }, [attendances, startDate, endDate, page, inputValue, filterDates]);
+
+    //pagination button number
+    const buttonNumber = Math.ceil(count / 10);
+    console.log(buttonNumber)
 
 
     return (
@@ -221,7 +256,7 @@ const AttendanceManages = () => {
                 </Box>
             </Box>
 
-            <TableContainer component={Paper} style={{ marginBottom: '40px' }}>
+            <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
@@ -235,17 +270,17 @@ const AttendanceManages = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filterData.map((attendance) => (
+                        {finalData.map((attendance) => (
                             <AttendanceManage key={attendance._id} attendance={attendance}></AttendanceManage>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            <div style={{ width: '30%', margin: '0 auto' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
                 <Stack spacing={2}>
                     <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
                 </Stack>
-            </div>
+            </Box>
         </Container>
     );
 };

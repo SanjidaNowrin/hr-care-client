@@ -108,7 +108,7 @@ const LeaveRequests = () => {
     }
     console.log(page, count)
 
-    const buttonNumber = Math.ceil(count / 10);
+    const buttonNumber = Math.ceil(count / 2);
     console.log(buttonNumber)
 
     //pagination end
@@ -157,7 +157,7 @@ const LeaveRequests = () => {
                 </Breadcrumbs>
             </Box>
 
-            <Box sx={{ mt: 4 }}>
+            <Box sx={{ mt: 4 }} style={{ marginBottom: '10px' }}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
                         {data?.map((data) => (
@@ -204,7 +204,7 @@ const LeaveRequests = () => {
                     </Grid>
                 </Grid>
             </Box>
-            <div style={{ width: '30%', margin: '0 auto' }}>
+            <div style={{ width: '30%', margin: '0 auto', padding: '20px' }}>
                 <Stack spacing={2}>
                     <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
                 </Stack>
