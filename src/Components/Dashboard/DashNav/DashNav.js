@@ -96,10 +96,10 @@ const DashNav = () => {
   const holidayClose = () => setHoliday(false);
   // get data
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
-  }, [photoURL, user.email, employee]);
+  }, [user.email, employee]);
   //form submit
   const handleSubmit = (e) => {
     const formData = new FormData();

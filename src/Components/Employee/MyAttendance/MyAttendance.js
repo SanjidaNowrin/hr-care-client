@@ -54,19 +54,11 @@ const MyAttendance = (props) => {
   // console.log(today?.date)
 
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [user.email]);
-  //qrCode fetch
-  const [qrCode, setQrCode] = useState([]);
-  useEffect(() => {
-    fetch(
-      `https://ancient-thicket-61342.herokuapp.com/employees/withoutImage/${user.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => setQrCode(data.result));
-  }, [user.email]);
+
 
   //punchin
   const handlePunchIn = () => {
@@ -213,7 +205,7 @@ const MyAttendance = (props) => {
               className={classes.qrImage}
               style={{ border: "2px solid #01578A" }}
               width="90% !important"
-              src={`data:image/jpeg;base64,${qrCode[0]?.qrUrl.split(",")[1]}`}
+              src={`data:image/jpeg;base64,${employee[0]?.qrUrl.split(",")[1]}`}
               alt="Employee QrCode"
             />
           </a>

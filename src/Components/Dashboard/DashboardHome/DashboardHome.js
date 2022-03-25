@@ -30,17 +30,17 @@ import SalaryChart from "./SalaryChart/SalaryChart";
 import TodayAssignedTask from "./TodayAssignedTask/TodayAssignedTask";
 const DashboardHome = () => {
     const [employees, setEmployees] = useState([]);
-    const [employeesBox, setEmployeesBox] = useState([]);
+    // const [employees, setEmployeesBox] = useState([]);
 
-    useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/employees/all")
-            .then((res) => res.json())
-            .then((data) => setEmployees(data.data));
-    }, []);
+    // useEffect(() => {
+    //     fetch("https://ancient-thicket-61342.herokuapp.com/employees/all")
+    //         .then((res) => res.json())
+    //         .then((data) => setEmployees(data.data));
+    // }, []);
     useEffect(() => {
         fetch("https://ancient-thicket-61342.herokuapp.com/employees")
             .then((res) => res.json())
-            .then((data) => setEmployeesBox(data.result));
+            .then((data) => setEmployees(data.result));
     }, []);
 
     const [attendance, setAttendance] = useState([]);
@@ -185,7 +185,7 @@ const DashboardHome = () => {
         setLeave(filterData);
     }, [todayPresent]);
 
-    const totalEmployee = employeesBox.length;
+    const totalEmployee = employees.length;
     const present = todayPresent.length;
     const absent = (totalEmployee - present) | 0;
 
@@ -275,7 +275,7 @@ const DashboardHome = () => {
                                 variant="h3"
                                 sx={{ textAlign: "center", color: "#00D2FC", py: 1 }}
                             >
-                                {leftPad(employeesBox.length)}
+                                {leftPad(employees.length)}
                             </Typography>
                         </Box>
                     </Grid>

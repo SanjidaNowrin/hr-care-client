@@ -159,7 +159,7 @@ const Navbar = (props) => {
   const [employee, setEmployee] = useState([]);
   // get data
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [user.email, employee]);

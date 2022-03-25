@@ -13,6 +13,14 @@ const BestEmployee = (props) => {
       .then((data) => setBestEmp(data.data));
   }, []);
 
+  const [singleId, setSingleId] = useState({})
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${finalPoint[0]?.email}`)
+      .then((res) => res.json())
+      .then((data) => setSingleId(data.result));
+  }, [finalPoint]);
+  console.log(singleId[0])
+
   function leftPad(number) {
     var output = number + "";
     while (output.length < 2) {
@@ -117,10 +125,10 @@ const BestEmployee = (props) => {
                 alt="award"
               />
             </Box>
-            {finalPoint[0]?.photo ? (
+            {singleId[0]?.photo ? (
               <CardMedia
                 className={cardImg}
-                image={`data:image/jpeg;base64,${finalPoint[0]?.photo}`}
+                image={`data:image/jpeg;base64,${singleId[0]?.photo}`}
               />
             ) : (
               <CardMedia
