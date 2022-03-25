@@ -16,7 +16,7 @@ import Employee from "./Employee/Employee";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#a3d2ed",
+        backgroundColor: "#A3D2ED !important",
         color: theme.palette.common.black,
         fontSize: 24,
     },
@@ -28,10 +28,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const Employees = () => {
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees/rp")
             .then((res) => res.json())
-            .then((data) => setEmployees(data.result));
-    }, []);
+            .then((data) => setEmployees(data.result.reverse()));
+    }, [employees]);
     console.log(employees);
     // Breadcrumbs
     const StyledBreadcrumb = styled(Chip)(({ theme }) => {
@@ -69,8 +69,8 @@ const Employees = () => {
 
             <Grid sx={{ mb: 4 }} container spacing={{ xs: 1, sm: 0, md: 0 }}>
                 <Grid item xs={12} md={12}>
-                    <TableContainer component={Paper} >
-                        <Table sx={{ width: '100%' }} aria-label="customized table">
+                    <TableContainer sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto' }} component={Paper} >
+                        <Table sx={{ width: '100%', overflowX: 'scroll', whiteSpace: 'nowrap' }} aria-label="customized table">
                             <TableHead sx={{ background: 'var(--t_color) !important' }}>
                                 <TableRow>
                                     <StyledTableCell

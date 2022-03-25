@@ -3,6 +3,8 @@ import {
     Breadcrumbs,
     Button,
     Container,
+    Pagination,
+    Stack,
     Table,
     TableBody,
     TableContainer,
@@ -22,9 +24,6 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import AttendanceManage from "./AttendanceManage";
-
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {

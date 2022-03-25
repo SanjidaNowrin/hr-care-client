@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { makeStyles } from "@mui/styles";
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -10,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Divider, FormGroup, Grid, MenuItem } from "@mui/material";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-
+import EditIcon from '@mui/icons-material/Edit';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -122,7 +121,7 @@ const EmployeeModal = ({ item }) => {
   ];
   return (
     <>
-      <Button onClick={handleOpen} sx={{ border: '1px solid #ccc' }}>Edit</Button>
+      <Button onClick={handleOpen} sx={{ border: '1px solid #ccc' ,color:"#01578A !important"}}>Edit <EditIcon sx={{fontSize:"1.1rem"}}/></Button>
       <Modal
         keepMounted
         open={open}

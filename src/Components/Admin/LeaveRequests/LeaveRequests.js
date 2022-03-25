@@ -204,11 +204,11 @@ const LeaveRequests = () => {
                     </Grid>
                 </Grid>
             </Box>
-            <div style={{ width: '30%', margin: '0 auto', padding: '20px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
                 <Stack spacing={2}>
                     <Pagination onChange={handleChange} count={buttonNumber} color="primary" />
                 </Stack>
-            </div>
+            </Box>
         </Container>
     );
 };

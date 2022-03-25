@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Breadcrumbs, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import Table from "@mui/material/Table";
@@ -10,8 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import SalaryData from "./SalaryData/SalaryData";
-
-
+import DateRangeIcon from "@mui/icons-material/DateRange";
 // Breadcrumbs
 import Chip from '@mui/material/Chip';
 import { emphasize } from '@mui/material/styles';
@@ -22,11 +21,12 @@ import { toast } from "react-toastify";
 import dateFormat from "../../Share/DateFormat/dateFormat";
 import Swal from "sweetalert2";
 import { PDFExport } from "@progress/kendo-react-pdf";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 // style
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#a3d2ed",
+    backgroundColor: "#A3D2ED",
     color: theme.palette.common.black,
     fontSize: 24,
   },
@@ -170,101 +170,117 @@ const SalarySheet = () => {
         </Breadcrumbs>
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          my: 5,
-        }}
-      >
-
+      <Box sx={{ mt: 6, mb: 3 }}>
         {/* searchbar */}
-        <Box>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
-              <Box sx={{ width: "35%" }}>
-                <label>
-                  Start Date <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  sx={{ width: "100%" }}
-                  {...register("startDate")}
-                  id="outlined-basic"
-                  type="date"
-                  variant="outlined"
-                />
-              </Box>
-              <Box sx={{ width: "35%" }}>
-                <label>
-                  End Day <span style={{ color: "red" }}>*</span>
-                </label>
-                <TextField
-                  sx={{ width: "100%" }}
-                  {...register("endDate")}
-                  id="outlined-basic"
-                  type="date"
-                  variant="outlined"
-                />
-              </Box>
-              <Box sx={{ width: "20%" }}>
-                <Button
-                  sx={{
-                    background: "var(--p_color) !important",
-                    color: "#fff !important",
-                    width: "100%",
-                  }}
-                  className="btn_regular"
-                  type="Search"
-                >
-                  Search
-                </Button>
-              </Box>
-            </Box>
-          </form>
-        </Box>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={9}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    {...register("startDate")}
+                    id="outlined-basic"
+                    type="date"
+                    variant="outlined"
+                    label="Start Date *"
+                    focused
+                  />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    {...register("endDate")}
+                    id="outlined-basic"
+                    type="date"
+                    variant="outlined"
+                    label="End Day *"
+                    focused
+                  />
+                </Grid>
+                <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Button
+                    sx={{
+                      background: "var(--p_color) !important",
+                      color: "#fff !important",
+                      width: "50%",
+                    }}
+                    className="btn_regular"
+                    type="Search"
+                  >
+                    Search
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
 
-        {/*Download */}
-        <Button
-          className="btn_regular"
-          onClick={() => handleOnclick()}
-          variant="contained"
-          sx={{ padding: "6px 50px 5px !important" }}
-        >
-          Download Salary Sheet
-        </Button>
+
+          {/* Download Salary Sheet */}
+          <Grid item xs={12} md={3} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+              className="btn_regular"
+              onClick={() => handleOnclick()}
+              variant="contained"
+              sx={{ width: '100%' }}
+            >
+              <FileDownloadIcon /> Salary Sheet
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
-      <Box sx={{ border: '1px solid #ddd' }}>
-        <PDFExport ref={pdfExportComponent}>
-          <Box sx={{ textAlign: 'center' }}>
-            <img
-              src="https://i.ibb.co/MkzYpxC/hr-care-logo.png"
-              alt="hr care"
-              style={{ width: '20%' }}
-            />
-            <Typography > Salary Sheet From {startDate} to {endDate}</Typography>
-          </Box>
-          <Typography> Note: P = Present Days, H = Holidays, L = Leave Days</Typography>
-          <TableContainer component={Paper}>
-            <Table aria-label="customized table">
-              <TableHead>
-                <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
-                  <StyledTableCell>Name <hr /> ID</StyledTableCell>
-                  <StyledTableCell align="center">Designation <hr />Department</StyledTableCell>
-                  <StyledTableCell align="center">Basic <hr />Gross </StyledTableCell>
-                  <StyledTableCell align="center">Pay Day <hr />P / H / L</StyledTableCell>
-                  <StyledTableCell align="center">Bank <hr /> Account</StyledTableCell>
-                  <StyledTableCell align="right">Payable <br /> Amount</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {employees.map((employee) => (
-                  <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </PDFExport>
+      <hr />
+      <Box sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto', mb: 4 }}>
+        <Box sx={{ width: '100%', display: 'block', whiteSpace: 'nowrap' }}>
+          <PDFExport ref={pdfExportComponent}>
+            <Box sx={{ textAlign: 'center' }}>
+              <img
+                src="https://i.ibb.co/MkzYpxC/hr-care-logo.png"
+                alt="hr care"
+                style={{ width: '20%' }}
+              />
+              <Typography sx={{ fontSize: "1rem", mb: 0.5 }}>
+                {filterDates[0] ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <DateRangeIcon sx={{ marginRight: "0.1rem" }} /> {startDate}{" "}
+                    to {endDate}
+                  </Box>
+                ) : (
+                  ""
+                )}
+              </Typography>
+            </Box>
+            <Typography variant="body2" sx={{ mb: 0.5 }}>
+              <span style={{ color: "red !important" }}>* </span>Note: P =
+              Present Days, H = Holidays, L = Leave Days
+            </Typography>
+            <TableContainer component={Paper}>
+              <Table aria-label="customized table">
+                <TableHead>
+                  <TableRow style={{ backgroundColor: "var(--p_color) !important" }}>
+                    <StyledTableCell align="center">Name <hr /> ID</StyledTableCell>
+                    <StyledTableCell align="center">Designation <hr />Department</StyledTableCell>
+                    <StyledTableCell align="center">Basic <hr />Gross </StyledTableCell>
+                    <StyledTableCell align="center">Pay Day <hr />P / H / L</StyledTableCell>
+                    <StyledTableCell align="center">Bank <hr /> Account</StyledTableCell>
+                    <StyledTableCell align="center">Payable <br /> Amount</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {employees.map((employee) => (
+                    <SalaryData key={employee._id} employee={employee} date={filterDates.filter(date => date?.email === employee?.email)}></SalaryData>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </PDFExport>
+        </Box>
       </Box>
     </Container >
   );

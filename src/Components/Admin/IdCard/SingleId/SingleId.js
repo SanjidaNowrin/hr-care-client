@@ -1,28 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Swal from "sweetalert2";
-import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import { PDFExport } from "@progress/kendo-react-pdf";
 import { makeStyles } from "@mui/styles";
 import { Box, Divider, Paper, Typography } from "@mui/material";
 import director from "../../../../assets/images/director.png";
-import useAuth from "../../../../hooks/useAuth";
-import Avatar from "@mui/material/Avatar";
+
+
 const SingleId = ({ employeeId }) => {
-  const { user } = useAuth();
-  const {
-    ID,
-    name,
-    DOJ,
-    birth,
-    blood,
-    department,
-    designation,
-    phone,
-    image,
-    photo,
-    qrUrl,
-  } = employeeId;
+
+  const { ID, name, DOJ, birth, blood, department, designation, phone, image, qrUrl } = employeeId;
+
+  const [oneEmployeeId, setOneEmployeeId] = useState({})
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${employeeId?.email}`)
+      .then((res) => res.json())
+      .then((data) => setOneEmployeeId(data.result));
+  }, [employeeId]);
+  console.log(oneEmployeeId[0]?.photo)
+
+
   const pdfExportComponent = useRef(null);
   const handleOnclick = () => {
     pdfExportComponent.current.save();
@@ -68,7 +66,6 @@ const SingleId = ({ employeeId }) => {
 
   const { cardBox, cardTop, imgBox, imgTop, textBold, signatureImg } =
     useStyle();
-
   return (
     <Grid item xs={12} sm={12} md={4}>
       <PDFExport ref={pdfExportComponent}>
@@ -92,9 +89,9 @@ const SingleId = ({ employeeId }) => {
 
           {/* employee image */}
           <Box className={imgBox}>
-            {photo ? (
+            {oneEmployeeId[0]?.photo ? (
               <img
-                src={`data:image/jpeg;base64,${photo}`}
+                src={`data:image/jpeg;base64,${oneEmployeeId[0]?.photo}`}
                 alt=""
                 className={imgTop}
               />

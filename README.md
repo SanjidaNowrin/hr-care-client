@@ -1,9 +1,10 @@
-# Getting Started with Create React App
+# HRM Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Link](https://hrcare.netlify.app/) ||
+[Github Client](https://github.com/md-mh/hr-care-client) ||
+[Github Server](https://github.com/md-mh/hr-care-backend)
 
-## Available Scripts
+## This Application Features
 
 In the project directory, you can run:
 
-`npm start`

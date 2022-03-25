@@ -1,11 +1,8 @@
-import { Container } from "@mui/material";
+import { Container, Paper, Divider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import TrendingDownIcon from "@material-ui/icons/TrendingDown";
-import TodayIcon from "@material-ui/icons/Today";
-import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import TaskIcon from "@mui/icons-material/Task";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { makeStyles } from "@mui/styles";
@@ -14,28 +11,21 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 import { emphasize, styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
-import PieCharts from "../Charts/PieCharts";
-import LineCharts from "../Charts/LineCharts";
-import BarChartJs from "../Charts/BarChartJs";
-import DoughnutChartJs from "../Charts/DoughnutChartJs";
 import LineChartsChartJs from "../Charts/LineChartsChartJs";
 import PieChartsChartJs from "../Charts/PieChartsChartJs";
 import dateFormat from "../../Share/DateFormat/dateFormat";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
+import PersonOffIcon from '@mui/icons-material/PersonOff';
+import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
 import useAuth from "../../../hooks/useAuth";
-import CalenderChar from "../DashboardHome/HolidayCalender/CalenderChart";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Checkbox from "@mui/material/Checkbox";
 
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import fun from '../../../assets/images/fun2.png';
 import LeaveCalender from "./LeaveCalender/LeaveCalender";
 
@@ -64,9 +54,7 @@ const EmployeeDashboardHome = () => {
 
   const dateString = currentDate.split("-")[1];
   const lastDay = parseInt(currentDate.split("-")[2]);
-  console.log(lastDay, typeof (lastDay))
 
-  console.log(dateString, currentDate, holiday, attendance);
   useEffect(() => {
     fetch(
       `https://ancient-thicket-61342.herokuapp.com/attendance/${user.email}`
@@ -111,8 +99,8 @@ const EmployeeDashboardHome = () => {
         setThisMonthTask(filterThisMonthTask);
       });
   }, [taskUpdate, user.email, currentDate, checked, dateString]);
-  // task summary
 
+  // task summary
   let totalTask = 0;
   let doneTask = 0;
   thisMonthTask.map(task => {
@@ -143,27 +131,24 @@ const EmployeeDashboardHome = () => {
 
   const useStyle = makeStyles({
     dashBox: {
-      border: '.5px solid #b6b7b7',
+      border: "1px solid #00D2FC",
       borderRadius: "10px",
       overflow: "hidden",
       width: "100%",
-      height: "120px",
-      background: "white",
-      // boxShadow: '1px 10px 10px #b6b7b7'
+      boxShadow: "1px 10px 30px #b6b7b7",
     },
     dashText: {
       padding: "13px 10px",
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
-      background: "",
-    },
+      justifyContent: "space-between",
+      background: "#00D2FC",
+    }
   });
 
   const { dashText, dashBox } = useStyle();
 
   // Assign task
-
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -173,7 +158,7 @@ const EmployeeDashboardHome = () => {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-    console.log(newChecked);
+
     setChecked(newChecked);
     fetch(`https://ancient-thicket-61342.herokuapp.com/taskAssign`, {
       method: "PUT",
@@ -190,6 +175,15 @@ const EmployeeDashboardHome = () => {
         setTaskUpdate(!taskUpdate);
       });
   };
+
+  function leftPad(number) {
+    var output = number + "";
+    while (output.length < 2) {
+      output = "0" + output;
+    }
+    return output;
+  }
+
   return (
     <Container sx={{}}>
       <Typography sx={{ mt: 2, color: "var(--p_color)" }} variant="h4">
@@ -207,301 +201,218 @@ const EmployeeDashboardHome = () => {
 
       <Box sx={{ mt: 3 }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={3}>
-            <Box sx={{ background: "rgba(54, 162, 235, .6)" }} className={dashBox}>
+          <Grid item xs={6} md={3}>
+            <Box className={dashBox}>
               <Box className={dashText}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black", textAlign: "center" }}
-                >
-                  Total Working Day
+                <Typography variant="h6" sx={{ color: "#fff" }}>
+                  Working Day
                 </Typography>
-                <br />
+                <DateRangeIcon
+                  style={{ fontSize: "3rem", color: "#fff" }}
+                ></DateRangeIcon>
               </Box>
-              {/* <TodayIcon></TodayIcon> */}
+
               <Typography
                 variant="h3"
-                sx={{
-                  textAlign: "center",
-                  color: "black",
-                  py: 1,
-                }}
+                sx={{ textAlign: "center", color: "#00D2FC", py: 1 }}
               >
-                {lastDay - holiday.length}
+                {leftPad(lastDay - holiday.length)}
               </Typography>
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={3}>
-            <Box className={dashBox} sx={{ background: 'rgba(75, 192, 192, .6)' }}>
-              <Box className={dashText} sx={{}}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black" }}
-                >
-                  Present
+          <Grid item xs={6} md={3}>
+            <Box
+              className={dashBox}
+              sx={{ border: "1px solid #845EC2 !important" }}
+            >
+              <Box
+                className={dashText}
+                sx={{ background: "#845EC2 !important" }}
+              >
+                <Typography variant="h6" sx={{ color: "#fff" }}>
+                  Total Present
                 </Typography>
+                <CoPresentIcon
+                  style={{ fontSize: "3rem", color: "#fff" }}
+                ></CoPresentIcon>
               </Box>
               <Typography
                 variant="h3"
-                sx={{
-                  textAlign: "center",
-                  color: "black",
-                  py: 1,
-                }}
+                sx={{ textAlign: "center", color: "#845EC2", py: 1 }}
               >
-                {present.length}
+                {leftPad(present.length)}
               </Typography>
-              {/* <TrendingUpIcon></TrendingUpIcon> */}
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={3}>
-            <Box className={dashBox} sx={{ background: 'rgba(255, 99, 132, .6)' }}>
-              <Box className={dashText} sx={{}}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black" }}
-                >
-                  Absent
+          <Grid item xs={6} md={3}>
+            <Box
+              className={dashBox}
+              sx={{ border: "1px solid #fb3e6a !important" }}
+            >
+              <Box
+                className={dashText}
+                sx={{ background: "#fb3e6a !important" }}
+              >
+                <Typography variant="h6" sx={{ color: "#fff" }}>
+                  Total Absent
                 </Typography>
+                <PersonOffIcon
+                  style={{ fontSize: "3rem", color: "#fff" }}
+                ></PersonOffIcon>
               </Box>
               <Typography
                 variant="h3"
-                sx={{
-                  textAlign: "center",
-                  color: "black",
-                  py: 1,
-                }}
+                sx={{ textAlign: "center", color: "#fb3e6a", py: 1 }}
               >
-                {lastDay - present.length - holiday.length - leave.length}
+                {leftPad(lastDay - present.length - holiday.length - leave.length)}
               </Typography>
-              {/* <TrendingDownIcon></TrendingDownIcon> */}
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={3}>
-            <Box className={dashBox} sx={{ background: ' rgba(255, 206, 86, .6)' }}>
-              <Box className={dashText} sx={{}}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "black" }}
-                >
-                  Holiday
+          <Grid item xs={6} md={3}>
+            <Box
+              className={dashBox}
+              sx={{ border: "1px solid #18025B !important" }}
+            >
+              <Box
+                className={dashText}
+                sx={{ background: "#18025B !important" }}
+              >
+                <Typography variant="h6" sx={{ color: "#fff" }}>
+                  Total Holiday
                 </Typography>
+                <HolidayVillageIcon
+                  style={{ fontSize: "3rem", color: "#fff" }}
+                ></HolidayVillageIcon>
               </Box>
               <Typography
                 variant="h3"
-                sx={{
-                  textAlign: "center",
-                  color: "black",
-                  py: 1,
-                }}
+                sx={{ textAlign: "center", color: "#18025B", py: 1 }}
               >
-                {holiday.length}
+                {leftPad(holiday.length)}
               </Typography>
-              {/*  <Box sx={{ height: '300px', width: '300px', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
-                                    Attendance
-                                </Typography>
-
-                                <PieChartsChartJs holiday={holiday} leave={leave} attendance={attendance} dateString={dateString}></PieChartsChartJs>
-                            </Box>*/}
             </Box>
           </Grid>
         </Grid>
       </Box>
 
       {/* charts */}
-
-      <Box sx={{}}>
+      <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>
-          {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
-                    <BarChartJs></BarChartJs>
-                </Box> */}
-          {/* <Box sx={{ height: '300px', width: '50%', margin: '20px', background: 'white' }}>
-                    <DoughnutChartJs attendance={attendance} dateString={dateString}></DoughnutChartJs>
-                </Box> */}
           <Grid item xs={12} md={4}>
-            <Box sx={{ height: '300px', width: '350px', margin: '30px 0', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
-              <Typography variant="h6" sx={{ color: 'rgba(255, 159, 64, 1)', margin: '0 auto' }}>
-                Leave
+            <Paper elevation={6} sx={{ pt: 2, pb: 3 }}>
+              <Typography variant="h5" sx={{ textAlign: 'center', fontFamily: 'var(--PT_font)', mb: 1 }}>
+                Leave Structure
               </Typography>
-
               <PieChartsChartJs casualLeave={casualLeave} sickLeave={sickLeave} ></PieChartsChartJs>
-            </Box>
+            </Paper>
           </Grid>
-          <Grid item xs={12} md={8}>
 
-            <Box sx={{ height: '300px', width: '100%', margin: '30px 0', marginLeft: '10px', background: 'white', border: '1px solid #b6b7b7' }}>
+          <Grid item xs={12} md={8}>
+            <Paper elevation={6} sx={{ maxWidth: { xs: '340px', sm: '100%', md: '100%' }, margin: 'auto', height: '100%', border: '1px solid #b6b7b7', p: 2 }}>
               <LineChartsChartJs thisMonthTask={thisMonthTask}></LineChartsChartJs>
-            </Box>
+            </Paper>
           </Grid>
         </Grid>
       </Box>
 
       {/* ASSIGN Task */}
-      <Box sx={{}}>
-        <Grid container spacing={2}>
+      <Box sx={{ mt: 6, mb: 4 }}>
+        <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <List dense sx={{ height: '350px', width: '100%', margin: '30px 0', border: '.5px solid #b6b7b7', bgcolor: 'background.paper' }}>
-              <Box sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}>
-                <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, .8)', margin: '20px ' }}>
-                  Assign Task
-                </Typography>
-                <TaskIcon sx={{ color: 'rgba(75, 192, 192, .8)', margin: '20px ', fontSize: '40px' }}></TaskIcon>
-              </Box>
-
-              {toDo[0]?.tags ? <>{toDo[0]?.tags?.map((value) => {
-                const labelId = `checkbox-list-secondary-label-${value}`;
-                return (
-                  <ListItem
-                    key={value}
-                    secondaryAction={
-                      <Checkbox
-                        edge="end"
-                        onChange={handleToggle(value)}
-                        checked={toDo[0]?.taskDone.indexOf(value) !== -1}
-                        inputProps={{ "aria-labelledby": labelId }}
-                      />
-                    }
-                    disablePadding
-                  >
-                    <ListItemButton>
-                      <ListItemText id={value._id} primary={value} />
-                    </ListItemButton>
-                  </ListItem>
-                );
-              })}</>
-                : <Box sx={{ height: '100%', width: '100%' }}>
-                  <Typography variant="h5">
-
-                    No Task Assign Yet
+            <Paper elevation={6}>
+              <List dense sx={{ height: '350px', width: '100%' }}>
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", mb: 1 }}>
+                  <Typography variant="h5" sx={{ textAlign: 'center', fontFamily: 'var(--PT_font)' }}>
+                    Assign Task
                   </Typography>
-                  <Box sx={{ height: '80%', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={fun} height='220px' width='220px' alt="" />
-                  </Box>
-
-                </Box>}
-            </List>
-          </Grid>
-          {/* task summary */}
-          <Grid item xs={12} md={4}>
-
-            <Card sx={{ height: '350px', width: '100%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
-              <Typography variant="h6" sx={{ color: 'rgba(75, 192, 192, .8)', margin: '10px ', textAlign: 'center' }}>
-                Leave Dates
-              </Typography>
-              <Box sx={{
-                display: "flex",
-                width: '100%',
-                justifyContent: "center",
-              }}>
-                <LeaveCalender sx={{ width: '100%', boxShadow: '0', margin: '0 auto' }} leave={leave} /></Box>
-              {/* <CardContent>
-                <Box sx={{
-                  display: "flex",
-
-                  justifyContent: "space-between",
-                }}>
-                  <Typography variant="h6" sx={{
-                    color: 'rgba(75, 192, 192, .8) '
-                  }}>
-                    Task Summary
-                  </Typography>
-                  <GroupsIcon sx={{ color: 'rgba(75, 192, 192, .8) ', fontSize: '40px' }}></GroupsIcon>
+                  <TaskIcon sx={{ color: '#00D2FC', fontSize: '3rem' }} />
                 </Box>
-                <Typography variant="h5" component="div">
-                  Task Assign
-                </Typography>
-                {totalTask?.length}
-                <Typography variant="body2">
+                <Divider />
 
-                </Typography>
-                <Typography variant="h5" component="div">
-                  Task Done
-                </Typography>
-                {doneTask?.length}
-                <Typography variant="body2">
-
-                </Typography>
-              </CardContent> */}
-
-            </Card>
-
-          </Grid>
-
-
-
-          {/* meeting card */}
-          <Grid item xs={12} md={4}>
-
-
-
-            <Card sx={{ height: '350px', width: '100%', margin: '30px', background: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', border: '.5px solid #b6b7b7' }}>
-              <CardContent sx={{ height: '100%' }}>
-                <Box sx={{
-                  display: "flex",
-
-                  justifyContent: "space-between",
-                }}>
-                  <Typography variant="h6" sx={{
-                    color: 'rgba(75, 192, 192, .8) ', margin: '10px '
-                  }}>
-                    Meeting
-                  </Typography>
-                  <GroupsIcon sx={{ color: 'rgba(75, 192, 192, .8) ', margin: '20px ', fontSize: '40px' }}></GroupsIcon>
-                </Box>
-                {toDo[0]?.startTime ? <> <Typography variant="h5" component="div">
-                  Meeting Today
-                </Typography>
-
-                  <Typography variant="body2">
-
-                    {toDo[0]?.startTime}AM
-                  </Typography>
-
-                </> :
-                  <Box sx={{ height: '100%', width: '100%' }}>
+                {toDo[0]?.tags ? <>{toDo[0]?.tags?.map((value) => {
+                  const labelId = `checkbox-list-secondary-label-${value}`;
+                  return (
+                    <ListItem
+                      key={value}
+                      secondaryAction={
+                        <Checkbox
+                          edge="end"
+                          onChange={handleToggle(value)}
+                          checked={toDo[0]?.taskDone.indexOf(value) !== -1}
+                          inputProps={{ "aria-labelledby": labelId }}
+                        />
+                      }
+                      disablePadding
+                    >
+                      <ListItemButton>
+                        <ListItemText id={value._id} primary={value} />
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                })}</>
+                  : <Box sx={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
                     <Typography variant="h5">
-
-                      No Meeting Schedule Yet
+                      No Task Assign Yet
                     </Typography>
                     <Box sx={{ height: '80%', width: '100%', display: 'flex', justifyContent: 'center' }}>
                       <img src={fun} height='220px' width='220px' alt="" />
                     </Box>
-
                   </Box>}
-              </CardContent>
+              </List>
+            </Paper>
+          </Grid>
 
+          {/* task summary */}
+          <Grid item xs={12} md={4}>
+            <Paper elevation={6} sx={{ height: '350px', width: '100%' }}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", py: 1 }}>
+                <Typography variant="h5" sx={{ textAlign: 'center', fontFamily: 'var(--PT_font)' }}>
+                  Leave Dates
+                </Typography>
+                <DateRangeIcon sx={{ color: '#00D2FC', fontSize: '3rem' }} />
+              </Box>
+              <Divider />
 
-            </Card>
+              <Box sx={{ display: "flex", width: '100%', justifyContent: "center" }}>
+                <LeaveCalender sx={{ width: '100%', boxShadow: '0', margin: '0 auto' }} leave={leave} />
+              </Box>
+            </Paper>
+          </Grid>
 
+          {/* meeting card */}
+          <Grid item xs={12} md={4}>
+            <Paper elevation={6} sx={{ height: '350px', width: '100%' }}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", py: 1 }}>
+                <Typography variant="h5" sx={{ textAlign: 'center', fontFamily: 'var(--PT_font)' }}>
+                  Meeting
+                </Typography>
+                <GroupsIcon sx={{ color: '#00D2FC', fontSize: '3rem' }} />
+              </Box>
+              <Divider />
 
-
+              {toDo[0]?.startTime ? <Box sx={{ mt: 1, ml: 2 }}>
+                <Typography variant="h5" component="div">
+                  Meeting Today
+                </Typography>
+                <Typography variant="body2">
+                  {toDo[0]?.startTime}AM
+                </Typography>
+              </Box> :
+                <Box sx={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+                  <Typography variant="h5">
+                    No Meeting Schedule Yet
+                  </Typography>
+                  <Box sx={{ height: '80%', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={fun} height='220px' width='220px' alt="" />
+                  </Box>
+                </Box>}
+            </Paper>
           </Grid>
         </Grid>
       </Box>
-      {/* meeting time  */}
-
-      {/* 
-            <Box sx={{ height: '300px', width: '80%', display: 'flex', margin: '40px' }}>
-                <Box sx={{ height: '300px', width: '80%', background: 'white' }}>
-                    <PieCharts />
-                    <Typography variant="p"> Contribuation by department </Typography>
-                </Box>
-
-
-                <Box sx={{ height: '300px', width: '80%', background: 'white' }}>
-                    <LineCharts />
-                    <Typography variant="p"> Performance Improvement </Typography>
-                </Box>
-
-            </Box> */}
     </Container>
   );
 };

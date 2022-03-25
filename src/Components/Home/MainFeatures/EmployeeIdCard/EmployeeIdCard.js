@@ -33,26 +33,24 @@ const EmployeeIdCard = () => {
       background: "#fff !important",
       boxShadow: "0px 7px 20px rgb(0, 0, 0, .2) !important",
       color: "#000 !important",
-      transition: 'all .3s !important',
-      cursor: 'pointer',
-      '&:hover': {
-        background: '#c3e4f7 !important',
+      transition: "all .3s !important",
+      cursor: "pointer",
+      "&:hover": {
+        background: "#c3e4f7 !important",
         border: "1px solid #c3e4f7",
         boxShadow: "0px 7px 20px rgb(195, 228, 247, .8) !important",
-      }
-    }
+      },
+    },
   });
-  const {
-    topText,
-    sectionTitle,
-    pText,
-    featureCard
-  } = useStyle();
+  const { topText, sectionTitle, pText, featureCard } = useStyle();
 
   return (
     <Box sx={{ py: 8 }}>
       <Grid container spacing={4}>
-        <Grid item xs={12} md={6}
+        <Grid
+          item
+          xs={12}
+          md={6}
           sx={{
             display: "flex",
             alignItems: "center",
@@ -60,7 +58,11 @@ const EmployeeIdCard = () => {
           }}
         >
           <Box>
-            <img style={{ width: '100%' }} src="https://i.ibb.co/DM8xDNR/id-card.jpg" alt="EmployeeIdCard" />
+            <img
+              style={{ width: "100%" }}
+              src="https://i.ibb.co/DM8xDNR/id-card.jpg"
+              alt="EmployeeIdCard"
+            />
           </Box>
         </Grid>
 

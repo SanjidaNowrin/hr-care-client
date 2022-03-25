@@ -18,151 +18,76 @@ import EnrollCourse from "./Components/Employee/Courses/EnrollCourse/EnrollCours
 import Leave from "./Components/Employee/Leave/Leave";
 import MyAttendance from "./Components/Employee/MyAttendance/MyAttendance";
 import MyInfo from "./Components/Employee/MyInfo/MyInfo";
-import SalaryInfo from "./Components/Employee/SalaryInfo/SalaryInfo";
 import Home from "./Components/Home/Home/Home";
 import Teams from "./Components/Home/Teams/Teams";
+import ForgetPassword from "./Components/Login/Login/ForgetPassword/ForgetPassword";
 import Login from "./Components/Login/Login/Login";
 import Register from "./Components/Login/Register/Register";
-import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
-import AuthProvider from "./contexts/AuthProvider";
 import AdminRoute from "./Components/Routes/AdminRoute/AdminRoute";
+import PrivateRoute from "./Components/Routes/PrivateRoute/PrivateRoute";
 import Nopage from "./Components/Share/Nopage/Nopage";
+import AuthProvider from "./contexts/AuthProvider";
 
 function App() {
-    return (
-        <>
-            <AuthProvider>
-                <Router>
-                    <Routes>
-                        <Route exact path="/" element={<Home />} />
-                        <Route path="/about" element={<Teams />} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+  return (
+    <>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/about" element={<Teams />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forget" element={<ForgetPassword />} />
 
-                        <Route
-                            exact
-                            path={`/dashboard`}
-                            element={
-                                <PrivateRoute>
-                                    <Dashboard />
-                                </PrivateRoute>
-                            }
-                        >
-                            <Route path={"/dashboard"} element={<EmployeeDashboardHome />} />
-                            <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
-                            <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
-                            <Route path={"/dashboard/announcements"} element={<Announcements />} />
-                            <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
-                            <Route path={"/dashboard/course"} element={<Courses />} />
-                            <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
-                            <Route path={"/dashboard/leave"} element={<Leave />} />
+            <Route
+              exact
+              path={`/dashboard`}
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            >
+              <Route path={"/dashboard"} element={<EmployeeDashboardHome />} />
+              <Route path={"/dashboard/myinfo"} element={<MyInfo />} />
+              <Route path={"/dashboard/attendance"} element={<MyAttendance />} />
+              <Route path={"/dashboard/announcements"} element={<Announcements />} />
+              <Route path={"/dashboard/announcements/:Id"} element={<Announcements />} />
+              <Route path={"/dashboard/course"} element={<Courses />} />
+              <Route path={"/dashboard/enroll/:id"} element={<EnrollCourse />} />
+              <Route path={"/dashboard/leave"} element={<Leave />} />
+            </Route>
+            <Route
+              exact
+              path={`/dashboard`}
+              element={
+                <AdminRoute>
+                  <Dashboard />
+                </AdminRoute>
+              }
+            >
+              <Route path={"/dashboard/admin"} element={<DashboardHome />} />
+              <Route path={"/dashboard/all_employees"} element={<Employees />} />
+              <Route path={"/dashboard/id_card"} element={<IdCard />} />
+              <Route path={"/dashboard/manage_attendance"} element={<AttendanceManages />} />
+              <Route path={"/dashboard/leaveRequests"} element={<LeaveRequests />} />
+              <Route path={"/dashboard/leaveRequests/:Id"} element={<LeaveRequests />} />
+              <Route path={"/dashboard/holiday"} element={<Holidays />} />
+              <Route path={"/dashboard/task_assign"} element={<TaskAssign />} />
+              <Route path={"/dashboard/add_announcement"} element={<AddAnnouncement />} />
+              <Route path={"/dashboard/add_course"} element={<AddCourse />} />
+              <Route path={"/dashboard/salary_sheet"} element={<SalarySheet />} />
+              <Route path={"/dashboard/make_admin"} element={<MakeAdmin />} />
+            </Route>
 
-                            <Route
-                                path={"/dashboard/admin"}
-                                element={
-                                    <AdminRoute>
-                                        <DashboardHome />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/all_employees"}
-                                element={
-                                    <AdminRoute>
-                                        <Employees />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/id_card"}
-                                element={
-                                    <AdminRoute>
-                                        <IdCard />{" "}
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/manage_attendance"}
-                                element={
-                                    <AdminRoute>
-                                        <AttendanceManages />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/leaveRequests"}
-                                element={
-                                    <AdminRoute>
-                                        <LeaveRequests />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route path={"/dashboard/leaveRequests/:Id"} element={<LeaveRequests />} />
-                            <Route
-                                path={"/dashboard/holiday"}
-                                element={
-                                    <AdminRoute>
-                                        <Holidays />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/task_assign"}
-                                element={
-                                    <AdminRoute>
-                                        <TaskAssign />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/add_announcement"}
-                                element={
-                                    <AdminRoute>
-                                        <AddAnnouncement />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/add_course"}
-                                element={
-                                    <AdminRoute>
-                                        <AddCourse />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/salary_sheet"}
-                                element={
-                                    <AdminRoute>
-                                        <SalarySheet />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/make_admin"}
-                                element={
-                                    <AdminRoute>
-                                        <MakeAdmin />
-                                    </AdminRoute>
-                                }
-                            />
-                            <Route
-                                path={"/dashboard/salaryInfo"}
-                                element={
-                                    <AdminRoute>
-                                        <SalaryInfo />
-                                    </AdminRoute>
-                                }
-                            />
-                        </Route>
-
-                        <Route path="/*" element={<Nopage />} />
-                    </Routes>
-                </Router>
-            </AuthProvider>
-        </>
-    );
+            <Route path="/*" element={<Nopage />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App;

@@ -38,7 +38,7 @@ const SalaryData = (props) => {
   return (
     <>
       <StyledTableRow>
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell component="th" align="center" scope="row">
           {name} <br /> {ID}
         </StyledTableCell>
 
@@ -62,7 +62,7 @@ const SalaryData = (props) => {
           {account}
         </StyledTableCell>
 
-        <StyledTableCell align="right" component="th" scope="row">
+        <StyledTableCell align="center" component="th" scope="row">
           {payment}
         </StyledTableCell>
       </StyledTableRow>

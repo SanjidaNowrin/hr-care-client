@@ -159,7 +159,7 @@ const Navbar = (props) => {
   const [employee, setEmployee] = useState([]);
   // get data
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [user.email, employee]);
@@ -336,6 +336,52 @@ const Navbar = (props) => {
                     </Link>
                   </Box>
                   {list}
+                  <Box sx={{ textAlign: 'center' }}>
+                    <NavLink className={navItem} to="/">
+                      {user.email ? (
+                        <Tooltip title="Account settings">
+                          <IconButton
+                            onClick={handleClick}
+                            size="small"
+                            sx={{ ml: 2 }}
+                            aria-controls={open ? "account-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                          >
+                            <StyledBadge
+                              overlap="circular"
+                              anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "right",
+                              }}
+                              variant="dot"
+                            >
+                              {employee[0]?.photo ? (
+                                employee.map((employeePhoto) => (
+                                  <Avatar
+                                    alt="Remy Sharp"
+                                    src={`data:image/jpeg;base64,${employeePhoto?.photo}`}
+                                  />
+                                ))
+                              ) : (
+                                <Avatar
+                                  sx={{ bgcolor: "var(--s_color)" }}
+                                  alt="Remy Sharp"
+                                  src="/broken-image.jpg"
+                                >
+                                  {user.displayName.slice(0, 1)}
+                                </Avatar>
+                              )}
+                            </StyledBadge>
+                          </IconButton>
+                        </Tooltip>
+                      ) : (
+                        <NavLink className={navItem} to="/login">
+                          <Button color="inherit">Login</Button>
+                        </NavLink>
+                      )}
+                    </NavLink>
+                  </Box>
                 </Drawer>
               </React.Fragment>
             </>

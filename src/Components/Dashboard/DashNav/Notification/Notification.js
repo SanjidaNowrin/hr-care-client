@@ -50,7 +50,7 @@ const Notification = () => {
                     aria-expanded={open ? 'true' : undefined}
                 >
                     <Badge badgeContent={unread.length} color="error">
-                        <NotificationsIcon sx={{ color: '#fff' }} />
+                        <NotificationsIcon sx={{ color: 'var(--p_color)' }} />
                     </Badge>
                 </IconButton>
             </Tooltip>

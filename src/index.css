@@ -32,6 +32,17 @@ a {
     text-decoration: none !important;
 }
 
+.swiper-pagination span{
+    height: 12px;
+    width: 12px;
+    border: 2px solid transparent;
+}
+
+.swiper-pagination-bullet-active{
+    border: 2px solid #fb3e6a !important;
+    background: #00D2FC;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
     display: none !important;
