@@ -129,10 +129,7 @@ function Dashboard(props) {
               <AccountBoxOutlinedIcon className={dashIcon} />
               All Employees
             </Link>
-            <Link className={dashLink} to="/dashboard/task_assign">
-              <AddTaskIcon className={dashIcon} />
-              Task Assign
-            </Link>
+
             <Link className={dashLink} to="/dashboard/id_card">
               <BadgeOutlinedIcon className={dashIcon} />
               ID Card
@@ -156,6 +153,11 @@ function Dashboard(props) {
             <Link className={dashLink} to="/dashboard/add_announcement">
               <CampaignIcon className={dashIcon} />
               Add Announcement
+            </Link>
+
+            <Link className={dashLink} to="/dashboard/task_assign">
+              <AddTaskIcon className={dashIcon} />
+              Task Assign
             </Link>
 
             <Link className={dashLink} to="/dashboard/add_course">
