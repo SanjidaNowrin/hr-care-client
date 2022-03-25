@@ -74,6 +74,7 @@ const BestEmployee = (props) => {
     cardContent: {
       position: "absolute",
       bottom: "75px",
+      zIndex: "99",
     },
     cardTitle: {
       fontWeight: "600 !important",
