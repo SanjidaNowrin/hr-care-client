@@ -19,7 +19,7 @@ const Leave = () => {
     const [employee, setEmployee] = useState({});
 
     useEffect(() => {
-        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user?.email}`)
+        fetch(`https://ancient-thicket-61342.herokuapp.com/employees/withoutImage/${user?.email}`)
             .then((res) => res.json())
             .then((data) => setEmployee(data.result[0]));
     }, [user.email]);

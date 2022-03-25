@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef,useEffect,useState } from "react";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Swal from "sweetalert2";
@@ -22,7 +22,15 @@ const SingleId = ({ employeeId }) => {
     image,
     photo,
     qrUrl,
+    email
   } = employeeId;
+const[employeePhoto,setEmployeePhoto]=useState([])
+  useEffect(() => {
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${email}`)
+        .then((res) => res.json())
+        .then((data) => setEmployeePhoto(data.result));
+}, []);
+console.log(employeePhoto[0]?.photo)
   const pdfExportComponent = useRef(null);
   const handleOnclick = () => {
     pdfExportComponent.current.save();
@@ -91,9 +99,9 @@ const SingleId = ({ employeeId }) => {
 
           {/* employee image */}
           <Box className={imgBox}>
-            {photo ? (
+            {employeePhoto[0]?.photo ? (
               <img
-                src={`data:image/jpeg;base64,${photo}`}
+                src={`data:image/jpeg;base64,${employeePhoto[0]?.photo}`}
                 alt=""
                 className={imgTop}
               />
