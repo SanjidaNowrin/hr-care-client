@@ -5,8 +5,8 @@
                 "image": "https://i.ibb.co/wYv0cFZ/mahedi.jpg",
                 "developer": "Back-End Developer",
                 "portfolio": "https://md-mh.netlify.app/",
-                "linkedIn":"https://www.linkedin.com/in/md-mh/",
-                "github":"https://github.com/md-mh"
+                "linkedIn": "https://www.linkedin.com/in/md-mh/",
+                "github": "https://github.com/md-mh"
         },
         {
                 "id": "2",
@@ -14,8 +14,8 @@
                 "image": "https://i.ibb.co/7QxPFGY/tanvir.png",
                 "developer": "MERN Stack Developer",
                 "portfolio": "https://musing-turing-aea328.netlify.app/",
-                "linkedIn":"",
-                "github":"https://github.com/NurulIslam-EEE"
+                "linkedIn": "",
+                "github": "https://github.com/NurulIslam-EEE"
         },
         {
                 "id": "3",
@@ -23,18 +23,17 @@
                 "image": "https://i.ibb.co/WyH8qrc/Sanjida.jpg",
                 "developer": "MERN Stack Developer",
                 "portfolio": "https://sanjida-islam-nowrin.netlify.app/",
-                "linkedIn":"https://www.linkedin.com/in/sanjida-islam-nowrin/",
-                "github":"https://github.com/SanjidaNowrin" 
+                "linkedIn": "https://www.linkedin.com/in/sanjida-islam-nowrin/",
+                "github": "https://github.com/SanjidaNowrin"
         },
         {
                 "id": "4",
                 "name": "Asraful Islam Sowrav",
                 "image": "https://i.ibb.co/TYmmM1Q/sowrav-front-end-developer.jpg",
-                "developer": "Back-End Developer",
+                "developer": "MERN Stack Developer",
                 "portfolio": "https://sowrav.netlify.app/",
-                "linkedIn":"",
-                "github":"https://github.com/asrafulsow"
-                
+                "linkedIn": "https://www.linkedin.com/in/mohammad-asraful-islam-sowrav-171a88206/",
+                "github": "https://github.com/asrafulsow"
         },
         {
                 "id": "5",
@@ -42,8 +41,8 @@
                 "image": "https://i.ibb.co/DGPYn0C/person.jpg",
                 "developer": "Front-End Developer",
                 "portfolio": "https://azaz-personal-by-forid.netlify.app/",
-                "linkedIn":"",
-                "github":""
+                "linkedIn": "",
+                "github": ""
         },
         {
                 "id": "6",
@@ -51,7 +50,7 @@
                 "image": "https://i.ibb.co/3fdB6Nh/kap.jpg",
                 "developer": "Front-End Developer",
                 "portfolio": "",
-                "linkedIn":"https://www.linkedin.com/in/kawsaralidev/",
-                "github":"https://github.com/kawsaralidev"
+                "linkedIn": "https://www.linkedin.com/in/kawsaralidev/",
+                "github": "https://github.com/kawsaralidev"
         }
 ]
