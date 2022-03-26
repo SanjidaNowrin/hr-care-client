@@ -15,3 +15,16 @@ Live site of [HR Care](https://hrcare.netlify.app/) <br/>
 
 </ul>
 
+# Technologies used
+<ul>
+<li>React</li>
+<li>Redux</li>
+<li>Material Ui</li>
+<li>Mongoose</li>
+<li>Node.js</li>
+<li>Express</li>
+<li>React Testing Library</li>
+<li>MongoDB</li>
+
+
+</ul>
