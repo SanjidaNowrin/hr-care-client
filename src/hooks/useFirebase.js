@@ -7,6 +7,7 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
+  sendPasswordResetEmail,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -90,6 +91,12 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   };
+
+  // forget Password
+  const resetPassword = (email) => {
+    sendPasswordResetEmail(auth, email).then((result) => { });
+  };
+  // user token verify
   const tokenStringify = {
     type: "service_account",
     project_id: "hr-care-6befb",
@@ -129,7 +136,6 @@ const useFirebase = () => {
         });
       } else {
         setUser({});
-
       }
       setTimeout(() => {
         setIsLoading(false);
@@ -173,6 +179,7 @@ const useFirebase = () => {
     isLoading,
     error,
     isAdmin,
+    resetPassword,
     googleSignIn,
     logOut,
     passwordLoginUser,

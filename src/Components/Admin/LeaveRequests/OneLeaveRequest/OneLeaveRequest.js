@@ -111,6 +111,7 @@ const OneLeaveRequest = ({ data }) => {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           ID: data?.ID,
+          name: data?.name,
           email: data?.email,
           date: currentDate,
           vacation: data?.leaveType,
@@ -131,104 +132,104 @@ const OneLeaveRequest = ({ data }) => {
     <>
       {newData.length
         ? newData.map((data) => (
-            <Box key={data.id}>
-              <Paper
-                sx={{
-                  mt: 3,
-                  p: 2,
-                  borderRadius: "13px !important",
-                  border: "2px solid lightGray",
-                }}
-              >
-                <Box className={announceTop}>
-                  <Typography variant="h5" sx={{ fontWeight: "600", mb: 2 }}>
-                    {data?.name}
-                  </Typography>
-
-                  <Typography variant="body2" className={dateStyle}>
-                    {data?.leaveType}
-                  </Typography>
-                </Box>
-                <Box className={announceTop}>
-                  <Typography className={announceP} variant="body1">
-                    {data?.designation}
-                  </Typography>
-                  <Typography className={announceP} variant="body1">
-                    {data?.department}
-                  </Typography>
-                  <Typography className={announceP} variant="body1">
-                    {data?.status}
-                  </Typography>
-                </Box>
-                <br />
-                <Box className={announceTop}>
-                  <Typography className={announceP} variant="body1">
-                    <b>From: </b>
-                    {data?.tripStart}
-                  </Typography>
-                  <Typography className={announceP} variant="body1">
-                    <b>To: </b>
-                    {data?.tripEnd}
-                  </Typography>
-                  <Typography className={announceP} variant="body1">
-                    <b>Days: </b>
-                    {data?.leaveDays}
-                  </Typography>
-                </Box>
-                <br />
-                <Typography className={announceP} variant="body1">
-                  {data?.message}
-                </Typography>
-                <br />
-                {data.status === "Approved" ? (
-                  <Typography variant="body1" sx={{ color: "green" }}>
-                    This Application is Already Approved
-                  </Typography>
-                ) : (
-                  <Box className={announceTop}>
-                    <Button
-                      variant="contained"
-                      color="success"
-                      onClick={() => onSubmit(data)}
-                      type="submit"
-                    >
-                      Approved
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      onClick={() => handleDelete(data)}
-                      type="submit"
-                    >
-                      Cancel
-                    </Button>
-                  </Box>
-                )}
-              </Paper>
-            </Box>
-          ))
-        : data.slice(0, 1).map((data) => (
-            <Box key={data.id}>
-              <Paper
-                sx={{
-                  p: 2,
-                  mt: 3,
-                  borderRadius: "13px !important",
-                  border: "2px solid gray",
-                }}
-              >
+          <Box key={data.id}>
+            <Paper
+              sx={{
+                mt: 3,
+                p: 2,
+                borderRadius: "13px !important",
+                border: "2px solid lightGray",
+              }}
+            >
+              <Box className={announceTop}>
                 <Typography variant="h5" sx={{ fontWeight: "600", mb: 2 }}>
-                  {data.name}
+                  {data?.name}
                 </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{ fontFamily: "var(--PT_font) !important" }}
-                >
-                  {data.department}
+
+                <Typography variant="body2" className={dateStyle}>
+                  {data?.leaveType}
                 </Typography>
-              </Paper>
-            </Box>
-          ))}
+              </Box>
+              <Box className={announceTop}>
+                <Typography className={announceP} variant="body1">
+                  {data?.designation}
+                </Typography>
+                <Typography className={announceP} variant="body1">
+                  {data?.department}
+                </Typography>
+                <Typography className={announceP} variant="body1">
+                  {data?.status}
+                </Typography>
+              </Box>
+              <br />
+              <Box className={announceTop}>
+                <Typography className={announceP} variant="body1">
+                  <b>From: </b>
+                  {data?.tripStart}
+                </Typography>
+                <Typography className={announceP} variant="body1">
+                  <b>To: </b>
+                  {data?.tripEnd}
+                </Typography>
+                <Typography className={announceP} variant="body1">
+                  <b>Days: </b>
+                  {data?.leaveDays}
+                </Typography>
+              </Box>
+              <br />
+              <Typography className={announceP} variant="body1">
+                {data?.message}
+              </Typography>
+              <br />
+              {data.status === "Approved" ? (
+                <Typography variant="body1" sx={{ color: "green" }}>
+                  This Application is Already Approved
+                </Typography>
+              ) : (
+                <Box className={announceTop}>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => onSubmit(data)}
+                    type="submit"
+                  >
+                    Approved
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => handleDelete(data)}
+                    type="submit"
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              )}
+            </Paper>
+          </Box>
+        ))
+        : data.slice(0, 1).map((data) => (
+          <Box key={data.id}>
+            <Paper
+              sx={{
+                p: 2,
+                mt: 3,
+                borderRadius: "13px !important",
+                border: "2px solid gray",
+              }}
+            >
+              <Typography variant="h5" sx={{ fontWeight: "600", mb: 2 }}>
+                {data.name}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ fontFamily: "var(--PT_font) !important" }}
+              >
+                {data.department}
+              </Typography>
+            </Paper>
+          </Box>
+        ))}
     </>
   );
 };

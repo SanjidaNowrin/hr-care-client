@@ -115,7 +115,6 @@ const Contact = () => {
                         width="100%"
                         height="99%"
                         style={{ borderBottom: "2px solid gray", borderRight: "2px solid gray" }}
-                        allowfullscreen=""
                     ></iframe>
                 </Grid>
             </Grid>

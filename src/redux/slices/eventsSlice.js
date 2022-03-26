@@ -15,17 +15,9 @@ const eventsSlice = createSlice({
   name: "announcement",
   initialState: {
     discover: [],
+    status: 'idle'
   },
-  reducers: {
-    addToOrderList: (state, { payload }) => {
-      state.orderList.push(payload);
-    },
-    removeFromOrderList: (state, { payload }) => {
-      state.orderList = state.orderList.filter(
-        (book) => book.id !== payload.id
-      );
-    },
-  },
+
   //fetch data
   extraReducers: (builder) => {
     builder.addCase(fetchAnnouncement.fulfilled, (state, action) => {
@@ -38,6 +30,6 @@ const eventsSlice = createSlice({
   },
 });
 
-export const { addToOrderList, removeFromOrderList } = eventsSlice.actions;
+
 
 export default eventsSlice.reducer;

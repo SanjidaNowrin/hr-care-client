@@ -1,12 +1,6 @@
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import HomeIcon from "@mui/icons-material/Home";
-import {
-  Breadcrumbs,
-  Container,
-  Grid,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Breadcrumbs, Container, Grid, Typography, useTheme } from "@mui/material";
 // Breadcrumbs
 import Chip from "@mui/material/Chip";
 import { emphasize, styled } from "@mui/material/styles";
@@ -15,9 +9,6 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import OneLeaveRequest from "./OneLeaveRequest/OneLeaveRequest";
-//pagination
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 
 const LeaveRequests = () => {
   const theme = useTheme();
@@ -38,9 +29,11 @@ const LeaveRequests = () => {
     activeAnnounceBox: {
       width: "100%",
       padding: "3px 5px",
+
       borderRadius: "13px !important",
+
       border: "2px solid gray",
-    //   boxShadow: "1px 10px 30px #b6b7b7 !important",
+      boxShadow: "1px 10px 30px #b6b7b7 !important",
     },
     announceTop: {
       display: "flex",
@@ -85,7 +78,7 @@ const LeaveRequests = () => {
     },
     rightIcon: {
       backgroundColor: "lightGray",
-      color: "black",
+      color: "white",
       width: "40px",
       margin: "5px 0px 5px 0px",
       borderRadius: "5px",
@@ -95,13 +88,7 @@ const LeaveRequests = () => {
       color: "#ff7b3d",
     },
   });
-  const {
-    announces,
-    announceBox,
-    activeAnnounceBox,
-    announceTop,
-    rightIcon,
-  } = useStyle();
+  const { announces, announceBox, activeAnnounceBox, announceTop, announceTitle, dateStyle, announceP, rightIcon } = useStyle();
 
   const [isActive, setActive] = useState();
   const handleClick = (id) => {
@@ -109,38 +96,24 @@ const LeaveRequests = () => {
     setActive(id);
   };
 
-  //pagination
-  const dataPerPage = 5;
-  const [page, setPage] = React.useState(0);
-  const [count, setCount] = useState(0);
-  const handleChange = (event, value) => {
-    setPage(value - 1);
-  };
-  console.log(page, count);
-
-  const buttonNumber = Math.ceil(count / 10);
-  console.log(buttonNumber);
-
-  //pagination end
-
   const [data, setData] = useState([]);
+  //pagination
+  const [page, setPage] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
-    fetch(
-      `https://ancient-thicket-61342.herokuapp.com/leave?page=${page}&&size=${dataPerPage}`
-    )
+    fetch("https://ancient-thicket-61342.herokuapp.com/leave")
       .then((res) => res.json())
       .then((data) => {
         setData(data.data.reverse());
-        setCount(dataPerPage);
+        const count = data.data.count;
+        const pageNumber = Math.ceil(count / 10);
+        setPageCount(pageNumber);
       });
-  }, [page]);
+  }, [data]);
 
   // Breadcrumbs
   const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-    const backgroundColor =
-      theme.palette.mode === "light"
-        ? theme.palette.grey[100]
-        : theme.palette.grey[800];
+    const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
     return {
       backgroundColor,
       height: theme.spacing(3),
@@ -164,11 +137,7 @@ const LeaveRequests = () => {
         </Typography>
         <Breadcrumbs aria-label="breadcrumb">
           <Link to="/dashboard">
-            <StyledBreadcrumb
-              to="/dashboard"
-              label="Dashboard"
-              icon={<HomeIcon fontSize="small" />}
-            />
+            <StyledBreadcrumb to="/dashboard" label="Dashboard" icon={<HomeIcon fontSize="small" />} />
           </Link>
           <Link to="/dashboard/leaveRequests">
             <StyledBreadcrumb component="a" href="#" label="Leave Requests" />
@@ -184,29 +153,23 @@ const LeaveRequests = () => {
                 <Typography sx={{ color: "gray" }}>
                   {data?.department}
                 </Typography>
-                <Box
-                  className={
-                    data._id === isActive ? activeAnnounceBox : announceBox
-                  }
-                >
+                <Box className={data._id === isActive ? activeAnnounceBox : announceBox}>
                   <Box sx={{ padding: "10px" }}>
                     <Box className={announceTop}>
                       <Typography sx={{ color: "gray" }}>
-                        Date: {data?.tripStart} to {data?.tripEnd}
+                        {data?.tripStart} To {data?.tripEnd}
                       </Typography>
                       <Box
                         variant="body2"
-                        className={
-                          data?.status === "pending"
-                            ? "pending-color"
-                            : "approved-color"
-                        }
+                        className={data?.status === "pending" ? "pending-color" : "approved-color"}
                       >
                         <Typography variant="body1">{data?.status}</Typography>
                       </Box>
                     </Box>
                     <Box>
-                      <Typography variant="h5">{data.name}</Typography>
+                      <Typography variant="h5">
+                        {data.name}
+                      </Typography>
                     </Box>
                     <Box className={announceTop}>
                       <Typography className={announces} variant="body1">
@@ -229,15 +192,6 @@ const LeaveRequests = () => {
           </Grid>
         </Grid>
       </Box>
-      <div style={{ width: "30%", margin: "0 auto", marginBottom: "1rem" }}>
-        <Stack spacing={2}>
-          <Pagination
-            onChange={handleChange}
-            count={buttonNumber}
-            color="primary"
-          />
-        </Stack>
-      </div>
     </Container>
   );
 };

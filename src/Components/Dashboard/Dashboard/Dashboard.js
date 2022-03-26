@@ -74,108 +74,108 @@ function Dashboard(props) {
           />
         </Link>
       </Box>
+      <Box sx={{ pl: 2 }}>
+        {/* Employees */}
+        <Typography className={drawerTitle} variant="h6">Employees</Typography>
+        <List className={linkItem}>
 
+          <Link className={dashLink} to="/dashboard">
+            <DashboardOutlinedIcon className={dashIcon} />
+            Dashboard
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/myinfo">
+            <AccountBoxOutlinedIcon className={dashIcon} />
+            My Information
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/attendance">
+            <CoPresentOutlinedIcon className={dashIcon} />
+            Attendance
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/announcements">
+            <CampaignIcon className={dashIcon} />
+            Announcement
+          </Link>
+
+          <Link className={dashLink} to="/dashboard/course">
+            <GolfCourseOutlinedIcon className={dashIcon} />
+            Courses
+          </Link>
+          <Link className={dashLink} to="/dashboard/leave">
+            <ExitToAppOutlinedIcon className={dashIcon} />
+            Leave
+          </Link>
+        </List>
+      </Box>
 
       <Divider />
 
       {/* HRM */}
       {
-        isAdmin ?
-          <Box sx={{ pl: 2 }}>
-            <Typography className={drawerTitle} variant="h6">HRM</Typography>
+        isAdmin &&
+        <Box sx={{ pl: 2 }}>
+          <Typography className={drawerTitle} variant="h6">HRM</Typography>
 
-            <List className={linkItem}>
+          <List className={linkItem}>
 
-              <Link className={dashLink} to="/dashboard/admin">
-                <DashboardOutlinedIcon className={dashIcon} />
-                Dashboard
-              </Link>
+            <Link className={dashLink} to="/dashboard/admin">
+              <DashboardOutlinedIcon className={dashIcon} />
+              Dashboard
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/all_employees">
-                <AccountBoxOutlinedIcon className={dashIcon} />
-                All Employees
-              </Link>
-              <Link className={dashLink} to="/dashboard/task_assign">
-                <AddTaskIcon className={dashIcon} />
-                Task Assign
-              </Link>
-              <Link className={dashLink} to="/dashboard/id_card">
-                <BadgeOutlinedIcon className={dashIcon} />
-                ID Card
-              </Link>
+            <Link className={dashLink} to="/dashboard/all_employees">
+              <AccountBoxOutlinedIcon className={dashIcon} />
+              All Employees
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/manage_attendance">
-                <CoPresentOutlinedIcon className={dashIcon} />
-                Manage Attendance
-              </Link>
+            <Link className={dashLink} to="/dashboard/id_card">
+              <BadgeOutlinedIcon className={dashIcon} />
+              ID Card
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/LeaveRequests">
-                <ExitToAppOutlinedIcon className={dashIcon} />
-                Leave Requests
-              </Link>
+            <Link className={dashLink} to="/dashboard/manage_attendance">
+              <CoPresentOutlinedIcon className={dashIcon} />
+              Manage Attendance
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/holiday">
-                <HolidayVillageOutlinedIcon className={dashIcon} />
-                Holiday
-              </Link>
+            <Link className={dashLink} to="/dashboard/LeaveRequests">
+              <ExitToAppOutlinedIcon className={dashIcon} />
+              Leave Requests
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/add_announcement">
-                <CampaignIcon className={dashIcon} />
-                Add Announcement
-              </Link>
+            <Link className={dashLink} to="/dashboard/holiday">
+              <HolidayVillageOutlinedIcon className={dashIcon} />
+              Holiday
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/add_course">
-                <GolfCourseOutlinedIcon className={dashIcon} />
-                Add Course
-              </Link>
+            <Link className={dashLink} to="/dashboard/add_announcement">
+              <CampaignIcon className={dashIcon} />
+              Add Announcement
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/salary_sheet">
-                <ListAltIcon className={dashIcon} />
-                Salary Sheet
-              </Link>
+            <Link className={dashLink} to="/dashboard/task_assign">
+              <AddTaskIcon className={dashIcon} />
+              Task Assign
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/make_admin">
-                <AdminPanelSettingsIcon className={dashIcon} />
-                Make Admin
-              </Link>
-            </List>
-          </Box>
-          :
-          <Box sx={{ pl: 2 }}>
-            {/* Employees */}
-            <Typography className={drawerTitle} variant="h6">Employees</Typography>
-            <List className={linkItem}>
+            <Link className={dashLink} to="/dashboard/add_course">
+              <GolfCourseOutlinedIcon className={dashIcon} />
+              Add Course
+            </Link>
 
-              <Link className={dashLink} to="/dashboard">
-                <DashboardOutlinedIcon className={dashIcon} />
-                Dashboard
-              </Link>
+            <Link className={dashLink} to="/dashboard/salary_sheet">
+              <ListAltIcon className={dashIcon} />
+              Salary Sheet
+            </Link>
 
-              <Link className={dashLink} to="/dashboard/myinfo">
-                <AccountBoxOutlinedIcon className={dashIcon} />
-                My Information
-              </Link>
-
-              <Link className={dashLink} to="/dashboard/attendance">
-                <CoPresentOutlinedIcon className={dashIcon} />
-                Attendance
-              </Link>
-
-              <Link className={dashLink} to="/dashboard/announcements">
-                <CampaignIcon className={dashIcon} />
-                Announcement
-              </Link>
-
-              <Link className={dashLink} to="/dashboard/course">
-                <GolfCourseOutlinedIcon className={dashIcon} />
-                Courses
-              </Link>
-              <Link className={dashLink} to="/dashboard/leave">
-                <ExitToAppOutlinedIcon className={dashIcon} />
-                Leave
-              </Link>
-            </List>
-          </Box>
+            <Link className={dashLink} to="/dashboard/make_admin">
+              <AdminPanelSettingsIcon className={dashIcon} />
+              Make Admin
+            </Link>
+          </List>
+        </Box>
       }
 
       <Divider sx={{ pb: 1 }} />
