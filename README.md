@@ -1,7 +1,6 @@
 # HR Care
 
-Live site of [HR Care](https://hrcare.netlify.app/)[Github Client]
-[Github Server](https://github.com/md-mh/hr-care-backend)
+Live site of [HR Care](https://hrcare.netlify.app/)||[Github Server](https://github.com/md-mh/hr-care-backend)
 
 <ul>
 <li>Authentication with JWT</li>
