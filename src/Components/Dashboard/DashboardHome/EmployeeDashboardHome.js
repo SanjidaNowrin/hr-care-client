@@ -88,28 +88,26 @@ const EmployeeDashboardHome = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTask());
-  }, [dispatch, user?.email, taskUpdate, user.email, currentDate, checked, dateString]);
+  }, [dispatch, user?.email, taskUpdate, currentDate, checked, dateString]);
 
   const allTasks = useSelector((state) => state?.employee?.task)
   console.log(allTasks)
   //assign task
   useEffect(() => {
-    // fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
-    //   .then((res) => res.json())
-    //   .then((data) => {});
+
     const filterThisMonthTask = allTasks?.data?.filter(
       (task) =>
-        task.email === user?.email && task.date.split("-")[1] === dateString
+        task?.email === user?.email && task?.date.split("-")[1] === dateString
     );
     const filterTask = allTasks?.data?.filter(
-      (task) => task.email === user?.email && task.date === currentDate
+      (task) => task?.email === user?.email && task?.date === currentDate
     );
     setToDo(filterTask);
     setChecked(filterTask[0]?.taskDone);
     setThisMonthTask(filterThisMonthTask);
     console.log(filterThisMonthTask, filterTask)
 
-  }, [taskUpdate, user.email, currentDate, checked, dateString, allTasks]);
+  }, [taskUpdate, user?.email, currentDate, checked, dateString, allTasks]);
   console.log(toDo, checked)
   // task summary
   let totalTask = 0;
