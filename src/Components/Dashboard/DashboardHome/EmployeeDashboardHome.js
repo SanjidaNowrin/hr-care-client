@@ -88,7 +88,7 @@ const EmployeeDashboardHome = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTask());
-  }, [dispatch, user?.email, taskUpdate, user.email, currentDate, checked, dateString]);
+  }, [dispatch, user?.email, taskUpdate, currentDate, checked, dateString]);
 
   const allTasks = useSelector((state) => state?.employee?.task)
   console.log(allTasks)
