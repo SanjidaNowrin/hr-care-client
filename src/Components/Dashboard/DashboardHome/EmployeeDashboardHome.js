@@ -84,12 +84,34 @@ const EmployeeDashboardHome = () => {
       });
   }, [dateString, user?.email]);
 
-  
-  
+  // redux
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTask());
+  }, [dispatch, user?.email, taskUpdate, currentDate, checked, dateString]);
+
+  const allTasks = useSelector((state) => state?.employee?.task)
+  console.log(allTasks)
+  //assign task
+  useEffect(() => {
+    const filterThisMonthTask = allTasks?.data?.filter(
+      (task) =>
+        task?.email === user?.email && task?.date.split("-")[1] === dateString
+    );
+    const filterTask = allTasks?.data?.filter(
+      (task) => task?.email === user?.email && task?.date === currentDate
+    );
+    setToDo(filterTask);
+    // setChecked(filterTask[0]?.taskDone);
+    setThisMonthTask(filterThisMonthTask);
+    console.log(filterThisMonthTask, filterTask)
+
+  }, [taskUpdate, user?.email, currentDate, checked, dateString, allTasks]);
+  console.log(toDo, checked,user.email)
   // task summary
   let totalTask = 0;
   let doneTask = 0;
-  thisMonthTask.map(task => {
+  thisMonthTask?.map(task => {
     totalTask += task?.tags?.length
     doneTask += task?.taskDone?.length
   })
@@ -327,7 +349,7 @@ const EmployeeDashboardHome = () => {
                         <Checkbox
                           edge="end"
                           onChange={handleToggle(value)}
-                          checked={toDo[0]?.taskDone.indexOf(value) !== -1}
+                          // checked={toDo[0]?.taskDone.indexOf(value) !== -1}
                           inputProps={{ "aria-labelledby": labelId }}
                         />
                       }
