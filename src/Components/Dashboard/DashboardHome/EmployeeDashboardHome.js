@@ -28,6 +28,8 @@ import Checkbox from "@mui/material/Checkbox";
 
 import fun from '../../../assets/images/fun2.png';
 import LeaveCalender from "./LeaveCalender/LeaveCalender";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTask } from "../../../redux/slices/employeeDashboardSlice.js";
 
 
 const EmployeeDashboardHome = () => {
@@ -82,24 +84,31 @@ const EmployeeDashboardHome = () => {
       });
   }, [dateString, user?.email]);
 
+  // redux
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTask());
+  }, [dispatch, user?.email, taskUpdate, currentDate, checked, dateString]);
+
+  const allTasks = useSelector((state) => state?.employee?.task)
+  console.log(allTasks)
   //assign task
   useEffect(() => {
-    fetch("https://ancient-thicket-61342.herokuapp.com/taskAssign")
-      .then((res) => res.json())
-      .then((data) => {
-        const filterThisMonthTask = data?.data?.filter(
-          (task) =>
-            task.email === user.email && task.date.split("-")[1] === dateString
-        );
-        const filterTask = data?.data?.filter(
-          (task) => task.email === user.email && task.date === currentDate
-        );
-        setToDo(filterTask);
-        setChecked(filterTask[0]?.taskDone);
-        setThisMonthTask(filterThisMonthTask);
-      });
-  }, [taskUpdate, user.email, currentDate, checked, dateString]);
 
+    const filterThisMonthTask = allTasks?.data?.filter(
+      (task) =>
+        task?.email === user?.email && task?.date.split("-")[1] === dateString
+    );
+    const filterTask = allTasks?.data?.filter(
+      (task) => task?.email === user?.email && task?.date === currentDate
+    );
+    setToDo(filterTask);
+    // setChecked(filterTask[0]?.taskDone);
+    setThisMonthTask(filterThisMonthTask);
+    console.log(filterThisMonthTask, filterTask)
+
+  }, [taskUpdate, user?.email, currentDate, checked, dateString, allTasks]);
+  console.log(toDo, checked)
   // task summary
   let totalTask = 0;
   let doneTask = 0;

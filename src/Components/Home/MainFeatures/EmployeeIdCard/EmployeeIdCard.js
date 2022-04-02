@@ -105,7 +105,7 @@ const EmployeeIdCard = () => {
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Admin can find employee <br /> id card.
+                      Admin can find employee <br /> id card
                     </Typography>
                   </Paper>
                 </Grid>
@@ -131,7 +131,7 @@ const EmployeeIdCard = () => {
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Empolyee id card fully <br /> dynamic.
+                      Empolyee id card fully <br /> dynamic
                     </Typography>
                   </Paper>
                 </Grid>
@@ -144,7 +144,7 @@ const EmployeeIdCard = () => {
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Admin also update <br /> id card.
+                      Admin also update <br /> id card
                     </Typography>
                   </Paper>
                 </Grid>

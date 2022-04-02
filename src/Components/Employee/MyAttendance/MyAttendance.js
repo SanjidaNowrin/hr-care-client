@@ -54,7 +54,7 @@ const MyAttendance = (props) => {
   // console.log(today?.date)
 
   useEffect(() => {
-    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`)
+    fetch(`https://ancient-thicket-61342.herokuapp.com/employees/photo/${user.email}`)
       .then((res) => res.json())
       .then((data) => setEmployee(data.result));
   }, [user.email]);
@@ -62,7 +62,7 @@ const MyAttendance = (props) => {
   const [qrCode, setQrCode] = useState([]);
   useEffect(() => {
     fetch(
-      `https://ancient-thicket-61342.herokuapp.com/employees/withoutImage/${user.email}`
+      `https://ancient-thicket-61342.herokuapp.com/employees/${user.email}`
     )
       .then((res) => res.json())
       .then((data) => setQrCode(data.result));

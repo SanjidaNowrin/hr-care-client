@@ -1,10 +1,10 @@
 import { Paper, Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import OfflineBoltIcon from "@mui/icons-material/OfflineBolt";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import HourglassBottomRoundedIcon from '@mui/icons-material/HourglassBottomRounded';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import FeedIcon from '@mui/icons-material/Feed';
 
 const SalaryFeatures = () => {
   const useStyle = makeStyles({
@@ -61,12 +61,10 @@ const SalaryFeatures = () => {
               Employees Salary Sheet
             </Typography>
             <Typography variant="h4" className={sectionTitle}>
-              Every employee given Their Daily Attendance
+              Generate monthly salary sheets
             </Typography>
             <Typography variant="body1" className={pText}>
-              HR Software is system for company to maintain a database of their
-              employers performance. Using this software, a company can manage
-              their employer details, attendance, Leave, holidays, Salary, etc.
+              After processing all of the monthly tasks. Admin can generate salary sheet pdf format with all employees by their present, absent, leave, holiday, bank account etc necessary informations.
             </Typography>
 
             <Box sx={{ mr: { md: 6 }, mt: 4 }}>
@@ -77,53 +75,53 @@ const SalaryFeatures = () => {
               >
                 <Grid item xs={2} sm={4} md={6}>
                   <Paper className={featureCard}>
-                    <OfflineBoltIcon
+                    <DownloadForOfflineIcon
                       sx={{ color: "var(--p_color)" }}
                       fontSize="large"
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Faster attendance <br /> process.
+                      Salary Sheet <br /> Downloadable
                     </Typography>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={2} sm={4} md={6}>
                   <Paper className={featureCard}>
-                    <PlayCircleOutlineIcon
+                    <HourglassBottomRoundedIcon
                       sx={{ color: "var(--p_color)" }}
                       fontSize="large"
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Punch In to start <br /> work.
+                      Counted by payable <br /> days
                     </Typography>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={2} sm={4} md={6}>
                   <Paper className={featureCard}>
-                    <StopCircleIcon
+                    <DateRangeIcon
                       sx={{ color: "var(--p_color)" }}
                       fontSize="large"
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Punch Out to end <br /> work.
+                      Filter by date <br /> range
                     </Typography>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={2} sm={4} md={6}>
                   <Paper className={featureCard}>
-                    <AccessTimeIcon
+                    <FeedIcon
                       sx={{ color: "var(--p_color)" }}
                       fontSize="large"
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Calculate your work
-                      <br /> Time.
+                      Show all necessary
+                      <br /> information
                     </Typography>
                   </Paper>
                 </Grid>

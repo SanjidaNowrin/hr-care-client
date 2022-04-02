@@ -28,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const Employees = () => {
     const [employees, setEmployees] = useState([]);
     useEffect(() => {
-        fetch("https://ancient-thicket-61342.herokuapp.com/employees")
+        fetch("https://ancient-thicket-61342.herokuapp.com/employees/rp")
             .then((res) => res.json())
             .then((data) => setEmployees(data.result.reverse()));
     }, [employees]);

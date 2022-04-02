@@ -65,9 +65,7 @@ const Attendance = () => {
               Every employee given Their Daily Attendance
             </Typography>
             <Typography variant="body1" className={pText}>
-              HR Software is system for company to maintain a database of their
-              employers performance. Using this software, a company can manage
-              their employer details, attendance, Leave, holidays, Salary, etc.
+              Each employee can provide their daily attendance through their account and verify by QR scanner with their ID card. No punch device is required on this system
             </Typography>
 
             <Box sx={{ mr: { md: 6 }, mt: 4 }}>
@@ -84,7 +82,7 @@ const Attendance = () => {
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Faster attendance <br /> process.
+                      Faster attendance <br /> process
                     </Typography>
                   </Paper>
                 </Grid>
@@ -97,7 +95,7 @@ const Attendance = () => {
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Punch In to start <br /> work.
+                      Punch In to start <br /> work
                     </Typography>
                   </Paper>
                 </Grid>
@@ -110,7 +108,7 @@ const Attendance = () => {
                     />
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
-                      Punch Out to end <br /> work.
+                      Punch Out to end <br /> work
                     </Typography>
                   </Paper>
                 </Grid>
@@ -124,7 +122,7 @@ const Attendance = () => {
 
                     <Typography sx={{ fontWeight: "600" }} variant="body1">
                       Calculate your work
-                      <br /> Time.
+                      <br /> Time
                     </Typography>
                   </Paper>
                 </Grid>
