@@ -1,0 +1,74 @@
+[
+    {
+        "id": "01",
+        "name": "How to Build a Shopify Store Start to Finish",
+        "des": "Learn how to build a Shopify store from start to finish. If you've always wanted to create an online store, discover how to do it in this easy Shopify tutorial. Shopify is a powerful yet accessible eCommerce platform that makes it easy to create an online store without writing a single line of code. In this 12-part Shopify tutorial for beginners, Adi Purdila will show you how to set up a Shopify store that looks great and provides all the features your customers need.",
+        "author": "Adi Purdila",
+        "authorImg": "https://i.ibb.co/hM2v2tk/adi.jpg",
+        "courseImg": "https://i.ibb.co/n0N8dCx/shopify.jpg",
+        "price": 109,
+        "rating": 4.5,
+        "topic": "SHOPIFY",
+        "date": "17 Jun 2020"
+    },
+    {
+        "id": "02",
+        "name": "Optimising Your Digital Offering Digital Projects",
+        "des": "Have you experienced digital projects that have run over budget and missed their deadlines? Of course, you have! We all have. But why is that happening, and why do so many sites fail to live up to their potential even when they are launched? Join digital transformation expert Paul Boag as he explores why so many sites fail, and how you can avoid it by adopting a different approach to creating them in the first place.",
+        "author": "Paul Boag",
+        "authorImg": "https://i.ibb.co/2nhCCGQ/paul-boag.jpg",
+        "courseImg": "https://i.ibb.co/F4qzgk9/optimize.jpg",
+        "price": 109,
+        "rating": 4.3,
+        "topic": "CONVERSION",
+        "date": "19 Dec 2017"
+    },
+    {
+        "id": "03",
+        "name": "How to Design a Project Proposal in Adobe InDesign",
+        "des": "What is a project proposal? If you're on the hunt for new business, an effective project proposal is a tried and tested way to impress clients and win competitive projects. Learn how to quickly customise a project proposal template and tailor the template uniquely to your needs. In this course, graphic designer Grace Fussell shares her tips for choosing the best possible business proposal template and customising the styles, colours, and master pages to transform the proposal template. You'll also learn how to design your own proposals from scratch in Adobe InDesign, develop professional print layouts, and create a strong visual style for your design proposal. If you're looking to pick up new print design skills and learn more about using InDesign to create effective print layouts, this course is the perfect fit for you.",
+        "author": "Grace Fussell",
+        "authorImg": "https://i.ibb.co/zG1xXqd/Headshot-small.jpg",
+        "courseImg": "https://i.ibb.co/wLn47WM/proposal.jpg",
+        "price": 109,
+        "rating": 5,
+        "topic": "PRINT DESIGN",
+        "date": "5 Nov 2018"
+    },
+    {
+        "id": "04",
+        "name": "The Complete Guide to Using CSS Variables",
+        "des": "CSS custom properties, also known as CSS variables, are entities that contain specific values that can be reused in a stylesheet. They are like LESS or Sass variables, except you don't need a preprocessor to use them. In fact, browsers have supported them for the past few years. In this course, you'll learn everything you need to know in order to use CSS variables in the most efficient way. You'll learn about the proper syntax, naming, and what kind of values you can store, and you'll also see a lot of examples along the way.",
+        "author": "Adi Purdila",
+        "authorImg": "https://i.ibb.co/hM2v2tk/adi.jpg",
+        "courseImg": "https://i.ibb.co/3swhcFm/css-variables.jpg",
+        "price": 109,
+        "rating": 4.5,
+        "topic": "Web Design",
+        "date": "10 Mar 2021"
+    },
+    {
+        "id": "05",
+        "name": "How to Animate a Landscape Painting in Adobe After Effects",
+        "des": "Bring your digital paintings to life using these animation techniques in Adobe After Effects! In this course, Jonathan Lam will walk you step by step through the process of adding stunning and eye-catching animations to your scene. Using a painting by professional digital artist Henrik Evensen, you'll learn how to add and connect the different natural elements, such as wind, moving grass, and clouds, from scratch. You'll also learn how to match the final keyframe with the first, so that the whole animation can be seamlessly looped.",
+        "author": "Jonathan Lam",
+        "authorImg": "https://i.ibb.co/FH2tPG6/jon-lam.jpg",
+        "courseImg": "https://i.ibb.co/nR8H8Mw/after-effect.jpg",
+        "price": 109,
+        "rating": 4.3,
+        "topic": "PHOTO & VIDEO",
+        "date": "29 Jan 2021"
+    },
+    {
+        "id": "06",
+        "name": "How to Make a Professional Resume in 10 Minutes",
+        "des": "CSS custom properties, also known as CSS variables, are entities that contain specific values that can be reused in a stylesheet. They are like LESS or Sass variables, except you don't need a preprocessor to use them. In fact, browsers have supported them for the past few years. In this course, you'll learn everything you need to know in order to use CSS variables in the most efficient way. You'll learn about the proper syntax, naming, and what kind of values you can store, and you'll also see a lot of examples along the way.",
+        "author": "Chamira Young",
+        "authorImg": "https://i.ibb.co/PhVdvxN/Chamira-Headshot.jpg",
+        "courseImg": "https://i.ibb.co/D14Jh3K/resume.png",
+        "price": 109,
+        "rating": 4.5,
+        "topic": "RESUMES",
+        "date": "15 Dec 2017"
+    }
+]

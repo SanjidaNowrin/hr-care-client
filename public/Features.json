@@ -1,0 +1,44 @@
+[
+    {
+        "id": "01",
+        "title": "Leave Request",
+        "des": "All leave must be documented by using the Leave Request form. Before requesting paid leave",
+        "img": "https://i.ibb.co/xSGqcsZ/leave.png"
+    },
+    {
+        "id": "02",
+        "title": "Advanced Features",
+        "des": "Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.",
+        "img": "https://i.ibb.co/XWMy8vM/feature.png"
+    },
+    {
+        "id": "03",
+        "title": "Daily Attendance",
+        "des": "HR Software Is System For Company To Maintain A Database Of Their Employers Performance.",
+        "img": "https://i.ibb.co/tHQsFyz/attendance.png"
+    },
+    {
+        "id": "04",
+        "title": "Employee ID Card",
+        "des": "Employee ID Cards Help To Increase Security Due To The Magnetic Scanning Strips",
+        "img": "https://i.ibb.co/2tZV5Lf/id-cards.png"
+    },
+    {
+        "id": "05",
+        "title": "Employees Salary",
+        "des": "A salaried employee is a worker who is paid a fixed amount of money or compensation",
+        "img": "https://i.ibb.co/6RPt1cP/salary.png"
+    },
+    {
+        "id": "06",
+        "title": "Assign Task",
+        "des": "Admin assign a new task On the Assign Task page for every Employee",
+        "img": "https://i.ibb.co/jy21Bjq/to-do-list.png"
+    },
+    {
+        "id": "07",
+        "title": "Holidays",
+        "des": "Bangladesh has numerous public holidays, including national memorial",
+        "img": "https://i.ibb.co/7XRFT2Y/holiday.png"
+    }
+]
