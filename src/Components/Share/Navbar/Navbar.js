@@ -238,7 +238,7 @@ const Navbar = (props) => {
                                 alt="Remy Sharp"
                                 src="/broken-image.jpg"
                               >
-                                {user.displayName.slice(0, 1)}
+                                {user.displayName.slice(0, 4)}
                               </Avatar>
                             )}
                           </StyledBadge>
@@ -369,7 +369,7 @@ const Navbar = (props) => {
                                   alt="Remy Sharp"
                                   src="/broken-image.jpg"
                                 >
-                                  {user.displayName.slice(0, 1)}
+                                  {user.displayName.slice(0, 4)}
                                 </Avatar>
                               )}
                             </StyledBadge>
